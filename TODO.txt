@@ -1,0 +1,82 @@
+TODO
+----------------------
+12. Plockat bort nummer för kanterna. Får hitta någon lösning för startrutan
+11. Göra figur mindre i hitarea
+
+	9. Frågan om man kan lägga kartbitar vägar separat och objekt på rutan separat, som mimers brunn. 
+	8. Göra bagger enklare.
+	7. Bro ramlar inte längre ner till floor 1. Göra om höjd?
+	6. Brunn och alv så blev det problem att gå på brunnen. Anar att det har med Hitobjects, måste göra det smartare.
+	5. Hopp från broar funkar inte till högre siffror. Höger och ner.
+
+
+
+*	4a	Placeme  I getwand finns placeme. Men hamnar konstigt ändå. Wanden funkar inte för att jag gjort om hur jag ritar rutorna..
+
+		
+	3. Stupet funkar inte. Man kan bara hoppa åt ett håll
+
+	2. Döden och slutet på spelet.
+
+	13.Figurer / Saker
+	_________________________
+	Mårran: skapar is och halka, Tummeliten, Alice Katten, Mystiska Hornet, Mystiska Vinden   
+
+
+
+		
+
+		
+
+
+
+		
+
+	
+10. Wand förvandla så rutans ändringar är bestående. 
+
+	3. Kontrollera att kartan fungerar
+	-----------------------------------------
+	
+
+	4.Man fastnar på bakhållskog, ändra så det inte händer.
+	_______________________________________________________
+		
+	5.vad i cardegenskaper ska ändras.
+	Monster - sak -
+		
+
+		
+
+	1. Göra olika kort.
+	--------------------------------- 
+	Kanske ska först komma i version två.
+
+
+
+Done
+-------------------------------------------------
+		2a6 Göra klass för knapp.
+		2a5
+		----------------------
+		Göra knapp klickbar
+
+		2a4
+		------------------
+		rita halvhjärta
+
+		2a1
+		---------------------------------------
+		Skapa kombat ruta. 
+
+		2a2
+		---------------------------------------
+		Skapa kombat ikon, png. 
+
+		2a3 knapp
+		--------------------
+		Göra knapp
+
+
+
+	
