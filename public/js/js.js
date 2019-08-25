@@ -203,6 +203,16 @@ function drawMagi(index,x,y){
     //ctx.fillText(figur[index].styrka, x+21, y+28);}  
     ctx.fillText(gameObj[0].magi, x+15, y+25);}//25 , 21, 17   
 
+function end(){}
+function startaIgen(){
+    //nollsälla värden
+    //lotta kort
+    crupier = lottaCards();
+    blanda = shuffle();
+    //lotta ny karta
+    makeMap();
+   
+    }
 
 
 function moveStart(){ movepause = false; gameStatus.push(move); return false;}
@@ -231,13 +241,13 @@ function drawRuta(rubrik="tom", text="tom", img="tom", buttons="tom"){
             img=figurImg;
             text=figurText;
             buttons=[{action: figurAction, text: figurButton}];
-            console.log("Deprached: drawruta på:" + rubrik);
+            console.log("Deprached: drawruta på2:" + rubrik);
         }
     var x=50;
     var y=100;
     var act;
     ctx.drawImage(rutaBG, x, y);
-    ctx.drawImage(figurImg , x+6, y+92,300,100); //bilden på figur
+    ctx.drawImage(img , x+6, y+92,300,100); //bilden på figur
     textWriter(rubrik, x + rutaBG.width/2, y + 30, 26, "center");
     textWriter(text, x+30, y+50, 26, "black");
     let bhsY = y + 200 - buttons.length * 50;
@@ -753,7 +763,7 @@ function drawImage(image, x, y, scale=1, rotation=0){
     ctx.rotate(rotation);
     ctx.drawImage(image, - image.width / 2, -image.height / 2);
 }
-//str.lastIndexOf("locate");
+
 function textWriter(text, x, y, lineLength = 40, color= "white", align = "left"){
     var textut;
     ctx.textAlign = align;
