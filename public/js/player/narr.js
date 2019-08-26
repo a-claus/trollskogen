@@ -3,11 +3,11 @@ mapImages.push(new Image());
 mapImages[mapImages.length-1].src="./img/prinsSprite.png";
 
 
-console.log("Prins");
+console.log("Narr");
 
 gameObj.unshift(
  {
- 	vem: "Prinsen",
+ 	vem: "Narren",
 	vad: "spelare",
 	figur: true,
 	miljo: false,
@@ -17,12 +17,12 @@ gameObj.unshift(
 /*--------------------------------
 EGENSKAPER
 ----------------------------------*/
- 	liv: 3,
+ 	liv: 2,
     skada: 0,
-    styrka: 3,
-    iq:1,
-    magi: 0,
-    magipower: 0,
+    styrka: 1,
+    iq:3,
+    magi: 2,// 0,
+    magipower: 1,
     bag: [],
     upgrade: [],
 
