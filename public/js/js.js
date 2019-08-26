@@ -206,12 +206,15 @@ function drawMagi(index,x,y){
 function end(){}
 function startaIgen(){
     //nollsälla värden
+    console.log("SI");
+    deleteObject("Prinsen");
+    getFile(figurer[1].url);
     //lotta kort
     crupier = lottaCards();
     blanda = shuffle();
     //lotta ny karta
     makeMap();
-   
+   gameStatus.push(move);
     }
 
 
@@ -604,7 +607,6 @@ function getIndex(input){
 function deleteObject(vad){
     
     var nummer= gameObj.findIndex(function(index) { return index["namn"] === vad; });
-    console.log(nummer);
      gameObj.splice(nummer, 1);
     
 }
