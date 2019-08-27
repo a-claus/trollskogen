@@ -145,7 +145,7 @@ function deadOrAlive(plunus){
 
 function death(){
 	
-	
+	console.log(gameStatus);
 	var rubrik = "GAME OVER";
 	var text = gameObj[0].vem + " kunde blivit en hjälte. Nu förmulnad i Trollskogen. Ska vi sända bud till slottet och meddela misslyckandet, så de kan skicka en ny dumdristig äventyrare in i Trollskogen för att rädda kung Sebastian?";
 	var buttons = [ {text: "Spela", actions: startaIgen}, {text:" Sluta", action: end}];

@@ -225,19 +225,12 @@ function diceFunc(){console.log("df"); queue.push(diceRuta);}
 var hittad;
 var figurImg; var figurRubrik; var figurText; var figurAction = ""; var figurButton = "";
 
-function xdrawRuta(){
-    var x=50;
-    var y=100;
-    var act;
-    ctx.drawImage(rutaBG, x, y);
-    ctx.drawImage(figurImg , x+6, y+92,300,100); //bilden på figur
-    textWriter(figurRubrik, x + rutaBG.width/2, y + 30, 26, "center");
-    //textWriter(figurRubrik, x+30, y+30, 26, "black");
-    textWriter(figurText, x+30, y+50, 26, "black");
-    button.push(new Button(figurAction, x+190, y+150, figurButton));
-}
+
 
 function drawRuta(rubrik="tom", text="tom", img="tom", buttons="tom"){
+    console.log("dr");
+    console.log(gameStatus);
+    console.log(buttons);
     if (rubrik=="tom")
         {
             rubrik=figurRubrik;
