@@ -180,16 +180,7 @@ for (var i = 0; i<2; i++){
             return 0;
             break;*/
 
-        case "128 128 128": //brown genom tunnel
-            //map[wood.mapNum]
-            return 0;   
-            break;    
-       // case "50 50 50"://160,82,45 //uppe på bron hoppa ner
-        //	figur[0].status="jump";
-           
-           
-          //  break;
-           // case "160 82 45"://160,82,45
+
          case "120 120 120": //under bron
             //if (p==0) { 
            // special="tunnel"; 
@@ -207,13 +198,7 @@ for (var i = 0; i<2; i++){
            walker.go = 1;
             walker.area = "road";
             break;
-
-            /*case "red":
-            console.log("Monster");
-            special="monster";
-            //iaCard();
-            break;*/
-            
+    
         
         	default:
                 walker.go=0;

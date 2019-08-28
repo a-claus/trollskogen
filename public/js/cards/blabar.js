@@ -95,4 +95,4 @@ BILD SPRITES on MAP
 
 hitObjects++;
 
-ajaxQueue--;
+gameStatus.push(moveStart);

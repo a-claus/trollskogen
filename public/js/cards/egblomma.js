@@ -4,7 +4,7 @@
 //
 //---------------------------------------------
 
-console.log("EB");
+console.log("EgBlomma");
 mapImages.push(new Image());
 mapImages[mapImages.length-1].src="./img/egblomma.png";
 cardImages.push(new Image());
@@ -84,4 +84,4 @@ hitAction : function(){
 //kartbit[13].func=loadSIS;
 
 hitObjects++;
-ajaxQueue--;
+gameStatus.push(moveStart);

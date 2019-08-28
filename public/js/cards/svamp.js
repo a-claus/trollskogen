@@ -54,49 +54,51 @@ hitAction : function(){
 },
 text: "Åh, de lukar ljuvligt.",
 drawRuta: function (){
-    var buttons = [];
+    var buttons = []; var life = true;
     switch (this.T6) {
       case 0:
         buttons = [{action: diceRuta, text: "Mums"}, {action: moveFunc, text: "Kan vara farligt"}];      
       break;
       case 1:
-        buttons = [{action: diceRuta, text: "Vågar man ta en till?"}, {action: moveFunc, text: "Gå!"}];
-       deadOrAlive(2);
+       life = deadOrAlive(2);
         this.text = "AJ! AJ! AJ! Den var giftig!";
       break;
       case 2:
-        buttons = [{action: diceRuta, text: "Vågar man ta en till?"}, { action: moveFunc, text: "Gå!"}];
-        deadOrAlive(1);
+        life = deadOrAlive(1);
         this.text = "AJ, min mage! Jag tror jag ätit för många!";
       break;
       case 3:
-        buttons = [{action: diceRuta, text: "Vågar man ta en till?"}, { action: moveFunc, text: "Gå!"}];
         gameObj[0].skada += 1;
         effekten("magi", "add");
         this.text = "Jag tror kraften är med mig!";
       break;
       case 4:
-        buttons = [{action: diceRuta, text: "Vågar man ta en till?"}, { action: moveFunc, text: "Gå!"}];
         gameObj[0].styrka += 1;
         effekten("styrka", "add");
         this.text = "Oj oj, jag tror minsann mina biceps väver!";
       break
       case 5:
-        buttons = [{action: diceRuta, text: "Vågar man ta en till?"}, { action: moveFunc, text: "Gå!"}];
         gameObj[0].iq += 1;
         effekten("iq", "add");
         this.text = "Elementärt, denna svamp måste ha vattnats med vatten från Mimers Brunn!";
       break;
       case 6:
-        buttons = [{action: diceRuta, text: "Vågar man ta en till?"}, { action: moveFunc, text: "Gå!"}];
+        
         gameObj[0].liv += 1;
         effekten("harts", "add");
         this.text = "Åh hjärtaness då!"; 
       break;
     }
+
+    if (life == true){
+      if (this.T6 != 0){
+        buttons = [{action: diceRuta, text: "Vågar man ta en till?"}, {action: moveFunc, text: "Gå!"}];
+    }}
+    if (life == false){return false;  }
     //diceImg = this.cardImg;
     drawDiceRuta({rubrik: this.namn, brod: this.text}, this.cardImg, buttons, this.T6);
     this.T6 = Math.floor(Math.random() * 6 + 1); 
+
     return false;  
 },
 

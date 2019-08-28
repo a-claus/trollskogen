@@ -183,7 +183,6 @@ class Sak extends Figur{
 }
     
 
-
 class Player extends Figur{
     constructor(){
         super();
@@ -371,9 +370,11 @@ class Wood{
         if (map[mapNR].edge) {
             this.edge=map[mapNR].edge;}
         else
-            { this.edge="not";}
+            { this.edge = "not";}
 
-        if (mapNR==81) this.vaderstrack="soder";
+        if (mapNR==81) {
+            this.vaderstrack = "soder";
+            this.floors = 1;}
 
       // if (kartbit[this.kartbit].hasOwnProperty("func")==true){
         //    kartbit[this.kartbit].func();
@@ -552,22 +553,12 @@ class Button {
     
     }
 
-   /* setFunc(func) {
-        doFunc=func;
-        gameStatus="runFunc";
-    }*/
 
     hit() {
-        console.log("buttonHit2");
-        //if (typeof this.action === "function") {
-          //  this.action();
-           // var boundGetObj = this.action.bind(kartObj[hittad]);
-        //}
-        //else 
-            //{
+       
                 if (this.action == move) movepause = false; 
                 gameStatus.push(this.action);
-                //}
+                
     }    
 
 }

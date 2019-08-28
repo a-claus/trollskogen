@@ -88,3 +88,5 @@ function runSwordofstoneDices (number){
 //  8: "getExcalibur"
 }
 }
+
+gameStatus.push(moveStart);

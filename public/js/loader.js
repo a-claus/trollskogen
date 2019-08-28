@@ -517,7 +517,7 @@ let sis = {
 	
 function setDraw(vaderstrack){
 		kartObj.push(bg);
-		console.log("wood.: " + wood.namn + " 2oodmapnum" + wood.mapNR);
+		console.log("wood:" + wood.namn + " woodmapnum" + wood.mapNR);
 
 switch (wood.namn){
 	case "Road":

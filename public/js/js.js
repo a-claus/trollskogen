@@ -204,17 +204,31 @@ function drawMagi(index,x,y){
     ctx.fillText(gameObj[0].magi, x+15, y+25);}//25 , 21, 17   
 
 function end(){}
+
 function startaIgen(){
     //nollsälla värden
+
+     deleteObjects();
+   //kartObj[0].newRuta=1; // xyz
+    //historik.push(wood.mapNR);
+
+   
+    //console.log("a:"+ nyRuta + vaderstrack);
+    
+    
+    //wood.mapNr=81;
     console.log("SI");
-    deleteObject("Prinsen");
+   
     getFile(figurer[1].url);
     //lotta kort
     crupier = lottaCards();
     blanda = shuffle();
     //lotta ny karta
     makeMap();
-   gameStatus.push(move);
+    wood.update(81);
+    setDraw("soder");
+   //gameStatus.push(move);
+    deleteObject("Prinsen");
     }
 
 
@@ -647,7 +661,7 @@ function mapChange(vaderstrack){
     setFloor(vaderstrack);
     var nyRuta = wood.mapNR;
     
-    wood.vaderstrack=invNSVO(vaderstrack);
+    wood.vaderstrack = invNSVO(vaderstrack);
     setDraw(invNSVO(vaderstrack));
 
     var nyttCard = map[wood.mapNR].card;

@@ -139,7 +139,9 @@ function deadOrAlive(plunus){
 	if (gameObj[0].skada >= gameObj[0].liv){
 		
 		gameStatus.push(death);
+		return false;
 	}
+	return true;
 
 }
 
@@ -148,7 +150,7 @@ function death(){
 	console.log(gameStatus);
 	var rubrik = "GAME OVER";
 	var text = gameObj[0].vem + " kunde blivit en hjälte. Nu förmulnad i Trollskogen. Ska vi sända bud till slottet och meddela misslyckandet, så de kan skicka en ny dumdristig äventyrare in i Trollskogen för att rädda kung Sebastian?";
-	var buttons = [ {text: "Spela", actions: startaIgen}, {text:" Sluta", action: end}];
+	var buttons = [ {text: "Spela", action: startaIgen}, {text:" Sluta", action: end}];
 	movepause = true;
 	drawRuta(rubrik, text, rip, buttons);
 	//gameStatus.push(drawRuta);

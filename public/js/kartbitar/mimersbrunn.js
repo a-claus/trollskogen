@@ -31,23 +31,25 @@ gameObj.push({
     move: function(){},
     hitAction: function(){
         console.log("runMM");
-        gameStatus = "wait";
         //var ij = gameObj[0].findIndex(function(index) { return index["upgrades"] ==="Mimers Brunn";} );
         const index = gameObj[0].upgrade.findIndex(upg => upg === "Mimers Brunn");
+        let rubrik = "Mimer";
+        let img = this.cardImg;
     if (index == -1){
-        figurRubrik = "Mimer";
-        figurButton = "Jag dricker!";
-        figurText = "Dricker du ur min brunn får du lite av min visdom.";
-        figurImg = this.cardImg;
-        figurAction = function(){gameObj[0].iq++; gameObj[0].upgrade.push("Mimers Brunn");  gameObj[0].placeMe = true; gameStatus = "move";};
-        gameStatus="ruta";}
+        
+        let button = {text: "Jag dricker!", action: moveStart};
+        let text = "Dricker du ur min brunn får du lite av min visdom.";
+        gameObj[0].iq++; 
+        gameObj[0].upgrade.push("Mimers Brunn");
+        }
     else{
-        figurRubrik = "Mimer";
-        figurButton = "Jasså";
-        figurText = "Det här är inget man bara dricker för man är törstig.";
-        figurImg = this.cardImg;
-        figurAction = function(){gameObj[0].placeMe = true; gameStatus = "move";};
-        gameStatus="ruta";}
+        
+        let button =  [{text: "Jasså...", action: moveStart}];
+        let text = "Det här är inget man bara dricker för man är törstig.";
+        gameObj[0].placeMe = true;;
+        }
+        gameObj[0].placeMe = true;
+        drawRuta(this.rubrik, this.text, this.img, this.button);
 
     
     
@@ -59,8 +61,6 @@ gameObj.push({
 
 })
 
-
-
  
 hitObjects++;
-ajaxQueue--;
+gameStatus.push(moveStart);
