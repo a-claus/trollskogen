@@ -24,6 +24,9 @@ gameObj.push({
     width: 100, hight: 100,
     img: mapImages[mapImages.length-1],
     cardImg: cardImages[cardImages.length-1],
+    text: "",
+    button: [],
+    count: 0,
     draw: function(){
     	var ctx = myGameArea.context;
 		ctx.drawImage(this.img, 150, 150); 
@@ -31,29 +34,32 @@ gameObj.push({
     move: function(){},
     hitAction: function(){
         console.log("runMM");
+        gameStatus.push(this.diceRuta);
+        hitIndex = this.index;
+    },
+    drawRuta: function(){
+        console.log (this.count++);
         //var ij = gameObj[0].findIndex(function(index) { return index["upgrades"] ==="Mimers Brunn";} );
         const index = gameObj[0].upgrade.findIndex(upg => upg === "Mimers Brunn");
-        let rubrik = "Mimer";
-        let img = this.cardImg;
+        
+        //let img = this.cardImg;
     if (index == -1){
         
-        let button = {text: "Jag dricker!", action: moveStart};
-        let text = "Dricker du ur min brunn får du lite av min visdom.";
+        button = [{text: "Jag dricker!", action: moveStart}];
+        text = "Dricker du ur min brunn får du lite av min visdom.";
         gameObj[0].iq++; 
         gameObj[0].upgrade.push("Mimers Brunn");
+        gameObj[0].placeMe = true;
         }
     else{
         
-        let button =  [{text: "Jasså...", action: moveStart}];
-        let text = "Det här är inget man bara dricker för man är törstig.";
-        gameObj[0].placeMe = true;;
+        this.button =  [{text: "Jasså...", action: moveStart}];
+        this.text = "Det här är inget man bara dricker för man är törstig.";
+        gameObj[0].placeMe = true;
         }
         gameObj[0].placeMe = true;
-        drawRuta(this.rubrik, this.text, this.img, this.button);
+        drawRuta(this.namn, this.text, this.cardImg, this.button);
 
-    
-    
-    //unsetKartbitsaction();
 
 
     }

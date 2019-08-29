@@ -245,6 +245,7 @@ function drawRuta(rubrik="tom", text="tom", img="tom", buttons="tom"){
     console.log("dr");
     console.log(gameStatus);
     console.log(buttons);
+    movepause=true;
     if (rubrik=="tom")
         {
             rubrik=figurRubrik;
