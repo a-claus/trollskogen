@@ -33,32 +33,34 @@ gameObj.push({
 		},
     move: function(){},
     hitAction: function(){
-        console.log("runMM");
-        gameStatus.push(this.diceRuta);
+        gameObj[0].placeMe = true;
+        console.log("runMM!");
+        gameStatus.push(this.drawRuta);
         hitIndex = this.index;
     },
     drawRuta: function(){
-        console.log (this.count++);
+        
         //var ij = gameObj[0].findIndex(function(index) { return index["upgrades"] ==="Mimers Brunn";} );
-        const index = gameObj[0].upgrade.findIndex(upg => upg === "Mimers Brunn");
-        
+        const harInte = gameObj[0].upgrade.findIndex(upg => upg === "Mimers Brunn");
+        const index = getIndexGameObj("Mimers Brunn");
+        console.log ("MB" + harInte + gameObj[index].count++);
         //let img = this.cardImg;
-    if (index == -1){
+    if (harInte == -1){
         
-        button = [{text: "Jag dricker!", action: moveStart}];
-        text = "Dricker du ur min brunn får du lite av min visdom.";
+        gameObj[index].button = [{text: "Jag dricker!", action: moveStart}];
+        gameObj[index].text = "Dricker du ur min brunn får du lite av min visdom.";
         gameObj[0].iq++; 
         gameObj[0].upgrade.push("Mimers Brunn");
-        gameObj[0].placeMe = true;
+        
         }
     else{
         
-        this.button =  [{text: "Jasså...", action: moveStart}];
-        this.text = "Det här är inget man bara dricker för man är törstig.";
+        gameObj[index].button =  [{text: "Jasså...", action: moveStart}];
+        gameObj[index].text = "Det här är inget man bara dricker för man är törstig.";
         gameObj[0].placeMe = true;
         }
         gameObj[0].placeMe = true;
-        drawRuta(this.namn, this.text, this.cardImg, this.button);
+        drawRuta("Mimers Brunn", gameObj[index].text, gameObj[index].cardImg, gameObj[index].button);
 
 
 

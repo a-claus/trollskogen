@@ -65,7 +65,6 @@ gameObj[0].bagFunc = function(){
 
 	};
 
-//ajaxQueue--;
-console.log("Wand");
+
 gameStatus.push(putEquipmentToBag, move);
 

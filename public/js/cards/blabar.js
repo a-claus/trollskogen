@@ -43,13 +43,17 @@ HIT
 
 hitAction : function(){
  console.log("blabar");
-  gameStatus = "wait";
-    figurRubrik = this.vem;
-    figurButton = "Plocka blåbär";
-    figurText = "Blåbär är gott och hälsosamt.";
-    figurImg = this.cardImg;
-    figurAction = function(){gameObj[0].skada=0; leaveCard();};
-    gameStatus="ruta";
+  gameObj[0].placeMe = true;
+  gameStatus.push(this.drawRuta);
+  hitIndex = this.index;
+},
+drawRuta: function(){
+  const index = getIndexGameObj("Blåbär");
+  gameObj[0].skada=0;
+  drawRuta("Blåbär", "Blåbär är gott och hälsosamt.", gameObj[index].cardImg, [{text: "Mums!", action: moveStart}]);
+
+    
+}
 },
 
 
@@ -68,20 +72,11 @@ BILD SPRITES on MAP
 	//spriteTimer: 0,
 	draw: function(){
        
-    	//ctx.drawImage(this.sprite, 0, 0, 100, 100, this.x, this.y, 40, 40);
+    	
               if (this.x<400){ 
                 ctx.drawImage(this.sprite, this.x, this.y, 60, 60);}
 
-	},
-  fly: function(){
-       // tror denhär gammal
-       if (this.tox=!170){
-
-        this.x = this.x + 3;
-        this.y = this.y + 3;
-        console.log("fly" + this.x);
-      }
-  }
+	}
    
 
 });
