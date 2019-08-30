@@ -54,7 +54,6 @@ gameObj.push({
         
         }
     else{
-        
         gameObj[index].button =  [{text: "Jasså...", action: moveStart}];
         gameObj[index].text = "Det här är inget man bara dricker för man är törstig.";
         gameObj[0].placeMe = true;

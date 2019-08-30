@@ -77,9 +77,6 @@ BILD SPRITES on MAP
 });
 
 
-
-
-
 //kartbit[13].func=loadSIS;
 
 console.log("Blåbär klar" + gameObj[gameObj.length-1].x);
