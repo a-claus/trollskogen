@@ -219,7 +219,7 @@ function getPosition(index){
     const yplus = 100 + gameObj[index].hight/2;
     let x = gameObj[index].x + xplus;
     let y = gameObj[index].y + yplus; 
-     //console.log(x + "- " +  y);
+     console.log(x + "- " +  y);
     for (let i=0; i<1; i++){
        
         c = ctx.getImageData(x, y, 1, 1).data;

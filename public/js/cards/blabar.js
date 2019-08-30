@@ -28,18 +28,13 @@ gameObj.push(
     index: kartObj.length,
     indexS: mapImages.length - 1,
     indexCI: cardImages.length - 1,
-    placeMe: true,
+    //placeMe: true,
     moving: false,
     cardImg: cardImages[cardImages.length-1],
-  //vaderstrack: "soder",
-  draw: function(){ctx.drawImage(mapImages[this.indexS], this.x, this.y);},
+    x: 170, y: 170, speedX: 0,speedY: 0, floor: 1,  
+  vaderstrack: "soder",
+  draw: function(){console.log("thisproblem" + this.indexS); ctx.drawImage(mapImages[this.indexS], this.x, this.y);},
   move: function (){},
-   x: 170, y: 170, speedX: 0,speedY: 0,floor: 1,   
-
-  /*--------------------------------
-HIT
-----------------------------------*/   
-
 
 hitAction : function(){
  console.log("blabar");
@@ -55,7 +50,7 @@ drawRuta: function(){
     
 }
 },
-
+{
 
         /*--------------------------------
 BILD SPRITES on MAP
@@ -87,7 +82,7 @@ BILD SPRITES on MAP
 
 //kartbit[13].func=loadSIS;
 
-
+console.log("Blåbär klar" + gameObj[gameObj.length-1].x);
 hitObjects++;
 
 gameStatus.push(moveStart);
