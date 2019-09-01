@@ -112,7 +112,7 @@ function checkMoveInOrder(index){
 
 function objectHit(i){
     
-    var floor=gameObj[i].floor;
+    var floor = gameObj[i].floor;
     //console.log(i + "objHit" + gameObj[0].jump.hojd);
     for (var j=0; j < gameObj.length; j++){
        // console.log (floor + " " + j + " "+ gameObj[j].floor);

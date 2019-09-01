@@ -4,7 +4,7 @@
 //
 //---------------------------------------------
 
-console.log("EgBlomma");
+console.log("ÄggBlomma");
 mapImages.push(new Image());
 mapImages[mapImages.length-1].src="./img/egblomma.png";
 cardImages.push(new Image());
@@ -30,16 +30,22 @@ gameObj.push(
     ctx.drawImage(mapImages[this.indexS], this.x, this.y);
   },
   move: function (){},
+  hitAction: function(){},
+  drawRuta: function(){
+    
+   const index = getIndexGameObj("blomma");
+    drawRuta("Äggblomman", "Där är den!, som trollpackan behövde till Kungens medicin!", gameObj[index].cardImg, [{text: "Plocka blomma!", action: gameObj[index].getBlomma}]);
+getFile("./js/cards/blomma.js");
+  },
   getBlomma: function(){
   
-        console.log("getBlomma");
+  console.log("getBlomma");
         
-        gameStatus="ajaxwait";
-        ajaxQueue++;
-        getFile("./js/cards/blomma.js");
-  
+        
+  deleteObject("blomma");      
+  gameStatus.push(putEquipmentToBag, move);
 
- deleteObject("Egblomma");
+ 
     
     
     },    
@@ -65,14 +71,14 @@ HIT
 
 hitAction : function(){
   console.log("ÄggblommaHitAction");
-    gameStatus = "wait";
-    figurRubrik = this.vem;
-    figurButton = "Plocka blomman";
-    figurText = "Där är Äggblomman, som trollpackan behövde till Kungens medicin,";
-    figurImg = this.cardImg;
-    figurAction = gameObj[1].getBlomma;
+   
+  
+    gameStatus.push(this.drawRuta);
+    hitIndex = this.index;
+    gameObj[0].placeMe = true;
+    console.log("Ägget är löst!");
  
-     gameStatus="ruta";
+    
 }
 
 });

@@ -596,7 +596,7 @@ console.log(vaderstrack + wood[vaderstrack] );
 
 console.log(kartObj);
 }
-function bagMagiskStig(vad){
+function bagMagi(vad){
 	switch(vad){
 		case "blomma": if(wood.mapNR==4) kartObj.push(entreN); break;
 	}

@@ -1,13 +1,52 @@
 let sakImg=[];
 
+let bagger = [];
+let bagAktiv = -1;
+bagger[-1] = {undo: function(){conseole.log("BagClick tom bag")}};
+
+
+function changeThing(){
+    if (bagger.length > 0) {
+        bagger[bagAktiv].undo
+        bagAktiv++;
+        if (bagAktiv == bagger.length) bagAktiv = 0;
+        bagger[bagAktiv].do;
+    }
+}
+
+class Sak{
+    constructor(){
+    this.sak;
+    this.img;
+    //this.clickFunc = function() {};
+    this.dragFunc = function() {};
+    this.active = false;
+
+//----------OLD
+          //  this.nr=nr;  
+           // console.log("Nummer"+this.nr);
+           // this.vad = thing[this.nr].vad;
+           // this.arrayLista = "thing";
+           // this.namn = thing[this.nr].namn;
+           // this.card = thing[this.nr];
+           // this.width = thing[this.nr].width;
+           // this.height = thing[this.nr].height;
+           // this.color = thing[this.nr].color; 
+       }
+
+
+}
+
+
 class Bagger{
     constructor(){
+
         this.innehall = [];
         this.index = -1; 
         this.img;
         this.iHand = "";
         this.i = false; //xyz
-        this.func = function(){};
+       // this.func = function(){};
         this.clickFunc;
         this.dragFunc;
     }
@@ -20,7 +59,7 @@ class Bagger{
             console.log(thing);
             console.log(this.index, thing[this.index].vad);
             iHand = thing[this.innehall[this.index]].plus;
-           // thing[this.index].bagFuncSetter(); 
+            thing[this.index].bagFuncSetter(); 
             upgradeFigur(iHand, false);
             }
         
@@ -53,21 +92,18 @@ class Bagger{
 
 }
 
-var bagger = new Bagger();
+//var bagger = new Bagger();
 
 function haPush(){
     //    dragAction : function(){
-
-
    hitArea.push({x:35, y:360, width:80, height:35, action:function() {bagger.setBagImg()}}); 
 }
 
 function draghaPush(){
     //    dragAction : function(){
-
-
    dragHitArea.push({x:35, y:360, width:80, height:35, action:function () {bagger.setBagImg()}}); 
 }
+
 function upgradeFigur(iHand, positiv=true){
     console.log("old");
     bagupgrade(iHand, positiv);
@@ -166,8 +202,8 @@ console.log("figurUpdate");
         this.splice(index);
     }
 }
-
-class Sak extends Figur{
+thing = [];
+class xSak extends Figur{
     constructor(nr){
             super();
             this.nr=nr;  

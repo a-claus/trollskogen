@@ -122,12 +122,12 @@ function bytPlats(namn, vad="namn"){
 	map[4] = tmp;
 }
 //bytPlats("Svärdet i stenen");
-//bytPlats(0,"card"); //skatt
+bytPlats(0,"card"); //skatt
 //bytPlats("FyraBroNS");
 //bytPlats("Mimers Brunn");
 //bytPlats(8,"card"); //alven
 //bytPlats(5,"card"); //svamp
-bytPlats(6,"card"); //6 blåbär
+//bytPlats(6,"card"); //6 blåbär
 
 
 function bytPlatsMedBlank(namn, vad, ruta){

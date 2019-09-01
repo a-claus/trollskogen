@@ -181,6 +181,7 @@ function drawBag(){
      ctx = myGameArea.context;
  ctx.drawImage(bag, -10, 335,150,75); 
     if (bagger.index>-1){ctx.drawImage(bagger.image,40,350,26,35);}
+     if (bagAktiv > -1){ctx.drawImage(iBag[bagAktiv].img, 40, 350, 26, 35);}
 }
 
 function drawStyrka(index,x,y){
@@ -614,7 +615,7 @@ function getIndex(input){
 
 function deleteObject(vad){
     
-    var nummer= gameObj.findIndex(function(index) { return index["namn"] === vad; });
+    var nummer = gameObj.findIndex(function(index) {return index["namn"] === vad; });
      gameObj.splice(nummer, 1);
     
 }
