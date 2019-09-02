@@ -58,7 +58,13 @@ gameObj.push(
 		if (this.raknare > 50){ 
 			this.x += this.stegX; 
 			this.y += this.stegY;}
-		if (this.x < this.xTill) {console.log ("delete_effekt"); this. effekt= false; }
+		if (this.x < this.xTill) {
+			console.log (gameObj); 
+			console.log(hitIndex);
+			gameObj[hitIndex].putInBag();
+			this. effekt = false; 
+			if (bagAktiv == -1) bagAktiv = 0;
+		}
    	},
    	draw: function(){
    		console.log("eff draw" + this.x);
