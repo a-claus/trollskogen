@@ -2,7 +2,7 @@ let sakImg=[];
 
 let bagger = [];
 let bagAktiv = -1;
-bagger[-1] = {undo: function(){conseole.log("BagClick tom bag")}};
+bagger[-1] = {undo: function(){conseole.log("BagClick var en tom bag")}};
 
 
 function changeThing(){
@@ -16,11 +16,15 @@ function changeThing(){
 
 class Sak{
     constructor(){
+    this.active = false;
+    this.clickFunc = function() {changeThing()};
+
+    this.dragFunc = function() {};
+    this.do = function() {};
+    this.undo = function() {};
+    
     this.sak;
     this.img;
-    //this.clickFunc = function() {};
-    this.dragFunc = function() {};
-    this.active = false;
 
 //----------OLD
           //  this.nr=nr;  
@@ -38,6 +42,8 @@ class Sak{
 }
 
 
+
+/*
 class Bagger{
     constructor(){
 
@@ -92,6 +98,7 @@ class Bagger{
 
 }
 
+*/
 //var bagger = new Bagger();
 
 function haPush(){

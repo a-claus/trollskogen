@@ -34,16 +34,16 @@ function startGame() {
 
 function drawPolygon(coord, color="rgb(146,42,42)"){
         var ctx = myGameArea.context;
-				ctx.fillStyle = color;
-				ctx.beginPath();
+                ctx.fillStyle = color;
+                ctx.beginPath();
                 ctx.moveTo(coord[0], coord[1]);
                 for(var i=2; i < coord.length; i = i+2){
                     ctx.lineTo(coord[i], coord[i+1]);
                 }
                 ctx.closePath();
-				//ctx.strokeStyle = "rgb(146,42,42)";
-				//ctx.stroke(); 
-				ctx.fill();
+                //ctx.strokeStyle = "rgb(146,42,42)";
+                //ctx.stroke(); 
+                ctx.fill();
 }
 
 
@@ -180,8 +180,8 @@ function drawMeny(){
 function drawBag(){
      ctx = myGameArea.context;
  ctx.drawImage(bag, -10, 335,150,75); 
-    if (bagger.index>-1){ctx.drawImage(bagger.image,40,350,26,35);}
-     if (bagAktiv > -1){ctx.drawImage(iBag[bagAktiv].img, 40, 350, 26, 35);}
+   // if (bagger.index>-1){ctx.drawImage(bagger.image,40,350,26,35);}
+     if (bagAktiv > -1){ctx.drawImage(bagger[bagAktiv].img, 40, 350, 26, 35);}
 }
 
 function drawStyrka(index,x,y){
@@ -526,12 +526,12 @@ function drawRoads(karta, width=50, height=50, color="white"){
     var ms=magicStig();
     for (x=0; x<vaderstrack.length; x++){
        
-    	if (map[karta][vaderstrack[x]]==1 || vaderstrack[x]==ms){
-    		
-    		ctx.fillStyle = color;
-   			ctx.fillRect(xPos[x], yPos[x], 60, 60);
+        if (map[karta][vaderstrack[x]]==1 || vaderstrack[x]==ms){
+            
+            ctx.fillStyle = color;
+            ctx.fillRect(xPos[x], yPos[x], 60, 60);
 
-    	}
+        }
     }
 }
 

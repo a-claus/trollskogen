@@ -59,11 +59,24 @@ gameObj.push(
 			this.x += this.stegX; 
 			this.y += this.stegY;}
 		if (this.x < this.xTill) {
-			console.log (gameObj); 
-			console.log(hitIndex);
+		//	console.log (gameObj); 
+		//	console.log(hitIndex);
 			gameObj[hitIndex].putInBag();
 			this. effekt = false; 
-			if (bagAktiv == -1) bagAktiv = 0;
+			if (bagAktiv == -1) {
+				bagAktiv = 0;
+				hitArea.push(
+					{x:35, 
+					y:360, 
+					width:80, 
+					height:35, 
+					action:function(){changeThing();}}
+				);}
+			gameObj.splice(nummer, 1);
+		
+
+				//dragHitArea.push({x:35, y:360, width:80, height:35, action:function() {bagger[bagAktiv].dragFunc()}});
+			
 		}
    	},
    	draw: function(){

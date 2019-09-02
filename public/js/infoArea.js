@@ -45,7 +45,8 @@ function clickHit(x,y){
                 }
                 else if (clickX > hitArea[i].x && clickX < hitArea[i].x + hitArea[i].width && clickY > hitArea[i].y && clickY < hitArea[i].y+hitArea[i].height) {
                     console.log("japp");
-                    gameObj[0].bagFunc();
+                    bagger[bagAktiv].dragFunc()
+                    //gameObj[0].bagFunc();
                 }
                 
 
