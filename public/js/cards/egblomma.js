@@ -65,9 +65,10 @@ HIT
 
 hitAction : function(){
   console.log("ÄggblommaHitAction");
+  if (this.hide==false){
     gameStatus.push(this.drawRuta);
     hitIndex = this.index;
-    gameObj[0].placeMe = true;
+    gameObj[0].placeMe = true;}
     
     console.log("Ägget är löst!");   
 },

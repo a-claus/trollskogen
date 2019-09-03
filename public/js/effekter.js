@@ -72,7 +72,7 @@ gameObj.push(
 					height:35, 
 					action:function(){changeThing();}}
 				);}
-			gameObj.splice(nummer, 1);
+			//gameObj.splice(hitIndex, 1);
 		
 
 				//dragHitArea.push({x:35, y:360, width:80, height:35, action:function() {bagger[bagAktiv].dragFunc()}});
@@ -80,7 +80,7 @@ gameObj.push(
 		}
    	},
    	draw: function(){
-   		console.log("eff draw" + this.x);
+   		//console.log("eff draw" + this.x);
        ctx.drawImage(sakImg[sakImg.length - 1], this.x, this.y, this.width, this.height);
 	}
 });
