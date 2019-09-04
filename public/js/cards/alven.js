@@ -3,11 +3,14 @@
 // ALVEN 
 //
 //---------------------------------------------
+console.log("Alven");
 
 mapImages.push(new Image());
 mapImages[mapImages.length-1].src="./img/alvsprite.png";
 cardImages.push(new Image());
 cardImages[cardImages.length-1].src="./img/alven.png";
+sakImg.push(new Image());
+sakImg[sakImg.length-1].src = "./img/wand.png";
 
 
 
@@ -30,6 +33,7 @@ gameObj.push(
   
   moving: false,
   vaderstrack: "soder",
+  cardImg : cardImages[cardImages.length-1],
   move: function (){},
   hitAction : function(){
     this.T6 = 0;
@@ -52,7 +56,7 @@ drawRuta: function (){
       this.T6 += gameObj[0].iq; 
     }*/
     console.log("T6" + this.T6);
-    let T6res = [7, 6, 1]; //7,4,1
+    let T6res = [7, 4, 1]; //7,4,1
     if (this.T6 >= T6res[0]) {
       this.text = "Den här staven kan säkert hjälpa dig.";
       this.getWand();
@@ -71,35 +75,66 @@ drawRuta: function (){
         gameObj[0].skada += 1;
         }
      
-    
-    drawDiceRuta({rubrik: this.namn, brod: this.text}, this.cardImg, buttons, this.T6);
+    const index = getIndexGameObj("Alven");
+    drawDiceRuta({rubrik: this.namn, brod: this.text}, gameObj[index].cardImg, buttons, this.T6);
     this.T6 = Math.floor(Math.random() * 6 + 1); 
     console.log("T6:" + this.T6);
     return true; 
 },
 getWand: function(){
     
-    // ladda wand
-    map[wood.mapNR].card = card[1];
-    kartObj[0].placeMe=true;
-        
-        
-        //gameStatus.push(ajaxwait);
-        //ajaxQueue++;
-        getFile("./js/cards/wand.js");
- //listOfFunc.push(deleteObject);
- // ta bort alven
-     
-      // från ruta 
-      // och kartrutan
-
- map[wood.mapNum].card=1; //blank
-
- deleteObject("Alven");
-        //gameStatus="move";
     
-    },    
-  cardImg : cardImages[cardImages.length-1],
+    //map[wood.mapNR].card = card[1];
+    //kartObj[0].placeMe=true; gameObj
+    map[wood.mapNum].card = 1; //blank
+gameStatus.push(putEquipmentToBag, move);
+ //deleteObject("Alven");
+        
+    
+    },  
+  putInBag: function(){
+    bagger.push(new Sak());
+    var post = bagger[bagger.length-1];
+    post.namn = "Wand";
+    post.img = sakImg[sakImg.length-1];
+    post.dragFunc = function(){ 
+     console.log("mp" + gameObj[0].magipower);
+      if (gameObj[0].magipower > 1){
+        
+      gameObj[0].magipower--;
+      var slump = Math.floor(Math.random()*2);
+      for (var i=0; i<4; i++) {
+          if (wood[NSVO[i]]>=99) wood[NSVO[i]] -= 100;
+          if (wood[NSVO[i]] < 0) wood[NSVO[i]] = 1; 
+        }
+
+        var temp = wood[NSVO[0]];
+        if (slump==0){
+        wood[NSVO[0]]=wood[NSVO[2]]; // N=V
+        wood[NSVO[2]]=wood[NSVO[1]]; // V=S
+        wood[NSVO[1]]=wood[NSVO[3]]; // S=0
+        wood[NSVO[3]]=temp; // O=N
+        console.log(wood);}
+        else{
+        wood[NSVO[0]]=wood[NSVO[3]];
+        wood[NSVO[3]]=wood[NSVO[1]];
+        wood[NSVO[1]]=wood[NSVO[2]];
+        wood[NSVO[2]]=temp;
+      
+    }
+    
+
+      map[wood.mapNR].norr = wood.norr;
+      map[wood.mapNR].vast = wood.vast;
+      map[wood.mapNR].ost = wood.ost;
+      map[wood.mapNR].soder = wood.soder;
+    }
+
+    };
+    post.do = function() {};
+    post.undo = function() {};
+
+  },  
 
   bonus: "iq", 
   diceRubrik: "Alven",
@@ -163,12 +198,8 @@ BILD SPRITES on MAP
 
 
     }
-
-       // tror denhär gammal
-      
-   
-
 });
+
 
 
 

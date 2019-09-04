@@ -40,7 +40,7 @@ function clickHit(x,y){
             console.log("click2");
             if (x>hitArea[i].x && x<hitArea[i].x+hitArea[i].width && y>hitArea[i].y && y<hitArea[i].y+hitArea[i].height) 
                 {
-                    console.log("hit");
+                    console.log("hit;" + i);
                     hitArea[i].action();
                 }
                 else if (clickX > hitArea[i].x && clickX < hitArea[i].x + hitArea[i].width && clickY > hitArea[i].y && clickY < hitArea[i].y+hitArea[i].height) {

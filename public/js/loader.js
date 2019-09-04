@@ -554,11 +554,13 @@ switch (wood.namn){
 	break;
 	case "Svärdet i stenen":
 		kartObj.push(glanta, entre, sis);
+		ajaxer("./js/kartbitar/excalibur.js");
 	break;
 	case "Mimers Brunn":
 		kartObj.push(glanta, entre, mb);
 		ajaxer("./js/kartbitar/mimersbrunn.js");
 	break;
+	
 	case "Start": ajaxer("./js/kartbitar/start.js"); break;
 	case "Ravin1":
 		ajaxer("./js/kartbitar/ravin.js");
@@ -596,7 +598,7 @@ console.log(vaderstrack + wood[vaderstrack] );
 
 console.log(kartObj);
 }
-function bagMagi(vad){
+function xbagMagi(vad){
 	switch(vad){
 		case "blomma": if(wood.mapNR==4) kartObj.push(entreN); break;
 	}

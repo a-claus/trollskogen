@@ -54,7 +54,7 @@ gameObj.push(
    	raknare: 0,
    	move: function(){
    		//console.log(this.xTill + "-" +this.x + "-" + this.stegX);
-   		this.raknare++;
+   		this.raknare += 2;
 		if (this.raknare > 50){ 
 			this.x += this.stegX; 
 			this.y += this.stegY;}
@@ -65,6 +65,7 @@ gameObj.push(
 			this. effekt = false; 
 			if (bagAktiv == -1) {
 				bagAktiv = 0;
+				bagger[bagAktiv].do();
 				hitArea.push(
 					{x:35, 
 					y:360, 

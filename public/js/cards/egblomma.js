@@ -16,30 +16,32 @@ sakImg[sakImg.length-1].src="./img/egblomma.png";
 gameObj.push(
  {
   namn:"blomma",
-   floor:1,  miljo: false, figur : true, info: false,
+   floor: 1,  miljo: false, figur : true, info: false,
     vem: "Egblomma",
     vad: "figur",
     index: gameObj.length,
     indexS: mapImages.length - 1,
     indexCI: cardImages.length - 1,
     placeMe: true,
-    hide: false,
     moving: false,
   vaderstrack: "soder",
   draw: function(){
-    if (this.hide==false)
+    
     ctx.drawImage(mapImages[this.indexS], this.x, this.y);
   },
   move: function (){},
   drawRuta: function(){
-    gameObj[hitIndex].hide = true;
+        gameObj[hitIndex].floor = -1;
+
+
     const index = getIndexGameObj("blomma");
     drawRuta("Äggblomman", "Där är den!, som trollpackan behövde till Kungens medicin!", gameObj[index].cardImg, [{text: "Plocka blomma!", action: gameObj[index].getBlomma}]);
 
   },
   getBlomma: function(){
   
-  console.log("getBlomma");    
+  console.log("getBlomma"); 
+  map[wood.mapNum].card = 1;   
   //deleteObject("blomma");      
   gameStatus.push(putEquipmentToBag, move);
     },    
@@ -65,10 +67,9 @@ HIT
 
 hitAction : function(){
   console.log("ÄggblommaHitAction");
-  if (this.hide==false){
     gameStatus.push(this.drawRuta);
     hitIndex = this.index;
-    gameObj[0].placeMe = true;}
+    gameObj[0].placeMe = true;
     
     console.log("Ägget är löst!");   
 },

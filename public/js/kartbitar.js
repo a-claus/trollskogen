@@ -121,11 +121,11 @@ function bytPlats(namn, vad="namn"){
 	map[indexZZ] = map[4];
 	map[4] = tmp;
 }
-//bytPlats("Svärdet i stenen");
-bytPlats(0,"card"); //skatt
+bytPlats("Svärdet i stenen");
+//bytPlats(0,"card"); //skatt // newBagv1
 //bytPlats("FyraBroNS");
-//bytPlats("Mimers Brunn");
-//bytPlats(8,"card"); //alven
+//bytPlats("Mimers Brunn"); värdet i stenen
+//bytPlats(8,"card"); //alven newBagv1
 //bytPlats(5,"card"); //svamp
 //bytPlats(6,"card"); //6 blåbär
 

@@ -6,6 +6,7 @@ bagger[-1] = {undo: function(){conseole.log("BagClick var en tom bag")}};
 
 
 function changeThing(){
+    console.log("change" + bagger.length);
     if (bagger.length > 0) {
         bagger[bagAktiv].undo
         bagAktiv++;
@@ -17,7 +18,7 @@ function changeThing(){
 class Sak{
     constructor(){
     this.active = false;
-    this.clickFunc = function() {changeThing()};
+   // this.clickFunc = function() {console.log("change");changeThing()};
 
     this.dragFunc = function() {};
     this.do = function() {};
@@ -101,12 +102,12 @@ class Bagger{
 */
 //var bagger = new Bagger();
 
-function haPush(){
+function xhaPush(){
     //    dragAction : function(){
    hitArea.push({x:35, y:360, width:80, height:35, action:function() {bagger.setBagImg()}}); 
 }
 
-function draghaPush(){
+function xdraghaPush(){
     //    dragAction : function(){
    dragHitArea.push({x:35, y:360, width:80, height:35, action:function () {bagger.setBagImg()}}); 
 }
