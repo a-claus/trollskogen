@@ -277,7 +277,7 @@ function nyRutaKontroll(index){
     
     switch (gameObj[index].vaderstrack){
         case "vaster" || "vast": 
-           if (gameObj[index].x < 1){
+           if (gameObj[index].x <= 1){
                 nr = true;}
         break;
         case "oster":
@@ -285,7 +285,7 @@ function nyRutaKontroll(index){
              nr = true;}
              break;
         case "norr":
-        if (gameObj[index].y < 1){
+        if (gameObj[index].y <= 1){
             nr = true;}
             break;
         
