@@ -112,7 +112,7 @@ function checkMoveInOrder(index){
 
 function objectHit(i){
     
-    var floor=gameObj[i].floor;
+    var floor = gameObj[i].floor;
     //console.log(i + "objHit" + gameObj[0].jump.hojd);
     for (var j=0; j < gameObj.length; j++){
        // console.log (floor + " " + j + " "+ gameObj[j].floor);
@@ -180,16 +180,7 @@ for (var i = 0; i<2; i++){
             return 0;
             break;*/
 
-        case "128 128 128": //brown genom tunnel
-            //map[wood.mapNum]
-            return 0;   
-            break;    
-       // case "50 50 50"://160,82,45 //uppe på bron hoppa ner
-        //	figur[0].status="jump";
-           
-           
-          //  break;
-           // case "160 82 45"://160,82,45
+
          case "120 120 120": //under bron
             //if (p==0) { 
            // special="tunnel"; 
@@ -207,13 +198,7 @@ for (var i = 0; i<2; i++){
            walker.go = 1;
             walker.area = "road";
             break;
-
-            /*case "red":
-            console.log("Monster");
-            special="monster";
-            //iaCard();
-            break;*/
-            
+    
         
         	default:
                 walker.go=0;
@@ -234,7 +219,7 @@ function getPosition(index){
     const yplus = 100 + gameObj[index].hight/2;
     let x = gameObj[index].x + xplus;
     let y = gameObj[index].y + yplus; 
-     //console.log(x + "- " +  y);
+     console.log(x + "- " +  y);
     for (let i=0; i<1; i++){
        
         c = ctx.getImageData(x, y, 1, 1).data;
@@ -292,7 +277,7 @@ function nyRutaKontroll(index){
     
     switch (gameObj[index].vaderstrack){
         case "vaster" || "vast": 
-           if (gameObj[index].x < 1){
+           if (gameObj[index].x <= 1){
                 nr = true;}
         break;
         case "oster":
@@ -300,7 +285,7 @@ function nyRutaKontroll(index){
              nr = true;}
              break;
         case "norr":
-        if (gameObj[index].y < 1){
+        if (gameObj[index].y <= 1){
             nr = true;}
             break;
         

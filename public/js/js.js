@@ -34,16 +34,16 @@ function startGame() {
 
 function drawPolygon(coord, color="rgb(146,42,42)"){
         var ctx = myGameArea.context;
-				ctx.fillStyle = color;
-				ctx.beginPath();
+                ctx.fillStyle = color;
+                ctx.beginPath();
                 ctx.moveTo(coord[0], coord[1]);
                 for(var i=2; i < coord.length; i = i+2){
                     ctx.lineTo(coord[i], coord[i+1]);
                 }
                 ctx.closePath();
-				//ctx.strokeStyle = "rgb(146,42,42)";
-				//ctx.stroke(); 
-				ctx.fill();
+                //ctx.strokeStyle = "rgb(146,42,42)";
+                //ctx.stroke(); 
+                ctx.fill();
 }
 
 
@@ -180,7 +180,8 @@ function drawMeny(){
 function drawBag(){
      ctx = myGameArea.context;
  ctx.drawImage(bag, -10, 335,150,75); 
-    if (bagger.index>-1){ctx.drawImage(bagger.image,40,350,26,35);}
+   // if (bagger.index>-1){ctx.drawImage(bagger.image,40,350,26,35);}
+     if (bagAktiv > -1){ctx.drawImage(bagger[bagAktiv].img, 40, 350, 26, 35);}
 }
 
 function drawStyrka(index,x,y){
@@ -204,17 +205,31 @@ function drawMagi(index,x,y){
     ctx.fillText(gameObj[0].magi, x+15, y+25);}//25 , 21, 17   
 
 function end(){}
+
 function startaIgen(){
     //nollsälla värden
+
+     deleteObjects();
+   //kartObj[0].newRuta=1; // xyz
+    //historik.push(wood.mapNR);
+
+   
+    //console.log("a:"+ nyRuta + vaderstrack);
+    
+    
+    //wood.mapNr=81;
     console.log("SI");
-    deleteObject("Prinsen");
+   
     getFile(figurer[1].url);
     //lotta kort
     crupier = lottaCards();
     blanda = shuffle();
     //lotta ny karta
     makeMap();
-   gameStatus.push(move);
+    wood.update(81);
+    setDraw("soder");
+   //gameStatus.push(move);
+    deleteObject("Prinsen");
     }
 
 
@@ -231,6 +246,7 @@ function drawRuta(rubrik="tom", text="tom", img="tom", buttons="tom"){
     console.log("dr");
     console.log(gameStatus);
     console.log(buttons);
+    movepause=true;
     if (rubrik=="tom")
         {
             rubrik=figurRubrik;
@@ -510,12 +526,12 @@ function drawRoads(karta, width=50, height=50, color="white"){
     var ms=magicStig();
     for (x=0; x<vaderstrack.length; x++){
        
-    	if (map[karta][vaderstrack[x]]==1 || vaderstrack[x]==ms){
-    		
-    		ctx.fillStyle = color;
-   			ctx.fillRect(xPos[x], yPos[x], 60, 60);
+        if (map[karta][vaderstrack[x]]==1 || vaderstrack[x]==ms){
+            
+            ctx.fillStyle = color;
+            ctx.fillRect(xPos[x], yPos[x], 60, 60);
 
-    	}
+        }
     }
 }
 
@@ -599,7 +615,7 @@ function getIndex(input){
 
 function deleteObject(vad){
     
-    var nummer= gameObj.findIndex(function(index) { return index["namn"] === vad; });
+    var nummer = gameObj.findIndex(function(index) {return index["namn"] === vad; });
      gameObj.splice(nummer, 1);
     
 }
@@ -647,7 +663,7 @@ function mapChange(vaderstrack){
     setFloor(vaderstrack);
     var nyRuta = wood.mapNR;
     
-    wood.vaderstrack=invNSVO(vaderstrack);
+    wood.vaderstrack = invNSVO(vaderstrack);
     setDraw(invNSVO(vaderstrack));
 
     var nyttCard = map[wood.mapNR].card;

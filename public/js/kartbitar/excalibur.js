@@ -1,90 +1,101 @@
-/*function geten (){ sept18
-    return actions.length;
 
-}*/
+console.log("SIS");
+mapImages.push(new Image());
+mapImages[mapImages.length-1].src = "./img/swordofstone.png";
+cardImages.push(new Image());
+cardImages[cardImages.length-1].src="./img/excalibur.png";
+sakImg.push(new Image());
+sakImg[cardImages.length-1].src="./img/sword.png";
+
+gameObj.push({
+
+vem: "Svärdet i stenen",
+    namn: "Svärdet i stenen",
+    vad: "objekt",
+    floor: 1,
+    miljo: false,
+    figur: true,
+    info: false,
+    x:150, y: 150,
+    speedY: 0, speedX: 0,
+    width: 100, hight: 100,
+    index: gameObj.length,
+    img: mapImages[mapImages.length-1],
+    cardImg: cardImages[cardImages.length-1],
+    text: "",
+    draw: function(){
+        var ctx = myGameArea.context;
+        ctx.drawImage(this.img, 150, 150); 
+        },
+    move: function(){},
+    hitAction: function(){
+        gameObj[0].placeMe = true;
+        console.log("SIS!");
+        gameStatus.push(diceRuta);
+        hitIndex = this.index;
+        this.T6 = 0;
+        movepause = true;
+    },
+    drawRuta: function(){
+        var buttons = [];
+        //var ij = gameObj[0].findIndex(function(index) { return index["upgrades"] ==="Mimers Brunn";} );
+        const harInte = gameObj[0].upgrade.findIndex(upg => upg === "Svärdet i stenen");
+        const index = getIndexGameObj("Svärdet i stenen");
+        console.log ("SIS" + harInte);
+        //let img = this.cardImg;
+    if (harInte == -1){
+        let T6res = [2, 1];
+
+        if (this.T6 >= T6res[0]) {//get sword}
+            this.text = "Du är värdig!";
+            this.getSword();
+            buttons = [{action: moveFunc, text: "Ta Excalibur"}]; 
+            gameObj[0].upgrade.push("Svärdet i stenen");
+        }
+        else if (this.T6 >= T6res[1]) {
+            this.text = "Du är icke värdig.";
+            gameObj[0].upgrade.push("Svärdet i stenen");
+            buttons = [{action: moveFunc, text: "Dumma sten"}]; 
+        }
+        else {
+            buttons = [{text: "Jag är värdig!", action: diceRuta}];
+            this.text= "Endast de värdiga kan dra Excalibur ur stenen.";
+            buttons.push({action: moveFunc, text: "Behöver nog bli lite klokare"}); 
+        }
+    }
+    else{
+       this.text= "En gång olämplig, alltid lämplig.";
+        buttons.push({action: moveFunc, text: "Dumma sten."}); 
+
+     }   
+       
+       // gameObj[0].placeMe = true;
+    drawDiceRuta({rubrik: "Svärdet i stenen", brod: gameObj[index].text}, gameObj[index].cardImg, buttons, this.T6);
+    this.T6 = Math.floor(Math.random() * 6 + 1);
+    console.log("T6:" + this.T6);
+    return true;  
 
 
-/* 
-ladda bilder
-ladda kartbit
-    när ska ngt hända
+    },
+    getSword: function(){
+        gameStatus.push(putEquipmentToBag, move);
 
-
-ladda text
-ladda händelser
-
-
-*/
-/* bilder
-------------------
-*/
-
-
-/* inställningar
-------------------
-*/
-
-rsos_text=[];
-rsos_text.push("Endast de värdiga kan ta Excalibur ur stenen.");
-rsos_text.push("Jag är värdig!");
-//actions.push({index: actions.length, namn:"swordofstone", text:rsos_text[0] ,color:"146 146 146", func:runSwordofstone, img:swordofstone });
-//rsosDices={T6:[3,5,7],text:["Du är inte värdig. -1 iq", "Inget händer", "Du är värdig!"], actions:["minusIQ", "inget" ,"getSak"]};
-var excaliburNR=thing.length;
-thing.push({id:thing.length, namn:"Excalibur", vad:"sak",color:"grey", plus:"styrka", width:5, height:5, img:sword, f_text:"Ja"});
-
-console.log(thing);
-
-function minusIQ(){
-    figur[0].iq--;
-    if (figur[0].iq<0)figur[0].iq=0;
+    },
+    putInBag: function(){
+        bagger.push(new Sak());
+        var post = bagger[bagger.length-1];
+        post.namn = "Excalibur";
+        post.img = sakImg[sakImg.length-1];
+        post.dragFunc = function(){};
+        post.do = function() {gameObj[0].styrka += 2};
+        post.undo = function() {{gameObj[0].styrka -= 2};
+    }
 }
-function none(){
-   
-}
-
-function getExcalibur(){
-     diceStatus="klar";
-     figur.push(new Sak(excaliburNR));  
-
-
-}
-
-function loadSIS(){
-    console.log("laddarSIS");
-        bildColorForAction="146 146 146"; //actions[index].color;
-        bildaction = runSwordofstone;
-        bild = swordofstone;
-        diceText="Endast de värdiga kan ta Excalibur ur stenen.";
-        diceBonus="iq";
-        T6=[3,5,7];
-        T6text=["Du är inte värdig. -1 iq", "Inget händer", "Du är värdig!"];
-        T6actions=[minusIQ, none, getExcalibur];
-        diceStatus="start";
-}
-kartbit[13].func=loadSIS;
 
 
 
- 
- function runSwordofstone(){
-    gameStatus="wait";
-     downMeny.set("putInBag", rsos_text[0], rsos_text[1], excalibur);
-    unsetKartbitsaction();
-    //console.log("JA!" + figur[0].x);
-     figur[0].x=260; //xxx
-     figur[0].y=260; //xxx
-     var obj = thing.find( rsos => rsos.namn === "Excalibur");
-     figur.push(new Sak(obj.id)); 
-     //gameStatus="panel";
-     gameStatus="diceRuta";
+});
 
-}
-function runSwordofstoneDices (number){
+hitObjects++;
+gameStatus.push(moveStart);
 
-{
-//  text:"Endast de värdiga kan ta Excalibur ur stenen.",
-//  3: "minusIQ",
-//  6: "ingen",
-//  8: "getExcalibur"
-}
-}

@@ -4,44 +4,46 @@
 //
 //---------------------------------------------
 
-console.log("EB");
+console.log("ÄggBlomma");
 mapImages.push(new Image());
 mapImages[mapImages.length-1].src="./img/egblomma.png";
 cardImages.push(new Image());
 cardImages[cardImages.length-1].src="./img/egblomma.png";
-
-
+sakImg.push(new Image());
+sakImg[sakImg.length-1].src="./img/egblomma.png";
 
 
 gameObj.push(
  {
   namn:"blomma",
-   floor:1,  miljo: false, figur : true, info: false,
+   floor: 1,  miljo: false, figur : true, info: false,
     vem: "Egblomma",
     vad: "figur",
-    index: kartObj.length,
+    index: gameObj.length,
     indexS: mapImages.length - 1,
     indexCI: cardImages.length - 1,
     placeMe: true,
-
-  moving: false,
+    moving: false,
   vaderstrack: "soder",
   draw: function(){
+    
     ctx.drawImage(mapImages[this.indexS], this.x, this.y);
   },
   move: function (){},
+  drawRuta: function(){
+        gameObj[hitIndex].floor = -1;
+
+
+    const index = getIndexGameObj("blomma");
+    drawRuta("Äggblomman", "Där är den!, som trollpackan behövde till Kungens medicin!", gameObj[index].cardImg, [{text: "Plocka blomma!", action: gameObj[index].getBlomma}]);
+
+  },
   getBlomma: function(){
   
-        console.log("getBlomma");
-        
-        gameStatus="ajaxwait";
-        ajaxQueue++;
-        getFile("./js/cards/blomma.js");
-  
-
- deleteObject("Egblomma");
-    
-    
+  console.log("getBlomma"); 
+  map[wood.mapNum].card = 1;   
+  //deleteObject("blomma");      
+  gameStatus.push(putEquipmentToBag, move);
     },    
   cardImg : cardImages[cardImages.length-1],
 
@@ -65,14 +67,25 @@ HIT
 
 hitAction : function(){
   console.log("ÄggblommaHitAction");
-    gameStatus = "wait";
-    figurRubrik = this.vem;
-    figurButton = "Plocka blomman";
-    figurText = "Där är Äggblomman, som trollpackan behövde till Kungens medicin,";
-    figurImg = this.cardImg;
-    figurAction = gameObj[1].getBlomma;
- 
-     gameStatus="ruta";
+    gameStatus.push(this.drawRuta);
+    hitIndex = this.index;
+    gameObj[0].placeMe = true;
+    
+    console.log("Ägget är löst!");   
+},
+
+putInBag: function(){
+  bagger.push(new Sak());
+  var post = bagger[bagger.length-1];
+  post.namn = "Äggblomma";
+  post.img = sakImg[sakImg.length-1];
+  post.dragFunc = function(){ 
+    if (wood.mapNR == 4) 
+      kartObj.push(entreN);
+    };
+    post.do = function() {};
+    post.undo = function() {};
+    //deleteObject("blomma");  
 }
 
 });
@@ -84,4 +97,11 @@ hitAction : function(){
 //kartbit[13].func=loadSIS;
 
 hitObjects++;
-ajaxQueue--;
+gameStatus.push(moveStart);
+
+
+
+console.log("blomma Klar");
+
+
+

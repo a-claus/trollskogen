@@ -54,14 +54,34 @@ gameObj.push(
    	raknare: 0,
    	move: function(){
    		//console.log(this.xTill + "-" +this.x + "-" + this.stegX);
-   		this.raknare++;
+   		this.raknare += 2;
 		if (this.raknare > 50){ 
 			this.x += this.stegX; 
 			this.y += this.stegY;}
-		if (this.x < this.xTill) {console.log ("delete_effekt"); this. effekt= false; }
+		if (this.x < this.xTill) {
+		//	console.log (gameObj); 
+		//	console.log(hitIndex);
+			gameObj[hitIndex].putInBag();
+			this. effekt = false; 
+			if (bagAktiv == -1) {
+				bagAktiv = 0;
+				bagger[bagAktiv].do();
+				hitArea.push(
+					{x:35, 
+					y:360, 
+					width:80, 
+					height:35, 
+					action:function(){changeThing();}}
+				);}
+			//gameObj.splice(hitIndex, 1);
+		
+
+				//dragHitArea.push({x:35, y:360, width:80, height:35, action:function() {bagger[bagAktiv].dragFunc()}});
+			
+		}
    	},
    	draw: function(){
-   		console.log("eff draw" + this.x);
+   		//console.log("eff draw" + this.x);
        ctx.drawImage(sakImg[sakImg.length - 1], this.x, this.y, this.width, this.height);
 	}
 });
@@ -139,7 +159,9 @@ function deadOrAlive(plunus){
 	if (gameObj[0].skada >= gameObj[0].liv){
 		
 		gameStatus.push(death);
+		return false;
 	}
+	return true;
 
 }
 
@@ -149,7 +171,7 @@ function death(){
 	console.log(gameStatus);
 	var rubrik = "GAME OVER";
 	var text = gameObj[0].vem + " kunde blivit en hjälte. Nu förmulnad i Trollskogen. Ska vi sända bud till slottet och meddela misslyckandet, så de kan skicka en ny dumdristig äventyrare in i Trollskogen för att rädda kung Sebastian?";
-	var buttons = [ {text: "Spela", actions: startaIgen}, {text:" Sluta", action: end}];
+	var buttons = [ {text: "Spela", action: startaIgen}, {text:" Sluta", action: end}];
 	movepause = true;
 	drawRuta(rubrik, text, rip, buttons);
 	//gameStatus.push(drawRuta);

@@ -42,8 +42,8 @@ KARTA
 BILD SPRITES MAP
 ----------------------------------*/	
 	vaderstrack: "soder",
-	width: 40,
-	hight: 40,
+	width: 40,//40,
+	hight: 40,//40,
 	moving: false,
 	
 	move: function (){ 

@@ -97,4 +97,5 @@ if (jump.hojd < jump.golv){
 	}
 	return jump;
 }
+gameStatus.push(moveStart);
 

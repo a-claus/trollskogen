@@ -1,13 +1,59 @@
 let sakImg=[];
 
+let bagger = [];
+let bagAktiv = -1;
+bagger[-1] = {undo: function(){conseole.log("BagClick var en tom bag")}};
+
+
+function changeThing(){
+    console.log("change" + bagger.length);
+    if (bagger.length > 0) {
+        bagger[bagAktiv].undo
+        bagAktiv++;
+        if (bagAktiv == bagger.length) bagAktiv = 0;
+        bagger[bagAktiv].do;
+    }
+}
+
+class Sak{
+    constructor(){
+    this.active = false;
+   // this.clickFunc = function() {console.log("change");changeThing()};
+
+    this.dragFunc = function() {};
+    this.do = function() {};
+    this.undo = function() {};
+    
+    this.sak;
+    this.img;
+
+//----------OLD
+          //  this.nr=nr;  
+           // console.log("Nummer"+this.nr);
+           // this.vad = thing[this.nr].vad;
+           // this.arrayLista = "thing";
+           // this.namn = thing[this.nr].namn;
+           // this.card = thing[this.nr];
+           // this.width = thing[this.nr].width;
+           // this.height = thing[this.nr].height;
+           // this.color = thing[this.nr].color; 
+       }
+
+
+}
+
+
+
+/*
 class Bagger{
     constructor(){
+
         this.innehall = [];
         this.index = -1; 
         this.img;
         this.iHand = "";
         this.i = false; //xyz
-        this.func = function(){};
+       // this.func = function(){};
         this.clickFunc;
         this.dragFunc;
     }
@@ -20,7 +66,7 @@ class Bagger{
             console.log(thing);
             console.log(this.index, thing[this.index].vad);
             iHand = thing[this.innehall[this.index]].plus;
-           // thing[this.index].bagFuncSetter(); 
+            thing[this.index].bagFuncSetter(); 
             upgradeFigur(iHand, false);
             }
         
@@ -53,21 +99,19 @@ class Bagger{
 
 }
 
-var bagger = new Bagger();
+*/
+//var bagger = new Bagger();
 
-function haPush(){
+function xhaPush(){
     //    dragAction : function(){
-
-
    hitArea.push({x:35, y:360, width:80, height:35, action:function() {bagger.setBagImg()}}); 
 }
 
-function draghaPush(){
+function xdraghaPush(){
     //    dragAction : function(){
-
-
    dragHitArea.push({x:35, y:360, width:80, height:35, action:function () {bagger.setBagImg()}}); 
 }
+
 function upgradeFigur(iHand, positiv=true){
     console.log("old");
     bagupgrade(iHand, positiv);
@@ -166,8 +210,8 @@ console.log("figurUpdate");
         this.splice(index);
     }
 }
-
-class Sak extends Figur{
+thing = [];
+class xSak extends Figur{
     constructor(nr){
             super();
             this.nr=nr;  
@@ -182,7 +226,6 @@ class Sak extends Figur{
     }
 }
     
-
 
 class Player extends Figur{
     constructor(){
@@ -371,9 +414,11 @@ class Wood{
         if (map[mapNR].edge) {
             this.edge=map[mapNR].edge;}
         else
-            { this.edge="not";}
+            { this.edge = "not";}
 
-        if (mapNR==81) this.vaderstrack="soder";
+        if (mapNR==81) {
+            this.vaderstrack = "soder";
+            this.floors = 1;}
 
       // if (kartbit[this.kartbit].hasOwnProperty("func")==true){
         //    kartbit[this.kartbit].func();
@@ -552,22 +597,12 @@ class Button {
     
     }
 
-   /* setFunc(func) {
-        doFunc=func;
-        gameStatus="runFunc";
-    }*/
 
     hit() {
-        console.log("buttonHit2");
-        //if (typeof this.action === "function") {
-          //  this.action();
-           // var boundGetObj = this.action.bind(kartObj[hittad]);
-        //}
-        //else 
-            //{
+       
                 if (this.action == move) movepause = false; 
                 gameStatus.push(this.action);
-                //}
+                
     }    
 
 }
