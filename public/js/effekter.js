@@ -59,26 +59,26 @@ gameObj.push(
 			this.x += this.stegX; 
 			this.y += this.stegY;}
 		if (this.x < this.xTill) {
-		//	console.log (gameObj); 
-		//	console.log(hitIndex);
-			gameObj[hitIndex].putInBag();
-			this. effekt = false; 
-			if (bagAktiv == -1) {
-				bagAktiv = 0;
-				bagger[bagAktiv].do();
-				hitArea.push(
-					{x:35, 
-					y:360, 
-					width:80, 
-					height:35, 
-					action:function(){changeThing();}}
-				);}
-			//gameObj.splice(hitIndex, 1);
+				//	console.log (gameObj); 
+				//	console.log(hitIndex);
+					gameObj[hitIndex].putInBag();
+					this. effekt = false; 
+					if (bagAktiv == -1) {
+						bagAktiv = 0;
+						bagger[bagAktiv].do();
+						hitArea.push(
+							{x:35, 
+							y:360, 
+							width:80, 
+							height:35, 
+							action:function(){changeThing();}}
+						);}
+					//gameObj.splice(hitIndex, 1);
+				
 		
-
-				//dragHitArea.push({x:35, y:360, width:80, height:35, action:function() {bagger[bagAktiv].dragFunc()}});
-			
-		}
+						//dragHitArea.push({x:35, y:360, width:80, height:35, action:function() {bagger[bagAktiv].dragFunc()}});
+					
+				}
    	},
    	draw: function(){
    		//console.log("eff draw" + this.x);
