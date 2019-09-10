@@ -144,6 +144,7 @@ function deadOrAlive(plunus){
 }
 
 function death(){
+	cpn
 	
 	console.log(gameStatus);
 	var rubrik = "GAME OVER";
