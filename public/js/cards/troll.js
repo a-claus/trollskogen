@@ -79,12 +79,14 @@ BILD SPRITES MAP
 	draw: function(){
         console.log("x" + this.x);
     	var spriteNR;
-		this.spriteTimer++;
+        this.spriteTimer++;
+        console.log("ST" + this.spriteTimer);
 		
     	if (this.spriteTimer == 30) {this.spriteTimer = 0;}
     	if (this.spriteTimer < 15) { spriteNR = 0;}
     	if (this.spriteTimer > 14) { spriteNR = 1;}
-    	if (this.moving == false) { spriteNR = 2;}
+        //if (this.moving == false) { spriteNR = 2;}
+        //console.log("ST" + this.spriteTimer);
 		var ctx = myGameArea.context;
     	ctx.drawImage(this.sprite, this.spriteSchema[this.vaderstrack][spriteNR][0], this.spriteSchema[this.vaderstrack][spriteNR][1], this.spriteSchema[this.vaderstrack][spriteNR][2], this.spriteSchema[this.vaderstrack][spriteNR][3], this.x, this.y, 40, 40);
 		this.moving = false;

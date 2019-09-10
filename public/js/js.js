@@ -286,75 +286,26 @@ function drawDiceRuta(text, img, buttons, T6 = 0, bonus = 0){
 
 }
 
-var diceText; var T6=[]; var T6text=[]; var T6actions=[]; var diceBonus;
-var diceStatus; var diceRubrik;  var diceImg; var buttons;
-
-function xdrawDiceRuta(){
+function drawCombatRuta(text, img, buttons, T6, bonus){
+    console.log(text.rubrik);
     var x=50;
     var y=100;
-    var act;
+    ctx = myGameArea.context;
     ctx.drawImage(rutaBG, x, y);
-    ctx.drawImage(diceImg , x+6, y+92, 100,100); //bilden på figur
-    var T6slag = Math.floor(Math.random() * 6); 
-    console.log( "T6: " + T6slag);
-    var bonus;
-        switch (diceBonus){
-            case "iq":
-                //drawIQ(0, x+88, y+140);
-                bonus = gameObj[0].iq;
-            break;
-            default:
-                bonus = 0; 
+    ctx.drawImage(img, x+6, y+92, 100, 100);
+    textWriter(text.rubrik, x + rutaBG.width/2, y + 30, 26, "center");
+    textWriter(text.brod, x+30, y+50, 26, "black");
+    if (T6 > 0) drawDice(x+125, y+160,0, T6-1, bonus);
+    console.log(buttons);
+    let bhsY = y + 200 - buttons.length * 50;
+    for (var i = 0; i < buttons.length; i++){
+        button.push(new Button(buttons[i].action, x+190, bhsY + i * 50, buttons[i].text));
     }
- 
-for (var i=0; i < T6actions.length; i++){ 
-    if (T6slag + 1 +bonus >= T6[i]) {break;}
-}
-
-
-    
- 
-if (i==0) act = "vinst";
-if (i==1) act = "repeat";
-if (i==2) act = "lose";
-
-if (diceStatus == "start"){
-    act = "start"; 
-    i = 3;
-    diceStatus="dice"; 
-}
-
-textWriter(diceRubrik, x + rutaBG.width/2, y + 30, 26, "center");
-console.log("I"+ i);
-for (var j=0; j<buttons[i].length; j++){
-    
-    button.push(new Button(T6actions[i][j], x+190, y+100+j*50, buttons[i][j]));
-  
-}
-
-textWriter(T6text[i][0], x+30, y+50, 26, "black");
-
-
-
-
-if (i!=3){
-//----- draw bonus -------
-    
-        switch (diceBonus){
-            case "iq":
-                drawIQ(0, x+88, y+140);
-                bonus=gameObj[0].iq;
-            break;
-            default:
-                bonus = 0; 
-    }
-    //----- draw dice ---------
-    drawDice(x+125,y+160,0,T6slag, bonus);
-}
-
 
 }
 
+var diceText; var T6=[]; var T6text=[]; var T6actions=[]; var diceBonus;
+var diceStatus; var diceRubrik;  var diceImg; var buttons;
 
 
 function drawDice(x, y, index, tSlag, add){
@@ -365,7 +316,7 @@ function drawDice(x, y, index, tSlag, add){
      ctx.fillText(b, x+35, y+20);
 }
 
-function drawCombatRuta(typ="start"){
+function xdrawCombatRuta(typ="start"){
     //ändra spå monster inte är ett i combatruta
     var x=50;
     var y=100;
