@@ -376,7 +376,7 @@ class Wood{
         //________________
         this.bildBG = new Image();
         console.log(mapNR);
-        this.mapNR=mapNR;
+        this.mapNR= mapNR;
         this.norr = map[mapNR].norr;
         this.soder=map[mapNR].soder;
         this.ost=map[mapNR].ost;

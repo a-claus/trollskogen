@@ -21,7 +21,7 @@ gameObj.push(
 /*--------------------------------
 EGENSKAPER
 ----------------------------------*/
- 	liv: 2,
+ 	  liv: 2,
     skada: 0,
     styrka: 1,
     //iq:1,
@@ -39,8 +39,7 @@ KARTA
 	speedX: 0,
 	speedY: 0,
 	floor: 1,
-	//jump: {fall:0, hojd:1, golv:1}, 
-	//fall: 0,
+	
 
 /*--------------------------------
 BILD SPRITES MAP
@@ -77,10 +76,9 @@ BILD SPRITES MAP
 	sprite: mapImages[mapImages.length-1],
 	spriteTimer: 0,
 	draw: function(){
-        console.log("x" + this.x);
-    	var spriteNR;
+     	var spriteNR;
         this.spriteTimer++;
-        console.log("ST" + this.spriteTimer);
+      
 		
     	if (this.spriteTimer == 30) {this.spriteTimer = 0;}
     	if (this.spriteTimer < 15) { spriteNR = 0;}
@@ -95,17 +93,19 @@ BILD SPRITES MAP
             this.T6 = 0;
         
             hitIndex = this.index; //xyz borde reggas senare med tanke att gameObj kan ändras efter laddning
-             gameStatus.push(diceRuta); // fajtruta
+            // gameStatus.push(diceRuta); // fajtruta
+              gameStatus.push(this.drawRuta); // fajtruta
         },
         drawRuta: function (){
             movepause = true;
               var buttons = [];
               console.log("T6" + this.T6);
     let T6res = [7, 6, 1]; //7,4,1
-    if (this.T6 >= T6res[0]) {
+    if (gameObj[hitIndex].T6 >= T6res[0]) {
       this.text = "Den här staven kan säkert hjälpa dig.";
       this.getWand();
-      buttons = [{action: moveFunc, text: "Taaack"}];      
+      buttons = [{action: moveFunc, text: "Taaack"}]; 
+
     }
     else if (this.T6 >= T6res[1]){
         this.text = "...";
@@ -116,13 +116,13 @@ BILD SPRITES MAP
           gameObj[0].iq--; effekten("iq", "minus"); if (gameObj[0].iq < 0) gameObj[0].iq = 0;
           this.text = "Hejdå";}
       else{ 
-          buttons = [{action: diceRuta, text: "Kan du hjälpa mig??"}, {action: moveFunc, text: "Gå!"}];
+          buttons = [{action: diceRuta, text: "Slåss"}, {action: moveFunc, text: "Fly"}];
           gameObj[0].skada += 1;
           }
-          drawDiceRuta({rubrik: this.namn, brod: this.text}, this.cardImg, buttons, this.T6);
+          drawCombatRuta({rubrik: "Lill-Troll", brod: "Its war"}, gameObj[hitIndex].cardImg, buttons, gameObj[hitIndex].T6);
           this.T6 = Math.floor(Math.random() * 6 + 1); 
           console.log("T6:" + this.T6);
-          return true; 
+          return false; 
       },
       getWand: function(){
     

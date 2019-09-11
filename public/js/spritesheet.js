@@ -10,7 +10,7 @@ MENYOBJEKT
 
 
 var bag = new Image(); 
- bag.src="img/bag.png";	
+bag.src="img/bag.png";	
 
 	
 
@@ -53,7 +53,7 @@ broVO.src="img/broVO.png";
 
 var bro = new Image(); 
 	bro.src="img/bro.png";	   
-
+/*
 var excalibur = new Image(); 
 excalibur.src="img/excalibur.png";
 
@@ -89,6 +89,7 @@ var blabar = new Image();
 
  var rip = new Image(); 
  rip.src="img/rip.png";
+ */
 
 var imgTarning = new Image(); 
 imgTarning.src="img/tarning.png" ;
@@ -99,6 +100,8 @@ imgVS.src="img/vs.png" ;
 var rutaBG = new Image(); 
 rutaBG.src="img/combat_bg.png";
 
+var combatBG = new Image(); 
+combatBG.src="img/combat1.png";
 
 
 var knapp = new Image(); 
@@ -117,7 +120,7 @@ var imgCard = new Image();
 imgCard.src="img/monsterCard.png" ;
 var imgTroll = new Image(); 
 //imgTroll.src="img/trollMor.png" ;
-
+/*
 function drawCard(monster){
 	ctxI = myGameArea.context;
 
@@ -140,7 +143,7 @@ function drawCard(monster){
 
         }
 
-}
+}*/
 
 
 //var spriteTarning =

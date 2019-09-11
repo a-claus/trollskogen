@@ -88,6 +88,7 @@ getWand: function(){
     //kartObj[0].placeMe=true; gameObj
     map[wood.mapNum].card = 1; //blank
 gameStatus.push(putEquipmentToBag, move);
+this.floor=-1;
  //deleteObject("Alven");
         
     

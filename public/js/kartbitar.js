@@ -7,7 +7,7 @@ card.push({id:3, namn:"Trollmor", vad:"monster",color:"black", styrka:2, liv:1, 
 card.push({id:4, namn:"Trollfar", vad:"monster",color:"black", styrka:3, liv:1, vinst:2, width:21, height:21, f_text:"Trollmor står och lagar tomtesoppa."});
 card.push({id:5, namn:"Svamp", url:"./js/cards/svamp.js"});
 card.push({id:6, namn:"Blåbär", url:"./js/cards/blabar.js"});
-card.push({id:7, namn:"Hugin och Munin", vad:"animal", color:"black", dice:4 , width:6, height:6, img:huginmumin});
+card.push({id:7, namn:"Hugin och Munin", vad:"animal", color:"black", dice:4 , width:6, height:6});
 card.push({id:8, namn:"Alven", url:"./js/cards/alven.js"});
 
 
@@ -86,7 +86,7 @@ var blanda = shuffle();
 
 //blandadCards[];
 
-
+console.log("kb");
 
 
 function makeMap(){

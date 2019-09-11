@@ -266,17 +266,19 @@ function drawRuta(rubrik="tom", text="tom", img="tom", buttons="tom"){
     for (var i = 0; i < buttons.length; i++){
         button.push(new Button(buttons[i].action, x+190, bhsY + i * 50, buttons[i].text));
     }
+    console.log(text.rubrik + "drawRuta");
 }
 
 function drawDiceRuta(text, img, buttons, T6 = 0, bonus = 0){
     console.log(text.rubrik);
+    console.log(text.rubrik + "diceRuta");
     var x=50;
     var y=100;
     ctx = myGameArea.context;
     ctx.drawImage(rutaBG, x, y);
     ctx.drawImage(img, x+6, y+92, 100, 100);
-    textWriter(text.rubrik, x + rutaBG.width/2, y + 30, 26, "center");
-    textWriter(text.brod, x+30, y+50, 26, "black");
+    textWriter(text.rubrik, 200, 150, 26, "center");
+    //textWriter(text.brod, x+30, y+50, 26, "black");
     if (T6 > 0) drawDice(x+125, y+160,0, T6-1, bonus);
     console.log(buttons);
     let bhsY = y + 200 - buttons.length * 50;
@@ -288,20 +290,28 @@ function drawDiceRuta(text, img, buttons, T6 = 0, bonus = 0){
 
 function drawCombatRuta(text, img, buttons, T6, bonus){
     console.log(text.rubrik);
-    var x=50;
-    var y=100;
+    var x = 0;
+    var y = 0;
+    console.log("dcr");
     ctx = myGameArea.context;
-    ctx.drawImage(rutaBG, x, y);
-    ctx.drawImage(img, x+6, y+92, 100, 100);
-    textWriter(text.rubrik, x + rutaBG.width/2, y + 30, 26, "center");
-    textWriter(text.brod, x+30, y+50, 26, "black");
+    ctx.drawImage(img, 120, 0, 160, 180);
+    ctx.drawImage(combatBG, 0, 0, 400,400);
+    drawStyrka(hitIndex, 100, 90);
+    drawStyrka(0, 100, 340);
+    drawHarts(hitIndex, 300, 90);
+    drawHarts(0, 300, 340);
+    //ctx.drawImage(ICONstyrka, 100+x, y+90);
+    //ctx.drawImage(ICONstyrka, 100, y+340);
+    
+    textWriter(text.rubrik, 200, 160, 26, "white" ,"center");
+   // textWriter(text.brod, x+30, y+50, 26, "black");
     if (T6 > 0) drawDice(x+125, y+160,0, T6-1, bonus);
     console.log(buttons);
-    let bhsY = y + 200 - buttons.length * 50;
+    let bhsY = y + 300 - buttons.length * 50;
     for (var i = 0; i < buttons.length; i++){
-        button.push(new Button(buttons[i].action, x+190, bhsY + i * 50, buttons[i].text));
+        button.push(new Button(buttons[i].action, 300, bhsY + i * 50, buttons[i].text));
     }
-
+console.log("dcr2");
 }
 
 var diceText; var T6=[]; var T6text=[]; var T6actions=[]; var diceBonus;
@@ -718,14 +728,15 @@ function kordinatorXY(kart_nr){
     return [x,y];
 
 }
-
-function drawImage(image, x, y, scale=1, rotation=0){
+/*
+function drawImage(image, x, y, scale = 1, rotation = 0){
     console.log("DI");
     ctx.setTransform(scale, 0, 0, scale, x, y); // sets scale and origin
     ctx.rotate(rotation);
-    ctx.drawImage(image, - image.width / 2, -image.height / 2);
+    //ctx.drawImage(image, - image.width / 2, - image.height / 2);
+    ctx.drawImage(image, x, y);
 }
-
+*/
 function textWriter(text, x, y, lineLength = 40, color= "white", align = "left"){
     var textut;
     ctx.textAlign = align;
@@ -747,7 +758,11 @@ function textWriter(text, x, y, lineLength = 40, color= "white", align = "left")
             }
         } while (textCount < text.length);
     }else{
-      ctx.fillText(text, x, y+14*i);  
+        ctx.textAlign = align;
+      ctx.fillText(text, x, y+14*i); 
+      ctx.fillStyle = "black";
+      ctx.strokeText(text, x, y+14*i);
+      console.log(text + x + align); 
     }
 }
 
