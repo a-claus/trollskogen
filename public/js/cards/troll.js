@@ -90,37 +90,39 @@ BILD SPRITES MAP
 		this.moving = false;
         },
         hitAction : function(){
-            this.T6 = 0;
+            this.T6 = [0,0];
         
             hitIndex = this.index; //xyz borde reggas senare med tanke att gameObj kan ändras efter laddning
             // gameStatus.push(diceRuta); // fajtruta
               gameStatus.push(this.drawRuta); // fajtruta
         },
+        T6:[0,0],
         drawRuta: function (){
+            let enemy = gameObj[hitIndex];
+            let player = gameObj[0];
             movepause = true;
-              var buttons = [];
-              console.log("T6" + this.T6);
-    let T6res = [7, 6, 1]; //7,4,1
-    if (gameObj[hitIndex].T6 >= T6res[0]) {
-      this.text = "Den här staven kan säkert hjälpa dig.";
-      this.getWand();
-      buttons = [{action: moveFunc, text: "Taaack"}]; 
-
-    }
-    else if (this.T6 >= T6res[1]){
-        this.text = "...";
-          buttons = [{action: diceRuta, text: "Snälla"}, {action: moveFunc, text: "Gå!"}];
-         }
-      else if (this.T6 >= T6res[2]){ 
-          buttons = [{action: this.flyttarSig, text: "Adjö"}];
-          gameObj[0].iq--; effekten("iq", "minus"); if (gameObj[0].iq < 0) gameObj[0].iq = 0;
-          this.text = "Hejdå";}
-      else{ 
+            var buttons = [];
+            console.log("T6" + this.T6);
+        if (gameObj[hitIndex].T6[0] != 0){
+            let T6res = enemy.T6[0]- enemy.T6[1] + player.styrka - enemy.styrka;
+            if (T6res > 0) {
+               enemy.skada++;
+            }
+            if (T6res == 0) {
+                 enemy.skada+=.5;
+                player.skada+=.5;
+            }
+            if (T6res < 0) {
+               player.skada++;
+            }
+        }
+        else{ 
           buttons = [{action: diceRuta, text: "Slåss"}, {action: moveFunc, text: "Fly"}];
-          gameObj[0].skada += 1;
+          
           }
           drawCombatRuta({rubrik: "Lill-Troll", brod: "Its war"}, gameObj[hitIndex].cardImg, buttons, gameObj[hitIndex].T6);
-          this.T6 = Math.floor(Math.random() * 6 + 1); 
+          enemy.T6[0] = Math.floor(Math.random() * 6 + 1); 
+          enemy.T6[1] = Math.floor(Math.random() * 6 + 1); 
           console.log("T6:" + this.T6);
           return false; 
       },

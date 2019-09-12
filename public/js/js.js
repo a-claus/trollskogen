@@ -188,7 +188,7 @@ function drawStyrka(index,x,y){
      ctx = myGameArea.context;
     ctx.drawImage(ICONstyrka, x, y); //10,10;
     ctx.fillStyle="white";
-    ctx.fillText(gameObj[0].styrka, x+21, y+28);}
+    ctx.fillText(gameObj[index].styrka, x+21, y+28);}
 
  function drawIQ(index,x,y){
      ctx = myGameArea.context;
@@ -292,18 +292,18 @@ function drawCombatRuta(text, img, buttons, T6, bonus){
     console.log(text.rubrik);
     var x = 0;
     var y = 0;
-    console.log("dcr");
+    console.log("dcr" + hitIndex);
     ctx = myGameArea.context;
     ctx.drawImage(img, 120, 0, 160, 180);
     ctx.drawImage(combatBG, 0, 0, 400,400);
     drawStyrka(hitIndex, 100, 90);
     drawStyrka(0, 100, 340);
-    drawHarts(hitIndex, 300, 90);
-    drawHarts(0, 300, 340);
+    drawHarts(hitIndex, 285, 15);
+    drawHarts(0, 285, 365);
     //ctx.drawImage(ICONstyrka, 100+x, y+90);
     //ctx.drawImage(ICONstyrka, 100, y+340);
     
-    textWriter(text.rubrik, 200, 160, 26, "white" ,"center");
+    textWriter(text.rubrik, 20, 30, 26, "black" ,"left");
    // textWriter(text.brod, x+30, y+50, 26, "black");
     if (T6 > 0) drawDice(x+125, y+160,0, T6-1, bonus);
     console.log(buttons);
@@ -457,8 +457,8 @@ Saker som ska flyttas över spelplanen. Exempelvis när man stoppar ner något i
 function drawHarts(who, x, y){
    // console.log("dh" + gameObj[0].skada);
     var antalRoda;
-    for (var i=0; i < gameObj[0].liv; i++){
-        antalRoda = gameObj[0].liv - gameObj[0].skada-i;
+    for (var i=0; i < gameObj[who].liv; i++){
+        antalRoda = gameObj[who].liv - gameObj[who].skada-i;
        
         if (antalRoda >= 1){
              ctx.drawImage(r_hart, x+i*20, y); //58+x+i*20, y+45
@@ -760,7 +760,7 @@ function textWriter(text, x, y, lineLength = 40, color= "white", align = "left")
     }else{
         ctx.textAlign = align;
       ctx.fillText(text, x, y+14*i); 
-      ctx.fillStyle = "black";
+      ctx.fillStyle = "white";
       ctx.strokeText(text, x, y+14*i);
       console.log(text + x + align); 
     }
