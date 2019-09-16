@@ -302,7 +302,7 @@ function drawCombatRuta(text, img, buttons, T6, bonus){
     drawHarts(0, 285, 365);
     //ctx.drawImage(ICONstyrka, 100+x, y+90);
     //ctx.drawImage(ICONstyrka, 100, y+340);
-    
+    textbox(text.brod, {color:"red"}, 20, 50, 40);
     textWriter(text.rubrik, 20, 30, 26, "black" ,"left");
    // textWriter(text.brod, x+30, y+50, 26, "black");
     if (T6 > 0) drawDice(x+125, y+160,0, T6-1, bonus);
@@ -737,6 +737,44 @@ function drawImage(image, x, y, scale = 1, rotation = 0){
     ctx.drawImage(image, x, y);
 }
 */
+function textbox(text, style, x, y, radwidth){
+    if (text == undefined) {return;} //text = "Saknas";}
+    
+    if (style.color) {ctx.fillStyle = text.color; } else {ctx.fillStyle = black;}
+    if (style.align) {ctx.textAlign = text.align; } else {ctx.textAlign = "left";}
+    if (style.strokeColor) {ctx.strokeColor = style.strokeColor;}
+    //if (style.size) {ctx.strokeStyle = text.strokeColor;} else {ctx.textAlign = "left";}
+    //ctx.measureText(text).width
+
+    //ctx.strokeText(text, x, y+14*i); 
+    //str.indexOf(searchValue, fromIndex)
+    var textIndex = 0; var mellanslag = [0];
+    while (text.indexOf(" ", textIndex + 1) != -1){
+         textIndex = (text.indexOf(" ", textIndex + 1))
+         mellanslag.push(textIndex);
+     }
+     mellanslag.push(text.length);
+
+     var texten = ""; var start = -1; var end = 0; var klartext = ""; rad = [];
+
+    while (end < (mellanslag.length - 1)){
+
+         while (ctx.measureText(texten) < radwidth && end < (mellanslag.length - 1)){
+            end++;
+            klartext = texten;
+            texten = text.substring(mellanslag[start]+1, mellanslag[end]);
+        }
+        rad.push(klartext);
+        start = end;
+    } 
+
+
+    for (var i = 0; i < rad.length; i++){
+         ctx.fillText(rad[i], x, y + 14 * i);
+    }
+
+}
+
 function textWriter(text, x, y, lineLength = 40, color= "white", align = "left"){
     var textut;
     ctx.textAlign = align;
@@ -760,7 +798,7 @@ function textWriter(text, x, y, lineLength = 40, color= "white", align = "left")
     }else{
         ctx.textAlign = align;
       ctx.fillText(text, x, y+14*i); 
-      ctx.fillStyle = "white";
+      ctx.strokeStyle = "white";
       ctx.strokeText(text, x, y+14*i);
       console.log(text + x + align); 
     }
