@@ -302,6 +302,7 @@ function drawCombatRuta(text, img, buttons, T6, bonus){
     drawHarts(0, 285, 365);
     //ctx.drawImage(ICONstyrka, 100+x, y+90);
     //ctx.drawImage(ICONstyrka, 100, y+340);
+    text.brod="aaaaaaaaaaaaaaa aaaa  a bbbbb ccccccc ddd ddd ef ffgdgdgdfg"
     textbox(text.brod, {color:"red"}, 20, 50, 40);
     textWriter(text.rubrik, 20, 30, 26, "black" ,"left");
    // textWriter(text.brod, x+30, y+50, 26, "black");
@@ -758,14 +759,21 @@ function textbox(text, style, x, y, radwidth){
      var texten = ""; var start = -1; var end = 0; var klartext = ""; rad = [];
 
     while (end < (mellanslag.length - 1)){
-
-         while (ctx.measureText(texten) < radwidth && end < (mellanslag.length - 1)){
+       
+        
+        console.log("end" + end);
+         while (ctx.measureText(texten).width < radwidth && end < (mellanslag.length - 1)){
             end++;
+            console.log("start" + start +" slut" + end);
             klartext = texten;
             texten = text.substring(mellanslag[start]+1, mellanslag[end]);
+            console.log(ctx.measureText(texten).width);
+            console.log(texten);
         }
         rad.push(klartext);
         start = end;
+        end  = start; 
+        texten = text.substring(mellanslag[start]+1, mellanslag[end]);
     } 
 
 
