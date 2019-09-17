@@ -300,13 +300,10 @@ function drawCombatRuta(text, img, buttons, T6, bonus){
     drawStyrka(0, 100, 340);
     drawHarts(hitIndex, 285, 15);
     drawHarts(0, 285, 365);
-    //ctx.drawImage(ICONstyrka, 100+x, y+90);
-    //ctx.drawImage(ICONstyrka, 100, y+340);
-    text.brod="aaaaaaaaaaaaaaa aaaa  a bbbbb ccccccc ddd ddd ef ffgdgdgdfg"
-    textbox(text.brod, {color:"red"}, 20, 50, 40);
+    textbox(text.brod, {color:"red"}, 20, 50, 60);
     textWriter(text.rubrik, 20, 30, 26, "black" ,"left");
-   // textWriter(text.brod, x+30, y+50, 26, "black");
-    if (T6 > 0) drawDice(x+125, y+160,0, T6-1, bonus);
+   
+    if (T6[0] == 0) drawDice(x+125, y+160,0, T6[0]-1, bonus);
     console.log(buttons);
     let bhsY = y + 300 - buttons.length * 50;
     for (var i = 0; i < buttons.length; i++){
@@ -740,9 +737,10 @@ function drawImage(image, x, y, scale = 1, rotation = 0){
 */
 function textbox(text, style, x, y, radwidth){
     if (text == undefined) {return;} //text = "Saknas";}
-    
-    if (style.color) {ctx.fillStyle = text.color; } else {ctx.fillStyle = black;}
-    if (style.align) {ctx.textAlign = text.align; } else {ctx.textAlign = "left";}
+    text = " " + text;
+    console.log(style);
+    if (style.color) {ctx.fillStyle = style.color; } else {ctx.fillStyle = black;}
+    if (style.align) {ctx.textAlign = style.align; } else {ctx.textAlign = "left";}
     if (style.strokeColor) {ctx.strokeColor = style.strokeColor;}
     //if (style.size) {ctx.strokeStyle = text.strokeColor;} else {ctx.textAlign = "left";}
     //ctx.measureText(text).width
@@ -756,27 +754,28 @@ function textbox(text, style, x, y, radwidth){
      }
      mellanslag.push(text.length);
 
-     var texten = ""; var start = -1; var end = 0; var klartext = ""; rad = [];
-
-    while (end < (mellanslag.length - 1)){
-       
-        
-        console.log("end" + end);
-         while (ctx.measureText(texten).width < radwidth && end < (mellanslag.length - 1)){
-            end++;
-            console.log("start" + start +" slut" + end);
-            klartext = texten;
-            texten = text.substring(mellanslag[start]+1, mellanslag[end]);
-            console.log(ctx.measureText(texten).width);
-            console.log(texten);
-        }
-        rad.push(klartext);
-        start = end;
-        end  = start; 
+     var texten = ""; var start = 0; var klartext = ""; rad = [];
+     texten = text.substring(mellanslag[start]+1, mellanslag[end]);
+    for (let end = 1; end < mellanslag.length; end++){
         texten = text.substring(mellanslag[start]+1, mellanslag[end]);
-    } 
-
-
+        console.log(texten);
+        if (ctx.measureText(texten).width > radwidth){
+            if (start-end==1){
+                console.log(start);
+            }
+            else{
+                console.log(start);
+            texten = text.substring(mellanslag[start]+1, mellanslag[end-1]); //xyz ta bort mellanslag från nästa rad
+            rad.push(texten);
+            start = end-1;
+            }
+        }
+        if (ctx.measureText(texten).width < radwidth && end == mellanslag.length-1){
+            texten = text.substring(mellanslag[start]+1, mellanslag[mellanslag.length-1]);
+            rad.push(texten);
+        }
+    }   
+        
     for (var i = 0; i < rad.length; i++){
          ctx.fillText(rad[i], x, y + 14 * i);
     }
