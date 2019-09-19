@@ -303,13 +303,15 @@ function drawCombatRuta(text, img, buttons, T6, bonus){
     textbox(text.brod, {color:"red"}, 20, 50, 60);
     textWriter(text.rubrik, 20, 30, 26, "black" ,"left");
    
-    if (T6[0] == 0) drawDice(x+125, y+160,0, T6[0]-1, bonus);
+    if (T6[0] == 0) drawDice(x+125, y+200,0, T6[0], 0);
+    if (T6[0] == 0) drawDice(x+145, y+130,1, T6[1], 0);
     console.log(buttons);
     let bhsY = y + 300 - buttons.length * 50;
     for (var i = 0; i < buttons.length; i++){
         button.push(new Button(buttons[i].action, 300, bhsY + i * 50, buttons[i].text));
     }
 console.log("dcr2");
+drawResultFight();
 }
 
 var diceText; var T6=[]; var T6text=[]; var T6actions=[]; var diceBonus;
@@ -317,11 +319,24 @@ var diceStatus; var diceRubrik;  var diceImg; var buttons;
 
 
 function drawDice(x, y, index, tSlag, add){
-    var b= tSlag + add + 1;
-    if (index != 0){a=+6;} //tärningsfärg
-    ctx.drawImage(imgTarning, spriteTarning.T[tSlag][0],spriteTarning.T[tSlag][1],spriteTarning.T[tSlag][2],spriteTarning.T[tSlag][3], x,y,30,30);
-    
+    var b= tSlag + add + 1; a=0;
+    if (index != 0){ //tärningsfärg
+        a =+ 6;
+        tSlag =+6;
+    }
+        ctx.drawImage(imgTarning, spriteTarning.T[tSlag][0],spriteTarning.T[tSlag][1],spriteTarning.T[tSlag][2],spriteTarning.T[tSlag][3], x,y,30,30);
+
      ctx.fillText(b, x+35, y+20);
+     
+}
+function drawResultFight(text=10){
+    let style ={
+        color:"white",
+        strokeColor: "black",
+        font: "30px Georgia"
+        
+    }
+    textbox(text, style, 200, 200, 60);
 }
 
 function xdrawCombatRuta(typ="start"){
@@ -404,7 +419,7 @@ function drawFlyingObject(id=0){
     var dx = flyingObj[id].destinationX - flyingObj[id].posX; //-10
     var dy = flyingObj[id].destinationY - flyingObj[id].posY; //10
     
-    var konstX=Math.abs(dx/dy);
+    var konstX = Math.abs(dx/dy);
     var konstY=Math.abs(dy/dx);
 
     flyingObj[id].posY = flyingObj[id].posY + 2*konstY;
@@ -742,6 +757,8 @@ function textbox(text, style, x, y, radwidth){
     if (style.color) {ctx.fillStyle = style.color; } else {ctx.fillStyle = black;}
     if (style.align) {ctx.textAlign = style.align; } else {ctx.textAlign = "left";}
     if (style.strokeColor) {ctx.strokeColor = style.strokeColor;}
+    if (style.font) {ctx.font = style.font;} else {ctx.font = ctx.font="16px Georgia";}
+
     //if (style.size) {ctx.strokeStyle = text.strokeColor;} else {ctx.textAlign = "left";}
     //ctx.measureText(text).width
 
@@ -775,9 +792,13 @@ function textbox(text, style, x, y, radwidth){
             rad.push(texten);
         }
     }   
-        
+        console.log(rad);
     for (var i = 0; i < rad.length; i++){
+        
          ctx.fillText(rad[i], x, y + 14 * i);
+         //if (style.strokeColor) {
+             ctx.strokeText(rad[i], x, y+14*i); 
+           // }
     }
 
 }
