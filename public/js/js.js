@@ -303,42 +303,37 @@ function drawCombatRuta(text, img, buttons, T6, bonus){
     textbox(text.brod, {color:"red"}, 20, 50, 60);
     textWriter(text.rubrik, 20, 30, 26, "black" ,"left");
    
-    if (T6[0] == 0) drawDice(x+125, y+200,0, T6[0], 0);
-    if (T6[0] == 0) drawDice(x+145, y+130,1, T6[1], 0);
+    if (T6[0] == 0) drawDice(x+130, y+224,0, T6[0], 0);
+    if (T6[0] == 0) drawDice(x+130, y+134,1, T6[1], 0);
     console.log(buttons);
     let bhsY = y + 300 - buttons.length * 50;
     for (var i = 0; i < buttons.length; i++){
         button.push(new Button(buttons[i].action, 300, bhsY + i * 50, buttons[i].text));
     }
 console.log("dcr2");
-drawResultFight();
+drawResultFight([T6[0]+gameObj[0].styrka + 1, T6[1]+ gameObj[hitIndex].styrka + 1]);
 }
 
 var diceText; var T6=[]; var T6text=[]; var T6actions=[]; var diceBonus;
 var diceStatus; var diceRubrik;  var diceImg; var buttons;
 
 
-function drawDice(x, y, index, tSlag, add){
-    var b= tSlag + add + 1; a=0;
-    if (index != 0){ //tärningsfärg
-        a =+ 6;
-        tSlag =+6;
-    }
-        ctx.drawImage(imgTarning, spriteTarning.T[tSlag][0],spriteTarning.T[tSlag][1],spriteTarning.T[tSlag][2],spriteTarning.T[tSlag][3], x,y,30,30);
-
-     ctx.fillText(b, x+35, y+20);
-     
+function drawDice(x, y, index, tSlag, add){    
+    if (index != 0){tSlag =+6;}
+        ctx.drawImage(imgTarning, spriteTarning.T[tSlag][0],spriteTarning.T[tSlag][1],spriteTarning.T[tSlag][2],spriteTarning.T[tSlag][3], x,y,30,30);  
 }
-function drawResultFight(text=10){
+
+function drawResultFight(text){
     let style ={
         color:"white",
         strokeColor: "black",
-        font: "30px Georgia"
-        
+        font: "30px Georgia",
+        align:"center"   
     }
-    textbox(text, style, 200, 200, 60);
+    textbox(text[1], style, 200, 144, 60);
+    textbox(text[0], style, 200, 260, 60);
 }
-
+/*
 function xdrawCombatRuta(typ="start"){
     //ändra spå monster inte är ett i combatruta
     var x=50;
@@ -411,7 +406,7 @@ drawHarts(1,217+x,y+45);
         //gameStatus="panel";
         GSD = "move";
     }  
-}
+}*/
 var flyingObj = []; //{pos: destination: img:}
 
 function drawFlyingObject(id=0){
@@ -756,8 +751,8 @@ function textbox(text, style, x, y, radwidth){
     console.log(style);
     if (style.color) {ctx.fillStyle = style.color; } else {ctx.fillStyle = black;}
     if (style.align) {ctx.textAlign = style.align; } else {ctx.textAlign = "left";}
-    if (style.strokeColor) {ctx.strokeColor = style.strokeColor;}
-    if (style.font) {ctx.font = style.font;} else {ctx.font = ctx.font="16px Georgia";}
+    if (style.font) {ctx.font = style.font; } else {ctx.font = ctx.font="16px Georgia";}
+    if (style.strokeColor) {ctx.strokeStyle = style.strokeColor; console.log("textkant");}
 
     //if (style.size) {ctx.strokeStyle = text.strokeColor;} else {ctx.textAlign = "left";}
     //ctx.measureText(text).width
@@ -796,9 +791,11 @@ function textbox(text, style, x, y, radwidth){
     for (var i = 0; i < rad.length; i++){
         
          ctx.fillText(rad[i], x, y + 14 * i);
-         //if (style.strokeColor) {
+         if (style.strokeColor) {
+             console.log("textkant" + rad[i]);
+             console.log(style.strokeColor);
              ctx.strokeText(rad[i], x, y+14*i); 
-           // }
+            }
     }
 
 }
