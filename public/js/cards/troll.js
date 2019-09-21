@@ -96,20 +96,20 @@ BILD SPRITES MAP
             // gameStatus.push(diceRuta); // fajtruta
               gameStatus.push(this.drawRuta); // fajtruta
         },
-        T6:[0,0],
+        T6 : 0,
         drawRuta: function (){
             let enemy = gameObj[hitIndex];
             let player = gameObj[0];
             movepause = true;
             var buttons = [];
             console.log("T6" + this.T6);
-        if (gameObj[hitIndex].T6[0] != 0){
-            let T6res = enemy.T6[0]- enemy.T6[1] + player.styrka - enemy.styrka;
+        if (gameObj[hitIndex].T6 != 0){
+            let T6res = player.T6 - enemy.T6 + player.styrka - enemy.styrka;
             if (T6res > 0) {
                enemy.skada++;
             }
             if (T6res == 0) {
-                 enemy.skada+=.5;
+                enemy.skada+=.5;
                 player.skada+=.5;
             }
             if (T6res < 0) {

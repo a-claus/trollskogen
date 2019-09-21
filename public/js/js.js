@@ -303,15 +303,18 @@ function drawCombatRuta(text, img, buttons, T6, bonus){
     textbox(text.brod, {color:"red"}, 20, 50, 60);
     textWriter(text.rubrik, 20, 30, 26, "black" ,"left");
    
-    if (T6[0] == 0) drawDice(x+130, y+224,0, T6[0], 0);
-    if (T6[0] == 0) drawDice(x+130, y+134,1, T6[1], 0);
+    if (T6[0] > 0){ 
+        drawDice(x+135, y+228,0, T6[0], 0);
+        drawDice(x+250, y+138,1, T6[1], 0);
+        drawResultFight([T6[0]+gameObj[0].styrka + 1, T6[1]+ gameObj[hitIndex].styrka + 1]);
+    }
     console.log(buttons);
     let bhsY = y + 300 - buttons.length * 50;
     for (var i = 0; i < buttons.length; i++){
         button.push(new Button(buttons[i].action, 300, bhsY + i * 50, buttons[i].text));
     }
-console.log("dcr2");
-drawResultFight([T6[0]+gameObj[0].styrka + 1, T6[1]+ gameObj[hitIndex].styrka + 1]);
+console.log( T6);
+
 }
 
 var diceText; var T6=[]; var T6text=[]; var T6actions=[]; var diceBonus;
