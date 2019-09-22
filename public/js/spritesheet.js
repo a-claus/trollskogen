@@ -23,6 +23,20 @@ bag.src="img/bag.png";
  var r_hart = new Image(); 
  r_hart.src="img/r_hart.png";
 
+  var fightDraw = new Image(); 
+fightDraw = "img/f_draw.png";
+
+ var fightWin = new Image(); 
+ fightWin.src="img/f_win.png";
+
+
+
+  
+ var fightLose = new Image(); 
+ fightLose.src = "img/f_lose.png";
+
+
+
  var ICONmagi = new Image(); 
 ICONmagi.src = "img/magi.png";        			
 

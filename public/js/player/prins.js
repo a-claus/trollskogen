@@ -25,6 +25,7 @@ EGENSKAPER
     magipower: 0,
     bag: [],
     upgrade: [],
+    T6:0,
 
  /*--------------------------------
 KARTA

@@ -288,7 +288,7 @@ function drawDiceRuta(text, img, buttons, T6 = 0, bonus = 0){
 
 }
 
-function drawCombatRuta(text, img, buttons, T6, bonus){
+function drawCombatRuta(text, img, buttons){ //bonus?
     console.log(text.rubrik);
     var x = 0;
     var y = 0;
@@ -303,10 +303,10 @@ function drawCombatRuta(text, img, buttons, T6, bonus){
     textbox(text.brod, {color:"red"}, 20, 50, 60);
     textWriter(text.rubrik, 20, 30, 26, "black" ,"left");
    
-    if (T6[0] > 0){ 
-        drawDice(x+135, y+228,0, T6[0], 0);
-        drawDice(x+250, y+138,1, T6[1], 0);
-        drawResultFight([T6[0]+gameObj[0].styrka + 1, T6[1]+ gameObj[hitIndex].styrka + 1]);
+    if (gameObj[hitIndex].T6 > 0){ 
+        drawDice(x+135, y+228,0, gameObj[0].T6, 0);
+        drawDice(x+250, y+138,1, gameObj[hitIndex].T6, 0);
+        drawResultFight();
     }
     console.log(buttons);
     let bhsY = y + 300 - buttons.length * 50;
@@ -326,15 +326,32 @@ function drawDice(x, y, index, tSlag, add){
         ctx.drawImage(imgTarning, spriteTarning.T[tSlag][0],spriteTarning.T[tSlag][1],spriteTarning.T[tSlag][2],spriteTarning.T[tSlag][3], x,y,30,30);  
 }
 
-function drawResultFight(text){
+function drawResultFight(){
     let style ={
         color:"white",
         strokeColor: "black",
         font: "30px Georgia",
         align:"center"   
     }
-    textbox(text[1], style, 200, 144, 60);
-    textbox(text[0], style, 200, 260, 60);
+    let T6res = gameObj[0].T6 - gameObj[hitIndex].T6 + gameObj[0].styrka - gameObj[hitIndex].styrka;
+    if (T6res < 0) { 
+                ctx.drawImage(fightLose, 175, 230, 50, 50);
+                ctx.drawImage(fightWin, 175, 114, 50, 50); 
+
+    } 
+    if (T6res > 0) { 
+                ctx.drawImage(fightWin, 175, 230, 50, 50);
+                ctx.drawImage(fightLose, 175, 114,50, 50) ; 
+
+    } 
+     if (T6res == 0) { 
+        console.log("draw");
+                ctx.drawImage(fightDraw, 175, 230, 50, 50);
+                ctx.drawImage(fightDraw, 175, 114, 50, 50); 
+
+    }
+    textbox(gameObj[hitIndex].T6 + gameObj[hitIndex].styrka, style, 200, 144, 60);
+    textbox(gameObj[0].T6 + gameObj[0].styrka, style, 200, 260, 60);
 }
 /*
 function xdrawCombatRuta(typ="start"){

@@ -90,19 +90,19 @@ BILD SPRITES MAP
 		this.moving = false;
         },
         hitAction : function(){
-            this.T6 = [0,0];
+           
         
             hitIndex = this.index; //xyz borde reggas senare med tanke att gameObj kan ändras efter laddning
             // gameStatus.push(diceRuta); // fajtruta
               gameStatus.push(this.drawRuta); // fajtruta
         },
-        T6 : 0,
+        //T6 :0,
         drawRuta: function (){
             let enemy = gameObj[hitIndex];
             let player = gameObj[0];
             movepause = true;
             var buttons = [];
-            console.log("T6" + this.T6);
+            console.log("T6:" + gameObj[hitIndex].T6 );
         if (gameObj[hitIndex].T6 != 0){
             let T6res = player.T6 - enemy.T6 + player.styrka - enemy.styrka;
             if (T6res > 0) {
@@ -116,14 +116,17 @@ BILD SPRITES MAP
                player.skada++;
             }
         }
-        else{ 
+        else{ }
           buttons = [{action: diceRuta, text: "Slåss"}, {action: moveFunc, text: "Fly"}];
           
-          }
-          drawCombatRuta({rubrik: "Lill-Troll", brod: "Its war"}, gameObj[hitIndex].cardImg, buttons, gameObj[hitIndex].T6);
-          enemy.T6[0] = Math.floor(Math.random() * 6 + 1); 
-          enemy.T6[1] = Math.floor(Math.random() * 6 + 1); 
-          console.log("T6:" + this.T6);
+          
+          drawCombatRuta({rubrik: "Lill-Troll", brod: "Its war"}, enemy.cardImg, buttons);
+          player.T6 = 6 * Math.random() + 1; 
+          enemy.T6 = 6 * Math.random() + 1; 
+          console.log("T6a:" + enemy.T6 );
+          player.T6 = Math.floor(player.T6); 
+          enemy.T6 = Math.floor(enemy.T6); 
+          console.log("T6a:" + gameObj[hitIndex].T6 );
           return false; 
       },
       getWand: function(){
