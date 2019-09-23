@@ -302,10 +302,10 @@ function drawCombatRuta(text, img, buttons){ //bonus?
     drawHarts(0, 285, 365);
     textbox(text.brod, {color:"red"}, 20, 50, 60);
     textWriter(text.rubrik, 20, 30, 26, "black" ,"left");
-   
+ 
     if (gameObj[hitIndex].T6 > 0){ 
-        drawDice(x+135, y+228,0, gameObj[0].T6, 0);
-        drawDice(x+250, y+138,1, gameObj[hitIndex].T6, 0);
+        drawDice(x+135, y+228, 0, gameObj[0].T6);
+        drawDice(x+250, y+138, 1, gameObj[hitIndex].T6);
         drawResultFight();
     }
     console.log(buttons);
@@ -321,8 +321,11 @@ var diceText; var T6=[]; var T6text=[]; var T6actions=[]; var diceBonus;
 var diceStatus; var diceRubrik;  var diceImg; var buttons;
 
 
-function drawDice(x, y, index, tSlag, add){    
-    if (index != 0){tSlag =+6;}
+function drawDice(x, y, index, tSlag){  
+    tSlag -= 1; 
+    
+    if (index == 1){tSlag +=6;}
+    console.log(tSlag) 
         ctx.drawImage(imgTarning, spriteTarning.T[tSlag][0],spriteTarning.T[tSlag][1],spriteTarning.T[tSlag][2],spriteTarning.T[tSlag][3], x,y,30,30);  
 }
 
@@ -330,7 +333,7 @@ function drawResultFight(){
     let style ={
         color:"white",
         strokeColor: "black",
-        font: "30px Georgia",
+        font: "26px Georgia",
         align:"center"   
     }
     let T6res = gameObj[0].T6 - gameObj[hitIndex].T6 + gameObj[0].styrka - gameObj[hitIndex].styrka;
@@ -350,83 +353,10 @@ function drawResultFight(){
                 ctx.drawImage(fightDraw, 175, 114, 50, 50); 
 
     }
-    textbox(gameObj[hitIndex].T6 + gameObj[hitIndex].styrka, style, 200, 144, 60);
-    textbox(gameObj[0].T6 + gameObj[0].styrka, style, 200, 260, 60);
+    textbox(gameObj[hitIndex].T6 + gameObj[hitIndex].styrka, style, 200, 142, 60);
+    textbox(gameObj[0].T6 + gameObj[0].styrka, style, 200, 263, 60);
 }
-/*
-function xdrawCombatRuta(typ="start"){
-    //ändra spå monster inte är ett i combatruta
-    var x=50;
-    var y=100;
-    ctx.drawImage(rutaBG, x,y);
-    ctx.drawImage(ICONstyrka, 10+x, y+10);
-    ctx.drawImage(ICONstyrka, 220, y+10);
-    var antalRoda;
-    
-// ctx.drawImage(r_hart, 217+x+i*20, y+45);
-    
-    ctx.font="16px Georgia";
-    ctx.fillText(figur[0].namn, x+60, y+40);
-    ctx.fillText(figur[1].namn, 270, y+40);
-    ctx.fillStyle="white";
-    ctx.fillText(figur[0].styrka, x+31, y+38);
-    ctx.fillText(figur[1].styrka, x+191, y+38);
 
-switch (typ){
-    case "start":
-        button.push(new Button("dice",x+160,y+140,"Slåe"));
-    break;
-    
-
-    case "mice":
-        figur[0].x=figur[0].x-20;
-        GSD = "move";
-
-    break;
-
-    case "dice":
-       // if (typ=="dice"){
-    var a=Math.floor(Math.random() * 6); 
-    var b=Math.floor(Math.random() * 6)+6;
-    ctx.drawImage(imgTarning, spriteTarning.T[a][0],spriteTarning.T[a][1],spriteTarning.T[a][2],spriteTarning.T[a][3], 20+x,200,30,30);
-    ctx.drawImage(imgTarning, spriteTarning.T[b][0],spriteTarning.T[b][1],spriteTarning.T[b][2],spriteTarning.T[b][3], 225,200,30,30);
-    a=a + figur[0].styrka+1;
-    b=b + figur[1].styrka-5;
-    ctx.fillText(a, x+55, 220);
-    ctx.fillText(b, 260, 220);
-    if (a>b){figur[1].skada=figur[1].skada+1;}
-    if (a<b){figur[0].skada=figur[0].skada+1;}
-    if (a==b){figur[1].skada=figur[1].skada+.5; figur[0].skada=figur[0].skada+.5; }  
-    
-
-   
-    button.push(new Button("dice",x+170,y+150,"Slåa")); 
-    button.push(new Button("move",x+60,y+150, "Fly")); 
-    break;
-}
-figur[0].x=190; figur[0].y=190;
-figur[1].x=150;
-drawHarts(0,58+x,y+45);
-drawHarts(1,217+x,y+45);
-
-    if ((figur[0].liv-figur[0].skada)<=0){ 
-        downMeny.setPic(rip);
-        downMeny.setText("Prinsen blir kvar i skogen för evigt.");
-        gameStatus.push("panel");
-    } 
-    
-    if ((figur[1].liv-figur[1].skada)<=0){
-        
-        if (isNaN(figur[1].vinst)==false){
-            figur.push(new Sak(figur[1].vinst));  
-            console.log("fig" + figur.length); 
-
-        }
-        killFigur(1);
-        //gameStatus="panel";
-        GSD = "move";
-    }  
-}*/
 var flyingObj = []; //{pos: destination: img:}
 
 function drawFlyingObject(id=0){

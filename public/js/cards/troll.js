@@ -116,7 +116,22 @@ BILD SPRITES MAP
                player.skada++;
             }
         }
-        else{ }
+        
+        //check liv
+        aliveOrNot(0);
+            //om någon död
+                
+                if (aliveOrNot(0) == false){
+
+                }
+                if(aliveOrNot(hitIndex) == false){
+
+                }
+                if(aliveOrNot(hitIndex) == false){
+
+                }
+               
+            //om någon inte död
           buttons = [{action: diceRuta, text: "Slåss"}, {action: moveFunc, text: "Fly"}];
           
           

@@ -81,7 +81,7 @@ function checkMoveInOrder(index){
 
             if (hitObjects > 0){
                 hit = objectHit(index);
-                console.log("hit" + hit);
+            //    console.log("hit" + hit);
 
 
                     if (hit != null){
@@ -239,8 +239,8 @@ function getPosition(index){
 
 function pointOfpic(index){
     //l¨Leverera två punkter för att kolla at man inte går i vägg eller något
-if (index>0) {console.log("popIndex" + index);}
-if (index>0) {console.log("popIndex" + gameObj[index].vaderstrack);}
+//if (index>0) {console.log("popIndex" + index);}
+//if (index>0) {console.log("popIndex" + gameObj[index].vaderstrack);}
 var v = gameObj[index].x; 
 var n = gameObj[index].y; 
 var s = gameObj[index].y + gameObj[index].hight;

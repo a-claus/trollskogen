@@ -24,7 +24,7 @@ bag.src="img/bag.png";
  r_hart.src="img/r_hart.png";
 
   var fightDraw = new Image(); 
-fightDraw = "img/f_draw.png";
+fightDraw.src = "img/f_draw.png";
 
  var fightWin = new Image(); 
  fightWin.src="img/f_win.png";

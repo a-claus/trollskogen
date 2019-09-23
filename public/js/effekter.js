@@ -165,6 +165,11 @@ function deadOrAlive(plunus){
 
 }
 
+function aliveOrNot(figur){
+	if (gameObj[figur].liv <= gameObj[figur].skada){ return false;}
+	else {return true;}
+}
+
 function death(){
 	
 	console.log(gameStatus);
