@@ -164,17 +164,13 @@ for(var i = 72; i < 81; i++){
 	//map[i].soder+=100;
 	map[i].edge="soder";
 }
-//map[8].norr+=100;
-//map[8].ost+=100;
+
 map[8].edge="cornerNO";
-//map[80].soder+=100;
-//map[80].ost+=100;
+
 map[80].edge="cornerSO";
-//map[72].soder+=100;
-//map[72].vast+=100;
+
 map[72].edge="cornerSV";
-//map[0].norr += 100;
-//map[0].vast += 100;
+
 map[0].edge="cornerNV";
 
 //map[4].norr=99;

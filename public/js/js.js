@@ -6,7 +6,7 @@ var vilketObjAction;
 var ctx = myGameArea.context;
 let magStigIndex=-1;
 let drawFunc;
-let temp;
+let temp; let tempArray = [];
 
 
 

@@ -4,6 +4,22 @@ mapImages[mapImages.length-1].src="./img/trollsprite.png";
 cardImages.push(new Image());
 cardImages[cardImages.length-1].src="./img/trollMor.png";
 
+if (-1 == bagger.findIndex(zz => zz[namn] == "Kudde")) tempArray.push("Kudde");
+if (-1 == bagger.findIndex(zz => zz[namn] == "Piska")) tempArray.push("Piska");
+if (-1 == bagger.findIndex(zz => zz[namn] == "Klubba")) tempArray.push("Klubba");
+
+if (tempArray.length > 0){
+ temp = Math.floor(tempArray.length * Math.random()); 
+ sakImg.push(new Image());
+  if (tempArray[temp] == "Kudde") sakImg[sakImg.length-1].src = "./img/kudde.png";
+  if (tempArray[temp] == "Piska") sakImg[sakImg.length-1].src = "./img/piska.png";
+  if (tempArray[temp] == "Klubba")sakImg[sakImg.length-1].src = "./img/klubba.png";
+}
+
+                  
+
+
+
 
 console.log("Troll");
 
@@ -48,6 +64,7 @@ BILD SPRITES MAP
 	width: 40,
 	hight: 40,
 	moving: true,
+  vinst: temp,
 	
 	move: function (){ 
         var xLong = this.x - gameObj[0].x;
@@ -121,15 +138,22 @@ BILD SPRITES MAP
         aliveOrNot(0);
             //om någon död
                 
-                if (aliveOrNot(0) == false){
+                if (aliveOrNot(hitIndex) == false){
+                    buttons = [{action: gameObj[hitIndex].getSak, text: "Ta sak"}];
+                    drawCombatRuta({rubrik: "Stenklump", brod: "Det ligger ngt där"}, rip, buttons);
 
                 }
-                if(aliveOrNot(hitIndex) == false){
+                if(aliveOrNot(0) == false){
 
                 }
-                if(aliveOrNot(hitIndex) == false){
-
-                }
+                if(aliveOrNot(hitIndex) == true && aliveOrNot(0) == true){
+                  buttons = [{action: diceRuta, text: "Slåss"}, {action: moveFunc, text: "Fly"}];
+                  drawCombatRuta({rubrik: "Lill-Troll", brod: "Its war"}, enemy.cardImg, buttons);
+                  player.T6 = 6 * Math.random() + 1; 
+                  enemy.T6 = 6 * Math.random() + 1; 
+                  player.T6 = Math.floor(player.T6); 
+                  enemy.T6 = Math.floor(enemy.T6); 
+                
                
             //om någon inte död
           buttons = [{action: diceRuta, text: "Slåss"}, {action: moveFunc, text: "Fly"}];
@@ -141,29 +165,35 @@ BILD SPRITES MAP
           console.log("T6a:" + enemy.T6 );
           player.T6 = Math.floor(player.T6); 
           enemy.T6 = Math.floor(enemy.T6); 
-          console.log("T6a:" + gameObj[hitIndex].T6 );
+          console.log("T6a:" + gameObj[hitIndex].T6 );}
           return false; 
       },
-      getWand: function(){
-    
-        // ladda wand
-        map[wood.mapNR].card = card[1];
-        kartObj[0].placeMe=true;
-            
-            
-            //gameStatus.push(ajaxwait);
-            //ajaxQueue++;
-            getFile("./js/cards/wand.js");
-     //listOfFunc.push(deleteObject);
-     // ta bort alven
-         
-          // från ruta 
-          // och kartrutan
-    
-     map[wood.mapNum].card=1; //blank
-    
-     deleteObject("Alven");
+      getSak: function(){
+           map[wood.mapNum].card = 1; //blank
+            gameStatus.push(putEquipmentToBag, move);
+            this.floor=-1;
+        
     },    
+    putInBag: function(){
+    bagger.push(new Sak());
+    var post = bagger[bagger.length-1];
+    post.namn = this.vinst;
+    post.img = sakImg[sakImg.length-1];
+    if (this.vinst == "Kudde"){
+    post.dragFunc = function(){};
+    post.do = function() {};
+    post.undo = function() {};}
+     if (this.vinst == "Piska"){
+    post.dragFunc = function(){};
+    post.do = function() {};
+    post.undo = function() {};}
+     if (this.vinst == "Klubba"){
+    post.dragFunc = function(){};
+    post.do = function() {gameObj[0].styrka++;};
+    post.undo = function() {gameObj[0].styrka--;};}
+
+
+  }, 
     cardImg : cardImages[cardImages.length-1],
 });
 
