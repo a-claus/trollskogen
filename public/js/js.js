@@ -698,7 +698,7 @@ function drawImage(image, x, y, scale = 1, rotation = 0){
 function textbox(text, style, x, y, radwidth){
     if (text == undefined) {return;} //text = "Saknas";}
     text = " " + text;
-    console.log(style);
+    
     if (style.color) {ctx.fillStyle = style.color; } else {ctx.fillStyle = black;}
     if (style.align) {ctx.textAlign = style.align; } else {ctx.textAlign = "left";}
     if (style.font) {ctx.font = style.font; } else {ctx.font = ctx.font="16px Georgia";}
@@ -720,13 +720,13 @@ function textbox(text, style, x, y, radwidth){
      texten = text.substring(mellanslag[start]+1, mellanslag[end]);
     for (let end = 1; end < mellanslag.length; end++){
         texten = text.substring(mellanslag[start]+1, mellanslag[end]);
-        console.log(texten);
+        
         if (ctx.measureText(texten).width > radwidth){
             if (start-end==1){
-                console.log(start);
+                
             }
             else{
-                console.log(start);
+              
             texten = text.substring(mellanslag[start]+1, mellanslag[end-1]); //xyz ta bort mellanslag från nästa rad
             rad.push(texten);
             start = end-1;
@@ -737,13 +737,13 @@ function textbox(text, style, x, y, radwidth){
             rad.push(texten);
         }
     }   
-        console.log(rad);
+       
     for (var i = 0; i < rad.length; i++){
         
          ctx.fillText(rad[i], x, y + 14 * i);
          if (style.strokeColor) {
-             console.log("textkant" + rad[i]);
-             console.log(style.strokeColor);
+            
+             
              ctx.strokeText(rad[i], x, y+14*i); 
             }
     }

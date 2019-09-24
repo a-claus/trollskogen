@@ -35,8 +35,10 @@ function putEquipmentToBag(){
 	//först ska bild synas i mitten. Störe. Det ska stråla bakom den. Sen åker den ner i väskan.
 
 	//Frågan hur många olika strålbilder behövs för att göra bakgrundseffekt. Tar det senare.
-gameObj.push(
+	console.log("effekt");
+	gameObj.push(
  {
+	 
     namn: "effekt",
     vad: "effekt",
     miljo: false, effekt: true, info: false,
@@ -53,7 +55,7 @@ gameObj.push(
     stegY: 1,
    	raknare: 0,
    	move: function(){
-   		//console.log(this.xTill + "-" +this.x + "-" + this.stegX);
+   		
    		this.raknare += 2;
 		if (this.raknare > 50){ 
 			this.x += this.stegX; 

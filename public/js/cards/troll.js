@@ -115,6 +115,7 @@ BILD SPRITES MAP
         },
         //T6 :0,
         drawRuta: function (){
+            movepause = true;
             let enemy = gameObj[hitIndex];
             let player = gameObj[0];
             movepause = true;
@@ -153,10 +154,7 @@ BILD SPRITES MAP
                   enemy.T6 = 6 * Math.random() + 1; 
                   player.T6 = Math.floor(player.T6); 
                   enemy.T6 = Math.floor(enemy.T6); 
-                
-               
-            //om någon inte död
-          buttons = [{action: diceRuta, text: "Slåss"}, {action: moveFunc, text: "Fly"}];
+                buttons = [{action: diceRuta, text: "Slåss"}, {action: moveFunc, text: "Fly"}];
           
           
           drawCombatRuta({rubrik: "Lill-Troll", brod: "Its war"}, enemy.cardImg, buttons);
@@ -165,35 +163,37 @@ BILD SPRITES MAP
           console.log("T6a:" + enemy.T6 );
           player.T6 = Math.floor(player.T6); 
           enemy.T6 = Math.floor(enemy.T6); 
-          console.log("T6a:" + gameObj[hitIndex].T6 );}
+          }
+          console.log(gameStatus);
+
           return false; 
+          //return true;  
       },
       getSak: function(){
-           map[wood.mapNum].card = 1; //blank
+            map[wood.mapNum].card = 1; //blank
             gameStatus.push(putEquipmentToBag, move);
             this.floor=-1;
         
     },    
     putInBag: function(){
-    bagger.push(new Sak());
-    var post = bagger[bagger.length-1];
-    post.namn = this.vinst;
-    post.img = sakImg[sakImg.length-1];
-    if (this.vinst == "Kudde"){
-    post.dragFunc = function(){};
-    post.do = function() {};
-    post.undo = function() {};}
-     if (this.vinst == "Piska"){
-    post.dragFunc = function(){};
-    post.do = function() {};
-    post.undo = function() {};}
-     if (this.vinst == "Klubba"){
-    post.dragFunc = function(){};
-    post.do = function() {gameObj[0].styrka++;};
-    post.undo = function() {gameObj[0].styrka--;};}
-
-
-  }, 
+            console.log(this.vinst);
+            bagger.push(new Sak());
+            var post = bagger[bagger.length-1];
+            post.namn = this.vinst;
+            post.img = sakImg[sakImg.length-1];
+        if (this.vinst == "Kudde"){
+           post.dragFunc = function(){};
+            post.do = function() {};
+            post.undo = function() {};}
+        if (this.vinst == "Piska"){
+            post.dragFunc = function(){};
+            post.do = function() {};
+            post.undo = function() {};}
+        if (this.vinst == "Klubba"){
+            post.dragFunc = function(){};
+            post.do = function() {gameObj[0].styrka++;};
+            post.undo = function() {gameObj[0].styrka--;};}
+        }, 
     cardImg : cardImages[cardImages.length-1],
 });
 
