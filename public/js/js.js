@@ -125,11 +125,6 @@ function loop(){
     
        
 //console.log(gameStatus);  
-
-
-
-
-
 let igen = false;
 if (turnklar == true){
    turnklar = false; 
@@ -269,7 +264,7 @@ function drawRuta(rubrik="tom", text="tom", img="tom", buttons="tom"){
     console.log(text.rubrik + "drawRuta");
 }
 
-function drawDiceRuta(text, img, buttons, T6 = 0, bonus = 0){
+function drawDiceRuta(text, img, buttons, bonus = 0){
     console.log(text.rubrik);
     console.log(text.rubrik + "diceRuta");
     var x=50;
@@ -279,7 +274,7 @@ function drawDiceRuta(text, img, buttons, T6 = 0, bonus = 0){
     ctx.drawImage(img, x+6, y+92, 100, 100);
     textWriter(text.rubrik, 200, 150, 26, "center");
     //textWriter(text.brod, x+30, y+50, 26, "black");
-    if (T6 > 0) drawDice(x+125, y+160,0, T6-1, bonus);
+    if (T6 > 0) drawDice(x+125, y+160,0, gameObj[hitIndex].T6, bonus);
     console.log(buttons);
     let bhsY = y + 200 - buttons.length * 50;
     for (var i = 0; i < buttons.length; i++){
@@ -295,6 +290,7 @@ function drawCombatRuta(text, img, buttons){ //bonus?
     console.log("dcr" + hitIndex);
     ctx = myGameArea.context;
     ctx.drawImage(img, 120, 0, 160, 180);
+    ctx.drawImage(gameObj[0].img, 114, 240, 183, 170);
     ctx.drawImage(combatBG, 0, 0, 400,400);
     drawStyrka(hitIndex, 100, 90);
     drawStyrka(0, 100, 340);
@@ -308,7 +304,6 @@ function drawCombatRuta(text, img, buttons){ //bonus?
         drawDice(x+250, y+138, 1, gameObj[hitIndex].T6);
         drawResultFight();
     }
-    console.log(buttons);
     let bhsY = y + 300 - buttons.length * 50;
     for (var i = 0; i < buttons.length; i++){
         button.push(new Button(buttons[i].action, 300, bhsY + i * 50, buttons[i].text));

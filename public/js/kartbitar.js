@@ -144,26 +144,10 @@ function bytPlatsMedBlank(namn, vad, ruta){
 	
 }
 
-
-
-
-for(var i=0;i<9;i++){
-	//map[i].norr+=100;
-	map[i].edge="norr";
-}
-	
-for(var i=0;i<73;i=i+9){
-	//map[i].vast+=100;
-	map[i].edge="vast";
-}
-for(var i=8;i<81;i=i+9){
-	//map[i].ost+=100;
-	map[i].edge="ost";
-}
-for(var i = 72; i < 81; i++){
-	//map[i].soder+=100;
-	map[i].edge="soder";
-}
+for(var i=0;i<9;i++) {map[i].edge="norr";}	
+for(var i=0;i<73;i=i+9) {map[i].edge="vast";}
+for(var i=8;i<81;i=i+9) {map[i].edge="ost";}
+for(var i = 72; i < 81; i++) {map[i].edge="soder";}
 
 map[8].edge="cornerNO";
 

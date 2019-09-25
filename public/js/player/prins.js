@@ -3,12 +3,16 @@ mapImages.push(new Image());
 mapImages[mapImages.length-1].src="./img/prinsSprite.png";
 
 
+
+
 console.log("Prins");
 
 gameObj.unshift(
  {
+
  	vem: "Prinsen",
 	vad: "spelare",
+	img: figurImg[0],
 	figur: true,
 	miljo: false,
 	info: false,

@@ -76,10 +76,10 @@ drawRuta: function (){
         }
      
     const index = getIndexGameObj("Alven");
-    drawDiceRuta({rubrik: this.namn, brod: this.text}, gameObj[index].cardImg, buttons, this.T6);
+    drawDiceRuta({rubrik: this.namn, brod: this.text}, gameObj[index].cardImg, buttons);
     this.T6 = Math.floor(Math.random() * 6 + 1); 
     console.log("T6:" + this.T6);
-    return true; 
+    return false; 
 },
 getWand: function(){
     

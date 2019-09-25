@@ -1,3 +1,7 @@
+var figurImg = [];
+figurImg.push(new Image());
+figurImg[0].src="./img/prins.png";
+
 figurer = [];
 figurer.push({
 	id: "Prinsen",

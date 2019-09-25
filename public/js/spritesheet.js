@@ -12,6 +12,9 @@ MENYOBJEKT
 var bag = new Image(); 
 bag.src="img/bag.png";	
 
+var gameOver = new Image(); 
+gameOver.src="img/gameover1.png";
+
 	
 
  var b_hart = new Image(); 

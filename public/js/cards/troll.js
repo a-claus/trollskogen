@@ -4,9 +4,9 @@ mapImages[mapImages.length-1].src="./img/trollsprite.png";
 cardImages.push(new Image());
 cardImages[cardImages.length-1].src="./img/trollMor.png";
 
-if (-1 == bagger.findIndex(zz => zz[namn] == "Kudde")) tempArray.push("Kudde");
-if (-1 == bagger.findIndex(zz => zz[namn] == "Piska")) tempArray.push("Piska");
-if (-1 == bagger.findIndex(zz => zz[namn] == "Klubba")) tempArray.push("Klubba");
+if (-1 == bagger.findIndex(zz => zz.namn == "Kudde")) tempArray.push("Kudde");
+if (-1 == bagger.findIndex(zz => zz.namn == "Piska")) tempArray.push("Piska");
+if (-1 == bagger.findIndex(zz => zz.namn == "Klubba")) tempArray.push("Klubba");
 
 if (tempArray.length > 0){
  temp = Math.floor(tempArray.length * Math.random()); 
@@ -25,6 +25,7 @@ console.log("Troll");
 
 gameObj.push(
  {
+  namn: "Lill-Troll",
  	vem: "Troll",
 	vad: "spelare",
 	figur: true, miljo: false, info: false,
@@ -64,7 +65,7 @@ BILD SPRITES MAP
 	width: 40,
 	hight: 40,
 	moving: true,
-  vinst: temp,
+  vinst: tempArray[temp],
 	
 	move: function (){ 
         var xLong = this.x - gameObj[0].x;
@@ -107,7 +108,7 @@ BILD SPRITES MAP
 		this.moving = false;
         },
         hitAction : function(){
-           
+           gameObj[0].placeMe = true;
         
             hitIndex = this.index; //xyz borde reggas senare med tanke att gameObj kan ändras efter laddning
             // gameStatus.push(diceRuta); // fajtruta
@@ -121,7 +122,7 @@ BILD SPRITES MAP
             movepause = true;
             var buttons = [];
             console.log("T6:" + gameObj[hitIndex].T6 );
-        if (gameObj[hitIndex].T6 != 0){
+        if (enemy.T6 != 0){
             let T6res = player.T6 - enemy.T6 + player.styrka - enemy.styrka;
             if (T6res > 0) {
                enemy.skada++;
@@ -141,8 +142,9 @@ BILD SPRITES MAP
                 
                 if (aliveOrNot(hitIndex) == false){
                     buttons = [{action: gameObj[hitIndex].getSak, text: "Ta sak"}];
-                    drawCombatRuta({rubrik: "Stenklump", brod: "Det ligger ngt där"}, rip, buttons);
-
+                    enemy.T6=0;
+                    drawCombatRuta({rubrik: "Stenklump", brod: "Det ligger ngt där"}, gameOver, buttons);
+                    console.log("gggg");
                 }
                 if(aliveOrNot(0) == false){
 
@@ -154,25 +156,25 @@ BILD SPRITES MAP
                   enemy.T6 = 6 * Math.random() + 1; 
                   player.T6 = Math.floor(player.T6); 
                   enemy.T6 = Math.floor(enemy.T6); 
-                buttons = [{action: diceRuta, text: "Slåss"}, {action: moveFunc, text: "Fly"}];
+                  buttons = [{action: diceRuta, text: "Slåss"}, {action: moveFunc, text: "Fly"}];
           
           
-          drawCombatRuta({rubrik: "Lill-Troll", brod: "Its war"}, enemy.cardImg, buttons);
-          player.T6 = 6 * Math.random() + 1; 
-          enemy.T6 = 6 * Math.random() + 1; 
-          console.log("T6a:" + enemy.T6 );
-          player.T6 = Math.floor(player.T6); 
-          enemy.T6 = Math.floor(enemy.T6); 
-          }
+                  drawCombatRuta({rubrik: "Lill-Troll", brod: "Its war"}, enemy.cardImg, buttons);
+                  player.T6 = 6 * Math.random() + 1; 
+                  enemy.T6 = 6 * Math.random() + 1; 
+                  console.log("T6a:" + enemy.T6 );
+                  player.T6 = Math.floor(player.T6); 
+                  enemy.T6 = Math.floor(enemy.T6); 
+                }
           console.log(gameStatus);
 
           return false; 
-          //return true;  
+            
       },
       getSak: function(){
             map[wood.mapNum].card = 1; //blank
             gameStatus.push(putEquipmentToBag, move);
-            this.floor=-1;
+            gameObj[hitIndex].floor=-1;
         
     },    
     putInBag: function(){
@@ -180,13 +182,14 @@ BILD SPRITES MAP
             bagger.push(new Sak());
             var post = bagger[bagger.length-1];
             post.namn = this.vinst;
+            console.log(bagger[bagger.length-1].namn);
             post.img = sakImg[sakImg.length-1];
         if (this.vinst == "Kudde"){
-           post.dragFunc = function(){};
+           post.dragFunc = function(){console.log("Rapp")};
             post.do = function() {};
             post.undo = function() {};}
         if (this.vinst == "Piska"){
-            post.dragFunc = function(){};
+            post.dragFunc = function(){console.log("Rapp")};
             post.do = function() {};
             post.undo = function() {};}
         if (this.vinst == "Klubba"){
