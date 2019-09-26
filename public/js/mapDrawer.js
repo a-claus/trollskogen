@@ -119,11 +119,11 @@ function objectHit(i){
 	   if (j != i && gameObj[j].floor == floor){
             //console.log("ji" + gameObj[i].x +  "<" + gameObj[j].x + gameObj[j].width);
             //console.log(gameObj[i].x+gameObj[i].width + ">" + gameObj[j].x);
-            if (gameObj[i].x < gameObj[j].x + gameObj[j].width && gameObj[i].x+gameObj[i].width > gameObj[j].x){
+            if (gameObj[i].x +10 < gameObj[j].x + gameObj[j].width -10 && gameObj[i].x+gameObj[i].width-10 > gameObj[j].x + 10){
                // console.log("hit X");
-                if (gameObj[i].y < gameObj[j].y + gameObj[j].hight && gameObj[i].y + gameObj[i].hight > gameObj[j].y){
+                if (gameObj[i].y+10 < gameObj[j].y + gameObj[j].hight -10 && gameObj[i].y - 10+ gameObj[i].hight > gameObj[j].y+10){
                    // console.log("hit Y");
-                    return j;
+                    return j; 
                 }
             }
             return null;
@@ -241,10 +241,10 @@ function pointOfpic(index){
     //l¨Leverera två punkter för att kolla at man inte går i vägg eller något
 //if (index>0) {console.log("popIndex" + index);}
 //if (index>0) {console.log("popIndex" + gameObj[index].vaderstrack);}
-var v = gameObj[index].x; 
-var n = gameObj[index].y; 
-var s = gameObj[index].y + gameObj[index].hight;
-var o = gameObj[index].x + gameObj[index].width;
+var v = gameObj[index].x+5;
+var n = gameObj[index].y +5; 
+var s = gameObj[index].y + gameObj[index].hight-5;
+var o = gameObj[index].x + gameObj[index].width-5;
 var p=[];
 //console.log ("fl" + kartObj[0].floor + " - " + v + "v-0" + o + " " + n + "n-s" +s);
     if (gameObj[index].vaderstrack == "soder") {
