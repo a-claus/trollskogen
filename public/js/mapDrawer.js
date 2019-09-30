@@ -113,15 +113,20 @@ function checkMoveInOrder(index){
 function objectHit(i){
     
     var floor = gameObj[i].floor;
+    let iY = gameObj[i].y + gameObj[i].hight/2;
+    let iX = gameObj[i].x + gameObj[i].width/2;
     //console.log(i + "objHit" + gameObj[0].jump.hojd);
     for (var j=0; j < gameObj.length; j++){
        // console.log (floor + " " + j + " "+ gameObj[j].floor);
 	   if (j != i && gameObj[j].floor == floor){
-            //console.log("ji" + gameObj[i].x +  "<" + gameObj[j].x + gameObj[j].width);
-            //console.log(gameObj[i].x+gameObj[i].width + ">" + gameObj[j].x);
-            if (gameObj[i].x +10 < gameObj[j].x + gameObj[j].width -10 && gameObj[i].x+gameObj[i].width-10 > gameObj[j].x + 10){
+            
+            if (iX < gameObj[j].x + gameObj[j].width && iX > gameObj[j].x){
+           // if (gameObj[i].x +10 < gameObj[j].x + gameObj[j].width -10 && gameObj[i].x+gameObj[i].width-10 > gameObj[j].x + 10){
+
                // console.log("hit X");
-                if (gameObj[i].y+10 < gameObj[j].y + gameObj[j].hight -10 && gameObj[i].y - 10+ gameObj[i].hight > gameObj[j].y+10){
+             // if (gameObj[i].y+10 < gameObj[j].y + gameObj[j].hight -10 && gameObj[i].y - 10+ gameObj[i].hight > gameObj[j].y+10){
+
+                if (iY < gameObj[j].y + gameObj[j].hight && iY+ gameObj[i].hight > gameObj[j].y){
                    // console.log("hit Y");
                     return j; 
                 }
