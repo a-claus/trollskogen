@@ -68,9 +68,31 @@ BILD SPRITES MAP
 	hight: 40,
 	moving: true,
   vinst: tempArray[temp],
+  angle: Math.floor(Math.random*360),
+  angleChange: 0,
 	
-	move: function (){ 
+	move: function (){ //15 grader
         let xChange = Math.floor((Math.random*10));
+
+//kantundvikning
+        let avoid = [0,0,0,0];
+        if (this.y < 50) avoid[0] = 1; //norr
+        if (this.y > 350) avoid[1] = 1; //syd
+        if (this.x < 50) avoid[2] = 1; // vast
+        if (this.x > 350) avoid[3] = 1; // ost
+
+        let attackAngle = angle (0, this.index);
+
+//info om hur spelare är vänd
+        if (gameObj[0].vaderstrack == "Norr" ) 
+          {let aa = [180, 0];
+            if (aa[0] < attackAngle < aa[1])
+          }
+         if (gameObj[0].vaderstrack == "Soder" ) let aa = [0, 180];
+          if (gameObj[0].vaderstrack == "Vast" ) let aa = [270, 90];
+           if (gameObj[0].vaderstrack == "Ost" ) let aa = [90, 270];
+
+if (aa[0] < attackAngle < aa[1])
         //kalkylera avstånd till spelare.
         let avstand = pyth(0, this.index);
             //Om nära vrida sig mot spelare ifall rygg.
@@ -214,10 +236,7 @@ BILD SPRITES MAP
 });
 
 
-function pyth(a, b){
-    let xx = Math.abs(gameObj[a].x) - Math.abs(gameObj[b].x);
-    let yy = Math.abs(gameObj[a].y) - Math.abs(gameObj[b].y);
-}
+
 
 hitObjects++;
 gameStatus.push(moveStart);
