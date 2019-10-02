@@ -84,15 +84,13 @@ BILD SPRITES MAP
         let attackAngle = angle (0, this.index);
 
 //info om hur spelare är vänd
-        if (gameObj[0].vaderstrack == "Norr" ) 
-          {let aa = [180, 0];
-            if (aa[0] < attackAngle < aa[1])
-          }
-         if (gameObj[0].vaderstrack == "Soder" ) let aa = [0, 180];
-          if (gameObj[0].vaderstrack == "Vast" ) let aa = [270, 90];
-           if (gameObj[0].vaderstrack == "Ost" ) let aa = [90, 270];
+        let attack = [0,0,0,0];
+        if (gameObj[0].vaderstrack == "Norr" )  { if (180 < attackAngle) attack[0] = 1; }
+        if (gameObj[0].vaderstrack == "Soder" ) { if (attackAngle < 180) attack[1] = 1; }
+        if (gameObj[0].vaderstrack == "Vast" )  { if (attackAngle < 90 || attackAngle > 270) attack[2] = 1; }
+        if (gameObj[0].vaderstrack == "Ost" )   { if (90 < attackAngle < 270) attack[3] = 1; }
 
-if (aa[0] < attackAngle < aa[1])
+
         //kalkylera avstånd till spelare.
         let avstand = pyth(0, this.index);
             //Om nära vrida sig mot spelare ifall rygg.
