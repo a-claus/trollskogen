@@ -73,13 +73,28 @@ BILD SPRITES MAP
 	
 	move: function (){ //15 grader
         let xChange = Math.floor((Math.random*10));
-
+        let lastAngle = this.angle;
+        //if (45 < this.angle < 135) let v = "N";
+        //if (135 < this.angle < 225) let v = "V";
+        //if (225 < this.angle  < 315) let v = "S";
+        //if (315 < this.angle  || this.angle < 45) let v = "O";
 //kantundvikning
-        let avoid = [0,0,0,0];
-        if (this.y < 50) avoid[0] = 1; //norr
-        if (this.y > 350) avoid[1] = 1; //syd
-        if (this.x < 50) avoid[2] = 1; // vast
-        if (this.x > 350) avoid[3] = 1; // ost
+        var kant = [this.y, 400 - this.y, this.x, 400 - this.x];
+        var minst = 50; vs = [];
+        for (var i = 0; i < 4; i++){
+          if (minst > kant[i]) {minst = kant[i]; vs.push(i);} 
+        }
+        for (i = 0; i < vs.length; i++){
+        if ( vs==0) {//norr
+          if (this.angle =< 90) this.angle -=15; else if (this.angle =< 90) this.angle +=15;
+        }  
+        if (vs == 1) {
+          if (this.angle =< 180) this.angle -=15; else if (this.angle =< 360) this.angle +=15;} //syd
+        if (vs == 2) {
+          if (this.angle >= 90) this.angle -=15; else if (this.angle =< 270)  this.angle +=15;}  // vast
+        if (vs == 3) {
+          if (0 =< this.angle < 175) this.angle +=15; else this.angle -=15;}// ost
+        }
 
         let attackAngle = angle (0, this.index);
 
