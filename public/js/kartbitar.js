@@ -2,7 +2,7 @@
 var card=[];
 card.push({id:0, namn:"Skatten", vad:"skatt", url: "./js/cards/egblomma.js"});
 card.push({id:1, namn:"blank", vad:"blank"});
-card.push({id:2, namn:"Lilltroll", vad:"monster",url: "./js/cards/troll.js"});
+card.push({id:2, namn:"Lilltroll", vad:"monster", url: "./js/cards/troll.js", antal: 3});
 card.push({id:3, namn:"Trollmor", vad:"monster",color:"black", styrka:2, liv:1, vinst:0, width:18, height:18, f_text:"Ett troll sitter och tittar på sitt navelludd."});
 card.push({id:4, namn:"Trollfar", vad:"monster",color:"black", styrka:3, liv:1, vinst:2, width:21, height:21, f_text:"Trollmor står och lagar tomtesoppa."});
 card.push({id:5, namn:"Svamp", url:"./js/cards/svamp.js"});
@@ -11,23 +11,6 @@ card.push({id:7, namn:"Hugin och Munin", vad:"animal", color:"black", dice:4 , w
 card.push({id:8, namn:"Alven", url:"./js/cards/alven.js"});
 
 
-var xactions=[];
-//var hero=[];
-//hero.push({id:0, namn:"Prinsen", url:"./js/player/prins.js", vad:"spelare", color:"red", liv:3, styrka:2, magi:0, iq:1, width:21, height:21});
-//hero.push({id:1, namn:"Prinsessan", vad:"spelare", color:"red", liv:2, styrka:1, magi:1, iq:2, width:21, height:21});
-//console.log(hero);
-
-//var thing=[];
-//thing.push({id:0, namn:"Klubba", vad:"sak",color:"grey", plus:"styrka", width:5, height:5, img:klubba, f_text:"Den här sleven skulle bli en bra klubba!"});
-//thing.push({id:1, namn:"Piska", vad:"sak",color:"grey", plus:"styrka", width:5, height:5, img:piska, f_text:"En piska!"});
-//thing.push({id:2, namn:"Kudde", vad:"sak",color:"grey", plus:"jump", width:5, height:5, img:kudde, f_text:"Den är mjuk!"});
-//thing.push({id:3, namn:"Svärd", vad:"sak",color:"grey", plus:"styrka", width:5, height:5, img:sword, f_text:"Chop, chop!"});
-
-
-
-
-
-//function newGame(){}
 var kartbit=[];
 
 kartbit.push({namn:"Road", norr:1,soder:1,ost:1,vast:1, typ:"glanta",floors:1, actionIndex:-1}); // 5
@@ -58,9 +41,9 @@ var xmupparna=[];
 
 
 function lottaCards(){
-	var crupier=[]; var j;
-	for (j=0;j<81;j++){
-		crupier.push(Math.floor(Math.random()*8)+1);
+	var crupier=[];
+	for (var j=0; j<81; j++){
+		crupier.push(Math.floor(Math.random() * 8) + 1);
 	}
 	var lott = Math.floor(Math.random()*36)+45;
 	//console.log("skatt" + lott);
