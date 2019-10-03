@@ -113,17 +113,34 @@ function checkMoveInOrder(index){
 function objectHit(i){
     
     var floor = gameObj[i].floor;
+<<<<<<< HEAD
     var iX = gameObj[i].x + gameObj[i].width / 2;
     var iY = gameObj[i].y + gameObj[i].hight / 2;
+=======
+    let iY = gameObj[i].y + gameObj[i].hight/2;
+    let iX = gameObj[i].x + gameObj[i].width/2;
+>>>>>>> 1365d1ae1c9e35a80c90a6f505f39ca1c52c1e69
     //console.log(i + "objHit" + gameObj[0].jump.hojd);
     for (var j=0; j < gameObj.length; j++){
 	   if (j != i && gameObj[j].floor == floor){
+<<<<<<< HEAD
 
            // if (gameObj[i].x +10 < gameObj[j].x + gameObj[j].width -10 && gameObj[i].x+gameObj[i].width-10 > gameObj[j].x + 10){
             if (iX < gameObj[j].x + gameObj[j].width -10 && iX > gameObj[j].x + 10){
 
                // if (gameObj[i].y+10 < gameObj[j].y + gameObj[j].hight -10 && gameObj[i].y - 10+ gameObj[i].hight > gameObj[j].y+10){
                 if (iY < gameObj[j].y + gameObj[j].hight -10 && iY > gameObj[j].y+10){
+=======
+            
+            if (iX < gameObj[j].x + gameObj[j].width && iX > gameObj[j].x){
+           // if (gameObj[i].x +10 < gameObj[j].x + gameObj[j].width -10 && gameObj[i].x+gameObj[i].width-10 > gameObj[j].x + 10){
+
+               // console.log("hit X");
+             // if (gameObj[i].y+10 < gameObj[j].y + gameObj[j].hight -10 && gameObj[i].y - 10+ gameObj[i].hight > gameObj[j].y+10){
+
+                if (iY < gameObj[j].y + gameObj[j].hight && iY+ gameObj[i].hight > gameObj[j].y){
+                   // console.log("hit Y");
+>>>>>>> 1365d1ae1c9e35a80c90a6f505f39ca1c52c1e69
                     return j; 
                 }
             }
