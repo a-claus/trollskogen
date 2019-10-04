@@ -70,6 +70,7 @@ BILD SPRITES MAP
   vinst: tempArray[temp],
   angle: Math.floor(Math.random*360),
   angleChange: 0,
+  turn: {status: false, ur: "true", end: 0},
 	
 	move: function (){ //15 grader
         let xChange = Math.floor((Math.random*10));
@@ -80,25 +81,70 @@ BILD SPRITES MAP
         //if (315 < this.angle  || this.angle < 45) let v = "O";
 //kantundvikning
         var kant = [this.y, 400 - this.y, this.x, 400 - this.x];
-        var minst = 50; vs = [];
-        for (var i = 0; i < 4; i++){
-          if (minst > kant[i]) {minst = kant[i]; vs.push(i);} 
-        }
-        let gradChange = 1;
-        if (vs.length > 1) gradChange = 2; 
-        
-        if ( vs[0]==0) {//norr
-          if (this.angle <= 90) gradChange = -15 * gradChange; else if (this.angle >= 90) gradChange = 15 * gradChange;
+        var minst = 50; vs = -1;
+      if (this.turn.status == false)
+        {
+          for (var i = 0; i < 4; i++){
+            if (minst > kant[i]) {minst = kant[i]; vs = i;} 
+          }
+          
+          if ( vs==0) {//norr
+            if (this.angle <= 90) {
+              this.turn.status = true;
+              this.turn.ur = false;
+              this.turn.end = 210 - this.angle;
+            } else{
+              this.turn.status = true;
+              this.turn.ur = true;
+              this.turn.end = 60 + this.angle;
+            }
+          }
+          if ( vs==1) {//soder
+            if (this.angle <= 270) {
+              this.turn.status = true;
+              this.turn.ur = true;
+              this.turn.end = this.angle - 150;
+            } else{
+              this.turn.status = true;
+              this.turn.ur = false;
+              this.turn.end = 360 - this.angle + 30;
+            }  
+          }
+          if ( vs==2) {//vast
+            if (this.angle <= 180) {
+              this.turn.status = true;
+              this.turn.ur = true;
+              this.turn.end = this.angle - 60;
+            } else{
+              this.turn.status = true;
+              this.turn.ur = false;
+              this.turn.end = 300 + this.angle;
+            }  
+          }
+          if ( vs==3) {//ost
+            if (this.angle >= 0) {
+              this.turn.status = true;
+              this.turn.ur = false;
+              this.turn.end = 120 - this.angle;
+            } else{
+              this.turn.status = true;
+              this.turn.ur = true;
+              this.turn.end = 100 - 360 + this.angle;
+            }  
+          }
+
         }  
-        if (vs[0] == 1) {
-          if (this.angle <= 180) gradChange = -15 * gradChange; else if (this.angle <= 360) this.angle +=15;} //syd
-        if (vs[0] == 2) {
-          if (this.angle >= 90) this.angle -=15; else if (this.angle =< 270)  this.angle +=15;}  // vast
-        if (vs[0] == 3) {
-          if (0 =< this.angle < 175) this.angle +=15; else this.angle -=15;}// ost
+      
+
+       if (this.turn.status == true){
+          if (this.turn.ur == true)
+            {this.angle -=15;} else {this.angle +=15}
+          this.turn.end -= 15;
+          if (this.turn.end < 0) this.turn.status = false;
+        }
         
 
-        let attackAngle = angle (0, this.index);
+      /*  let attackAngle = angle (0, this.index);
 
 //info om hur spelare är vänd
         let attack = [0,0,0,0];
@@ -106,7 +152,7 @@ BILD SPRITES MAP
         if (gameObj[0].vaderstrack == "Soder" ) { if (attackAngle < 180) attack[1] = 1; }
         if (gameObj[0].vaderstrack == "Vast" )  { if (attackAngle < 90 || attackAngle > 270) attack[2] = 1; }
         if (gameObj[0].vaderstrack == "Ost" )   { if (90 < attackAngle < 270) attack[3] = 1; }
-
+*/
 
         //kalkylera avstånd till spelare.
         let avstand = pyth(0, this.index);

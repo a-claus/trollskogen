@@ -70,7 +70,8 @@ BILD SPRITES MAP
 	move: function (){ 
         var xLong = this.x - gameObj[0].x;
         var yLong = this.y - gameObj[0].y;
-
+        
+        
 
 
     if (Math.abs(xLong) > Math.abs(yLong)){
