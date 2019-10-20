@@ -800,3 +800,18 @@ function textWriter(text, x, y, lineLength = 40, color= "white", align = "left")
     function leaveCard(){
         gameObj[0].placeMe = true; 
     }
+
+    function pyth(a, b){
+        let x =Math.abs(gameObj[a].x - gameObj[b].x);
+        let y = Math.abs(gameObj[a].y - gameObj[b].y);
+
+        return Math.sqrt(x*x + y*y)
+
+    }
+
+    function angle(a,b){
+        let x = gameObj[a].x - gameObj[b].x;
+        let y = gameObj[a].y - gameObj[b].y;
+        return Math.atan2(y, x) * 180 / Math.PI;
+
+    }

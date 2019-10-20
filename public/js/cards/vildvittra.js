@@ -1,6 +1,6 @@
 
 mapImages.push(new Image());
-mapImages[mapImages.length-1].src="./img/trollsprite.png";
+mapImages[mapImages.length-1].src="./img/bird.png";
 cardImages.push(new Image());
 cardImages[cardImages.length-1].src="./img/trollMor.png";
 
@@ -34,7 +34,8 @@ gameObj.push(
   namn: "Vildvittra",
  	vem: "Vildvittra",
 	vad: "monster",
-	figur: true, miljo: false, info: false,
+  effekt: true,
+	figur: false, miljo: false, info: false,
     action: "dice",
     index: gameObj.length,
     indexS: mapImages.length - 1,
@@ -68,116 +69,144 @@ BILD SPRITES MAP
 	hight: 40,
 	moving: true,
   vinst: tempArray[temp],
-  angle: Math.floor(Math.random*360),
+  //angle: Math.floor(Math.random*360),
+  angle: 10,
   angleChange: 0,
   turn: {status: false, ur: "true", end: 0},
+  
+  turner: 0,
 	
 	move: function (){ //15 grader
+    //this.x = 275;
+   // console.log(this.angle + "ajaj" + this.x + " "+ this.y);
         let xChange = Math.floor((Math.random*10));
         let lastAngle = this.angle;
-        //if (45 < this.angle < 135) let v = "N";
-        //if (135 < this.angle < 225) let v = "V";
-        //if (225 < this.angle  < 315) let v = "S";
-        //if (315 < this.angle  || this.angle < 45) let v = "O";
+       
 //kantundvikning
         var kant = [this.y, 400 - this.y, this.x, 400 - this.x];
         var minst = 50; vs = -1;
       if (this.turn.status == false)
         {
           for (var i = 0; i < 4; i++){
-            if (minst > kant[i]) {minst = kant[i]; vs = i;} 
-          }
-          
-          if ( vs==0) {//norr
-            if (this.angle <= 90) {
-              this.turn.status = true;
-              this.turn.ur = false;
-              this.turn.end = 210 - this.angle;
-            } else{
-              this.turn.status = true;
-              this.turn.ur = true;
-              this.turn.end = 60 + this.angle;
-            }
-          }
-          if ( vs==1) {//soder
-            if (this.angle <= 270) {
-              this.turn.status = true;
-              this.turn.ur = true;
-              this.turn.end = this.angle - 150;
-            } else{
-              this.turn.status = true;
-              this.turn.ur = false;
-              this.turn.end = 360 - this.angle + 30;
-            }  
-          }
-          if ( vs==2) {//vast
-            if (this.angle <= 180) {
-              this.turn.status = true;
-              this.turn.ur = true;
-              this.turn.end = this.angle - 60;
-            } else{
-              this.turn.status = true;
-              this.turn.ur = false;
-              this.turn.end = 300 + this.angle;
-            }  
-          }
-          if ( vs==3) {//ost
-            if (this.angle >= 0) {
-              this.turn.status = true;
-              this.turn.ur = false;
-              this.turn.end = 120 - this.angle;
-            } else{
-              this.turn.status = true;
-              this.turn.ur = true;
-              this.turn.end = 100 - 360 + this.angle;
-            }  
+           // console.log("angel:" + this.angle);
+            if (minst > kant[i]) {minst = kant[i]; vs = i; } 
           }
 
+          
+          if ( vs==0) {//norr
+            if (180 <= this.angle && this.angle <= 270) {
+              this.turn.status = true;
+              this.turn.ur = false;
+              this.turn.end = "soder";
+            } else if (270 <= this.angle && this.angle <= 360){
+              this.turn.status = true;
+              this.turn.ur = true;
+              this.turn.end = "soder";
+            }
+            else
+              {this.turn.status = false;}
+          }
+          if ( vs==1) {//soder
+            if (90 <= this.angle && this.angle <= 180) {
+              this.turn.status = true;
+              this.turn.ur = true;
+              this.turn.end = "norr";
+            } else if (0 <= this.angle && this.angle<= 90){
+              this.turn.status = true;
+              this.turn.ur = false;
+             this.turn.end = "norr";
+            }  
+             else
+              {this.turn.status = false;}
+          }
+          if ( vs==2) {//vast
+            if (180 <= this.angle && this.angle <= 270) {
+              this.turn.status = true;
+              this.turn.ur = true;
+              this.turn.end = "oster";
+            } else if (90 <= this.angle && this.angle<= 180){
+              this.turn.status = true;
+              this.turn.ur = false;
+              this.turn.end = "oster";
+            }  
+             else
+              {this.turn.status = false;}
+          }
+          if ( vs==3) {//ost
+            if (0 <= this.angle && this.angle <= 90) {
+              this.turn.status = true;
+              this.turn.ur = true;
+              this.turn.end = "vaster";
+            } else if (270 <= this.angle && this.angle <= 360){
+              this.turn.status = true;
+              this.turn.ur = false;
+              this.turn.end = "vaster";
+            } 
+             else
+              {this.turn.status = false;} 
+          }
+          this.turner = this.angle;
         }  
       
 
        if (this.turn.status == true){
           if (this.turn.ur == true)
-            {this.angle -=15;} else {this.angle +=15}
-          this.turn.end -= 15;
-          if (this.turn.end < 0) this.turn.status = false;
+            {
+              this.angle += 5; 
+              this.turner+= 5; 
+            } 
+            else {
+              this.angle -= 5; 
+              this.turner-= 5; 
+            }
+         
         }
+        let slump = Math.floor(Math.random()*3);
+        if (this.angle >= 360) this.angle -= 360;
+        if (this.angle < 0) this.angle += 360;
+        if (45 < this.angle  && this.angle < 135 && slump==0) this.vaderstrack = "soder";
+        if (135 < this.angle  && this.angle  < 225 && slump==0) this.vaderstrack = "vaster";
+        if (225 < this.angle  && this.angle < 315 && slump==0) this.vaderstrack = "norr";
+        if (315 < this.angle  || this.angle < 45 && slump==0) this.vaderstrack = "oster";
+        if (this.vaderstrack==this.turn.end){this.turn.status = false;}
+       let attackAngle = angle (0, this.index);
+       if (attackAngle < 0){attackAngle+=360;}
         
 
-      /*  let attackAngle = angle (0, this.index);
+          let diff = Math.floor(  attackAngle - this.angle);
+           // console.log(Math.abs(attackAngle) + "-" +  "=" + diff);
 
-//info om hur spelare är vänd
-        let attack = [0,0,0,0];
-        if (gameObj[0].vaderstrack == "Norr" )  { if (180 < attackAngle) attack[0] = 1; }
-        if (gameObj[0].vaderstrack == "Soder" ) { if (attackAngle < 180) attack[1] = 1; }
-        if (gameObj[0].vaderstrack == "Vast" )  { if (attackAngle < 90 || attackAngle > 270) attack[2] = 1; }
-        if (gameObj[0].vaderstrack == "Ost" )   { if (90 < attackAngle < 270) attack[3] = 1; }
-*/
+        let attack = true;
+
+        if (gameObj[0].vaderstrack == "norr" )  { if (35 < attackAngle && attackAngle < 145) attack = false; }
+        if (gameObj[0].vaderstrack == "soder" ) { if (215 < attackAngle && attackAngle < 325) attack = false; }
+        if (gameObj[0].vaderstrack == "oster" )  { if (125 < attackAngle && attackAngle < 235) attack = false; }
+        if (gameObj[0].vaderstrack == "vaster" )   { if (0 < attackAngle && attackAngle < 55 || 305 < attackAngle && attackAngle < 360) attack = false; }
+        if (attack==true){
+         // console.log("attack:" + gameObj[0].vaderstrack);
+          if (diff > 0 && diff < 100)  {this.angle += 3;}
+          if (diff > -100 && diff < 0) {this.angle -= 3;}
+        } else if(attack==false){
+       //   console.log("oh no");
+          if (diff > 30 && diff < 70)  {this.angle -= 1;}
+          if (diff > -70 && diff < 30) {this.angle += 1;}
+        }
 
         //kalkylera avstånd till spelare.
-        let avstand = pyth(0, this.index);
-            //Om nära vrida sig mot spelare ifall rygg.
-            //Om nära vrida sig från spelare ifall rygg.
+        //let avstand = pyth(0, this.index);
+        
 
-            //Om mellan vrida sig från kant
-            //Om nära kant vrida sig in i banan.
-            //Om långt ifrån vrida sig mot spelare ifall rygg.
-            //Om långt ifrån vrida sig mot spelare ifall rygg.
-
-        var xLong = this.x - gameObj[0].x;
-        var yLong = this.y - gameObj[0].y;
+       // var xLong = this.x + gameObj[0].x;
+       // var yLong = this.y + gameObj[0].y;
 
 
 
-    if (Math.abs(xLong) > Math.abs(yLong)){
-        if (xLong > 0){this.speedX = -.25; this.vaderstrack = "vaster";} 
-        else {this.speedX = .25; this.vaderstrack = "oster";}
-    }
-    else
-    {
-        if (yLong > 0){this.speedY= -.25; this.vaderstrack = "norr";} 
-        else {this.speedY=.25; this.vaderstrack = "soder";}
-    }
+    this.speedY =  2*Math.sin(this.angle * Math.PI/180) ;
+    this.speedX =  2*Math.cos(this.angle * Math.PI/180);
+
+    
+    this.x = this.x + this.speedX;
+    this.y = this.y + this.speedY;
 	
 	},
 	spriteSchema:
@@ -197,76 +226,31 @@ BILD SPRITES MAP
     	if (this.spriteTimer == 30) {this.spriteTimer = 0;}
     	if (this.spriteTimer < 15) { spriteNR = 0;}
     	if (this.spriteTimer > 14) { spriteNR = 1;}
+
+      var ctx = myGameArea.context;
+      //console.log(this.angle)
+      ctx.save();
+      ctx.translate(this.x, this.y);
+       ctx.rotate( Math.PI*this.angle/180 );
+        //   ctx.drawImage(this.sprite, this.spriteSchema[this.vaderstrack][spriteNR][0], this.spriteSchema[this.vaderstrack][spriteNR][1], this.spriteSchema[this.vaderstrack][spriteNR][2], this.spriteSchema[this.vaderstrack][spriteNR][3] this.x, this.y, 40, 40);
+
+      ctx.drawImage(this.sprite, 0, 0, 40, 40);
+  ctx.restore();
+
+
         //if (this.moving == false) { spriteNR = 2;}
         //console.log("ST" + this.spriteTimer);
-		var ctx = myGameArea.context;
-    	ctx.drawImage(this.sprite, this.spriteSchema[this.vaderstrack][spriteNR][0], this.spriteSchema[this.vaderstrack][spriteNR][1], this.spriteSchema[this.vaderstrack][spriteNR][2], this.spriteSchema[this.vaderstrack][spriteNR][3], this.x, this.y, 40, 40);
+		
+     
 		this.moving = false;
+   //  ctx.fillStyle = "blue";
+   //ctx.fillText(this.vss[0], this.vss[1],this.vss[2]);
         },
         hitAction : function(){
-           gameObj[0].placeMe = true;
-        
-            hitIndex = this.index; //xyz borde reggas senare med tanke att gameObj kan ändras efter laddning
-            // gameStatus.push(diceRuta); // fajtruta
-              gameStatus.push(this.drawRuta); // fajtruta
+          console.log("hit");
+          gameObj[0].skada += .5;
         },
-        //T6 :0,
-        drawRuta: function (){
-            movepause = true;
-            let enemy = gameObj[hitIndex];
-            let player = gameObj[0];
-            movepause = true;
-            var buttons = [];
-            console.log("T6:" + gameObj[hitIndex].T6 );
-        if (enemy.T6 != 0){
-            let T6res = player.T6 - enemy.T6 + player.styrka - enemy.styrka;
-            if (T6res > 0) {
-               enemy.skada++;
-            }
-            if (T6res == 0) {
-                enemy.skada+=.5;
-                player.skada+=.5;
-            }
-            if (T6res < 0) {
-               player.skada++;
-            }
-        }
-        
-        //check liv
-        aliveOrNot(0);
-            //om någon död
-                
-                if (aliveOrNot(hitIndex) == false){
-                    buttons = [{action: gameObj[hitIndex].getSak, text: "Ta sak"}];
-                    enemy.T6=0;
-                    drawCombatRuta({rubrik: "Stenklump", brod: "Det ligger ngt där"}, gameOver, buttons);
-                    console.log("gggg");
-                }
-                if(aliveOrNot(0) == false){
-
-                }
-                if(aliveOrNot(hitIndex) == true && aliveOrNot(0) == true){
-                  buttons = [{action: diceRuta, text: "Slåss"}, {action: moveFunc, text: "Fly"}];
-                  drawCombatRuta({rubrik: "Lill-Troll", brod: "Its war"}, enemy.cardImg, buttons);
-                  player.T6 = 6 * Math.random() + 1; 
-                  enemy.T6 = 6 * Math.random() + 1; 
-                  player.T6 = Math.floor(player.T6); 
-                  enemy.T6 = Math.floor(enemy.T6); 
-                  buttons = [{action: diceRuta, text: "Slåss"}, {action: moveFunc, text: "Fly"}];
-          
-          
-                  drawCombatRuta({rubrik: "Lill-Troll", brod: "Its war"}, enemy.cardImg, buttons);
-                  player.T6 = 6 * Math.random() + 1; 
-                  enemy.T6 = 6 * Math.random() + 1; 
-                  console.log("T6a:" + enemy.T6 );
-                  player.T6 = Math.floor(player.T6); 
-                  enemy.T6 = Math.floor(enemy.T6); 
-                }
-          console.log(gameStatus);
-
-          return false; 
-            
-      },
+      
       getSak: function(){
             
         
