@@ -44,20 +44,26 @@ hitAction : function(){
   hitIndex = this.index;
 },
 drawRuta: function(){
-   console.log("___" + hittad);
-  console.log(hitIndex);
+   let text;
    
   let counter = gameObj[hittad].counter;
-  console.log(gameObj[hittad].namn);
+  
   if (counter == 0)
-  drawRuta("Hugin och Munin", "Vi vet allt. Vi har sett allt.", gameObj[hittad].cardImg, [{text: "Berätta var Äggblomman är!", action: gameObj[hittad].drawRuta}]);
+    drawRuta("Hugin och Munin", "Vi vet allt. Vi har sett allt.", gameObj[hittad].cardImg, [{text: "Berätta var Äggblomman är!", action: gameObj[hittad].drawRuta}]);
   if (counter == 1){
     const index = getKartbitCard(0);
     let xyMap = kordinatorXY(wood.mapNR);
     let skattMap = kordinatorXY(index);
     let upp = skattMap[1] - xyMap[1]; // 2 3 -1
     let sida = skattMap[0] - xyMap[0];
-    drawRuta("Hugin och Munin", "Äggblomman är på " + index, gameObj[hittad].cardImg, [{text: "Tack!", action: moveStart}]);
+    if (upp > 0) text = "Du behöver vandra " + upp + " rutor söderut, för att hitta Äggblomman.";
+    if (upp < 0) text = "Du behöver vandra" + Math.abs(upp) + " rutor norrut, för att hitta Äggblomman.";
+    if (upp == 0) text = "Du behöver varken vandra norrut eller söderut för att hitta Äggblomman.";
+    if (sida > 0) text += " Och du behöver även vandra " + sida + " rutor österut.";
+    if (sida < 0) text += "Och du behöver även vandra " + Math.abs(sida) + " rutor västerut.";
+    if (sida == 0) text += "Och du behöver varken vandra västerut eller österut för att hitta Äggblomman.";
+     
+    drawRuta("Hugin och Munin", text, gameObj[hittad].cardImg, [{text: "Tack!", action: moveStart}]);
 }
     gameObj[hittad].counter++;
 }
