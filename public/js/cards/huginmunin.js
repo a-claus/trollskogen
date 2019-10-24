@@ -29,7 +29,6 @@ gameObj.push(
     index: kartObj.length,
     indexS: mapImages.length - 1,
     indexCI: cardImages.length - 1,
-    //placeMe: true,
     moving: false,
     cardImg: cardImages[cardImages.length-1],
     x: 170, y: 170, speedX: 0,speedY: 0, floor: 1, 
@@ -45,18 +44,22 @@ hitAction : function(){
   hitIndex = this.index;
 },
 drawRuta: function(){
-   console.log("___");
+   console.log("___" + hittad);
   console.log(hitIndex);
-   console.log(gameObj[hitIndex].namn);
-  let counter = gameObj[hitIndex].counter;
-
+   
+  let counter = gameObj[hittad].counter;
+  console.log(gameObj[hittad].namn);
   if (counter == 0)
-  drawRuta("Hugin och Munin", "Vi vet allt. Vi har sett allt.", gameObj[index].cardImg, [{text: "Berätta var Äggblomman är!", action: this.drawRuta}]);
+  drawRuta("Hugin och Munin", "Vi vet allt. Vi har sett allt.", gameObj[hittad].cardImg, [{text: "Berätta var Äggblomman är!", action: gameObj[hittad].drawRuta}]);
   if (counter == 1){
     const index = getKartbitCard(0);
-    drawRuta("Hugin och Munin", "Äggblomman är på " + index, gameObj[index].cardImg, [{text: "Berätta var Äggblomman är!", action: moveStart}]);
+    let xyMap = kordinatorXY(wood.mapNR);
+    let skattMap = kordinatorXY(index);
+    let upp = skattMap[1] - xyMap[1]; // 2 3 -1
+    let sida = skattMap[0] - xyMap[0];
+    drawRuta("Hugin och Munin", "Äggblomman är på " + index, gameObj[hittad].cardImg, [{text: "Tack!", action: moveStart}]);
 }
-    this.counter++;
+    gameObj[hittad].counter++;
 }
 },
 {
