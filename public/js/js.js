@@ -432,7 +432,7 @@ return (a-Math.floor(a));
 
 
 
-function drawRoads(karta, width=50, height=50, color="white"){
+function xdrawRoads(karta, width=50, height=50, color="white"){
     var vaderstrack=["norr", "soder", "vast", "ost"];
     var xPos=[170,170,0,340];
     var yPos=[0,340,170,170];
