@@ -205,14 +205,7 @@ function startaIgen(){
     //nollsälla värden
 
      deleteObjects();
-   //kartObj[0].newRuta=1; // xyz
-    //historik.push(wood.mapNR);
-
    
-    //console.log("a:"+ nyRuta + vaderstrack);
-    
-    
-    //wood.mapNr=81;
     console.log("SI");
    
     getFile(figurer[1].url);
@@ -274,7 +267,8 @@ function drawDiceRuta(text, img, buttons, bonus = 0){
     ctx.drawImage(img, x+6, y+92, 100, 100);
     textWriter(text.rubrik, 200, 150, 26, "center");
     //textWriter(text.brod, x+30, y+50, 26, "black");
-    if (T6 > 0) drawDice(x+125, y+160,0, gameObj[hitIndex].T6, bonus);
+    if (gameObj[hitIndex].bonus) drawBonus(x+130, y+140);
+    if (gameObj[hitIndex].T6 > 0) drawDice(x+115, y+160,0, gameObj[hitIndex].T6, bonus);
     console.log(buttons);
     let bhsY = y + 200 - buttons.length * 50;
     for (var i = 0; i < buttons.length; i++){
@@ -315,6 +309,11 @@ console.log( T6);
 var diceText; var T6=[]; var T6text=[]; var T6actions=[]; var diceBonus;
 var diceStatus; var diceRubrik;  var diceImg; var buttons;
 
+function drawBonus(x,y){
+    let bonus=gameObj[hitIndex].bonus;
+    gameObj[0][bonus]
+    if (bonus == "iq") drawIQ(0,x,y);
+}
 
 function drawDice(x, y, index, tSlag){  
     tSlag -= 1; 
@@ -451,7 +450,7 @@ function drawRoads(karta, width=50, height=50, color="white"){
 
 
 
-function drawBro(karta){
+function xdrawBro(karta){
     var vaderstrack=["norr","vast"];
    
     //ctx = myGameArea.context;
@@ -496,7 +495,7 @@ function drawBro(karta){
 var cardAction;
 
 
-function monsterMove(num){
+function xmonsterMove(num){
 var xLong=figur[num].x-figur[0].x;
 var yLong=figur[num].y-figur[0].y;
 
@@ -520,6 +519,11 @@ function getIndexGameObj(input){
 
 }
 
+function getKartbitCard(input){
+            var index = map.findIndex(zz => zz["card"]==input);
+            return index;
+
+}
 
 function getIndex(input){
             var index = gameObj[0].findIndex( function(index) {return index["upgrades"] ==="Mimers Brunn";} );
@@ -624,7 +628,7 @@ function setKartbitsAction(index){
 
 var colorMinne;
 
-function moveFigurOK(x,y){
+function xmoveFigurOK(x,y){
     var cString=[];
         cString[0]=getRGB(x, y);
         cString[1]=getRGB(x+8, y);

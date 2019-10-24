@@ -51,41 +51,44 @@ gameObj.push(
     text: "Har inte du gått aningens vilse, lille porslinsdocka?" ,
 drawRuta: function (){
   movepause = true;
-    var buttons = [];
-   /* if (this.T6 != 0){
-      this.T6 += gameObj[0].iq; 
-    }*/
+    var buttons = []; let bonus = 0;
+   if (this.T6 != 0){
+      bonus += gameObj[0].iq; 
+    }
     console.log("T6" + this.T6);
     let T6res = [7, 4, 1]; //7,4,1
-    if (this.T6 >= T6res[0]) {
+    if (this.T6 + bonus >= T6res[0]) {
       this.text = "Den här staven kan säkert hjälpa dig.";
       this.getWand();
       buttons = [{action: moveFunc, text: "Taaack"}];      
     }
-    else if (this.T6 >= T6res[1]){
+    else if (this.T6 + bonus >= T6res[1]){
       this.text = "...";
         buttons = [{action: diceRuta, text: "Snälla"}, {action: moveFunc, text: "Gå!"}];
        }
-    else if (this.T6 >= T6res[2]){ 
+    else if (this.T6 + bonus >= T6res[2]){ 
         buttons = [{action: this.flyttarSig, text: "Adjö"}];
-        gameObj[0].iq--; effekten("iq", "minus"); if (gameObj[0].iq < 0) gameObj[0].iq = 0;
+        bonus =-1;
         this.text = "Hejdå";}
     else{ 
         buttons = [{action: diceRuta, text: "Kan du hjälpa mig??"}, {action: moveFunc, text: "Gå!"}];
-        gameObj[0].skada += 1;
+        
         }
      
     const index = getIndexGameObj("Alven");
-    drawDiceRuta({rubrik: this.namn, brod: this.text}, gameObj[index].cardImg, buttons);
+    drawDiceRuta({rubrik: this.namn, brod: this.text}, gameObj[index].cardImg, buttons, bonus);
     this.T6 = Math.floor(Math.random() * 6 + 1); 
-    console.log("T6:" + this.T6);
+    if (bonus==-1){gameObj[0].iq--; effekten("iq", "minus"); if (gameObj[0].iq < 0) gameObj[0].iq = 0;}
+    
     return false; 
 },
 getWand: function(){
-    
-    
-    //map[wood.mapNR].card = card[1];
-    //kartObj[0].placeMe=true; gameObj
+/*---------------------------------------------
+    wanden
+
+Staven vrider rutor slumpvis. Kostar en magikraft.
+ 
+ ----------------------------------------------*/    
     map[wood.mapNum].card = 1; //blank
 gameStatus.push(putEquipmentToBag, move);
 this.floor=-1;

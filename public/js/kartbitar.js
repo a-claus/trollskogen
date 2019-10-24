@@ -7,7 +7,7 @@ card.push({id:3, namn:"Trollmor", vad:"monster",color:"black", styrka:2, liv:1, 
 card.push({id:4, namn:"Trollfar", vad:"monster",color:"black", styrka:3, liv:1, vinst:2, width:21, height:21, f_text:"Trollmor står och lagar tomtesoppa."});
 card.push({id:5, namn:"Svamp", url:"./js/cards/svamp.js"});
 card.push({id:6, namn:"Blåbär", url:"./js/cards/blabar.js"});
-card.push({id:7, namn:"Hugin och Munin", vad:"animal", color:"black", dice:4 , width:6, height:6});
+card.push({id:7, namn:"Hugin och Munin", url: "./js/cards/huginmunin.js" });
 card.push({id:8, namn:"Alven", url:"./js/cards/alven.js"});
 card.push({id:9, namn:"Vildvittra", url:"./js/cards/vildvittra.js"});
 
@@ -110,10 +110,11 @@ function bytPlats(namn, vad="namn"){
 //bytPlats("FyraBroNS");
 //bytPlats("Mimers Brunn"); // newBagv1 saknar effekt
 //bytPlats(8,"card"); //alven newBagv1
+bytPlats(7,"card"); //hugin newBagv1
 //bytPlats(5,"card"); //svamp newBagv1
 //bytPlats(6,"card"); //6 blåbär saknar effekt
 //bytPlats( 2, "card" ); //Lilltroll saknar effekt
-bytPlats( 9, "card" );
+//bytPlats( 9, "card" );
 
 
 function bytPlatsMedBlank(namn, vad, ruta){

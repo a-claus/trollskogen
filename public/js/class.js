@@ -211,20 +211,7 @@ console.log("figurUpdate");
     }
 }
 thing = [];
-class xSak extends Figur{
-    constructor(nr){
-            super();
-            this.nr=nr;  
-            console.log("Nummer"+this.nr);
-            this.vad = thing[this.nr].vad;
-            this.arrayLista = "thing";
-            this.namn = thing[this.nr].namn;
-            this.card = thing[this.nr];
-            this.width = thing[this.nr].width;
-            this.height = thing[this.nr].height;
-            this.color = thing[this.nr].color;   
-    }
-}
+
     
 
 class Player extends Figur{
@@ -607,14 +594,14 @@ class Button {
 
 }
 
-function upgradeIQ(){gameObj[0].iq++;}
+function xupgradeIQ(){gameObj[0].iq++;}
 
 function deleteButtons(){
     button.splice(0, button.length);
 }
 
 //----------------------------------------------------------------------------
-class DownMeny{
+class xDownMeny{
     constructor(){
         this.text="";
         this.pic=imgTroll;

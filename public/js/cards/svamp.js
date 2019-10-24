@@ -42,7 +42,7 @@ HIT
      
   diceRubrik: "Svampar",
   diceText: "De luktar ljuvligt." ,
-  diceBonus: "iq", bonus: "iq",
+  //diceBonus: "iq", bonus: "iq",
   T6: 0,
   
 

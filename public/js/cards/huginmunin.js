@@ -1,10 +1,10 @@
 //---------------------------------------------
 //
-// Blåbär
+// Hugin och Munin
 //
 //---------------------------------------------
 /*
-När man äter blåbären, så repareras alla hjärtan.
+De berättar för en var skatten är. Kanske ska ge annan info också.
 
 */
 
@@ -12,7 +12,7 @@ När man äter blåbären, så repareras alla hjärtan.
 mapImages.push(new Image());
 mapImages[mapImages.length-1].src="./img/blabar.png";
 cardImages.push(new Image());
-cardImages[cardImages.length-1].src="./img/blabar.png";
+cardImages[cardImages.length-1].src="./img/huginmumin.png";
 
 
 
@@ -20,8 +20,8 @@ cardImages[cardImages.length-1].src="./img/blabar.png";
 
 gameObj.push(
  {
-    vem: "Blåbar",
-    namn: "Blåbär",
+    vem: "HuginMunin",
+    namn: "HuginMunin",
     vad: "figur",
     miljo: false, figur: true, info: false,
     action: "upgrade",
@@ -37,6 +37,7 @@ gameObj.push(
   vaderstrack: "soder",
   draw: function(){ctx.drawImage(mapImages[this.indexS], this.x, this.y,50,50);},
   move: function (){},
+  counter: 0,
 
 hitAction : function(){
   gameObj[0].placeMe = true;
@@ -44,11 +45,18 @@ hitAction : function(){
   hitIndex = this.index;
 },
 drawRuta: function(){
-  const index = getIndexGameObj("Blåbär");
-  gameObj[0].skada = 0;
-  drawRuta("Blåbär", "Blåbär är gott och hälsosamt.", gameObj[index].cardImg, [{text: "Mums!", action: moveStart}]);
+   console.log("___");
+  console.log(hitIndex);
+   console.log(gameObj[hitIndex].namn);
+  let counter = gameObj[hitIndex].counter;
 
-    
+  if (counter == 0)
+  drawRuta("Hugin och Munin", "Vi vet allt. Vi har sett allt.", gameObj[index].cardImg, [{text: "Berätta var Äggblomman är!", action: this.drawRuta}]);
+  if (counter == 1){
+    const index = getKartbitCard(0);
+    drawRuta("Hugin och Munin", "Äggblomman är på " + index, gameObj[index].cardImg, [{text: "Berätta var Äggblomman är!", action: moveStart}]);
+}
+    this.counter++;
 }
 },
 {
@@ -80,7 +88,7 @@ BILD SPRITES on MAP
 
 //kartbit[13].func=loadSIS;
 
-console.log("Blåbär klar" + gameObj[gameObj.length-1].x);
+console.log("Hugin och Munin laddad" + gameObj[gameObj.length-1].x);
 hitObjects++;
 
 gameStatus.push(moveStart);

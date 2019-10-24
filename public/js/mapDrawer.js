@@ -122,10 +122,8 @@ function objectHit(i){
 	   if (j != i && gameObj[j].floor == floor){
 
 
-           // if (gameObj[i].x +10 < gameObj[j].x + gameObj[j].width -10 && gameObj[i].x+gameObj[i].width-10 > gameObj[j].x + 10){
             if (iX < gameObj[j].x + gameObj[j].width -10 && iX > gameObj[j].x + 10){
 
-               // if (gameObj[i].y+10 < gameObj[j].y + gameObj[j].hight -10 && gameObj[i].y - 10+ gameObj[i].hight > gameObj[j].y+10){
                 if (iY < gameObj[j].y + gameObj[j].hight -10 && iY > gameObj[j].y+10){
 
                     return j; 

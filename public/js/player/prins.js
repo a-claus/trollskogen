@@ -37,6 +37,7 @@ KARTA
 
 	x: 180,
 	y: 180,
+	area: [this.x + 10, this.y + 10, this.x + 30, this.y + 30],
 	speedX: 0,
 	speedY: 0,
 	floor: 1,
@@ -49,6 +50,9 @@ BILD SPRITES MAP
 	vaderstrack: "soder",
 	width: 40,//40,
 	hight: 40,//40,
+	halvaWidth: 20,
+	halvaHight: 20,
+
 	moving: false,
 	
 	move: function (){ 
@@ -82,6 +86,7 @@ BILD SPRITES MAP
     	if (this.moving == false) { spriteNR = 2;}
 		var ctx = myGameArea.context;
     	ctx.drawImage(this.sprite, this.spriteSchema[this.vaderstrack][spriteNR][0], this.spriteSchema[this.vaderstrack][spriteNR][1], this.spriteSchema[this.vaderstrack][spriteNR][2], this.spriteSchema[this.vaderstrack][spriteNR][3], this.x - (40 * this.jump.hojd/2-20), this.y - (40 * this.jump.hojd/2-20), 40 * this.jump.hojd, 40 * this.jump.hojd);
+		//ctx.drawImage(this.sprite, this.spriteSchema[this.vaderstrack][spriteNR][0], this.spriteSchema[this.vaderstrack][spriteNR][1], this.spriteSchema[this.vaderstrack][spriteNR][2], this.spriteSchema[this.vaderstrack][spriteNR][3], this.x - this.halvaWidth - (40 * this.jump.hojd/2-20), this.y - this.halvaHight -(40 * this.jump.hojd/2-20), 40 * this.jump.hojd, 40 * this.jump.hojd);
 		this.moving = false;
 		}
 });
