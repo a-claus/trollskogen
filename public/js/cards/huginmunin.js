@@ -39,8 +39,31 @@ gameObj.push(
     status: 0,
   draw: function(){ctx.drawImage(mapImages[this.indexS], this.x, this.y,40,40);},
   move: function (){
+  
     if (this.status == 0){
+      let slump = Math.floor(Math.random()*4);
+      if (inverseNSVO == gameObj[0].vaderstrack){
+        slump++; 
+      }
 
+       let slump2 = Math.floor(Math.random()*200);
+      if (slump == 0 || slump == 4){
+        this.x = slump2 + 100;
+        this.y = 400;
+      }
+      if (slump == 1){
+        this.x = slump2 + 100;
+        this.y = 0;
+      }
+      if (slump == 2){
+        this.x = 400;
+        this.y = slump2 + 100;
+      }
+      if (slump == 3){
+        this.x = 0;
+        this.y = slump2 + 100;
+      }
+  console.log("status" + this.status +" "+slump + this.x + this.y) ;
     }
     if (this.status == 1){
       
