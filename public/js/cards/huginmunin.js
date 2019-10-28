@@ -28,7 +28,7 @@ gameObj.push(
     miljo: false, figur: true, info: false,
     action: "upgrade",
     figur: true,
-    index: kartObj.length,
+    index: gameObj.length, //kartObj.length,
     indexS: mapImages.length - 1,
     indexCI: cardImages.length - 1,
     moving: false,
@@ -37,7 +37,8 @@ gameObj.push(
     width: 50, hight: 50, 
     vaderstrack: "soder",
     status: 0,
-    hojd: 5, uppner:0, counter: 0,
+    hojd: 5, uppner:0, 
+    //counter: 0,
   draw: function(){ctx.drawImage(mapImages[this.indexS], this.x, this.y,40,40);},
   move: function (){
   
@@ -77,8 +78,13 @@ gameObj.push(
  // console.log("status" + this.status +" "+slump + this.x + this.y) ;
     }
     if (this.status == 1){
-      this.counter++;
-      if (this.counter > 49){
+      //this.counter++;
+      console.log(gameObj);
+      console.log(this.index);
+
+       let walker = findwall(pointOfpic(this.index));
+        //walker.go=0;
+      if (walker.go == 1){
         this.hojd=1;
       }
       
