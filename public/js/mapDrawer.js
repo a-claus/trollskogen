@@ -78,7 +78,7 @@ function checkMoveInOrder(index){
 
             walker = findwall(pointOfpic(index));
             if (gameObj[i].specialMove) walker = gameObj[i].specialMove(walker); //??? Alven? Move som inte ska påverkas av väggar
-
+            if (gameObj[i].hojd >= 5) walker = {go:1, area: "flyger"};
             if (hitObjects > 0){
                 hit = objectHit(index);
             //    console.log("hit" + hit);

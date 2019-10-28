@@ -37,39 +37,54 @@ gameObj.push(
     width: 50, hight: 50, 
     vaderstrack: "soder",
     status: 0,
+    hojd: 5, uppner:0, counter: 0,
   draw: function(){ctx.drawImage(mapImages[this.indexS], this.x, this.y,40,40);},
   move: function (){
   
     if (this.status == 0){
+      this.status++;
       let slump = Math.floor(Math.random()*4);
       if (inverseNSVO == gameObj[0].vaderstrack){
         slump++; 
       }
-
-       let slump2 = Math.floor(Math.random()*200);
+      let slump2 = Math.floor(Math.random()*200);
+      if (slump2 < 100) this.uppner = 1; else this.uppner = -1;
+      
       if (slump == 0 || slump == 4){
         this.x = slump2 + 100;
-        this.y = 400;
+        this.y = 380;
+        this.speedX= 1 * this.uppner;
+        this.speedY=-1;
       }
       if (slump == 1){
         this.x = slump2 + 100;
-        this.y = 0;
+        this.y = -20;
+        this.speedX=1 * this.uppner;
+        this.speedY=1;
       }
       if (slump == 2){
-        this.x = 400;
+        this.x = 380;
         this.y = slump2 + 100;
+        this.speedX=-1;
+        this.speedY=1 * this.uppner;
       }
       if (slump == 3){
-        this.x = 0;
+        this.x = -20;
         this.y = slump2 + 100;
+        this.speedX=1;
+        this.speedY=1 * this.uppner;
       }
-  console.log("status" + this.status +" "+slump + this.x + this.y) ;
+ // console.log("status" + this.status +" "+slump + this.x + this.y) ;
     }
     if (this.status == 1){
+      this.counter++;
+      if (this.counter > 49){
+        this.hojd=1;
+      }
       
     }
     if (this.status == 2){
-      this.fly()
+      //this.fly()
     }
   },
   counter: 0,
