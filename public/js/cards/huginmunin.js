@@ -79,9 +79,6 @@ gameObj.push(
     }
     if (this.status == 1){
       //this.counter++;
-      console.log(gameObj);
-      console.log(this.index);
-
        let walker = findwall(pointOfpic(this.index));
         //walker.go=0;
       if (walker.go == 1){
