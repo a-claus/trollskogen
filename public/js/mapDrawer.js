@@ -143,7 +143,7 @@ function findwall(p){
 
 var c; var cString; var walker = {}; var minne;
 //var position = [{x:p.v, y: p.n}, {x: p.o, y: p.n}, {x: p.v, y: p.s},{x: p.o, y: p.s}]
-for (var i = 0; i<2; i++){ 
+for (var i = 0; i<p.length; i++){ 
     //console.log("p-findwall:" + p[i].x + "-" +p[i].y);
 	c = ctx.getImageData(p[i].x, p[i].y, 1, 1).data;
     cString = c[0]+" "+c[1]+" "+c[2]; 
@@ -269,7 +269,26 @@ var p=[];
         o = o + gameObj[index].speedX;
         p.push({x:o , y:n+5});
         p.push({x:o, y:s-5})
-
+    }
+    if (gameObj[index].vaderstrack == "nv") {
+        v = v + gameObj[index].speedX;
+        n = n + gameObj[index].speedY;
+        p.push({x:v , y:n});
+    }
+    if (gameObj[index].vaderstrack == "no") {
+        o = o + gameObj[index].speedX;
+        n = n + gameObj[index].speedY;
+        p.push({x:o , y:n});
+    }
+    if (gameObj[index].vaderstrack == "sv") {
+        v = v + gameObj[index].speedX;
+        s = s + gameObj[index].speedY;
+        p.push({x:v , y:s});
+    }
+    if (gameObj[index].vaderstrack == "so") {
+        o = o + gameObj[index].speedX;
+        s = s + gameObj[index].speedY;
+        p.push({x:o , y:s});
     }
 return p;
 

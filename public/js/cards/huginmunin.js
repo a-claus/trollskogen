@@ -38,8 +38,24 @@ gameObj.push(
     vaderstrack: "soder",
     status: 0,
     hojd: 5, uppner:0, 
+    angle: 45,
     //counter: 0,
-  draw: function(){ctx.drawImage(mapImages[this.indexS], this.x, this.y,40,40);},
+  draw: function(){
+    if (this.status == 1) {
+       ctx.save();
+      ctx.translate(this.x, this.y);
+       ctx.rotate( Math.PI*this.angle/180 );
+      ctx.drawImage(mapImages[this.indexS-1], this.x, this.y,40,40);
+      ctx.restore();
+
+      
+       ctx.drawImage(mapImages[this.indexS-1], this.x+10, this.y+10,40,40);
+    }
+    if (this.status == 2) {
+      ctx.drawImage(mapImages[this.indexS], this.x, this.y,40,40);
+      ctx.drawImage(mapImages[this.indexS], this.x+20, this.y+20,40,40);
+    }
+  },
   move: function (){
   
     if (this.status == 0){
@@ -75,12 +91,12 @@ gameObj.push(
         this.speedX=1;
         this.speedY=1 * this.uppner;
       }
+      if (this.speedY == 1) this.vaderstrack = "s"; else this.vaderstrack = "n";
+      if (this.speedX == 1) this.vaderstrack += "o"; else this.vaderstrack += "v";
  // console.log("status" + this.status +" "+slump + this.x + this.y) ;
     }
     if (this.status == 1){
-      //this.counter++;
        let walker = findwall(pointOfpic(this.index));
-        //walker.go=0;
       if (walker.go == 1){
         this.hojd=1;
       }
@@ -119,7 +135,7 @@ drawRuta: function(){
    
     drawRuta("Hugin och Munin", text, gameObj[hittad].cardImg, [{text: "Tack!", action: moveStart}]);
 }
-    gameObj[hittad].indexS = mapImages.length - 2;
+    //gameObj[hittad].indexS = mapImages.length - 2;
     gameObj[hittad].counter++;
 }
 },
