@@ -34,7 +34,7 @@ gameObj.push(
     moving: false,
     cardImg: cardImages[cardImages.length-1],
     x: 75, y: 75, speedX: 0,speedY: 0, floor: 1, 
-    width: 50, hight: 50, 
+    width: 40 , hight: 40, 
     vaderstrack: "soder",
     status: 0,
     hojd: 5, uppner:0, 
@@ -44,12 +44,15 @@ gameObj.push(
     if (this.status == 1) {
        ctx.save();
       ctx.translate(this.x, this.y);
-       ctx.rotate( Math.PI*this.angle/180 );
+     
+       ctx.rotate(Math.PI*this.angle/180 );
+       ctx.translate(-this.x,- this.y);
       ctx.drawImage(mapImages[this.indexS-1], this.x, this.y,40,40);
+      ctx.drawImage(mapImages[this.indexS-1], this.x+10, this.y+10,40,40);
       ctx.restore();
-
       
-       ctx.drawImage(mapImages[this.indexS-1], this.x+10, this.y+10,40,40);
+      
+      
     }
     if (this.status == 2) {
       ctx.drawImage(mapImages[this.indexS], this.x, this.y,40,40);
@@ -94,7 +97,12 @@ gameObj.push(
       if (this.speedY == 1) this.vaderstrack = "s"; else this.vaderstrack = "n";
       if (this.speedX == 1) this.vaderstrack += "o"; else this.vaderstrack += "v";
  // console.log("status" + this.status +" "+slump + this.x + this.y) ;
-    }
+      if (this.vaderstrack=="nv") this.angle = -45;
+      if (this.vaderstrack=="no") this.angle = 45;
+      if (this.vaderstrack=="sv") this.angle = -135;
+      if (this.vaderstrack=="so") this.angle = 135;
+}
+
     if (this.status == 1){
        let walker = findwall(pointOfpic(this.index));
       if (walker.go == 1){
