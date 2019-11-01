@@ -39,9 +39,9 @@ gameObj.push(
     status: 0,
     hojd: 5, uppner:0, 
     angle: 45,
-    //counter: 0,
+    counter: 0,
   draw: function(){
-    if (this.status == 1) {
+    if (this.status == 1 || this.status == 2 || this.status == 4) {
        ctx.save();
       ctx.translate(this.x, this.y);
      
@@ -54,9 +54,9 @@ gameObj.push(
       
       
     }
-    if (this.status == 2) {
+    if (this.status == 3) {
       ctx.drawImage(mapImages[this.indexS], this.x, this.y,40,40);
-      ctx.drawImage(mapImages[this.indexS], this.x+20, this.y+20,40,40);
+      
     }
   },
   move: function (){
@@ -104,31 +104,53 @@ gameObj.push(
 }
 
     if (this.status == 1){
+      this.counter++;
+
+      if (this.counter > 15){
        let walker = findwall(pointOfpic(this.index));
       if (walker.go == 1){
         this.hojd=1;
+        this.status = 2;
       }
-      
+    }
     }
     if (this.status == 2){
-      //this.fly()
+      if(this.counter==this.x + "-"+this.y) {this.status = 3;}
+      this.counter = this.x + "-"+this.y;
     }
+    if (this.status == 3){
+      console.log("talker" + this.counter);
+      if(this.counter=="talked") {
+        this.status = 4;
+        this.hojd=5;
+      }  
+    }
+    if (this.status == 4){
+      if (gameObj[hittad].x < 0 || gameObj[hittad].x > 400 || gameObj[hittad].y < 0 || gameObj[hittad].y > 400) {
+        bytPlatsMedBlank(8, "card", wood.mapNR);
+        this.status=5;
+      }
+    }
+
   },
-  counter: 0,
+ 
 
 hitAction : function(){
   gameObj[0].placeMe = true;
-  gameStatus.push(this.drawRuta);
+  movepause=true;
+  gameStatus.push(gameObj[hittad].drawRuta);
   hitIndex = this.index;
+  
 },
+c:0,
 drawRuta: function(){
    let text;
    
-  let counter = gameObj[hittad].counter;
+  let c = gameObj[hittad].c;
   
-  if (counter == 0)
+  if (c == 0)
     drawRuta("Hugin och Munin", "Vi vet allt. Vi har sett allt.", gameObj[hittad].cardImg, [{text: "Berätta var Äggblomman är!", action: gameObj[hittad].drawRuta}]);
-  if (counter == 1){
+  if (c == 1){
     const index = getKartbitCard(0);
     let xyMap = kordinatorXY(wood.mapNR);
     let skattMap = kordinatorXY(index);
@@ -142,9 +164,10 @@ drawRuta: function(){
     if (sida == 0) text += "Och du behöver varken vandra västerut eller österut för att hitta Äggblomman.";
    
     drawRuta("Hugin och Munin", text, gameObj[hittad].cardImg, [{text: "Tack!", action: moveStart}]);
-}
+    gameObj[hittad].counter = "talked";
+  }
     //gameObj[hittad].indexS = mapImages.length - 2;
-    gameObj[hittad].counter++;
+    gameObj[hittad].c++;
 }
 },
 {
@@ -176,7 +199,6 @@ BILD SPRITES on MAP
       return false;}
       else {
         return true;
-        //deleteObject("Alven");
       }
 
 
