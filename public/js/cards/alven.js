@@ -26,7 +26,7 @@ gameObj.push(
     indexS: mapImages.length - 1,
     indexCI: cardImages.length - 1,
     placeMe: true,
-
+//
 
 
 

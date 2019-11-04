@@ -8,7 +8,7 @@ ger slumpvis bonuc. IQ, styrka, extra hjärta och gift
 
 */
 
-
+console.log("1" + isEven(11 ));
 mapImages.push(new Image());
 mapImages[mapImages.length-1].src="./img/lyktstolpe.png";
 //cardImages.push(new Image());
@@ -50,10 +50,15 @@ hitAction : function(){
   movepause=true;},
   c:0,
 blink:function(){
-  let arraj = [100,125,150,200,220,280,310]
-  let c = gameObj[hittad].c++;
-  if (c<arraj[i]) seh           xxx
-}
+  
+  let dark = c % 50;
+  if (isEven(dark) == true){
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, 400, 400);  
+  }
+
+
+  
 
 },
     

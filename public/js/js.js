@@ -570,9 +570,8 @@ function ajaxer(url){
 function mapChange(vaderstrack){
     //console.log(vaderstrack);
    deleteObjects();
-   //kartObj[0].newRuta=1; // xyz
     historik.push(wood.mapNR);
-
+  //  if (vaderstrack )
     var nyRuta = countMap(wood.mapNR, vaderstrack);
     //console.log("a:"+ nyRuta + vaderstrack);
     wood.update(nyRuta);
@@ -819,3 +818,11 @@ function textWriter(text, x, y, lineLength = 40, color= "white", align = "left")
         return Math.atan2(y, x) * 180 / Math.PI;
 
     }
+
+    function isEven(n) {
+   return n % 2 == 0;
+}
+
+function isOdd(n) {
+   return Math.abs(n % 2) == 1;
+}
