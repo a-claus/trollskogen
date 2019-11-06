@@ -13,7 +13,7 @@ card.push({id:9, namn:"Vildvittra", url:"./js/cards/vildvittra.js",no:[]});
 card.push({id:10, namn:"Lyktstolpe", url:"./js/cards/lyktstolpe.js", no:[4]});
 
 
-var kartbit=[];
+var kartbit=[];//hej
 
 kartbit.push({namn:"Road", norr:1,soder:1,ost:1,vast:1, typ:"glanta",floors:1, actionIndex:-1}); // 5
 kartbit.push({namn:"Road",norr:0,soder:1,ost:1,vast:1, typ:"glanta",floors:1, actionIndex:-1});    //  5

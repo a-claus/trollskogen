@@ -16,7 +16,7 @@ mapImages[mapImages.length-1].src="./img/hm.png";
 cardImages.push(new Image());
 cardImages[cardImages.length-1].src="./img/huginmumin.png";
 
-
+//
 
 
 
