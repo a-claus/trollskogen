@@ -1,15 +1,15 @@
 
 var card=[];
-card.push({id:0, namn:"Skatten", vad:"skatt", url: "./js/cards/egblomma.js"});
-card.push({id:1, namn:"blank", vad:"blank"});
-card.push({id:2, namn:"Lilltroll", vad:"monster", url: "./js/cards/troll.js", antal: 3});
-card.push({id:3, namn:"Trollmor", vad:"monster",color:"black", styrka:2, liv:1, vinst:0, width:18, height:18, f_text:"Ett troll sitter och tittar på sitt navelludd."});
-card.push({id:4, namn:"Trollfar", vad:"monster",color:"black", styrka:3, liv:1, vinst:2, width:21, height:21, f_text:"Trollmor står och lagar tomtesoppa."});
-card.push({id:5, namn:"Svamp", url:"./js/cards/svamp.js"});
-card.push({id:6, namn:"Blåbär", url:"./js/cards/blabar.js"});
-card.push({id:7, namn:"Hugin och Munin", url: "./js/cards/huginmunin.js" });
-card.push({id:8, namn:"Alven", url:"./js/cards/alven.js"});
-card.push({id:9, namn:"Vildvittra", url:"./js/cards/vildvittra.js"});
+card.push({id:0, namn:"Skatten", vad:"skatt", url: "./js/cards/egblomma.js",no:[]});
+card.push({id:1, namn:"blank", vad:"blank",no:[]});
+card.push({id:2, namn:"Lilltroll", vad:"monster", url: "./js/cards/troll.js", antal: 3,no:[]});
+card.push({id:3, namn:"Trollmor", vad:"monster",color:"black", styrka:2, liv:1, no:[]});
+card.push({id:4, namn:"Trollfar", vad:"monster",color:"black", styrka:3, liv:1, vinst:2, width:21, height:21, f_text:"Trollmor står och lagar tomtesoppa.", no:[]});
+card.push({id:5, namn:"Svamp", url:"./js/cards/svamp.js",no:[]});
+card.push({id:6, namn:"Blåbär", url:"./js/cards/blabar.js", no:[]});
+card.push({id:7, namn:"Hugin och Munin", url: "./js/cards/huginmunin.js" ,no:[]});
+card.push({id:8, namn:"Alven", url:"./js/cards/alven.js",no:[]});
+card.push({id:9, namn:"Vildvittra", url:"./js/cards/vildvittra.js",no:[]});
 card.push({id:10, namn:"Lyktstolpe", url:"./js/cards/lyktstolpe.js", no:[4]});
 
 
@@ -45,10 +45,11 @@ function lottaCards(){
 	var crupier=[]; let cardval;
 	for (var j=0; j<81; j++){
 		cardval = Math.floor(Math.random() * 10) + 1;
-		//if (card[].no.findIndex == -1){
+		console.log(cardval);
+		if (card[cardval].no.findIndex != j){
 		 crupier.push(cardval);}
-		//else
-		//	{j--;}
+		else
+			{j--;}
 	}
 	var lott = Math.floor(Math.random()*36)+45;
 	//console.log("skatt" + lott);
