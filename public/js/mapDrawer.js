@@ -3,6 +3,7 @@ var moveV = false; var moveO = false; moveS = false; var moveN = false; var magS
 function updateGameArea(){
     //console.log("UGA");
     var walk; 
+    //console.log("UGA" + gameObj[0].floor);
  
  // Loopa floors    
 for (let floor = 1; floor <= gameObj[0].floor; floor++){
@@ -220,6 +221,7 @@ function getPosition(index){
      let c; let cString;
     const xplus = 100 + gameObj[index].width/2;
     const yplus = 100 + gameObj[index].hight/2;
+    console.log(index);
     let x = gameObj[index].x + xplus;
     let y = gameObj[index].y + yplus; 
      console.log(x + "- " +  y);
@@ -335,15 +337,19 @@ function nyruta(){
             gameObj[0].newRuta=1;
             gameObj[0].y=357;  
             mapChange("norr");}
-        
-        
 
         if (gameObj[0].vaderstrack == "soder"){
             gameObj[0].newRuta=1;
             gameObj[0].y=1;  
             mapChange("soder");}
 
+           if (gameObj[0].vaderstrack == "jump"){
+            gameObj[0].newRuta=1;
+            //gameObj[0].y=1;  
+            mapChange("jump");}
+
     gameStatus.push(move);
+    console.log(gameStatus);
         
 return false;
 }

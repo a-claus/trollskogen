@@ -519,7 +519,7 @@ function setFloor(vaderstrack){
     console.log(wood);
     vaderstrack = inverseVaderstrack(vaderstrack);
 
-    console.log("sfsf "+ wood.kartbit);
+    console.log("sfsf "+ wood.kartbit + vaderstrack);
         gameObj[0].floor = kartbit[wood.kartbit][vaderstrack];
         if (gameObj[0].floor > 99) gameObj[0].floor -= 100; //xyz
         if (gameObj[0].floor == 99) gameObj[0].floor = map[4].norr; //xyz
@@ -544,6 +544,10 @@ function countMap(kartbit, vaderstrack){
             break;
             case "ost":
                kartbit=kartbit+1;
+            break;
+            case "jump":
+               kartbit = tempArray[0];
+               console.log("jump kartbit"+kartbit);
             break;
         }
         return kartbit;

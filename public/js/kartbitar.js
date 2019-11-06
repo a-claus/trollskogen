@@ -10,7 +10,7 @@ card.push({id:6, namn:"Blåbär", url:"./js/cards/blabar.js"});
 card.push({id:7, namn:"Hugin och Munin", url: "./js/cards/huginmunin.js" });
 card.push({id:8, namn:"Alven", url:"./js/cards/alven.js"});
 card.push({id:9, namn:"Vildvittra", url:"./js/cards/vildvittra.js"});
-card.push({id:10, namn:"Lyktstolpe", url:"./js/cards/lyktstolpe.js"});
+card.push({id:10, namn:"Lyktstolpe", url:"./js/cards/lyktstolpe.js", no:[4]});
 
 
 var kartbit=[];
@@ -42,9 +42,13 @@ var map=[];
 
 
 function lottaCards(){
-	var crupier=[];
+	var crupier=[]; let cardval;
 	for (var j=0; j<81; j++){
-		crupier.push(Math.floor(Math.random() * 10) + 1);
+		cardval = Math.floor(Math.random() * 10) + 1;
+		//if (card[].no.findIndex == -1){
+		 crupier.push(cardval);}
+		//else
+		//	{j--;}
 	}
 	var lott = Math.floor(Math.random()*36)+45;
 	//console.log("skatt" + lott);
@@ -115,7 +119,7 @@ function bytPlats(namn, vad="namn"){
 //bytPlats(6,"card"); //6 blåbär saknar effekt
 //bytPlats( 2, "card" ); //Lilltroll saknar effekt
 //bytPlats( 9, "card" );
-bytPlats( 10, "card" );
+//bytPlats( 10, "card" );
 
 
 function bytPlatsMedBlank(namn, vad, ruta){

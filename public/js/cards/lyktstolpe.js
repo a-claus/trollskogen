@@ -28,13 +28,14 @@ gameObj.push(
     index: gameObj.length,
     indexS: mapImages.length - 1,
     //indexCI: cardImages.length - 1,
-    placeMe: true,
+    placeMe: false,
     moving: false,
     cardImg: cardImages[cardImages.length-1],
-  //vaderstrack: "soder",
+  vaderstrack: "soder",
   draw: function(){ctx.drawImage(mapImages[this.indexS], this.x, this.y);},
   move: function (){},
-   x: 170, y: 170, speedX: 0,speedY: 0,floor: 1,   
+   x: 170, y: 170, speedX: 0,speedY: 0,floor: 1, 
+   width: 50, hight:50,  
 
   /*--------------------------------
 HIT
@@ -50,27 +51,28 @@ hitAction : function(){
   movepause=true;},
   c:0,
 blink:function(){
-  
-  let dark = c % 50;
+  if (gameObj[hittad].c == 0){setScreenImage();}
+  gameObj[hittad].c++;
+  let dark = gameObj[hittad].c % 50;
   if (isEven(dark) == true){
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, 400, 400);  
+  }else
+  {
+    drawScreenImage();
   }
+  if (gameObj[hittad].c > 79){
+    gameStatus.push(nyruta);
+    tempArray = [4, gameObj[0].vaderstrack]; //
+    gameObj[0].vaderstrack = "jump";
+    return false;
+  }
+else{
 
-
-  
-
+  return true;
+}
 },
     
-	
-	//spriteTimer: 0,
-	draw: function(){
-       
-    	//ctx.drawImage(this.sprite, 0, 0, 100, 100, this.x, this.y, 40, 40);
-              if (this.x<400){ 
-                ctx.drawImage(this.sprite, this.x, this.y);}//, 60, 60
-
-	},
   fly: function(){
        // tror denhär gammal
        if (this.tox=!170){

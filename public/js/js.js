@@ -568,13 +568,16 @@ function ajaxer(url){
 }
 
 function mapChange(vaderstrack){
-    //console.log(vaderstrack);
+    console.log(tempArray);
    deleteObjects();
     historik.push(wood.mapNR);
   //  if (vaderstrack )
     var nyRuta = countMap(wood.mapNR, vaderstrack);
     //console.log("a:"+ nyRuta + vaderstrack);
+    if (vaderstrack == "jump") {gameObj[0].vaderstrack = tempArray[1]; vaderstrack=tempArray[1]}
+    
     wood.update(nyRuta);
+
 
     
     setFloor(vaderstrack);
@@ -802,6 +805,18 @@ function textWriter(text, x, y, lineLength = 40, color= "white", align = "left")
 
     function leaveCard(){
         gameObj[0].placeMe = true; 
+    }
+    var iData;
+    function setScreenImage(){
+      //  var ctx = myGameArea.context;
+        console.log("click");
+          iData = ctx.getImageData(0, 0, 400, 400);
+
+    }
+    function drawScreenImage(){
+        
+         var ctx = myGameArea.context;
+        ctx.putImageData(iData, 0, 0);
     }
 
     function pyth(a, b){
