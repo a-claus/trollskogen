@@ -1,5 +1,7 @@
 TODO
 ----------------------
+14. Göra hitarea för cards.
+13. Hide i tunnel 
 12. Plockat bort nummer för kanterna. Får hitta någon lösning för startrutan
 11. Göra figur mindre i hitarea
 
