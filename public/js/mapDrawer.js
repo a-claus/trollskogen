@@ -114,14 +114,29 @@ function checkMoveInOrder(index){
 function objectHit(i){
     
     var floor = gameObj[i].floor;
-
-    var iX = gameObj[i].x + gameObj[i].width / 2;
-    var iY = gameObj[i].y + gameObj[i].hight / 2;
-
-    //console.log(i + "objHit" + gameObj[0].jump.hojd);
+    var iX; var iY; 
+    var jX; var jY;
+    
+    if (gameObj[i].hitAreaX){
+        iX = gameObj[i].hitAreaX + gameObj[i].haWidth;
+        iY = gameObj[i].hitAreaY + gameObj[i].haHight;
+    }
+    else{
+        iX = gameObj[i].x + gameObj[i].width / 2;
+        iY = gameObj[i].y + gameObj[i].hight / 2;
+    }
+    
     for (var j=0; j < gameObj.length; j++){
 	   if (j != i && gameObj[j].floor == floor){
-
+        if (gameObj[j].hitAreaX){
+            jX = gameObj[j].hitAreaX + gameObj[j].haWidth;
+            jY = gameObj[j].hitAreaY + gameObj[j].haHight;
+        }
+        else{
+            jX = gameObj[j].x + gameObj[j].width / 2;
+            jY = gameObj[j].y + gameObj[j].hight / 2;
+        }
+       // console.log(jX + " " + jY);
 
             if (iX < gameObj[j].x + gameObj[j].width -10 && iX > gameObj[j].x + 10){
 

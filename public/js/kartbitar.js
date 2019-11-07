@@ -45,7 +45,6 @@ function lottaCards(){
 	var crupier=[]; let cardval;
 	for (var j=0; j<81; j++){
 		cardval = Math.floor(Math.random() * 10) + 1;
-		console.log(cardval);
 		if (card[cardval].no.findIndex != j){
 		 crupier.push(cardval);}
 		else
