@@ -32,10 +32,16 @@ gameObj.push(
     moving: false,
     cardImg: cardImages[cardImages.length-1],
   vaderstrack: "soder",
-  draw: function(){ctx.drawImage(mapImages[this.indexS], this.x, this.y);},
+  draw: function(){ctx.drawImage(mapImages[this.indexS], this.x, this.y);
+             ctx.fillStyle = "red";
+             ctx.globalAlpha = 0.2;
+            ctx.fillRect(this.hitAreaX, this.hitAreaY, this.haWidth, this.haHight);
+            ctx.globalAlpha = 1;
+      },
   move: function (){},
    x: 170, y: 170, speedX: 0,speedY: 0,floor: 1, 
-   width: 50, hight:50,  
+   width: 50, hight:50, 
+   hitAreaX: 195, hitAreaY: 232, haWidth: 25, haHight:25, 
 
   /*--------------------------------
 HIT
@@ -71,17 +77,7 @@ else{
 
   return true;
 }
-},
-    
-  fly: function(){
-       // tror denhär gammal
-       if (this.tox=!170){
-
-        this.x = this.x + 3;
-        this.y = this.y + 3;
-        console.log("fly" + this.x);
-      }
-  }
+}
    
 
 });

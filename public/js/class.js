@@ -604,48 +604,7 @@ function deleteButtons(){
     button.splice(0, button.length);
 }
 
-//----------------------------------------------------------------------------
-class xDownMeny{
-    constructor(){
-        this.text="";
-        this.pic=imgTroll;
-        this.buttonText="";
-        this.action="move";
-    }
-     set(action,text,buttontext,pic){
-        this.text=text;
 
-        this.pic=pic;
-        this.buttonText=buttontext;
-        this.action=action;
-
-
-     }
-     setText(text){
-        this.text=text;
-    }
-    setPic(pic){
-        this.pic=pic;
-        //iwidth,iheight
-    }
-    setButtonText(bt){
-        this.buttonText=bt;
-    }
-    paintThis(){
-      //  console.log("pt:" + this.action + "-" + this.buttonText + figur[0].x);
-        ctx.drawImage(this.pic, 10, 400-this.pic.height);
-        ctx.fillStyle = "rgba(0,0,0, .5)";
-        ctx.fillRect(0, 325, 400, 75);
-       
-        ctx.fillStyle = "white";
-        ctx.font="12px Georgia";
-        textWriter(this.text,75,350);
-        button.push(new Button(this.action, 300, 350, this.buttonText)); 
-      
-
-
-    }
-}
 
 function taUppSak(sak){
     gameObj[0].bag.push(sak);
@@ -653,6 +612,5 @@ function taUppSak(sak){
 
 
 }
-downMeny=new DownMeny(); 
 
 
