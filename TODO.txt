@@ -1,6 +1,13 @@
 TODO
 ----------------------
 
+15: Hitta olika monster attacker.
+	Vildsvin: Tjurrusning
+	Lilltroll: 
+	Mamma Troll:
+	Pappa Troll:
+
+
 14: Hopp hitarea höjder
 
 13. Hide i tunnel 

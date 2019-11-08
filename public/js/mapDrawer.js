@@ -109,6 +109,13 @@ function checkMoveInOrder(index){
 
 }
 
+function cmio(index){ //check move in order
+
+    //vilken x och y ska kontrolleras
+    //kolla hojd på ruta framför 
+
+}
+
 
 
 function objectHit(i){
