@@ -115,11 +115,11 @@ function objectHit(i){
     
     var floor = gameObj[i].floor;
     var iX; var iY; 
-    var jX; var jY;
+    var jX; var jY; var jW; var jH;
     
     if (gameObj[i].hitAreaX){
-        iX = gameObj[i].hitAreaX + gameObj[i].haWidth;
-        iY = gameObj[i].hitAreaY + gameObj[i].haHight;
+        iX = gameObj[i].hitAreaX + gameObj[i].haWidth/2;
+        iY = gameObj[i].hitAreaY + gameObj[i].haHight/2;
     }
     else{
         iX = gameObj[i].x + gameObj[i].width / 2;
@@ -129,18 +129,26 @@ function objectHit(i){
     for (var j=0; j < gameObj.length; j++){
 	   if (j != i && gameObj[j].floor == floor){
         if (gameObj[j].hitAreaX){
-            jX = gameObj[j].hitAreaX + gameObj[j].haWidth;
-            jY = gameObj[j].hitAreaY + gameObj[j].haHight;
+            jX = gameObj[j].hitAreaX;
+            jY = gameObj[j].hitAreaY;
+            jW = gameObj[j].haWidth;
+            jH = gameObj[j].haHight;
         }
         else{
-            jX = gameObj[j].x + gameObj[j].width / 2;
-            jY = gameObj[j].y + gameObj[j].hight / 2;
+            jX = gameObj[j].x + 10;
+            jY = gameObj[j].y + 10;
+            jW = gameObj[j].width - 10;
+            jH = gameObj[j].hight -10 ;
         }
        // console.log(jX + " " + jY);
 
-            if (iX < gameObj[j].x + gameObj[j].width -10 && iX > gameObj[j].x + 10){
+            if (iX < jX + jW && iX > jX){
 
-                if (iY < gameObj[j].y + gameObj[j].hight -10 && iY > gameObj[j].y+10){
+                if (iY < jY + jH && iY > jY){
+                    
+           // if (iX < gameObj[j].x + gameObj[j].width -10 && iX > gameObj[j].x + 10){
+
+             //   if (iY < gameObj[j].y + gameObj[j].hight -10 && iY > gameObj[j].y+10){
 
                     return j; 
                 }

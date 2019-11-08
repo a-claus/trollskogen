@@ -53,11 +53,13 @@ HIT
 
 
 hitAction : function(){
+  if (this.blinkar == false){
    gameStatus.push(gameObj[hittad].blink);
-  movepause=true;},
-  c:0,
+   this.blinkar=true;
+  movepause=true;}},
+  c:0, blinkar: false,
 blink:function(){
-  if (gameObj[hittad].c == 0){setScreenImage();}
+  if (gameObj[hittad].c == 0){setScreenImage(); }
   gameObj[hittad].c++;
   let dark = gameObj[hittad].c % 50;
   if (isEven(dark) == true){
