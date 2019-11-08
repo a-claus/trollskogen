@@ -1,9 +1,11 @@
 TODO
 ----------------------
-14. Göra hitarea för cards.
+
+14: Hopp hitarea höjder
+
 13. Hide i tunnel 
 12. Plockat bort nummer för kanterna. Får hitta någon lösning för startrutan
-11. Göra figur mindre i hitarea
+
 
 	9. Frågan om man kan lägga kartbitar vägar separat och objekt på rutan separat, som mimers brunn. 
 	8. Göra bagger enklare.
@@ -32,10 +34,6 @@ TODO
 
 
 
-		
-
-	
-10. Wand förvandla så rutans ändringar är bestående. 
 
 	3. Kontrollera att kartan fungerar
 	-----------------------------------------
@@ -44,41 +42,5 @@ TODO
 	4.Man fastnar på bakhållskog, ändra så det inte händer.
 	_______________________________________________________
 		
-	5.vad i cardegenskaper ska ändras.
-	Monster - sak -
-		
-
-		
-
-	1. Göra olika kort.
-	--------------------------------- 
-	Kanske ska först komma i version två.
 
 
-
-Done
--------------------------------------------------
-		2a6 Göra klass för knapp.
-		2a5
-		----------------------
-		Göra knapp klickbar
-
-		2a4
-		------------------
-		rita halvhjärta
-
-		2a1
-		---------------------------------------
-		Skapa kombat ruta. 
-
-		2a2
-		---------------------------------------
-		Skapa kombat ikon, png. 
-
-		2a3 knapp
-		--------------------
-		Göra knapp
-
-
-
-	
