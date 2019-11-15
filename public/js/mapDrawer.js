@@ -1,10 +1,9 @@
 
 var moveV = false; var moveO = false; moveS = false; var moveN = false; var magStigNamn = "none";
 function updateGameArea(){
-    //console.log("UGA");
+    
     var walk; 
-    //console.log("UGA" + gameObj[0].floor);
- 
+   
  // Loopa floors    
 for (let floor = 1; floor <= gameObj[0].floor; floor++){
 
@@ -15,14 +14,7 @@ for (let floor = 1; floor <= gameObj[0].floor; floor++){
     for (let i = 0; i < kartObj.length; i++){
         if (kartObj[i].miljo == true && kartObj[i].floor == floor){
             kartObj[i].draw();
-/*
-        ctx = myGameArea.context;
-    //ctx.drawImage(ctx, 0, 0);
-    var imgData = ctx.getImageData(0, 0, 400, 400);
-    ctx.putImageData(imgData, 0, 0);
-    ctx.drawImage(thing, EF_x, EF_y);    */
-           }
-     }
+
 
 /*-------Move Obj-----------
 Monster och dylikt
@@ -39,8 +31,6 @@ Monster och dylikt
             gameObj[i].y = gameObj[i].y + walk * gameObj[i].speedY;
             gameObj[i].draw();
             if (gameObj[i].vad == "spelare") {nyRutaKontroll(i);}
-
-
         }
 
         if (gameObj[i].effekt == true) {
@@ -98,20 +88,13 @@ function checkMoveInOrder(index){
         return walker.go;
 
 
-/*              
-            - om wall outputtar area 
-                skog, 
-                road,
-            - om Objecthit -- inte gå men sen hitAction
-            - om hopp -- wall blandat
-            - om hopp -- objectHit
-        */
+
 
 }
 
 function cmio(index){ //check move in order
 
-    //vilken x och y ska kontrolleras
+    //vilken x och y z ska kontrolleras
     //kolla hojd på ruta framför 
 
 }
@@ -379,7 +362,7 @@ function nyruta(){
             mapChange("jump");}
 
     gameStatus.push(move);
-    console.log(gameStatus);
+    //console.log(gameStatus);
         
 return false;
 }
@@ -392,4 +375,4 @@ function magicStig(){
     if (gameObj[0].y>=320){return "soder";} //400 -40 -40
     gameObj[0].newRuta=0;
 }
-}
+//}

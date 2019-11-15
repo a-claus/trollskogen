@@ -1,5 +1,21 @@
 TODO
 ----------------------
+17. Rita "ground"/ruta och spara, istället för att loopa hela tiden och rita ut alla dessa element. Gameobj, frågan om man ska göra floor för floor.
+
+ - Kanske skapa -array för colors = not walkable.
+ 
+
+16. Lära mig UNITY.
+
+14: Hopp hitarea höjder
+
+	- I mapDrawer har jag två sökningar. En på färg, en på area. 
+	Borde jag lägga in ett höjdvärde i xyz?
+	
+	Jag loopar ju i mapdrawer NU höjdyta, för höjdyta, tills spelaren höjd uppnåtts, för att rita från botten och upp. 
+	Men när jag tänker krock måste jag loopa hinder all the way.
+	Floor = z är hojd.
+
 
 15: Hitta olika monster attacker.
 	Vildsvin: Tjurrusning
@@ -8,7 +24,7 @@ TODO
 	Pappa Troll:
 
 
-14: Hopp hitarea höjder
+
 
 13. Hide i tunnel 
 12. Plockat bort nummer för kanterna. Får hitta någon lösning för startrutan

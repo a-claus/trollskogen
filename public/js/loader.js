@@ -1,4 +1,14 @@
+	let foto = [];
+	foto[0] = new Image();
+	foto[1] = new Image();
 
+function kamera(floor){
+	foto[floor].src = canvas.toDataURL("image/png");
+}
+
+function drawFoto(floor){
+	ctx.drawImage(foto[floor], 0, 0);
+}
 
 let bg = {
 	namn: "bg", miljo: true, figur : false, info: false, floor:1,
