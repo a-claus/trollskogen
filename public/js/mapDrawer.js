@@ -44,19 +44,20 @@ Monster och dylikt
 
 /*-------Things-----------
 -------------------*/
-    for (i=0; i<kartObj.length; i++){
-        if (kartObj[i].info == true){
-            kartObj[i].draw();
+        for (i=0; i<kartObj.length; i++){
+            if (kartObj[i].info == true){
+                kartObj[i].draw();
+            }
         }
-    }
 
 //console.log("ms" + magStig);
-    if (magStigNamn != "none"){
-        if (50 < gameObj[0].x && gameObj[0].x + gameObj[0].width/2 < 350 && 50 < gameObj[0].y && gameObj[0].y + gameObj[0].hight/2  < 350 ){
-            console.log("tabort MS");
-            var index= gameObj.findIndex(function(indexa) { return indexa["namn"] === magStigNamn; });
-            kartObj.splice(index, 1);
-             magStigNamn = "none";
+        if (magStigNamn != "none"){
+            if (50 < gameObj[0].x && gameObj[0].x + gameObj[0].width/2 < 350 && 50 < gameObj[0].y && gameObj[0].y + gameObj[0].hight/2  < 350 ){
+                console.log("tabort MS");
+                var index= gameObj.findIndex(function(indexa) { return indexa["namn"] === magStigNamn; });
+                kartObj.splice(index, 1);
+                magStigNamn = "none";
+            }
         }
     }
 }
@@ -114,6 +115,7 @@ function objectHit(i){
     if (gameObj[i].hitAreaX){
         iX = gameObj[i].hitAreaX + gameObj[i].haWidth/2;
         iY = gameObj[i].hitAreaY + gameObj[i].haHight/2;
+       // iZ = gameObj[i].hitAreaZ + gameObj[i].haHojd/2;
     }
     else{
         iX = gameObj[i].x + gameObj[i].width / 2;

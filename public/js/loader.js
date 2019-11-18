@@ -1,6 +1,6 @@
 	let foto = []; let paparazzi = true;
-	foto[0] = new Image();
 	foto[1] = new Image();
+	foto[2] = new Image();
 
 function kamera(floor){
 	var ctx = myGameArea.context;

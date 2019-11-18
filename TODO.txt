@@ -1,11 +1,7 @@
 TODO
 ----------------------
 
-
-17. Rita "ground"/ruta och spara, istället för att loopa hela tiden och rita ut alla dessa element. Gameobj, frågan om man ska göra floor för floor.
-
- - Kanske skapa -array för colors = not walkable.
- 
+17b - Kanske skapa -array för colors = not walkable.
 
 16. Lära mig UNITY.
 
@@ -66,6 +62,15 @@ TODO
 
 	4.Man fastnar på bakhållskog, ändra så det inte händer.
 	_______________________________________________________
+
+
+	DONE
+	______
+
+
+17. Rita "ground"/ruta och spara, istället för att loopa hela tiden och rita ut alla dessa element. Gameobj, frågan om man ska göra floor för floor.
+
+ 
 		
 
 
