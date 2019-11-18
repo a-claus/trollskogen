@@ -1,5 +1,7 @@
 TODO
 ----------------------
+
+
 17. Rita "ground"/ruta och spara, istället för att loopa hela tiden och rita ut alla dessa element. Gameobj, frågan om man ska göra floor för floor.
 
  - Kanske skapa -array för colors = not walkable.

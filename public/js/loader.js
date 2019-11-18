@@ -1,13 +1,29 @@
-	let foto = [];
+	let foto = []; let paparazzi = true;
 	foto[0] = new Image();
 	foto[1] = new Image();
 
 function kamera(floor){
-	foto[floor].src = canvas.toDataURL("image/png");
+	var ctx = myGameArea.context;
+	foto[floor].src = myGameArea.foto();
 }
 
 function drawFoto(floor){
 	ctx.drawImage(foto[floor], 0, 0);
+}
+
+function studio(){
+	for (let floor = 1; floor <= wood.floors; floor++){
+	for (let i = 0; i < kartObj.length; i++){
+		if (kartObj[i].miljo == true && kartObj[i].floor == floor){
+			kartObj[i].draw();
+		}
+	}
+	kamera(floor);
+	//context.clearRect(0, 0, 400, 400);
+
+
+}
+
 }
 
 let bg = {

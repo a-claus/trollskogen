@@ -25,6 +25,9 @@ var myGameArea = {
     stop : function() {
         console.log("stop");
         clearInterval(this.interval);
+    },
+    foto: function() {
+        return this.canvas.toDataURL("image/png");
     }
 }
 //let ctx = myGameArea.context;
