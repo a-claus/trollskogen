@@ -57,6 +57,7 @@ Monster och dylikt
                 var index= gameObj.findIndex(function(indexa) { return indexa["namn"] === magStigNamn; });
                 kartObj.splice(index, 1);
                 magStigNamn = "none";
+                paparazzi=true;
             }
         }
     }
