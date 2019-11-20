@@ -2,7 +2,7 @@
 var moveV = false; var moveO = false; moveS = false; var moveN = false; var magStigNamn = "none";
 function updateGameArea(){
     
-var walk; 
+var walk; let z;
    
  // Loopa floors    
     for (let floor = 1; floor <= gameObj[0].floor; floor++){
@@ -22,7 +22,9 @@ var walk;
 Monster och dylikt
 -------------------*/
         for (i = 0; i < gameObj.length; i++){
-            if (gameObj[i].figur == true && gameObj[i].floor == floor){
+            
+            if (gameObj[i].floor) {z = Math.floor(gameObj[i].floor);} else {Math.floor(gameObj[i].z);} //tillfällig
+            if (gameObj[i].figur == true && z == floor){
 
                 if (gameObj[i].placeMe) 
                     { getPosition(i); delete(gameObj[i].placeMe);}
@@ -99,9 +101,22 @@ function checkMoveInOrder(index){
 }
 
 function cmio(index){ //check move in order
+    let xyz; var walker = {go:0, area: "nn"}; 
 
-    //vilken x och y z ska kontrolleras
-    //kolla hojd på ruta framför 
+// Vissa ska flyga, vandra genom skog och natur. Dock ska flygande objekt kunna attackera.
+    if (gameObj[i].specialMove || gameObj[i].hojd >= 5) return 1;
+// Räkna ut punkter som ska kontrolleras , eller räcker det med en?
+    xyz = pointOfpic(index);
+//kolla om kartan sätter hinder
+    walker = findwall(xyz);
+
+    //Loopa genom de olika hitarearorna.
+
+    if (hitObjects > 0){
+        
+    }
+    // Vad ska hända vid hit
+
 
 }
 
@@ -110,13 +125,13 @@ function cmio(index){ //check move in order
 function objectHit(i){
     
     var floor = gameObj[i].floor;
-    var iX; var iY; 
-    var jX; var jY; var jW; var jH;
+    var iX; var iY; var iZ;
+    var jX; var jY; var jZ; var jW; var jH; let jHojd = .75;
     
     if (gameObj[i].hitAreaX){
         iX = gameObj[i].hitAreaX + gameObj[i].haWidth/2;
         iY = gameObj[i].hitAreaY + gameObj[i].haHight/2;
-       // iZ = gameObj[i].hitAreaZ + gameObj[i].haHojd/2;
+        if (gameObj[i].z) iZ = gameObj[i].z;// + gameObj[i].haHojd/2;
     }
     else{
         iX = gameObj[i].x + gameObj[i].width / 2;
@@ -124,7 +139,7 @@ function objectHit(i){
     }
     
     for (var j=0; j < gameObj.length; j++){
-	   if (j != i && gameObj[j].floor == floor){
+	   if (j != i && gameObj[j].floor == floor){ 
         if (gameObj[j].hitAreaX){
             jX = gameObj[j].hitAreaX;
             jY = gameObj[j].hitAreaY;
@@ -262,10 +277,10 @@ function getPosition(index){
 
 }
 
+
 function pointOfpic(index){
     //l¨Leverera två punkter för att kolla at man inte går i vägg eller något
-//if (index>0) {console.log("popIndex" + index);}
-//if (index>0) {console.log("popIndex" + gameObj[index].vaderstrack);}
+
 var v = gameObj[index].x+5;
 var n = gameObj[index].y +5; 
 var s = gameObj[index].y + gameObj[index].hight-5;
