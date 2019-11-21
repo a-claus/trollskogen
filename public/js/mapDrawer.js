@@ -120,22 +120,49 @@ function cmio(index){ //check move in order
 
 }
 
+function obstacleZ(index, hittad){
+    let zGolvA = gameObj[index].z;
+    let zTakA = gameObj[index].z + gameObj[index].hojd;
+    let zGolvB = gameObj[hittad].z;
+    let zTakB = gameObj[hittad].z + gameObj[hittad].hojd;
+    
+    if (zGolvA < zTakB && zTakA > zGolvB){return true;}
+    return false;
+}
+
+function gravity(index, golv){
+//kolla fall
+    
+if (jump.hojd > jump.golv){
+	jump.fall = jump.fall - 0.05;
+	jump.hojd = jump.hojd + jump.fall;}
+if (jump.hojd < jump.golv){
+		jump.fall = jump.fall + 0.1;
+		jump.hojd = jump.hojd + jump.fall;
+		if (jump.hojd > jump.golv) {jump.hojd = jump.golv; jump.fall=0}
+	}
+	return jump;
+}
+    
+
 
 
 function objectHit(i){
     
     var floor = gameObj[i].floor;
     var iX; var iY; var iZ;
-    var jX; var jY; var jZ; var jW; var jH; let jHojd = .75;
+    var jX; var jY; var jW; var jH; 
+    //let jHojd = .5;
+    //let zetA = false; let zetB = false; 
     
     if (gameObj[i].hitAreaX){
         iX = gameObj[i].hitAreaX + gameObj[i].haWidth/2;
         iY = gameObj[i].hitAreaY + gameObj[i].haHight/2;
-        if (gameObj[i].z) iZ = gameObj[i].z;// + gameObj[i].haHojd/2;
     }
     else{
         iX = gameObj[i].x + gameObj[i].width / 2;
         iY = gameObj[i].y + gameObj[i].hight / 2;
+        
     }
     
     for (var j=0; j < gameObj.length; j++){
