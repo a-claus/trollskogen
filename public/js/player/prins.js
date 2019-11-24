@@ -54,6 +54,13 @@ BILD SPRITES MAP
 	halvaHight: 20,
 
 	moving: false,
+	z: 1,
+	fall: {
+		on: false,
+		acc: 0,
+		ZunderZero: 1,
+		drawer: 1
+	},
 	
 	move: function (){ 
 		this.speedX = 0;
@@ -81,30 +88,20 @@ BILD SPRITES MAP
 		if (this.jump.hojd != 1) {
 			this.jump = gravity(this.jump);}
     	if (this.spriteTimer == 30) {this.spriteTimer = 0;}
-    	if (this.spriteTimer < 15) { spriteNR = 0;}
-    	if (this.spriteTimer > 14) { spriteNR = 1;}
-    	if (this.moving == false) { spriteNR = 2;}
+    	if (this.spriteTimer < 15) { spriteNR = 0; }
+    	if (this.spriteTimer > 14) { spriteNR = 1; }
+    	if (this.moving == false) { spriteNR = 2; }
 		var ctx = myGameArea.context;
-    	ctx.drawImage(this.sprite, this.spriteSchema[this.vaderstrack][spriteNR][0], this.spriteSchema[this.vaderstrack][spriteNR][1], this.spriteSchema[this.vaderstrack][spriteNR][2], this.spriteSchema[this.vaderstrack][spriteNR][3], this.x - (40 * this.jump.hojd/2-20), this.y - (40 * this.jump.hojd/2-20), 40 * this.jump.hojd, 40 * this.jump.hojd);
+    	ctx.drawImage(this.sprite, this.spriteSchema[this.vaderstrack][spriteNR][0], this.spriteSchema[this.vaderstrack][spriteNR][1], this.spriteSchema[this.vaderstrack][spriteNR][2], this.spriteSchema[this.vaderstrack][spriteNR][3], this.x - (40 * this.fall.drawer/2-20), this.y - (40 * this.fall.drawer/2-20), 40 * this.fall.drawer, 40 * this.fall.drawer);
 		//ctx.drawImage(this.sprite, this.spriteSchema[this.vaderstrack][spriteNR][0], this.spriteSchema[this.vaderstrack][spriteNR][1], this.spriteSchema[this.vaderstrack][spriteNR][2], this.spriteSchema[this.vaderstrack][spriteNR][3], this.x - this.halvaWidth - (40 * this.jump.hojd/2-20), this.y - this.halvaHight -(40 * this.jump.hojd/2-20), 40 * this.jump.hojd, 40 * this.jump.hojd);
 		this.moving = false;
 		}
 });
 function hopp(jump){
-	if (jump.hojd==jump.golv){jump.fall = 0.3; jump.hojd = 1.4}
-	return jump;
-}
-function gravity(jump){
-	//console.log(jump.hojd + " " +jump.fall);
+	if (jump.on == false){jump.acc=.4; }
 	
-if (jump.hojd > jump.golv){
-	jump.fall = jump.fall - 0.05;
-	jump.hojd = jump.hojd + jump.fall;}
-if (jump.hojd < jump.golv){
-		jump.fall = jump.fall + 0.1;
-		jump.hojd = jump.hojd + jump.fall;
-		if (jump.hojd > jump.golv) {jump.hojd = jump.golv; jump.fall=0}
-	}
 	return jump;
 }
+
+
 

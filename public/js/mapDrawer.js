@@ -1,8 +1,9 @@
 
 var moveV = false; var moveO = false; moveS = false; var moveN = false; var magStigNamn = "none";
+let golv; let tak;
 function updateGameArea(){
     
-var walk; let z;
+var walk; let z; 
    
  // Loopa floors    
     for (let floor = 1; floor <= gameObj[0].floor; floor++){
@@ -22,6 +23,7 @@ var walk; let z;
 Monster och dylikt
 -------------------*/
         for (i = 0; i < gameObj.length; i++){
+            golv = []; tak = [];
             
             if (gameObj[i].floor) {z = Math.floor(gameObj[i].floor);} else {Math.floor(gameObj[i].z);} //tillfällig
             if (gameObj[i].figur == true && z == floor){
@@ -34,6 +36,8 @@ Monster och dylikt
                 if (gameObj[i].speedY != 0 || gameObj[i].speedX !=0) walk = checkMoveInOrder(i);
                 gameObj[i].x = gameObj[i].x + walk * gameObj[i].speedX;
                 gameObj[i].y = gameObj[i].y + walk * gameObj[i].speedY;
+                checkFall(i);
+                console.log(gameObj[i].fall.drawer);
                 gameObj[i].draw();
                 if (gameObj[i].vad == "spelare") {nyRutaKontroll(i);}
             }
@@ -84,6 +88,7 @@ function checkMoveInOrder(index){
 
 
                     if (hit != null){
+
                         walker.go=0;
                         console.log("hit");
                         if (i == 0 || hit == 0){
@@ -100,48 +105,70 @@ function checkMoveInOrder(index){
 
 }
 
-function cmio(index){ //check move in order
-    let xyz; var walker = {go:0, area: "nn"}; 
 
-// Vissa ska flyga, vandra genom skog och natur. Dock ska flygande objekt kunna attackera.
-    if (gameObj[i].specialMove || gameObj[i].hojd >= 5) return 1;
-// Räkna ut punkter som ska kontrolleras , eller räcker det med en?
-    xyz = pointOfpic(index);
-//kolla om kartan sätter hinder
-    walker = findwall(xyz);
-
-    //Loopa genom de olika hitarearorna.
-
-    if (hitObjects > 0){
-        
-    }
-    // Vad ska hända vid hit
-
-
-}
 
 function obstacleZ(index, hittad){
     let zGolvA = gameObj[index].z;
     let zTakA = gameObj[index].z + gameObj[index].hojd;
     let zGolvB = gameObj[hittad].z;
     let zTakB = gameObj[hittad].z + gameObj[hittad].hojd;
+
+    if (zGolvA == undefined || zGolvB == undefined) {console.log("saknar Z");return "saknas";}
     
     if (zGolvA < zTakB && zTakA > zGolvB){return true;}
     return false;
 }
 
-function gravity(index, golv){
-//kolla fall
+function checkFall(index){
+    let c; let diff;
+    golv.sort(function(a, b){return b - a}); //10 8 6
+    diff = gameObj[index].z - golv[0];
     
-if (jump.hojd > jump.golv){
-	jump.fall = jump.fall - 0.05;
-	jump.hojd = jump.hojd + jump.fall;}
-if (jump.hojd < jump.golv){
-		jump.fall = jump.fall + 0.1;
-		jump.hojd = jump.hojd + jump.fall;
-		if (jump.hojd > jump.golv) {jump.hojd = jump.golv; jump.fall=0}
-	}
-	return jump;
+    
+    if (diff > 0 ) {
+        gameObj[index].fall.ZunderZero = gameObj[index].z;
+        gameObj[index].fall.on = true;
+    }
+
+    if (gameObj[index].fall.on = true){gravity(index, diff);}
+
+}
+
+function gravity(index, diff){
+// kolla fall
+console.log("!!!");
+    gameObj[index].fall.acc -= 0.1;
+    
+
+    if (diff <= 0)
+        { 
+            if (gameObj[index].fall.acc <= 0) {
+                gameObj[index].fall.acc = gameObj[index].fall.acc / 2;
+                gameObj[index].fall.acc += 0.15;
+            }
+        }
+
+        gameObj[index].ZunderZero +=  gameObj[index].fall.acc;
+
+        if  (gameObj[index].ZunderZero < golv[0] ) gameObj[index].z = golv[0];
+        if  (gameObj[index].ZunderZero >= golv[0] ) gameObj[index].z = gameObj[index].fall.ZunderZero;
+
+        if (gameObj[index].fall.ZunderZero > golv[0]){
+            gameObj[index].fall.on = false;
+            gameObj[índex].z = gameObj[index].ZunderZero
+
+        }
+            if (gameObj[index].fall.acc >= -0.1 && gameObj[index].fall.acc <= .1){
+                gameObj[index].fall.acc = 0;
+                gameObj[index].fall.on = false;
+                gameObj[index].z = golv[0];
+                gameObj[index].fall.ZunderZero = golv[0];
+                
+            }
+
+    console.log(golv[0]);  
+    gameObj[index].fall.drawer = 1 + gameObj[index].fall.ZunderZero - golv[0];
+    console.log("b" + gameObj[index].fall.drawer); 
 }
     
 
@@ -152,6 +179,7 @@ function objectHit(i){
     var floor = gameObj[i].floor;
     var iX; var iY; var iZ;
     var jX; var jY; var jW; var jH; 
+    let bullsEye; let jjj = -1;
     //let jHojd = .5;
     //let zetA = false; let zetB = false; 
     
@@ -167,18 +195,18 @@ function objectHit(i){
     
     for (var j=0; j < gameObj.length; j++){
 	   if (j != i && gameObj[j].floor == floor){ 
-        if (gameObj[j].hitAreaX){
-            jX = gameObj[j].hitAreaX;
-            jY = gameObj[j].hitAreaY;
-            jW = gameObj[j].haWidth;
-            jH = gameObj[j].haHight;
-        }
-        else{
-            jX = gameObj[j].x + 10;
-            jY = gameObj[j].y + 10;
-            jW = gameObj[j].width - 10;
-            jH = gameObj[j].hight -10 ;
-        }
+            if (gameObj[j].hitAreaX){
+                jX = gameObj[j].hitAreaX;
+                jY = gameObj[j].hitAreaY;
+                jW = gameObj[j].haWidth;
+                jH = gameObj[j].haHight;
+            }
+            else{
+                jX = gameObj[j].x + 10;
+                jY = gameObj[j].y + 10;
+                jW = gameObj[j].width - 10;
+                jH = gameObj[j].hight -10 ;
+            }   
        // console.log(jX + " " + jY);
 
             if (iX < jX + jW && iX > jX){
@@ -188,13 +216,19 @@ function objectHit(i){
            // if (iX < gameObj[j].x + gameObj[j].width -10 && iX > gameObj[j].x + 10){
 
              //   if (iY < gameObj[j].y + gameObj[j].hight -10 && iY > gameObj[j].y+10){
-
-                    return j; 
+                    bullsEye = obstacleZ(i, j);
+                    if (bullsEye = "saknas") jjj = j;
+                    if (bullsEye = "hit") jjj = j;
+                    if (bullsEye = "under") golv.push(j)
+                    if (bullsEye = "over") tak.push(j)
+                    //return j; 
                 }
             }
-            return null;
+         
         }
     }
+    if (jjj>-1) return jjj;
+    if (jjj-1) return null;
 }
 
 

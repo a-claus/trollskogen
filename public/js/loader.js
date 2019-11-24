@@ -270,6 +270,16 @@ let brokantV = {
 			gameObj[0].speedX = 0; hojd = 1; return 0;}
     }
 }	
+
+let plan1 = {
+	miljo: false, figur : true, info: false,
+	draw: function(){},
+	move: function(){},
+	floor: 1,
+	x:0, y:0, width: 400, height: 400, z: 1, hojd : 0,
+	hitAction: function(){}
+};
+
 let brokantVfall = {
 	floor:2,  miljo: false, figur : true, info: false,
 	vem: "brokantHitFall",
@@ -587,7 +597,9 @@ switch (wood.namn){
 		ajaxer("./js/kartbitar/mimersbrunn.js");
 	break;
 	
-	case "Start": ajaxer("./js/kartbitar/start.js"); break;
+	case "Start": 
+		gameObj.push(plan1);
+		ajaxer("./js/kartbitar/start.js"); break;
 	case "Ravin1":
 		ajaxer("./js/kartbitar/ravin.js");
 		//kartObj.push(ravin1);
