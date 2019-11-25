@@ -85,8 +85,8 @@ BILD SPRITES MAP
 	draw: function(){
     	var spriteNR;
 		this.spriteTimer++;
-		if (this.jump.hojd != 1) {
-			this.jump = gravity(this.jump);}
+	//	if (this.jump.hojd != 1) {
+	//		this.jump = gravity(this.jump);}
     	if (this.spriteTimer == 30) {this.spriteTimer = 0;}
     	if (this.spriteTimer < 15) { spriteNR = 0; }
     	if (this.spriteTimer > 14) { spriteNR = 1; }

@@ -36,8 +36,8 @@ Monster och dylikt
                 if (gameObj[i].speedY != 0 || gameObj[i].speedX !=0) walk = checkMoveInOrder(i);
                 gameObj[i].x = gameObj[i].x + walk * gameObj[i].speedX;
                 gameObj[i].y = gameObj[i].y + walk * gameObj[i].speedY;
-                checkFall(i);
-                console.log(gameObj[i].fall.drawer);
+                if (gameObj[i].fall) checkFall(i);
+                
                 gameObj[i].draw();
                 if (gameObj[i].vad == "spelare") {nyRutaKontroll(i);}
             }
@@ -131,12 +131,12 @@ function checkFall(index){
     }
 
     if (gameObj[index].fall.on = true){gravity(index, diff);}
-
+    console.log("ZZZ" + gameObj[index].ZunderZero);
 }
 
 function gravity(index, diff){
 // kolla fall
-console.log("!!!");
+console.log("!!!" + ii);
     gameObj[index].fall.acc -= 0.1;
     
 
@@ -149,6 +149,7 @@ console.log("!!!");
         }
 
         gameObj[index].ZunderZero +=  gameObj[index].fall.acc;
+        console.log("ZZ" + gameObj[index].ZunderZero);
 
         if  (gameObj[index].ZunderZero < golv[0] ) gameObj[index].z = golv[0];
         if  (gameObj[index].ZunderZero >= golv[0] ) gameObj[index].z = gameObj[index].fall.ZunderZero;
@@ -162,11 +163,14 @@ console.log("!!!");
                 gameObj[index].fall.acc = 0;
                 gameObj[index].fall.on = false;
                 gameObj[index].z = golv[0];
-                gameObj[index].fall.ZunderZero = golv[0];
-                
+                gameObj[index].fall.ZunderZero = golv[0];  
             }
 
-    console.log(golv[0]);  
+    
+    if (golv[0] == undefined) {
+        golv[0] = gameObj[index].floor; 
+        console.log("fel?:" + index);}
+    console.log(golv[0] +gameObj[index].fall.ZunderZero); 
     gameObj[index].fall.drawer = 1 + gameObj[index].fall.ZunderZero - golv[0];
     console.log("b" + gameObj[index].fall.drawer); 
 }
