@@ -122,21 +122,28 @@ function obstacleZ(index, hittad){
 function checkFall(index){
     let c; let diff;
     golv.sort(function(a, b){return b - a}); //10 8 6
+      if (golv[0] == undefined) {
+        golv[0] = gameObj[index].floor; 
+        console.log("fel?:" + index);}
     diff = gameObj[index].z - golv[0];
-    
+     console.log("ZZZ" + gameObj[index].fall.on);
+    console.log(gameObj[index].z + " " + diff);
     
     if (diff > 0 ) {
         gameObj[index].fall.ZunderZero = gameObj[index].z;
+        console.log(gameObj[index].fall.ZunderZero);
         gameObj[index].fall.on = true;
     }
 
-    if (gameObj[index].fall.on = true){gravity(index, diff);}
+    if (gameObj[index].fall.on == true){
+        console.log(gameObj[index].fall.ZunderZero);
+        gravity(index, diff);}
     console.log("ZZZ" + gameObj[index].ZunderZero);
 }
 
 function gravity(index, diff){
 // kolla fall
-console.log("!!!" + ii);
+console.log("!!!");
     gameObj[index].fall.acc -= 0.1;
     
 
