@@ -112,10 +112,11 @@ function obstacleZ(index, hittad){
     let zTakA = gameObj[index].z + gameObj[index].hojd;
     let zGolvB = gameObj[hittad].z;
     let zTakB = gameObj[hittad].z + gameObj[hittad].hojd;
-
+    console.log("obsZ");
     if (zGolvA == undefined || zGolvB == undefined) {console.log("saknar Z");return "saknas";}
     
     if (zGolvA < zTakB && zTakA > zGolvB){return true;}
+    
     return false;
 }
 
@@ -123,28 +124,32 @@ function checkFall(index){
     let c; let diff;
     golv.sort(function(a, b){return b - a}); //10 8 6
       if (golv[0] == undefined) {
-        golv[0] = gameObj[index].floor; 
+        //golv[0] = gameObj[index].floor; 
+        golv[0] = 1; 
         console.log("fel?:" + index);}
+
     diff = gameObj[index].z - golv[0];
      console.log("ZZZ" + gameObj[index].fall.on);
     console.log(gameObj[index].z + " " + diff);
     
     if (diff > 0 ) {
         gameObj[index].fall.ZunderZero = gameObj[index].z;
-        console.log(gameObj[index].fall.ZunderZero);
         gameObj[index].fall.on = true;
     }
 
     if (gameObj[index].fall.on == true){
         console.log(gameObj[index].fall.ZunderZero);
         gravity(index, diff);}
-    console.log("ZZZ" + gameObj[index].ZunderZero);
+    console.log("ZZZ" + gameObj[index].fall.ZunderZero);
 }
 
 function gravity(index, diff){
 // kolla fall
-console.log("!!!");
-    gameObj[index].fall.acc -= 0.1;
+console.log("acc" + gameObj[index].fall.acc);
+console.log("Zeta" + gameObj[index].fall.ZunderZero);
+    
+gameObj[index].fall.acc -= 0.1;
+console.log("acc2" + gameObj[index].fall.acc);
     
 
     if (diff <= 0)
@@ -155,15 +160,15 @@ console.log("!!!");
             }
         }
 
-        gameObj[index].ZunderZero +=  gameObj[index].fall.acc;
-        console.log("ZZ" + gameObj[index].ZunderZero);
+        gameObj[index].fall.ZunderZero +=  gameObj[index].fall.acc;
+        console.log("Zchange" + gameObj[index].fall.ZunderZero);
 
-        if  (gameObj[index].ZunderZero < golv[0] ) gameObj[index].z = golv[0];
-        if  (gameObj[index].ZunderZero >= golv[0] ) gameObj[index].z = gameObj[index].fall.ZunderZero;
+        if  (gameObj[index].fall.ZunderZero < golv[0] ) gameObj[index].z = golv[0];
+        if  (gameObj[index].fall.ZunderZero >= golv[0] ) gameObj[index].z = gameObj[index].fall.ZunderZero;
 
         if (gameObj[index].fall.ZunderZero > golv[0]){
             gameObj[index].fall.on = false;
-            gameObj[índex].z = gameObj[index].ZunderZero
+            gameObj[index].z = gameObj[index].ZunderZero
 
         }
             if (gameObj[index].fall.acc >= -0.1 && gameObj[index].fall.acc <= .1){
@@ -175,9 +180,11 @@ console.log("!!!");
 
     
     if (golv[0] == undefined) {
-        golv[0] = gameObj[index].floor; 
+        //golv[0] = gameObj[index].floor; 
+        golv[0] =1; 
         console.log("fel?:" + index);}
-    console.log(golv[0] +gameObj[index].fall.ZunderZero); 
+    console.log(gameObj[index].floor);    
+    console.log(golv[0] + "- " +gameObj[index].fall.ZunderZero); 
     gameObj[index].fall.drawer = 1 + gameObj[index].fall.ZunderZero - golv[0];
     console.log("b" + gameObj[index].fall.drawer); 
 }
