@@ -70,7 +70,7 @@ BILD SPRITES MAP
     	if (keyMap[39] == true || moveO == true) {this.speedX = 2; this.moving = true; this.vaderstrack="oster";}
     	if (keyMap[38] == true || moveN == true) {this.speedY = -2; this.moving = true; this.vaderstrack="norr";}
     	if (keyMap[40] == true || moveS == true) {this.speedY = 2; this.moving = true; this.vaderstrack="soder";}
-		if (keyMap[32] == true) {this.fall = hopp(this.fall)}
+		if (keyMap[32] == true) {keyMap[32] == false; this.fall = hopp(this.fall)}
 	
 	},
 	spriteSchema:
@@ -99,13 +99,13 @@ BILD SPRITES MAP
 });
 function hopp(jump){
 	console.log("----------------hoppla-------------------------");
-	if (jump.on == false){
+	if (jump.acc == 0){
 		
 		jump.on = true;
 		jump.acc = 0.4;
 		return jump;
 	}
-	
+	return jump;
 	
 }
 
