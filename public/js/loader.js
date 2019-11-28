@@ -26,25 +26,29 @@ function studio(){
 
 }
 
-class obstacleKub { //extends Figur
+class ObstacleKub { //extends Figur
     constructor(x, y, z, hight, width, hojd){
         this.x = x;
         this.y = y;
         this.z = z;
-        this.width = width;
+		this.width = width;
         this.hight = hight;
         this.hojd = hojd;
+        this.floor = Math.abs(this.z);
     }
+    hitAction(){}
 }
 
 function makeBro(vs){
 	if (vs="NS"){
-		gameObj.push(new obstacleKub(150,170,2,60,20,.3)); //vast
-		gameObj.push(new obstacleKub(170,230,2,60,20,.3)); //ost
+		gameObj.push(new ObstacleKub(150,170,2,60,20,.3)); //vast
+		gameObj.push(new ObstacleKub(170,230,2,60,20,.3)); //ost
+		gameObj.push(new ObstacleKub(170,0,2,60,400,0)); //road
 	}
 	if (vs="VO"){
-		gameObj.push(new obstacleKub(150,170,2,20,60,.3)); //vast
-		gameObj.push(new obstacleKub(230,170,2,20,60,.3)); //ost
+		gameObj.push(new ObstacleKub(150,170,2,20,60,.3)); //vast
+		gameObj.push(new ObstacleKub(230,170,2,20,60,.3)); //ost
+		gameObj.push(new ObstacleKub(0,170,2,400,60,0)); // road
 	}
 
 }
@@ -591,30 +595,33 @@ switch (wood.namn){
 
 	case "FyraBroVO": 
 		kartObj.push(roadVertikal, tunnelN, tunnelS, roadHorisontal, broHorisontal,testRuta);
-		gameObj.push(brokantN);
+		/*gameObj.push(brokantN);
 		gameObj.push(brokantNfall);
 		gameObj.push(brokantS);
-		gameObj.push(brokantSfall);
+		gameObj.push(brokantSfall);*/
+		console.log("FBVO");
+		makeBro("VO")
 		
-		hitObjects++;
-		roadVertikal.floor=1;
+		//hitObjects++;
+		//roadVertikal.floor=1;
 		
 		//tunnlar är alltid floor 1;
-		roadHorisontal.floor=2;
+		//roadHorisontal.floor=2;
 		//bro alltid floor 2;
 	break;
 	case "FyraBroNS": 
 		console.log("FBNS");
 		kartObj.push(roadHorisontal, tunnelV, tunnelO, roadVertikal, broVertikal,testRuta);
-		gameObj.push(brokantV);
+		makeBro("NS");
+		/*gameObj.push(brokantV);
 		gameObj.push(brokantVfall);
 		gameObj.push(brokantO);
-		gameObj.push(brokantOfall);
+		gameObj.push(brokantOfall);*/
 		
-		hitObjects++;
-		roadVertikal.floor=2;
+		//hitObjects++;
+		//roadVertikal.floor=2;
 		//tunnlar är alltid floor 1;
-		roadHorisontal.floor=1;
+		//roadHorisontal.floor=1;
 		//bro alltid floor 2;
 	break;
 	case "Svärdet i stenen":
