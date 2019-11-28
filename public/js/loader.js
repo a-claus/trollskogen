@@ -26,6 +26,29 @@ function studio(){
 
 }
 
+class obstacleKub { //extends Figur
+    constructor(x, y, z, hight, width, hojd){
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.width = width;
+        this.hight = hight;
+        this.hojd = hojd;
+    }
+}
+
+function makeBro(vs){
+	if (vs="NS"){
+		gameObj.push(new obstacleKub(150,170,2,60,20,.3)); //vast
+		gameObj.push(new obstacleKub(170,230,2,60,20,.3)); //ost
+	}
+	if (vs="VO"){
+		gameObj.push(new obstacleKub(150,170,2,20,60,.3)); //vast
+		gameObj.push(new obstacleKub(230,170,2,20,60,.3)); //ost
+	}
+
+}
+
 let bg = {
 	namn: "bg", miljo: true, figur : false, info: false, floor:1,
 	draw: function(){
@@ -220,6 +243,8 @@ let tunnelO = {
          ctx.fillRect(200,170,50,60);
     }
 }
+
+
 let broHorisontal= {
 
 	floor:2, 	miljo: true, figur : false, info: false,
@@ -234,6 +259,7 @@ let broVertikal = {
     }
 }
 var hojd = 1;
+
 let brokantV = {
 	floor:2,  miljo: false, figur : true, info: false,
 	vem: "brokantHitAreaV",
@@ -280,6 +306,9 @@ let plan1 = {
 	hitAction: function(){}
 };
 
+
+
+
 let brokantVfall = {
 	floor:2,  miljo: false, figur : true, info: false,
 	vem: "brokantHitFall",
@@ -317,8 +346,8 @@ let brokantO = {
 	draw: function(){},
 	move: function(){},
 	//ctx.fillRect(230, 170, 20, 60);
-	x: 230, y: 170,
-    speedX: 0, speedY: 0,
+	x: 230, y: 170, z:2, 
+    speedX: 0, speedY: 0, hojd: .3,
 	width: 20, hight: 60,
 	doIt: function(){
 		
