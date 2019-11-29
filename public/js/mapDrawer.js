@@ -25,6 +25,7 @@ Monster och dylikt
         for (i = 0; i < gameObj.length; i++){
             golv = []; tak = [];
             
+            
             if (gameObj[i].floor) {z = Math.floor(gameObj[i].floor);} else {Math.floor(gameObj[i].z);} //tillfällig
             if (gameObj[i].figur == true && z == floor){
 
@@ -236,9 +237,10 @@ function objectHit(i){
                     bullsEye = obstacleZ(i, j);
                     if (bullsEye = "saknas") jjj = j;
                     if (bullsEye = "hit") jjj = j;
-                    if (bullsEye = "under") golv.push(j)
-                    if (bullsEye = "over") tak.push(j)
-                    //return j; 
+                    if (bullsEye = "under") golv.push(gameObj[j].z);
+                    if (bullsEye = "over") tak.push(gameObj[j].z);
+                    console.log("_____G____" + golv.length);
+                    console.log(golv);
                 }
             }
          
@@ -432,7 +434,7 @@ function nyRutaKontroll(index){
            break;
         }
 //console.log("nr:"  + nr);
-        if (nr == true) {gameStatus.push(nyruta); movepause = true;}
+        if (nr == true) {gameStatus.push(nyruta); movepause = true; console.log("F" +  gameObj[0].floor)}
 }
 
 function nyruta(){
