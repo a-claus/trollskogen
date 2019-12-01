@@ -25,6 +25,7 @@ function studio(){
 }
 
 }
+//x
 
 class ObstacleKub { //extends Figur
     constructor(x, y, z, hight, width, hojd){
