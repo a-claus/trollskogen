@@ -198,16 +198,19 @@ function objectHit(i){
     var iX; var iY; var iZ;
     var jX; var jY; var jW; var jH; 
     let bullsEye; let jjj = -1;
+    let NS; let VO;
+
+    
     //let jHojd = .5;
     //let zetA = false; let zetB = false; 
     
     if (gameObj[i].hitAreaX){
-        iX = gameObj[i].hitAreaX + gameObj[i].haWidth/2;
-        iY = gameObj[i].hitAreaY + gameObj[i].haHight/2;
+        iX = gameObj[i].hitAreaX + gameObj[i].haWidth/2 + gameObj[i].speedX
+        iY = gameObj[i].hitAreaY + gameObj[i].haHight/2 + gameObj[i].speedY;
     }
     else{
-        iX = gameObj[i].x + gameObj[i].width / 2;
-        iY = gameObj[i].y + gameObj[i].hight / 2;
+        iX = gameObj[i].x + gameObj[i].width / 2 + gameObj[i].speedX;
+        iY = gameObj[i].y + gameObj[i].hight / 2 + gameObj[i].speedY;
         
     }
     
@@ -301,13 +304,17 @@ for (var i = 0; i<p.length; i++){
 
 
          case "120 120 120": //under bron
-            //if (p==0) { 
-           // special="tunnel"; 
+           
             walker.go = 1;
             walker.area = "road";
-            //} //xyz
-            
             break;
+          case "128 128 128": //kvadrat
+           
+            walker.go = 1;
+            walker.area = "road";
+            break;
+
+
         case "0 128 0":
             walker.go=0;
             walker.area = "wood";

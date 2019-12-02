@@ -15,25 +15,25 @@ card.push({id:10, namn:"Lyktstolpe", url:"./js/cards/lyktstolpe.js", no:[4]});
 
 var kartbit=[];//hej
 
-kartbit.push({namn:"Road", norr:1,soder:1,ost:1,vast:1, typ:"glanta",floors:1, actionIndex:-1}); // 5
-kartbit.push({namn:"Road",norr:0,soder:1,ost:1,vast:1, typ:"glanta",floors:1, actionIndex:-1});    //  5
-kartbit.push({namn:"Road",norr:1,soder:0,ost:1,vast:1, typ:"glanta",floors:1,actionIndex:-1});
-kartbit.push({namn:"Road",norr:1,soder:1,ost:1,vast:0, typ:"glanta",floors:1,actionIndex:-1});
-kartbit.push({namn:"Road",norr:1,soder:1,ost:0,vast:1, typ:"glanta",floors:1,actionIndex:-1});
-kartbit.push({namn:"Road",norr:1,soder:1,ost:0,vast:0, typ:"glanta",floors:1,actionIndex:-1});
-kartbit.push({namn:"Road",norr:1,soder:0,ost:0,vast:1, typ:"glanta",floors:1,actionIndex:-1});
-kartbit.push({namn:"Road",norr:1,soder:0,ost:1,vast:0, typ:"glanta",floors:1,actionIndex:-1});
-kartbit.push({namn:"Road",norr:0,soder:0,ost:1,vast:1, typ:"glanta",floors:1,actionIndex:-1});
-kartbit.push({namn:"Road",norr:0,soder:1,ost:1,vast:0, typ:"glanta",floors:1,actionIndex:-1});
-kartbit.push({namn:"Road",norr:0,soder:1,ost:0,vast:1, typ:"glanta",floors:1,actionIndex:-1});
-kartbit.push({namn:"FyraBroVO",norr:1,soder:1,ost:2,vast:2, typ:"bro",floors:2,actionIndex:-1});
-kartbit.push({namn:"FyraBroNS",norr:2,soder:2,ost:1,vast:1, typ:"bro",floors:2,actionIndex:-1});
-kartbit.push({namn:"Svärdet i stenen", norr:1,soder:1,ost:1,vast:1, typ:"glantaSp", floors:1, actionIndex:0});
-kartbit.push({namn:"Mimers Brunn", norr:1,soder:1,ost:1,vast:1, typ:"glantaSp", floors:1, actionIndex:0});
-kartbit.push({namn:"Ravin1", norr:1, soder:1, ost:1, vast:1, typ:"stup", floors:1, actionIndex:-1});
-kartbit.push({namn:"Ravin",norr:2,soder:1,ost:1,vast:2, typ:"stup",floors:2,actionIndex:-1});
-kartbit.push({namn:"Hyllan",norr:1,soder:1,ost:1,vast:1, typ:"glantaSp",floors:1, actionIndex:-1});
-//kartbit.push({namn:"Start",norr:1,soder:1,ost:1,vast:1, typ:"start", bildBG: "/img/map_start.png", floors:1, actionIndex:-1});
+kartbit.push({index: 0, namn:"Road", norr:1,soder:1,ost:1,vast:1, typ:"glanta",floors:1, actionIndex:-1}); // 5
+kartbit.push({index:1, namn:"Road",norr:0,soder:1,ost:1,vast:1, typ:"glanta",floors:1, actionIndex:-1});    //  5
+kartbit.push({index: 2, namn:"Road",norr:1,soder:0,ost:1,vast:1, typ:"glanta",floors:1,actionIndex:-1});
+kartbit.push({index: 3 ,namn:"Road",norr:1,soder:1,ost:1,vast:0, typ:"glanta",floors:1,actionIndex:-1});
+kartbit.push({index:4,namn:"Road",norr:1,soder:1,ost:0,vast:1, typ:"glanta",floors:1,actionIndex:-1});
+kartbit.push({index:5 ,namn:"Road",norr:1,soder:1,ost:0,vast:0, typ:"glanta",floors:1,actionIndex:-1});
+kartbit.push({index:6,namn:"Road",norr:1,soder:0,ost:0,vast:1, typ:"glanta",floors:1,actionIndex:-1});
+kartbit.push({index:7 ,namn:"Road",norr:1,soder:0,ost:1,vast:0, typ:"glanta",floors:1,actionIndex:-1});
+kartbit.push({index:8 ,namn:"Road",norr:0,soder:0,ost:1,vast:1, typ:"glanta",floors:1,actionIndex:-1});
+kartbit.push({index:9,namn:"Road",norr:0,soder:1,ost:1,vast:0, typ:"glanta",floors:1,actionIndex:-1});
+kartbit.push({index:10,namn:"Road",norr:0,soder:1,ost:0,vast:1, typ:"glanta",floors:1,actionIndex:-1});
+kartbit.push({index:11,namn:"FyraBroVO",norr:1,soder:1,ost:2,vast:2, typ:"bro",floors:2,actionIndex:-1});
+kartbit.push({index:12,namn:"FyraBroNS",norr:2,soder:2,ost:1,vast:1, typ:"bro",floors:2,actionIndex:-1});
+kartbit.push({index:13,namn:"Svärdet i stenen", norr:1,soder:1,ost:1,vast:1, typ:"glantaSp", floors:1, actionIndex:0});
+kartbit.push({index:14,namn:"Mimers Brunn", norr:1,soder:1,ost:1,vast:1, typ:"glantaSp", floors:1, actionIndex:0});
+kartbit.push({index:15,namn:"Ravin1", norr:1, soder:1, ost:1, vast:1, typ:"stup", floors:1, actionIndex:-1});
+kartbit.push({index:16,namn:"Ravin",norr:2,soder:1,ost:1,vast:2, typ:"stup",floors:2,actionIndex:-1});
+kartbit.push({index:17,namn:"Hyllan",norr:1,soder:1,ost:1,vast:1, typ:"glantaSp",floors:1, actionIndex:-1});
+kartbit.push({namn:"Start",norr:1,soder:1,ost:1,vast:1, typ:"start", bildBG: "/img/map_start.png", floors:1, actionIndex:-1});
 
 
 var map=[]; 
@@ -96,13 +96,13 @@ for (var i = 0; i < 81; i++){
  		};
  
  	y++;
- 	if (y >= 17){ y=0; } //lottar ut kartbitar
+ 	if (y == 18){ y = 0; } //lottar ut kartbitar
 }
 }
 makeMap();
 
 function bytPlats(namn, vad="namn"){
-	console.log("check0");
+	console.log("check0a");
 
 	var indexZZ = map.findIndex(zz => zz[vad]==namn);
 	//console.log (map.findIndex(zz => zz["monster"]==8));
@@ -110,7 +110,7 @@ function bytPlats(namn, vad="namn"){
 	map[indexZZ] = map[4];
 	map[4] = tmp;
 }
-console.log("check0");
+console.log("check0b");
 bytPlats("Hyllan"); //newBagv1
 //bytPlats("Svärdet i stenen"); newBagv1
 //bytPlats(0,"card"); //skatt // newBagv1
@@ -137,7 +137,7 @@ function bytPlatsMedBlank(namn, vad, ruta){
 	console.log("ruta" + vilkenRuta);
 }
 console.log("check1");
-for(var i=0;i<9;i++) {map[i].edge="norr";}	
+for(var i =0;i<9;i++) {map[i].edge="norr";}	
 for(var i=0;i<73;i=i+9) {map[i].edge="vast";}
 for(var i=8;i<81;i=i+9) {map[i].edge="ost";}
 for(var i = 72; i < 81; i++) {map[i].edge="soder";}

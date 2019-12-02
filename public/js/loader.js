@@ -560,7 +560,7 @@ let broHitAreaNS = {
 }	
 let kvadrat = {
 	
-	miljo: false, figur : false, info: true, floor:1,
+	miljo: true, figur : false, info: false, floor:1,
 	draw: function(){
 		var ctx = myGameArea.context;
 		ctx.fillStyle = "grey";
@@ -634,7 +634,7 @@ switch (wood.namn){
 		//roadHorisontal.floor=1;
 		//bro alltid floor 2;
 	break;
-	case "Hylla": 
+	case "Hyllan": 
 		console.log("Hylla");
 		kartObj.push(glanta, entre, kvadrat);
 		gameObj.push(new ObstacleKub(150,150,1,100,100,.3));
