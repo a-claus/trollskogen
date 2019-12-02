@@ -3,6 +3,8 @@ TODO
 
 14: Hopp hitarea höjder
 
+	Lyckas introdusera z sökning. Nu försöker jag skapa objekt att stå på. Kan vara så att de olika floorerna ställer till det. Ska introducera en ruta med en ruta att stå på. Döper den till Hylla
+
 	- I mapDrawer har jag två sökningar. En på färg, en på area. 
 	Borde jag lägga in ett höjdvärde i xyz?
 	

@@ -558,6 +558,15 @@ let broHitAreaNS = {
    	ctx.globalAlpha = 1;
     }
 }	
+let kvadrat = {
+	
+	miljo: false, figur : false, info: true, floor:1,
+	draw: function(){
+		var ctx = myGameArea.context;
+		ctx.fillStyle = "grey";
+   		ctx.fillRect(150, 150, 100, 100);
+    }
+}	
 
 let ravin1 = {
 	image: "img/stup1.png", floor:1, miljo: true, figur : false, info: false,
@@ -624,6 +633,13 @@ switch (wood.namn){
 		//tunnlar är alltid floor 1;
 		//roadHorisontal.floor=1;
 		//bro alltid floor 2;
+	break;
+	case "Hylla": 
+		console.log("Hylla");
+		kartObj.push(glanta, entre, kvadrat);
+		gameObj.push(new ObstacleKub(150,150,1,100,100,.3));
+		//makeHylla();
+	
 	break;
 	case "Svärdet i stenen":
 		kartObj.push(glanta, entre, sis);

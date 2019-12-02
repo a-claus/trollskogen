@@ -32,8 +32,8 @@ kartbit.push({namn:"Svärdet i stenen", norr:1,soder:1,ost:1,vast:1, typ:"glanta
 kartbit.push({namn:"Mimers Brunn", norr:1,soder:1,ost:1,vast:1, typ:"glantaSp", floors:1, actionIndex:0});
 kartbit.push({namn:"Ravin1", norr:1, soder:1, ost:1, vast:1, typ:"stup", floors:1, actionIndex:-1});
 kartbit.push({namn:"Ravin",norr:2,soder:1,ost:1,vast:2, typ:"stup",floors:2,actionIndex:-1});
-kartbit.push({namn:"Start",norr:1,soder:1,ost:1,vast:1, typ:"start", bildBG: "/img/map_start.png", floors:1, actionIndex:-1});
-kartbit.push({namn:"Corner0",norr:0,soder:1,ost:1,vast:0, typ:"corner",floors:1,actionIndex:-1});
+kartbit.push({namn:"Hyllan",norr:1,soder:1,ost:1,vast:1, typ:"glantaSp",floors:1, actionIndex:-1});
+//kartbit.push({namn:"Start",norr:1,soder:1,ost:1,vast:1, typ:"start", bildBG: "/img/map_start.png", floors:1, actionIndex:-1});
 
 
 var map=[]; 
@@ -96,12 +96,13 @@ for (var i = 0; i < 81; i++){
  		};
  
  	y++;
- 	if(y>=16){y=0;}
+ 	if (y >= 17){ y=0; } //lottar ut kartbitar
 }
 }
 makeMap();
 
 function bytPlats(namn, vad="namn"){
+	console.log("check0");
 
 	var indexZZ = map.findIndex(zz => zz[vad]==namn);
 	//console.log (map.findIndex(zz => zz["monster"]==8));
@@ -109,6 +110,8 @@ function bytPlats(namn, vad="namn"){
 	map[indexZZ] = map[4];
 	map[4] = tmp;
 }
+console.log("check0");
+bytPlats("Hyllan"); //newBagv1
 //bytPlats("Svärdet i stenen"); newBagv1
 //bytPlats(0,"card"); //skatt // newBagv1
 //bytPlats("FyraBroNS");
@@ -132,14 +135,13 @@ function bytPlatsMedBlank(namn, vad, ruta){
 	console.log(map[ruta].card);
 	map[ruta].card = 1;
 	console.log("ruta" + vilkenRuta);
-	
 }
-
+console.log("check1");
 for(var i=0;i<9;i++) {map[i].edge="norr";}	
 for(var i=0;i<73;i=i+9) {map[i].edge="vast";}
 for(var i=8;i<81;i=i+9) {map[i].edge="ost";}
 for(var i = 72; i < 81; i++) {map[i].edge="soder";}
-
+console.log("check2");
 map[8].edge="cornerNO";
 
 map[80].edge="cornerSO";
@@ -149,7 +151,7 @@ map[72].edge="cornerSV";
 map[0].edge="cornerNV";
 
 //map[4].norr=99;
-map.push({kartbit: 17, namn:"Start", norr:1, soder:1, ost:1, vast:1, typ:"start", bildBG:"img/map_start.png",actionIndex:-1, floors:1});
+map.push({kartbit: 18, namn:"Start", norr:1, soder:1, ost:1, vast:1, typ:"start", bildBG:"img/map_start.png",actionIndex:-1, floors:1});
 //map[4]={kartbit:4, namn:"Mimers Brunn", norr:1,soder:1,ost:1,vast:1, typ:"glantaSp", floors:1, actionIndex:0, sak:1};
 console.log(map);
 console.log(card);
