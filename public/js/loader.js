@@ -560,12 +560,13 @@ let broHitAreaNS = {
 }	
 let kvadrat = {
 	
-	miljo: true, figur : false, info: false, floor:1,
+	miljo: true, figur : true, info: false, floor:1,
 	draw: function(){
 		var ctx = myGameArea.context;
 		ctx.fillStyle = "grey";
    		ctx.fillRect(150, 150, 100, 100);
-    }
+    },
+    move:{}
 }	
 
 let ravin1 = {

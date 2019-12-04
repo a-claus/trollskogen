@@ -3,6 +3,8 @@ TODO
 
 14: Hopp hitarea höjder
 
+	Det verkar som z:a inte hamnar på platta och därför låser obj.
+
 	Just nu fastnar movingobject i kvadrat.
 
 	Lyckas introdusera z sökning. Nu försöker jag skapa objekt att stå på. Kan vara så att de olika floorerna ställer till det. Ska introducera en ruta med en ruta att stå på. Döper den till Hylla

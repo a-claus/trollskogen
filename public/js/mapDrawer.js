@@ -109,6 +109,7 @@ function checkMoveInOrder(index){
 
 
 function obstacleZ(index, hittad){
+    //hit over under
     let zGolvA = gameObj[index].z;
     let zTakA = gameObj[index].z + gameObj[index].hojd;
     let zGolvB = gameObj[hittad].z;
@@ -116,9 +117,12 @@ function obstacleZ(index, hittad){
     console.log("obsZ");
     if (zGolvA == undefined || zGolvB == undefined) {console.log("saknar Z");return "saknas";}
     
-    if (zGolvA < zTakB && zTakA > zGolvB) {return true;}
+    if (zTakA <= zGolvB) {return "over";}
+    if (zGolvA >= zTakB ) {return "under";}
+    //if (zGolvA < zTakB && zTakA > zGolvB) 
+        return "hit";
     
-    return false;
+   // return "";
 }
 
 function checkFall(index){
@@ -233,25 +237,23 @@ function objectHit(i){
             if (iX < jX + jW && iX > jX){
 
                 if (iY < jY + jH && iY > jY){
-                    
-           // if (iX < gameObj[j].x + gameObj[j].width -10 && iX > gameObj[j].x + 10){
-
-             //   if (iY < gameObj[j].y + gameObj[j].hight -10 && iY > gameObj[j].y+10){
                     bullsEye = obstacleZ(i, j);
                     console.log("Bulls Eye" + bullsEye);
-                    if (bullsEye = "saknas") jjj = j;
-                    if (bullsEye = "hit") jjj = j;
-                    if (bullsEye = "under") golv.push(gameObj[j].z);
-                    if (bullsEye = "over") tak.push(gameObj[j].z);
+                    if (bullsEye == "saknas") jjj = j;
+                    if (bullsEye == "hit") jjj = j;
+                    if (bullsEye == "under") golv.push(gameObj[j].z + gameObj[j].hojd);
+                    if (bullsEye == "over") tak.push(gameObj[j].z);
                     console.log("_____G____" + golv.length);
-                    console.log(golv);
+                    console.log("_____G___:" + golv[golv.length - 1]);
+                    console.log("z" + gameObj[i].z)
+                    console.log("J:" + jjj);
                 }
             }
          
         }
     }
     if (jjj>-1) return jjj;
-    if (jjj-1) return null;
+    if (jjj == -1) return null;
 }
 
 
