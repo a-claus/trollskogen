@@ -116,7 +116,7 @@ function obstacleZ(index, hittad){
     console.log("obsZ");
     if (zGolvA == undefined || zGolvB == undefined) {console.log("saknar Z");return "saknas";}
     
-    if (zGolvA < zTakB && zTakA > zGolvB){return true;}
+    if (zGolvA < zTakB && zTakA > zGolvB) {return true;}
     
     return false;
 }
@@ -226,7 +226,7 @@ function objectHit(i){
                 jX = gameObj[j].x + 10;
                 jY = gameObj[j].y + 10;
                 jW = gameObj[j].width - 10;
-                jH = gameObj[j].hight -10 ;
+                jH = gameObj[j].hight - 10;
             }   
        // console.log(jX + " " + jY);
 
@@ -238,6 +238,7 @@ function objectHit(i){
 
              //   if (iY < gameObj[j].y + gameObj[j].hight -10 && iY > gameObj[j].y+10){
                     bullsEye = obstacleZ(i, j);
+                    console.log("Bulls Eye" + bullsEye);
                     if (bullsEye = "saknas") jjj = j;
                     if (bullsEye = "hit") jjj = j;
                     if (bullsEye = "under") golv.push(gameObj[j].z);
