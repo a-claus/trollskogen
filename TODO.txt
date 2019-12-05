@@ -1,9 +1,11 @@
 TODO
 ----------------------
+15. Ser inte kvadraten, när andra ssaker inte är där.
 
 14: Hopp hitarea höjder
 
 	Det verkar som z:a inte hamnar på platta och därför låser obj.
+		Den har landat, avslutat hoppet. Men sen startar hoppet igen, antagligen för att den är på en höjd.
 
 	Just nu fastnar movingobject i kvadrat.
 

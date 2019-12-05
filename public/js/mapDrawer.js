@@ -129,21 +129,27 @@ function checkFall(index){
     let c; let diff;
     
     golv.sort(function(a, b){return b - a}); //10 8 6
+    
       if (golv[0] == undefined) {
-        //golv[0] = gameObj[index].floor; 
+        golv[0] = gameObj[index].z; //test
         golv[0] = 1; 
         console.log("fel?:" + index);}
-
+        
     diff = gameObj[index].z - golv[0];
+    console.log("---" + diff );
+    
      
     if (diff > 0 ) {
         gameObj[index].fall.ZunderZero = gameObj[index].z;
         gameObj[index].fall.on = true;
     }
 
+    console.log(gameObj[index].fall.on + "---" + gameObj[index].z);
     if (gameObj[index].fall.on == true){
       
         gravity(index, diff);}
+
+        
    
 }
 
@@ -167,13 +173,11 @@ gameObj[index].fall.acc -= 0.05;
         
 
         if  (gameObj[index].fall.ZunderZero < golv[0] ) gameObj[index].z = golv[0];
-        if  (gameObj[index].fall.ZunderZero >= golv[0] ) gameObj[index].z = gameObj[index].fall.ZunderZero;
-
-        //if (gameObj[index].fall.ZunderZero > golv[0]){
-          //  gameObj[index].fall.on = false;
-           // gameObj[index].z = gameObj[index].fall.ZunderZero
-
-        //}
+        if  (gameObj[index].fall.ZunderZero >= golv[0] ){
+            gameObj[index].z = gameObj[index].fall.ZunderZero;
+             //  gameObj[index].fall.on = false;
+        }
+        
             if (gameObj[index].fall.acc >= -0.1 && gameObj[index].fall.acc <= .1){
                 if (gameObj[index].fall.ZunderZero >= .9 && gameObj[index].fall.ZunderZero <= 1.1){
                 gameObj[index].fall.acc = 0;
