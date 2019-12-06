@@ -130,10 +130,11 @@ function checkFall(index){
     
     golv.sort(function(a, b){return b - a}); //10 8 6
     
-      if (golv[0] == undefined) {
+    if (golv[0] == undefined) {
         golv[0] = gameObj[index].z; //test
         golv[0] = 1; 
-        console.log("fel?:" + index);}
+        console.log("fel?:" + index);
+    }
         
     diff = gameObj[index].z - golv[0];
     console.log("---" + diff );
@@ -193,6 +194,7 @@ gameObj[index].fall.acc -= 0.05;
         console.log("fel?:" + index);}
     
     gameObj[index].fall.drawer = 1 + gameObj[index].fall.ZunderZero - golv[0];
+    console.log("z" + gameObj[index].z);
     console.log(gameObj[index].fall.acc + " / " +gameObj[index].fall.ZunderZero); 
     console.log("b" + gameObj[index].fall.drawer + " / " + gameObj[index].fall.on); 
 }
