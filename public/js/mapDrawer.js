@@ -1,5 +1,6 @@
 
-var moveV = false; var moveO = false; moveS = false; var moveN = false; var magStigNamn = "none";
+var moveV = false; var moveO = false; moveS = false; var moveN = false; 
+var magStigNamn = "none";
 let golv; let tak;
 function updateGameArea(){
     
@@ -17,7 +18,21 @@ var walk; let z;
         }    
 
         drawFoto(floor);
-
+        
+        let listZ = gameObj.map(obj => { 
+            var objR = {};
+            if (obj.z == undefined) obj.z = 1;
+            objR[obj.index] = obj.z;  //obj.key
+            return objR;
+        });
+        console.log("test");
+        let i = 0;    
+        var indexOrdning = []; let L = listZ.length; i= 0; let prev;
+        while(i < L){
+            prev = listZ[i].z; 
+            while(listZ[++i] < prev) indexOrdning.push(i);
+        }
+    console.log(indexOrdning);
 
 /*-------Move Obj-----------
 Monster och dylikt
