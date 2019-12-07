@@ -15,9 +15,12 @@ function updateGamearea(){
     let listZ = gameObj.map(obj => { 
         //var objR = {};
         var objR = [];
-        if (obj.z == undefined) obj.z = 1;
+        if (obj.z == undefined) 
+            {obj.z = 1;
+            obj.hojd = .1;
+            }
         //objR[obj.index] = obj.z;  //obj.key
-        objR.push(obj.z);
+        objR.push(obj.z + obj.hojd);
         return objR;
     });
      
