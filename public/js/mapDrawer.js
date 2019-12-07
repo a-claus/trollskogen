@@ -5,6 +5,22 @@ let golv; let tak;
 function updateGameArea(){
     
 var walk; let z; 
+   let k = 0;   let l = 0;   
+   var listZ= [7,5.5,8,1];
+    var indexOrdning = []; let L = listZ.length; let plac=0;
+    while(k < L){
+         for (l = 0; l < L; l++){
+            
+
+            if (listZ[k] > listZ[l]) {
+                if (l != k) plac++;
+            }
+         }
+        indexOrdning[plac] = k;
+        plac = 0; k++;
+    }
+   
+console.log(indexOrdning);
    
  // Loopa floors    
     for (let floor = 1; floor <= gameObj[0].floor; floor++){
@@ -19,20 +35,7 @@ var walk; let z;
 
         drawFoto(floor);
         
-        let listZ = gameObj.map(obj => { 
-            var objR = {};
-            if (obj.z == undefined) obj.z = 1;
-            objR[obj.index] = obj.z;  //obj.key
-            return objR;
-        });
-        console.log("test");
-        let i = 0;    
-        var indexOrdning = []; let L = listZ.length; i= 0; let prev;
-        while(i < L){
-            prev = listZ[i].z; 
-            while(listZ[++i] < prev) indexOrdning.push(i);
-        }
-    console.log(indexOrdning);
+       
 
 /*-------Move Obj-----------
 Monster och dylikt

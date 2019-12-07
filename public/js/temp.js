@@ -20,10 +20,10 @@ function updateGamearea(){
     });
     console.log("test");
     let i = 0;    
-    var indexOrdning = []; let L = listZ.length; i= 0; let prev;
+    var indexOrdning = []; let L = listZ.length; let prev;
     while(i < L){
         prev = listZ[i].z; 
-        while(listZ[++i] < prev) indexOrdning.push(i);
+        while (listZ[++i] < prev) indexOrdning.push(i);
     }
 console.log(indexOrdning);
 
