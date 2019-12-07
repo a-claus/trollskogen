@@ -806,6 +806,31 @@ function textWriter(text, x, y, lineLength = 40, color= "white", align = "left")
     function leaveCard(){
         gameObj[0].placeMe = true; 
     }
+/*---------------------------------------------------------------
+    ARRAY FUNCTiONs
+----------------------------------------------------------------*/
+
+function listArrayOrder(array){
+    //array talar om vilken plats indexen har i nummerordning, låg till hög
+    let k = 0;   let l = 0;  
+    var indexOrdning = []; let L = array.length; let plac=0;
+    while(k < L){
+         for (l = 0; l < L; l++){
+            if (array[k] > array[l]) {
+                if (l != k) plac++;
+            }
+         }
+        indexOrdning[plac] = k;
+        plac = 0; k++;
+    }
+return indexOrdning;
+}
+
+
+/*---------------------------------------------------------------
+    DRAW FUNCTiONs
+----------------------------------------------------------------*/
+    
     var iData;
     function setScreenImage(){
       //  var ctx = myGameArea.context;
@@ -819,6 +844,11 @@ function textWriter(text, x, y, lineLength = 40, color= "white", align = "left")
         ctx.putImageData(iData, 0, 0);
     }
 
+
+
+/*---------------------------------------------------------------
+    MATH FUNCTION
+----------------------------------------------------------------*/
     function pyth(a, b){
         let x =Math.abs(gameObj[a].x - gameObj[b].x);
         let y = Math.abs(gameObj[a].y - gameObj[b].y);

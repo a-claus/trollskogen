@@ -13,19 +13,18 @@ function updateGamearea(){
     // Sortera höjd gameobj
     
     let listZ = gameObj.map(obj => { 
-        var objR = {};
+        //var objR = {};
+        var objR = [];
         if (obj.z == undefined) obj.z = 1;
-        objR[obj.index] = obj.z;  //obj.key
+        //objR[obj.index] = obj.z;  //obj.key
+        objR.push(obj.z);
         return objR;
     });
-    console.log("test");
-    let i = 0;    
-    var indexOrdning = []; let L = listZ.length; let prev;
-    while(i < L){
-        prev = listZ[i].z; 
-        while (listZ[++i] < prev) indexOrdning.push(i);
-    }
-console.log(indexOrdning);
+     
+    //var listZ= [7,5.5,8,1];
+
+    listZ = listArrayOrder(listZ);
+     console.log(listZ);
 
     // Loop
 
