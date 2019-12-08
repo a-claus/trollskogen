@@ -29,9 +29,17 @@ function updateGamearea(){
     listZ = listArrayOrder(listZ);
      console.log(listZ);
 
+     //HÖJDLIMIT
+     let zetaLimit = gameObj[0].z + gameObj[0].hojd + .5;
+
     // Loop
+    for (i = 0; i < gameObj.length; i++){
+        var j = listZ.indexOf(i);
+        if(gameObj[j].z + gameObj[j].hojd > zetaLimit) break;
+
 
         // Kolla om obj flyttar om det kan.
+        
         // Kolla om obj ska hoppa falla och funkar
         // HitActions // nyrutakontroll
         // Rita obj
@@ -43,7 +51,7 @@ function updateGamearea(){
         //magicstig
 
     
-
+    }
 
 
 
