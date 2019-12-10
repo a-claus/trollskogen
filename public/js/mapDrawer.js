@@ -107,7 +107,7 @@ function checkMoveInOrder(index){
                         console.log("hit");
                         if (i == 0 || hit == 0){
                             hittad = i + hit;
-                            var tempGo = gameObj[i+hit].hitAction();
+                            var tempGo = gameObj[i+hit].hitAction(); //verkar inte vara ngt problem att skicka med nuffra i parantesen
                             if (tempGo > 0) walker.go += tempGo;
                         }
                     }
