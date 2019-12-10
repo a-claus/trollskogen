@@ -494,7 +494,7 @@ let edgeNorr={
 	  console.log("Nyruta");   
   }
   };
-  
+  //--
   let edgeSoder =
    {
 	  namn:"edgeSoder",
