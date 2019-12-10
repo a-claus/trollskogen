@@ -69,42 +69,7 @@ function updateGamearea(){
 
 }
 
-//---------------------------------------------
-//
-// Äggblomma
-//
-//---------------------------------------------
-/*
-
- Wanden ska läggas i säcken.
- Wanden kommer att vrida rutan man är på. Det ska kosta en magienergi.
-*/
-
-
-gameObj.push(
- {
-  namn:"edgeNorr",
-    miljo: false, figur : true, info: false,
-    vem: "edgeNorr",
-    vad: "wall",
-    //placeMe: false,
-    //moving: false,
-  vaderstrack: "soder",
-  draw: function(){},
-  move: function (){},
-    x: 0, y: 0, z:0
-    speedX: 0, speedY: 0,
-    width: 400, hight: 1, hojd: 5,
-hitAction : function(){
-    movepause = true;
-    gameStatus.push(nyruta);
-    hitIndex = this.index;
-    console.log("Nyruta");   
-}
-
-});
-
-hitObjects++;
+//hitObjects++;
 
 
 

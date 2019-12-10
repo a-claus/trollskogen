@@ -476,6 +476,70 @@ let brokantNfall = {
     }
 }
 
+let edgeNorr={
+	namn:"edgeNorr",
+	  //miljo: false,  info: false,
+	  //figur : true,
+	//  vem: "edgeNorr",
+	 // vad: "wall",
+	draw: function(){},
+	move: function (){},
+	  x: 0, y: 0, z:0,
+	  speedX: 0, speedY: 0,
+	  width: 400, hight: 1, hojd: 5,
+  hitAction : function(){
+	  movepause = true;
+	  gameStatus.push(nyruta);
+	  hitIndex = this.index;
+	  console.log("Nyruta");   
+  }
+  };
+  
+  let edgeSoder =
+   {
+	  namn:"edgeSoder",
+	  x: 0, y: 400, z:0,
+	  speedX: 0, speedY: 0,
+	  width: 400, hight: 1, hojd: 5,
+	  draw: function(){},
+	  move: function (){},
+	  hitAction : function(){
+	  movepause = true;
+	  gameStatus.push(nyruta);
+	  hitIndex = this.index;
+	  console.log("Nyruta");   
+	  }
+  };
+  let edgeVaster =
+   {
+	  namn:"edgeVaster",
+	  x: 0, y: 0, z:0,
+	  speedX: 0, speedY: 0,
+	  width: 1, hight: 400, hojd: 5,
+	  draw: function(){},
+	  move: function (){},
+	  hitAction : function(){
+	  movepause = true;
+	  gameStatus.push(nyruta);
+	  hitIndex = this.index;
+	  console.log("Nyruta");   
+	  }
+  };
+  let edgeOster =
+   {
+	  namn:"edgeOster",
+	  x: 400, y: 0, z:0,
+	  speedX: 0, speedY: 0,
+	  width: 1, hight: 400, hojd: 5,
+	  draw: function(){},
+	  move: function (){},
+	  hitAction : function(){
+	  movepause = true;
+	  gameStatus.push(nyruta);
+	  hitIndex = this.index;
+	  console.log("Nyruta");   
+	  }
+  };
 let brokantS = {
 	floor:2,  miljo: false, figur : true, info: false,
 	vem: "brokantHitAreaS",

@@ -568,7 +568,7 @@ function ajaxer(url){
 }
 
 function mapChange(vaderstrack){
-    console.log(tempArray);
+    //console.log(tempArray);
    deleteObjects();
     historik.push(wood.mapNR);
   //  if (vaderstrack )
