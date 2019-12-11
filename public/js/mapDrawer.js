@@ -2,6 +2,8 @@
 var moveV = false; var moveO = false; moveS = false; var moveN = false; 
 var magStigNamn = "none";
 let golv; let tak;
+
+
 function updateGameArea(){
     
 var walk; let z; 
@@ -53,7 +55,7 @@ Monster och dylikt
                 if (gameObj[i].fall) checkFall(i);
                 
                 gameObj[i].draw();
-                if (gameObj[i].vad == "spelare") {nyRutaKontroll(i);}
+              //  if (gameObj[i].vad == "spelare") {nyRutaKontroll(i);}
             }
 
             if (gameObj[i].effekt == true) {

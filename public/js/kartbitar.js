@@ -74,8 +74,6 @@ var blanda = shuffle();
 
 //blandadCards[];
 
-console.log("kb");
-
 
 function makeMap(){
 var y=0;
@@ -102,7 +100,6 @@ for (var i = 0; i < 81; i++){
 makeMap();
 
 function bytPlats(namn, vad="namn"){
-	console.log("check0a");
 
 	var indexZZ = map.findIndex(zz => zz[vad]==namn);
 	//console.log (map.findIndex(zz => zz["monster"]==8));
@@ -110,7 +107,6 @@ function bytPlats(namn, vad="namn"){
 	map[indexZZ] = map[4];
 	map[4] = tmp;
 }
-console.log("check0b");
 bytPlats("Hyllan"); //newBagv1
 //bytPlats("Svärdet i stenen"); newBagv1
 //bytPlats(0,"card"); //skatt // newBagv1
@@ -136,7 +132,6 @@ function bytPlatsMedBlank(namn, vad, ruta){
 	map[ruta].card = 1;
 	console.log("ruta" + vilkenRuta);
 }
-console.log("check1");
 for(var i =0;i<9;i++) {map[i].edge="norr";}	
 for(var i=0;i<73;i=i+9) {map[i].edge="vast";}
 for(var i=8;i<81;i=i+9) {map[i].edge="ost";}

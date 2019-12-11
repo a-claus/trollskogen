@@ -26,6 +26,7 @@ var moving = false;
 
 function startGame() {
    console.log("SG");
+   gameObj.push(edgeNorr, edgeSoder, edgeOster, edgeVaster);
     myGameArea.start();
     //figur.push(new Player()); ???
    // wood = new Wood(81); 
@@ -542,7 +543,7 @@ function deleteObject(vad){
 let hitObjects = 0;    
 function deleteObjects(){
      let hitObjects = 0;
-    if (gameObj.length>1) {gameObj.splice(1, gameObj.length - 1);}
+    if (gameObj.length > 5) {gameObj.splice(5, gameObj.length - 5);}
 
    
     kartObj.splice(1, kartObj.length - 1);

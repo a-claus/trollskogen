@@ -504,10 +504,11 @@ let edgeNorr={
 	  draw: function(){},
 	  move: function (){},
 	  hitAction : function(){
+	  console.log("+++++Nyruta");	
 	  movepause = true;
 	  gameStatus.push(nyruta);
 	  hitIndex = this.index;
-	  console.log("Nyruta");   
+	     
 	  }
   };
   let edgeVaster =

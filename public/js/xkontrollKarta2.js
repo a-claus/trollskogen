@@ -26,7 +26,7 @@ while (rutaAntal<81){
 		if (besokta[i].status=="otestad") raknadeRutor.push(i);
 	}
 	
-	if (raknadeRutor.length==0){
+	if (raknadeRutor.length == 0){
 		console.log("ajajja" + besokta.length); break;
 
 	}

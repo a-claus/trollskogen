@@ -1,6 +1,8 @@
 //variabler
 
+let zeta = true; let listZ = [];
 function updateGamearea(){
+    var walk; let z; 
 
     // kartobj, fotografering
     if (paparazzi == true){
@@ -11,7 +13,7 @@ function updateGamearea(){
     // Gameobj placeme
 
     // Sortera höjd gameobj
-    
+    if (zeta == true){ 
     let listZ = gameObj.map(obj => { 
         //var objR = {};
         var objR = [];
@@ -27,8 +29,9 @@ function updateGamearea(){
     //var listZ= [7,5.5,8,1];
 
     listZ = listArrayOrder(listZ);
+    zeta = false;
     // console.log(listZ);
-
+}
      //HÖJDLIMIT
      let zetaLimit = gameObj[0].z + gameObj[0].hojd + .5;
 
@@ -70,7 +73,5 @@ function updateGamearea(){
 }
 
 //hitObjects++;
-
-
 
 

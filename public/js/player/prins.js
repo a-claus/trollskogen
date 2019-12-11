@@ -97,6 +97,7 @@ BILD SPRITES MAP
 		this.moving = false;
 		}
 });
+
 function hopp(jump){
 	console.log("----------------hoppla-------------------------");
 	if (jump.acc == 0){
@@ -109,5 +110,5 @@ function hopp(jump){
 	
 }
 
-
+console.log("Prins klar");
 
