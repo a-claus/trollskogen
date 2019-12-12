@@ -4,8 +4,9 @@ var magStigNamn = "none";
 let golv; let tak;
 
 
-let zChange = true; listZ = [];
-function updateGamearea(){
+let zeta = true; listZ = [];
+
+function updateGameArea(){
     var walk; let z; 
 
     // kartobj, fotografering
@@ -13,36 +14,52 @@ function updateGamearea(){
         studio();
         paparazzi = false;
     }    
-    drawFoto(floor);
+    drawFoto(1);
     // Gameobj placeme
-
+console.log(gameObj);
     // Sortera höjd gameobj
-    
-    let listZ = gameObj.map(obj => { 
+    if (zeta == true){
+        listZ = gameObj.map(obj => { 
         //var objR = {};
-        var objR = [];
-        if (obj.z == undefined) obj.z = 1;
-        //objR[obj.index] = obj.z;  //obj.key
-        objR.push(obj.z);
-        return objR;
-    });
-     
-    //var listZ= [7,5.5,8,1];
-
-    listZ = listArrayOrder(listZ);
-     
+            var objR = [];
+            //objR[obj.index] = obj.z;  //obj.key
+            objR.push(obj.z + obj.hojd);
+            return objR;
+        });
+        console.log(listZ);
+        listZ = listArrayOrder(listZ);
+        zeta = false;
+    }
+     console.log(listZ);
     // Loop
-    for (i = 0; i < gameObj.length; i++){
+    for (let iii = 0; iii < gameObj.length; iii++){
         golv = []; tak = [];
-
+        let i = listZ[iii] 
         // Kolla om obj flyttar om det kan.
+        console.log(i);
+        if (gameObj[i].move() == true){
+            walk = checkMoveInOrder(i);
+            gameObj[i].x = gameObj[i].x + walk * gameObj[i].speedX;
+            gameObj[i].y = gameObj[i].y + walk * gameObj[i].speedY;
+        }
         // Kolla om obj ska hoppa falla och funkar
-        // HitActions // nyrutakontroll
+        if (gameObj[i].fall) checkFall(i);
+ 
         // Rita obj
+        gameObj[i].draw();
         
         // Effekter
+        if (gameObj[i].effekt == true) {
+            gameObj[i].move();
+            gameObj[i].draw();
+        }
 
         //info
+        for (i=0; i<kartObj.length; i++){
+            if (kartObj[i].info == true){
+                kartObj[i].draw();
+            }
+        }
 
         //magicstig
     }

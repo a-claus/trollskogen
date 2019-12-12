@@ -483,8 +483,8 @@ let edgeNorr={
 	//  vem: "edgeNorr",
 	 // vad: "wall",
 	draw: function(){},
-	move: function (){},
-	  x: 0, y: 0, z:0,
+	move: function (){return false;},
+	  x: 0, y: 0, z: 0,
 	  speedX: 0, speedY: 0,
 	  width: 400, hight: 1, hojd: 5,
   hitAction : function(){
@@ -498,18 +498,17 @@ let edgeNorr={
   let edgeSoder =
    {
 	  namn:"edgeSoder",
-	  x: 0, y: 300, z:0,
+	  x: 0, y: 300, z: 0,
 	  speedX: 0, speedY: 0,
 	  width: 400, hight: 1, hojd: 5,
 	  draw: function(){},
-	  move: function (){},
+	  move: function (){return false;},
 	  hitAction : function(){
 	  console.log("+++++Nyruta");	
 	  movepause = true;
 	  gameStatus.push(nyruta);
 	  hitIndex = this.index;
-	     
-	  }
+	    }
   };
   let edgeVaster =
    {
@@ -518,7 +517,7 @@ let edgeNorr={
 	  speedX: 0, speedY: 0,
 	  width: 1, hight: 400, hojd: 5,
 	  draw: function(){},
-	  move: function (){},
+	  move: function (){return false;},
 	  hitAction : function(){
 	  movepause = true;
 	  gameStatus.push(nyruta);
@@ -529,11 +528,11 @@ let edgeNorr={
   let edgeOster =
    {
 	  namn:"edgeOster",
-	  x: 400, y: 0, z:0,
+	  x: 400, y: 0, z: 0,
 	  speedX: 0, speedY: 0,
 	  width: 1, hight: 400, hojd: 5,
 	  draw: function(){},
-	  move: function (){},
+	  move: function (){return false;},
 	  hitAction : function(){
 	  movepause = true;
 	  gameStatus.push(nyruta);
