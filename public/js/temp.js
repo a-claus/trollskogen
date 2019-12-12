@@ -1,48 +1,4 @@
 //variabler
-let zChange = true; listZ = [];
-function updateGamearea(){
-    var walk; let z; 
-
-    // kartobj, fotografering
-    if (paparazzi == true){
-        studio();
-        paparazzi = false;
-    }    
-    drawFoto(floor);
-    // Gameobj placeme
-
-    // Sortera höjd gameobj
-    
-    let listZ = gameObj.map(obj => { 
-        //var objR = {};
-        var objR = [];
-        if (obj.z == undefined) obj.z = 1;
-        //objR[obj.index] = obj.z;  //obj.key
-        objR.push(obj.z);
-        return objR;
-    });
-     
-    //var listZ= [7,5.5,8,1];
-
-    listZ = listArrayOrder(listZ);
-     console.log(listZ);
-
-    // Loop
-    for (i = 0; i < gameObj.length; i++){
-        golv = []; tak = [];
-
-        // Kolla om obj flyttar om det kan.
-        // Kolla om obj ska hoppa falla och funkar
-        // HitActions // nyrutakontroll
-        // Rita obj
-        
-        // Effekter
-
-        //info
-
-        //magicstig
-    }
-}
 
 
 

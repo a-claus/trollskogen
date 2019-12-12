@@ -58,6 +58,7 @@ BILD SPRITES MAP
 	fall: {
 		on: false,
 		acc: 0,
+		tyngdPunkt: 1,
 		ZunderZero: 1,
 		drawer: 1
 	},

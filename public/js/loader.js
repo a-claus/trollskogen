@@ -498,7 +498,7 @@ let edgeNorr={
   let edgeSoder =
    {
 	  namn:"edgeSoder",
-	  x: 0, y: 400, z:0,
+	  x: 0, y: 300, z:0,
 	  speedX: 0, speedY: 0,
 	  width: 400, hight: 1, hojd: 5,
 	  draw: function(){},

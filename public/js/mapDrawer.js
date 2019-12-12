@@ -4,84 +4,47 @@ var magStigNamn = "none";
 let golv; let tak;
 
 
-function updateGameArea(){
+let zChange = true; listZ = [];
+function updateGamearea(){
+    var walk; let z; 
+
+    // kartobj, fotografering
+    if (paparazzi == true){
+        studio();
+        paparazzi = false;
+    }    
+    drawFoto(floor);
+    // Gameobj placeme
+
+    // Sortera höjd gameobj
     
-var walk; let z; 
+    let listZ = gameObj.map(obj => { 
+        //var objR = {};
+        var objR = [];
+        if (obj.z == undefined) obj.z = 1;
+        //objR[obj.index] = obj.z;  //obj.key
+        objR.push(obj.z);
+        return objR;
+    });
+     
+    //var listZ= [7,5.5,8,1];
 
-let listZ = gameObj.map(obj => { 
-    //var objR = {};
-    var objR = [];
-    if (obj.z == undefined) obj.z = 1;
-    //objR[obj.index] = obj.z;  //obj.key
-    objR.push(obj.z);
-    return objR;
-});
+    listZ = listArrayOrder(listZ);
+     
+    // Loop
+    for (i = 0; i < gameObj.length; i++){
+        golv = []; tak = [];
 
-console.log(listZ);
-   
- // Loopa floors    
-    for (let floor = 1; floor <= gameObj[0].floor; floor++){
-
-/*-------Fasta Obj-----------
- Fasta kartObj som inte rör sig. //obstacle
--------------------*/
-        if (paparazzi == true){
-            studio();
-            paparazzi = false;
-        }    
-
-        drawFoto(floor);
+        // Kolla om obj flyttar om det kan.
+        // Kolla om obj ska hoppa falla och funkar
+        // HitActions // nyrutakontroll
+        // Rita obj
         
-       
+        // Effekter
 
-/*-------Move Obj-----------
-Monster och dylikt
--------------------*/
-        for (i = 0; i < gameObj.length; i++){
-            golv = []; tak = [];
-            
-            
-            if (gameObj[i].floor) {z = Math.floor(gameObj[i].floor);} else {Math.floor(gameObj[i].z);} //tillfällig
-            if (gameObj[i].figur == true && z == floor){
+        //info
 
-                if (gameObj[i].placeMe) 
-                    { getPosition(i); delete(gameObj[i].placeMe);}
-            
-                gameObj[i].move();
-                walk = 0;
-                if (gameObj[i].speedY != 0 || gameObj[i].speedX !=0) walk = checkMoveInOrder(i);
-                gameObj[i].x = gameObj[i].x + walk * gameObj[i].speedX;
-                gameObj[i].y = gameObj[i].y + walk * gameObj[i].speedY;
-                if (gameObj[i].fall) checkFall(i);
-                
-                gameObj[i].draw();
-              //  if (gameObj[i].vad == "spelare") {nyRutaKontroll(i);}
-            }
-
-            if (gameObj[i].effekt == true) {
-                gameObj[i].move();
-                gameObj[i].draw();
-            }
-        }
-
-/*-------Things-----------
--------------------*/
-        for (i=0; i<kartObj.length; i++){
-            if (kartObj[i].info == true){
-                kartObj[i].draw();
-            }
-        }
-
-//console.log("ms" + magStig);
-        if (magStigNamn != "none"){
-            if (50 < gameObj[0].x && gameObj[0].x + gameObj[0].width/2 < 350 && 50 < gameObj[0].y && gameObj[0].y + gameObj[0].hight/2  < 350 ){
-                console.log("tabort MS");
-                var index= gameObj.findIndex(function(indexa) { return indexa["namn"] === magStigNamn; });
-                kartObj.splice(index, 1);
-                magStigNamn = "none";
-                paparazzi=true;
-            }
-        }
+        //magicstig
     }
 }
 
@@ -98,7 +61,7 @@ function checkMoveInOrder(index){
             walker = findwall(pointOfpic(index));
             if (gameObj[i].specialMove) walker = gameObj[i].specialMove(walker); //??? Alven? Move som inte ska påverkas av väggar
             if (gameObj[i].hojd >= 5) walker = {go:1, area: "flyger"};
-            if (hitObjects > 0){
+            //if (hitObjects > 0){
                 hit = objectHit(index);
             //    console.log("hit" + hit);
 
@@ -113,7 +76,7 @@ function checkMoveInOrder(index){
                             if (tempGo > 0) walker.go += tempGo;
                         }
                     }
-            }
+            //}
         return walker.go;
 
 
@@ -225,7 +188,7 @@ function objectHit(i){
     let bullsEye; let jjj = -1;
     let NS; let VO;
 
-    
+    console.log("Oh");
     //let jHojd = .5;
     //let zetA = false; let zetB = false; 
     
@@ -240,7 +203,7 @@ function objectHit(i){
     }
     
     for (var j=0; j < gameObj.length; j++){
-	   if (j != i && gameObj[j].floor == floor){ 
+	   if (j != i ){ //gameObj[j].floor == floor
             if (gameObj[j].hitAreaX){
                 jX = gameObj[j].hitAreaX;
                 jY = gameObj[j].hitAreaY;
