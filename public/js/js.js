@@ -814,19 +814,19 @@ function textWriter(text, x, y, lineLength = 40, color= "white", align = "left")
 function listArrayOrder(array){
     //array talar om vilken plats indexen har i nummerordning, låg till hög
     let k = 0;   let l = 0;  
-    console.log(array);
     var indexOrdning = []; let L = array.length; let plac=0;
     for(k=0; k < L; k++){
-         for (l = 0; l < L; l++){
-            if (array[k] == array[l]) {array[k] = array[k] + k * 0.001;}
-            if (array[k] > array[l]) {
+        for (l = 0; l < L; l++){
+            if (k != l){
+                if (Number(array[k]) == Number(array[l])) { array[l] = Number(array[l]) + 0.001;}
+                if (array[k] > array[l]) {
                     plac++;
+                }
             }
-         }
+        }
         indexOrdning[k] = plac;
         plac = 0; 
     }
-    console.log(array);
 return indexOrdning;
 }
 

@@ -65,14 +65,15 @@ BILD SPRITES MAP
 	
 	move: function (){ 
 		this.speedX = 0;
-    	this.speedY = 0;  
+		this.speedY = 0;  
+		let moving=false;
 
-    	if (keyMap[37] == true || moveV == true) {this.speedX = -2; this.moving = true; this.vaderstrack="vaster";}
-    	if (keyMap[39] == true || moveO == true) {this.speedX = 2; this.moving = true; this.vaderstrack="oster";}
-    	if (keyMap[38] == true || moveN == true) {this.speedY = -2; this.moving = true; this.vaderstrack="norr";}
-    	if (keyMap[40] == true || moveS == true) {this.speedY = 2; this.moving = true; this.vaderstrack="soder";}
+    	if (keyMap[37] == true || moveV == true) {this.speedX = -2; this.moving = true; this.vaderstrack="vaster"; moving = true;}
+    	if (keyMap[39] == true || moveO == true) {this.speedX = 2; this.moving = true; this.vaderstrack="oster";  moving = true;}
+    	if (keyMap[38] == true || moveN == true) {this.speedY = -2; this.moving = true; this.vaderstrack="norr";  moving = true;}
+    	if (keyMap[40] == true || moveS == true) {this.speedY = 2; this.moving = true; this.vaderstrack="soder";  moving = true;}
 		if (keyMap[32] == true) {keyMap[32] == false; this.fall = hopp(this.fall)}
-	
+		return moving;
 	},
 	spriteSchema:
 			{ 

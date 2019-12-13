@@ -23,20 +23,19 @@ console.log(gameObj);
         //var objR = {};
             var objR = [];
             //objR[obj.index] = obj.z;  //obj.key
-            objR.push(obj.z + obj.hojd);
+            objR.push(obj.hojd + obj.z );
             return objR;
         });
-        console.log(listZ);
         listZ = listArrayOrder(listZ);
         zeta = false;
     }
-     console.log(listZ);
+
     // Loop
     for (let iii = 0; iii < gameObj.length; iii++){
         golv = []; tak = [];
         let i = listZ[iii] 
         // Kolla om obj flyttar om det kan.
-        console.log(i);
+        
         if (gameObj[i].move() == true){
             walk = checkMoveInOrder(i);
             gameObj[i].x = gameObj[i].x + walk * gameObj[i].speedX;
@@ -76,8 +75,8 @@ function checkMoveInOrder(index){
     var hit;
 
             walker = findwall(pointOfpic(index));
-            if (gameObj[i].specialMove) walker = gameObj[i].specialMove(walker); //??? Alven? Move som inte ska påverkas av väggar
-            if (gameObj[i].hojd >= 5) walker = {go:1, area: "flyger"};
+            if (gameObj[index].specialMove) walker = gameObj[i].specialMove(walker); //??? Alven? Move som inte ska påverkas av väggar
+            if (gameObj[index].hojd >= 5) walker = {go:1, area: "flyger"};
             //if (hitObjects > 0){
                 hit = objectHit(index);
             //    console.log("hit" + hit);
