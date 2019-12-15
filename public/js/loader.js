@@ -37,6 +37,8 @@ class ObstacleKub { //extends Figur
         this.hojd = hojd;
         this.floor = Math.abs(this.z);
     }
+    move(){return false;}
+    draw(){}
     hitAction(){}
 }
 
@@ -475,7 +477,6 @@ let brokantNfall = {
 		}
     }
 }
-
 let edgeNorr={
 	namn:"edgeNorr",
 	  //miljo: false,  info: false,
@@ -486,7 +487,7 @@ let edgeNorr={
 	move: function (){return false;},
 	  x: 0, y: 0, z: 0,
 	  speedX: 0, speedY: 0,
-	  width: 400, hight: 1, hojd: 5,
+	  width: 400, hight: 3, hojd: 5,
   hitAction : function(){
 	  movepause = true;
 	  gameStatus.push(nyruta);
@@ -498,9 +499,11 @@ let edgeNorr={
   let edgeSoder =
    {
 	  namn:"edgeSoder",
-	  x: 0, y: 300, z: 0,
+	  //x: 0, y: 300, z: 0,
+	  hitAreaX: 0, hitAreaY: 384, z: 0,
 	  speedX: 0, speedY: 0,
-	  width: 400, hight: 1, hojd: 5,
+	  //width: 350, hight: 3, hojd: 5,
+	   haWidth: 350, haHight: 3, hojd: 5,
 	  draw: function(){},
 	  move: function (){return false;},
 	  hitAction : function(){
@@ -540,6 +543,24 @@ let edgeNorr={
 	  console.log("Nyruta");   
 	  }
   };
+  let msHitArea =
+   {
+	  namn:"msHitArea",
+	  hitAreaX: 50, hitAreaY: 50, z: 0,
+	  speedX: 0, speedY: 0,
+	  haWidth: 300, haHight: 300, hojd: 5,
+	  draw: function(){},
+	  move: function (){return false;},
+	  hitAction : function(){                  
+                    let killern = kartObj.findIndex(function(obj) { return obj["namn"] === this.ms;});
+                    kartObj.splice(killern, 1);
+                    paparazzi=true;
+  
+	  }
+  };
+
+
+
 let brokantS = {
 	floor:2,  miljo: false, figur : true, info: false,
 	vem: "brokantHitAreaS",
@@ -739,15 +760,15 @@ switch (wood.edge){
 	case "vast":  kartObj.push(edgeV); break;
 }
 //magisk stig
-console.log(vaderstrack + wood[vaderstrack] );
+console.log("magic" + vaderstrack + wood[vaderstrack] );
 
 	if (wood[vaderstrack]==0 || wood[vaderstrack]==99 ){
 		
 	switch(vaderstrack){
-		case "norr": kartObj.push(entreN); magStigNamn = "EntreN"; break;
-		case "soder": kartObj.push(entreS); magStigNamn = "EntreS"; break;
-		case "vast": kartObj.push(entreV); magStigNamn = "EntreV"; break;
-		case "ost":console.log("entreO"); kartObj.push(entreO); magStigNamn = "EntreO"; break;
+		case "norr": kartObj.push(entreN); gameObj.push(msHitArea); gameObj[gameObj.length - 1].ms = "entreN"; break;
+		case "soder": kartObj.push(entreS); gameObj.push(msHitArea); gameObj[gameObj.length - 1].ms = "entreS"; break;
+		case "vast": kartObj.push(entreV); gameObj.push(msHitArea); gameObj[gameObj.length - 1].ms = "entreV";break;
+		case "ost": kartObj.push(entreO); gameObj.push(msHitArea); gameObj[gameObj.length - 1].ms = "entreO";break;
 	}
 	//hitarea
 	}

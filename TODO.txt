@@ -1,11 +1,16 @@
 TODO
 ----------------------
+14b1 Gubben tycks inte kunna gå längre än till kanten och den hittar inte osynliga linjen.
+
+14b2 Lägga hitaction för hemlig väg.
+
 15. Ser inte kvadraten, när andra ssaker inte är där.
 
 14: Hopp hitarea höjder
 
-	14 b Jobba bort floors.
-		-Då skulle vi behöva rita objekten nerifrån och uppåt. Problemet är att jag har obj 0 alltid som spelare. Tänker att man avbryter när spelaren ritas eller strax efter. 
+
+
+	 
 
 	Det verkar som z:a inte hamnar på platta och därför låser obj.
 		Den har landat, avslutat hoppet. Men sen startar hoppet igen, antagligen för att den är på en höjd.
@@ -86,6 +91,10 @@ TODO
 
 	DONE
 	______
+
+
+	14 b Jobba bort floors.
+		-Då skulle vi behöva rita objekten nerifrån och uppåt. Problemet är att jag har obj 0 alltid som spelare. Tänker att man avbryter när spelaren ritas eller strax efter.
 
 	17c - MAgic stig måste uppdateras med nya foto. 
 	Löste det genom att köra om foto

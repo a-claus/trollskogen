@@ -16,7 +16,7 @@ function updateGameArea(){
     }    
     drawFoto(1);
     // Gameobj placeme
-console.log(gameObj);
+//console.log(gameObj);
     // Sortera höjd gameobj
     if (zeta == true){
         listZ = gameObj.map(obj => { 
@@ -47,7 +47,7 @@ console.log(gameObj);
         // Rita obj
         gameObj[i].draw();
         
-        // Effekter
+        // Effekter ska vara n del av info
         if (gameObj[i].effekt == true) {
             gameObj[i].move();
             gameObj[i].draw();
@@ -75,7 +75,7 @@ function checkMoveInOrder(index){
     var hit;
 
             walker = findwall(pointOfpic(index));
-            if (gameObj[index].specialMove) walker = gameObj[i].specialMove(walker); //??? Alven? Move som inte ska påverkas av väggar
+            if (gameObj[index].specialMove) walker = gameObj[index].specialMove(walker); //??? Alven? Move som inte ska påverkas av väggar
             if (gameObj[index].hojd >= 5) walker = {go:1, area: "flyger"};
             //if (hitObjects > 0){
                 hit = objectHit(index);
@@ -85,10 +85,10 @@ function checkMoveInOrder(index){
                     if (hit != null){
 
                         walker.go=0;
-                        console.log("hit");
-                        if (i == 0 || hit == 0){
-                            hittad = i + hit;
-                            var tempGo = gameObj[i+hit].hitAction(); //verkar inte vara ngt problem att skicka med nuffra i parantesen
+                        console.log("hit"  );
+                        if (index == 0 || hit == 0){
+                            hittad = index + hit;
+                            var tempGo = gameObj[index + hit].hitAction(); //verkar inte vara ngt problem att skicka med nuffra i parantesen
                             if (tempGo > 0) walker.go += tempGo;
                         }
                     }
@@ -127,11 +127,11 @@ function checkFall(index){
     if (golv[0] == undefined) {
         golv[0] = gameObj[index].z; //test
         golv[0] = 1; 
-        console.log("fel?:" + index);
+       // console.log("fel?:" + index);
     }
         
     diff = gameObj[index].z - golv[0];
-    console.log("---" + diff );
+   // console.log("---" + diff );
     
      
     if (diff > 0 ) {
@@ -139,7 +139,7 @@ function checkFall(index){
         gameObj[index].fall.on = true;
     }
 
-    console.log(gameObj[index].fall.on + "---" + gameObj[index].z);
+   // console.log(gameObj[index].fall.on + "---" + gameObj[index].z);
     if (gameObj[index].fall.on == true){
       
         gravity(index, diff);}
@@ -204,7 +204,7 @@ function objectHit(i){
     let bullsEye; let jjj = -1;
     let NS; let VO;
 
-    console.log("Oh");
+   
     //let jHojd = .5;
     //let zetA = false; let zetB = false; 
     
@@ -219,33 +219,38 @@ function objectHit(i){
     }
     
     for (var j=0; j < gameObj.length; j++){
-	   if (j != i ){ //gameObj[j].floor == floor
-            if (gameObj[j].hitAreaX){
+	   if (j != i ){ 
+            if (gameObj[j].hitAreaX > -1){
                 jX = gameObj[j].hitAreaX;
                 jY = gameObj[j].hitAreaY;
                 jW = gameObj[j].haWidth;
                 jH = gameObj[j].haHight;
             }
-            else{
+            else {
                 jX = gameObj[j].x + 10;
                 jY = gameObj[j].y + 10;
                 jW = gameObj[j].width - 10;
                 jH = gameObj[j].hight - 10;
             }   
-       // console.log(jX + " " + jY);
+      
+if (j == 2) {
+
+}
 
             if (iX < jX + jW && iX > jX){
-
+                console.log("j"+ j +" :"+ iY + " --- " + jY + "/" + (jY + jH));
                 if (iY < jY + jH && iY > jY){
+                     
+
                     bullsEye = obstacleZ(i, j);
                     console.log("Bulls Eye" + bullsEye);
                     if (bullsEye == "saknas") jjj = j;
                     if (bullsEye == "hit") jjj = j;
                     if (bullsEye == "under") golv.push(gameObj[j].z + gameObj[j].hojd);
                     if (bullsEye == "over") tak.push(gameObj[j].z);
-                    console.log("_____G____" + golv.length);
-                    console.log("_____G___:" + golv[golv.length - 1]);
-                    console.log("z" + gameObj[i].z)
+                  //  console.log("_____G____" + golv.length);
+                   // console.log("_____G___:" + golv[golv.length - 1]);
+                   // console.log("z" + gameObj[i].z)
                     console.log("J:" + jjj);
                 }
             }
