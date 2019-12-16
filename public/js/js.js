@@ -533,10 +533,8 @@ function getIndex(input){
 }
 
 function deleteObject(vad){
-    
     var nummer = gameObj.findIndex(function(index) {return index["namn"] === vad; });
-     gameObj.splice(nummer, 1);
-    
+     gameObj.splice(nummer, 1);  
 }
 
 

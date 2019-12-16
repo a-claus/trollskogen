@@ -554,8 +554,8 @@ let edgeNorr={
 	  hitAction : function(){                  
                     let killern = kartObj.findIndex(function(obj) { return obj["namn"] === this.ms;});
                     kartObj.splice(killern, 1);
-                    paparazzi=true;
-  
+					paparazzi = true;
+					this.z = 10; zeta = true; // istället för att radera objektet 
 	  }
   };
 
