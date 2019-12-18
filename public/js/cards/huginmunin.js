@@ -131,7 +131,7 @@ gameObj.push(
         this.status=5;
       }
     }
-
+    return true;
   },
  
 

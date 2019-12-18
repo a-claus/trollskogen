@@ -34,7 +34,7 @@ gameObj.push(
   moving: false,
   vaderstrack: "soder",
   cardImg : cardImages[cardImages.length-1],
-  move: function (){},
+  move: function (){return false;},
   hitAction : function(){
     this.T6 = 0;
 

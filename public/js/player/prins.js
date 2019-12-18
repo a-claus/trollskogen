@@ -9,7 +9,7 @@ console.log("Prins");
 
 gameObj.unshift(
  {
-
+ 	namn: "Prinsen",
  	vem: "Prinsen",
 	vad: "spelare",
 	img: figurImg[0],

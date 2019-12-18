@@ -29,13 +29,18 @@ function updateGameArea(){
         listZ = listArrayOrder(listZ);
         zeta = false;
     }
-
+console.log(listZ);
     // Loop
-    for (let iii = 0; iii < gameObj.length; iii++){
+let iii;
+console.log("GO"+gameObj.length);
+    for (iii = 0; iii < gameObj.length; iii++){
         golv = []; tak = [];
-        let i = listZ[iii] 
-        // Kolla om obj flyttar om det kan.
         
+        let i = listZ[iii] ;
+        // Kolla om obj flyttar om det kan.
+        if (gameObj[i] == undefined) console.log(" i undefined iii " + iii);
+
+        if (gameObj[i].move() == undefined) console.log(i + "gameObj[i]" + gameObj[i].namn);
         if (gameObj[i].move() == true){
             walk = checkMoveInOrder(i);
             gameObj[i].x = gameObj[i].x + walk * gameObj[i].speedX;
@@ -238,7 +243,7 @@ if (j == 2) {
 }
 
             if (iX < jX + jW && iX > jX){
-                console.log("j"+ j +" :"+ iY + " --- " + jY + "/" + (jY + jH));
+              //  console.log("j"+ j +" :"+ iY + " --- " + jY + "/" + (jY + jH));
                 if (iY < jY + jH && iY > jY){
                      
 

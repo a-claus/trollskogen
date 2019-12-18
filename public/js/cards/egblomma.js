@@ -29,7 +29,7 @@ gameObj.push(
     
     ctx.drawImage(mapImages[this.indexS], this.x, this.y);
   },
-  move: function (){},
+  move: function (){return false;},
   drawRuta: function(){
         gameObj[hitIndex].floor = -1;
 

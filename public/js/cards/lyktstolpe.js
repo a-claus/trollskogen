@@ -38,7 +38,7 @@ gameObj.push(
             ctx.fillRect(this.hitAreaX, this.hitAreaY, this.haWidth, this.haHight);
             ctx.globalAlpha = 1;
       },
-  move: function (){},
+  move: function (){ return false;},
    x: 170, y: 170, speedX: 0,speedY: 0,floor: 1, 
    width: 50, hight:50, 
    hitAreaX: 195, hitAreaY: 232, haWidth: 25, haHight:25, 

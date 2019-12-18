@@ -36,7 +36,7 @@ gameObj.push(
     width: 50, hight: 50, 
   vaderstrack: "soder",
   draw: function(){ctx.drawImage(mapImages[this.indexS], this.x, this.y,50,50);},
-  move: function (){},
+  move: function (){ return false;},
 
 hitAction : function(){
   gameObj[0].placeMe = true;

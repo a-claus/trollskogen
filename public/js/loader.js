@@ -29,6 +29,7 @@ function studio(){
 
 class ObstacleKub { //extends Figur
     constructor(x, y, z, hight, width, hojd){
+    	this.namn ="ObstacleKub";
         this.x = x;
         this.y = y;
         this.z = z;
@@ -305,9 +306,9 @@ let brokantV = {
 }	
 
 let plan1 = {
-	miljo: false, figur : true, info: false,
+	namn: "plan1", miljo: false, figur : true, info: false,
 	draw: function(){},
-	move: function(){},
+	move: function(){return false;},
 	floor: 1,
 	x:0, y:0, width: 400, height: 400, z: 1, hojd : 0,
 	hitAction: function(){}
