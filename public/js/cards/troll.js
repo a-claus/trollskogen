@@ -52,7 +52,8 @@ KARTA
 ----------------------------------*/   
 
 	x: 180,
-	y: 180,
+    y: 180,
+    z:1, hojd:.5,
 	speedX: 0,
 	speedY: 0,
 	floor: 1,
@@ -83,7 +84,7 @@ BILD SPRITES MAP
         if (yLong > 0){this.speedY= -.25; this.vaderstrack = "norr";} 
         else {this.speedY=.25; this.vaderstrack = "soder";}
     }
-	
+	return true;
 	},
 	spriteSchema:
 			{ 

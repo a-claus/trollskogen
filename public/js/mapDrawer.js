@@ -16,7 +16,7 @@ function updateGameArea(){
     }    
     drawFoto(1);
     // Gameobj placeme
-//console.log(gameObj);
+console.log(gameObj);
     // Sortera höjd gameobj
     if (zeta == true){
         listZ = gameObj.map(obj => { 

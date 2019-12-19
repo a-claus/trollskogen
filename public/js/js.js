@@ -543,7 +543,9 @@ function deleteObjects(){
      let hitObjects = 0;
     if (gameObj.length > 5) {gameObj.splice(5, gameObj.length - 5);}
 
-   
+   console.log("---");
+   console.log(gameObj);
+
     kartObj.splice(1, kartObj.length - 1);
     mapImages.splice(mapImages.length - 1);
     kartObj.push({

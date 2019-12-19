@@ -157,7 +157,7 @@ KARTA
     y: 170,
     speedX: 0,
     speedY: 0,
-    floor: 1,   
+    z: 1, hojd:.5,  
 
   /*--------------------------------
 HIT
@@ -179,7 +179,8 @@ BILD SPRITES on MAP
     sprite: mapImages[mapImages.length-1],
     
 	
-	//spriteTimer: 0,
+  //spriteTimer: 0,
+  move: function(){return:false;},
 	draw: function(){
        ctx.drawImage(this.sprite, this.x, this.y, 60, 60);
 

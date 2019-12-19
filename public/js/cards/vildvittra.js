@@ -58,7 +58,7 @@ KARTA
 	y: 180,
 	speedX: 0,
 	speedY: 0,
-	floor: 1,
+	z: 4, hojd:1,
 	
 
 /*--------------------------------
@@ -207,6 +207,7 @@ BILD SPRITES MAP
     
     this.x = this.x + this.speedX;
     this.y = this.y + this.speedY;
+    return true;
 	
 	},
 	spriteSchema:
