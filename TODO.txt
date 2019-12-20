@@ -1,13 +1,13 @@
 .\node app.js
+
 TODO
 ----------------------
+14b3 kanterna fungerar inte byta kartbit
 
-
-14b1 Gubben tycks inte kunna gå längre än till kanten och den hittar inte osynliga linjen.
 
 14b2 Lägga hitaction för hemlig väg. Hemliga vägen försvinner för snabbt.
 
-15. Ser inte kvadraten, när andra ssaker inte är där.
+15. Ser inte kvadraten, när andra saker inte är där.
 
 14: Hopp hitarea höjder
 
@@ -95,6 +95,7 @@ TODO
 	DONE
 	______
 
+14b2 Av ngn anledning fungerar inte extrasakaer. Löst det var zeta som inte blev uppdaterad.
 
 	14 b Jobba bort floors.
 		-Då skulle vi behöva rita objekten nerifrån och uppåt. Problemet är att jag har obj 0 alltid som spelare. Tänker att man avbryter när spelaren ritas eller strax efter.

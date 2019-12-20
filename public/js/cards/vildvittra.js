@@ -194,9 +194,7 @@ BILD SPRITES MAP
 
         //kalkylera avstånd till spelare.
         //let avstand = pyth(0, this.index);
-        
-
-       // var xLong = this.x + gameObj[0].x;
+        // var xLong = this.x + gameObj[0].x;
        // var yLong = this.y + gameObj[0].y;
 
 
