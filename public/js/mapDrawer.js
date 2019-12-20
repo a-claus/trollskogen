@@ -487,7 +487,7 @@ function nyruta(){
             //gameObj[0].y=1;  
             paparazzi=true;
             mapChange("jump");}
-
+            zeta = true;
     gameStatus.push(move);
     //console.log(gameStatus);
         

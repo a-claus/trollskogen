@@ -1,5 +1,8 @@
+.\node app.js
 TODO
 ----------------------
+
+
 14b1 Gubben tycks inte kunna gå längre än till kanten och den hittar inte osynliga linjen.
 
 14b2 Lägga hitaction för hemlig väg. Hemliga vägen försvinner för snabbt.

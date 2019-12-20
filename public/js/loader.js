@@ -480,15 +480,12 @@ let brokantNfall = {
 }
 let edgeNorr={
 	namn:"edgeNorr",
-	  //miljo: false,  info: false,
-	  //figur : true,
-	//  vem: "edgeNorr",
-	 // vad: "wall",
+	
 	draw: function(){},
 	move: function (){return false;},
-	  x: 0, y: 0, z: 0,
+	  hitAreaX: 0, hitAreaY: 0, z: 0,
 	  speedX: 0, speedY: 0,
-	  width: 400, hight: 3, hojd: 5,
+	  haWidth: 400, haHight: 3, hojd: 5,
   hitAction : function(){
 	  movepause = true;
 	  gameStatus.push(nyruta);
@@ -517,9 +514,9 @@ let edgeNorr={
   let edgeVaster =
    {
 	  namn:"edgeVaster",
-	  x: 0, y: 0, z:0,
+	  hitAreaX: 1, hitAreaY: 0, z:0,
 	  speedX: 0, speedY: 0,
-	  width: 1, hight: 400, hojd: 5,
+	  haWidth: 1, haHight: 400, hojd: 5,
 	  draw: function(){},
 	  move: function (){return false;},
 	  hitAction : function(){
@@ -532,9 +529,9 @@ let edgeNorr={
   let edgeOster =
    {
 	  namn:"edgeOster",
-	  x: 400, y: 0, z: 0,
+	  hitAreaX: 400, hitAreaY: 0, z: 0,
 	  speedX: 0, speedY: 0,
-	  width: 1, hight: 400, hojd: 5,
+	  haWidth: 1, haHight: 399, hojd: 5,
 	  draw: function(){},
 	  move: function (){return false;},
 	  hitAction : function(){
