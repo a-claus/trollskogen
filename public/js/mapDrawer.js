@@ -46,11 +46,16 @@ console.log("GO"+gameObj.length);
             gameObj[i].x = gameObj[i].x + walk * gameObj[i].speedX;
             gameObj[i].y = gameObj[i].y + walk * gameObj[i].speedY;
         }
+
         // Kolla om obj ska hoppa falla och funkar
         if (gameObj[i].fall) checkFall(i);
  
         // Rita obj
         gameObj[i].draw();
+        let rita = [0];
+        if (rita.findIndex(i) != -1) {
+            if (gameObj[i].hitAreaX) drawTrRuta(gameObj[i].hitAreaX, gameObj[i].hitAreaY, gameObj[i].haHight, gameObj[i].haWidth);
+        }
         
         // Effekter ska vara n del av info
         if (gameObj[i].effekt == true) {

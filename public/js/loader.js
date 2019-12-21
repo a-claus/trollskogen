@@ -99,6 +99,17 @@ let edgeO = {miljo: true, figur : false, info: false, floor: 1,
 				ctx.fillStyle = "rgb(203,195,151)";
 				   ctx.fillRect(380, 0, 20, 400);}}
 
+let drawTrRuta = {
+	draw: function(x,y,width,height){
+		var ctx = myGameArea.context;
+		ctx.fillStyle = "brown";
+		ctx.globalAlpha = 0.2;
+		ctx.fillRect(x,y,width,height);
+		ctx.globalAlpha = 1;
+	}
+}	
+//a
+
 let testRuta = {
 	namn: "test",
 		

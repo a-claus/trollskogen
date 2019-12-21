@@ -1,7 +1,10 @@
 .\node app.js
 
+
 TODO
 ----------------------
+14b4 drawHitArea
+
 14b3 kanterna fungerar inte byta kartbit
 
 
