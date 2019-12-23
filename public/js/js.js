@@ -517,19 +517,16 @@ var yLong=figur[num].y-figur[0].y;
 function getIndexGameObj(input){
             var index = gameObj.findIndex(zz => zz["namn"]==input);
             return index;
-
 }
 
 function getKartbitCard(input){
             var index = map.findIndex(zz => zz["card"]==input);
             return index;
-
 }
 
 function getIndex(input){
             var index = gameObj[0].findIndex( function(index) {return index["upgrades"] ==="Mimers Brunn";} );
             return index;
-
 }
 
 function deleteObject(vad){

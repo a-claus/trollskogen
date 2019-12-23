@@ -99,16 +99,15 @@ let edgeO = {miljo: true, figur : false, info: false, floor: 1,
 				ctx.fillStyle = "rgb(203,195,151)";
 				   ctx.fillRect(380, 0, 20, 400);}}
 
-let drawTrRuta = {
-	draw: function(x,y,width,height){
+function drawTrRuta(x, y, width, hight){
+		console.log("dtr");
 		var ctx = myGameArea.context;
 		ctx.fillStyle = "brown";
 		ctx.globalAlpha = 0.2;
-		ctx.fillRect(x,y,width,height);
+		ctx.fillRect(x, y, width, hight);
 		ctx.globalAlpha = 1;
 	}
-}	
-//a
+
 
 let testRuta = {
 	namn: "test",
@@ -496,7 +495,7 @@ let edgeNorr={
 	move: function (){return false;},
 	  hitAreaX: 0, hitAreaY: 0, z: 0,
 	  speedX: 0, speedY: 0,
-	  haWidth: 400, haHight: 3, hojd: 5,
+	  haWidth: 400, haHight: 6, hojd: 5,
   hitAction : function(){
 	  movepause = true;
 	  gameStatus.push(nyruta);
@@ -509,10 +508,10 @@ let edgeNorr={
    {
 	  namn:"edgeSoder",
 	  //x: 0, y: 300, z: 0,
-	  hitAreaX: 0, hitAreaY: 384, z: 0,
+	  hitAreaX: 0, hitAreaY: 380, z: 0,
 	  speedX: 0, speedY: 0,
 	  //width: 350, hight: 3, hojd: 5,
-	   haWidth: 350, haHight: 3, hojd: 5,
+	   haWidth: 400, haHight: 20, hojd: 5,
 	  draw: function(){},
 	  move: function (){return false;},
 	  hitAction : function(){
@@ -525,9 +524,9 @@ let edgeNorr={
   let edgeVaster =
    {
 	  namn:"edgeVaster",
-	  hitAreaX: 1, hitAreaY: 0, z:0,
+	  hitAreaX: 0, hitAreaY: 0, z:0,
 	  speedX: 0, speedY: 0,
-	  haWidth: 1, haHight: 400, hojd: 5,
+	  haWidth: 6, haHight: 400, hojd: 5,
 	  draw: function(){},
 	  move: function (){return false;},
 	  hitAction : function(){
@@ -540,9 +539,9 @@ let edgeNorr={
   let edgeOster =
    {
 	  namn:"edgeOster",
-	  hitAreaX: 400, hitAreaY: 0, z: 0,
+	  hitAreaX: 394, hitAreaY: 0, z: 0,
 	  speedX: 0, speedY: 0,
-	  haWidth: 1, haHight: 399, hojd: 5,
+	  haWidth: 6, haHight: 400, hojd: 5,
 	  draw: function(){},
 	  move: function (){return false;},
 	  hitAction : function(){

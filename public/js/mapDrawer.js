@@ -29,10 +29,10 @@ console.log(gameObj);
         listZ = listArrayOrder(listZ);
         zeta = false;
     }
-console.log(listZ);
+//console.log(listZ);
     // Loop
 let iii;
-console.log("GO"+gameObj.length);
+//console.log("GO"+gameObj.length);
     for (iii = 0; iii < gameObj.length; iii++){
         golv = []; tak = [];
         
@@ -52,9 +52,13 @@ console.log("GO"+gameObj.length);
  
         // Rita obj
         gameObj[i].draw();
-        let rita = [0];
-        if (rita.findIndex(i) != -1) {
-            if (gameObj[i].hitAreaX) drawTrRuta(gameObj[i].hitAreaX, gameObj[i].hitAreaY, gameObj[i].haHight, gameObj[i].haWidth);
+        let rita = [1,2,3,4];
+        if (rita.findIndex(index => index == i) != -1) {
+            console.log("-i-"+i+ " "+ gameObj[i].hitAreaX + " " + gameObj[i].hitAreaY + " " + gameObj[i].haWidth+ " " + gameObj[i].haHight);
+            if (gameObj[i].hitAreaX) {
+                drawTrRuta(gameObj[i].hitAreaX, gameObj[i].hitAreaY, gameObj[i].haWidth, gameObj[i].haHight, );
+            } else{
+                drawTrRuta(gameObj[i].x, gameObj[i].y, gameObj[i].width, gameObj[i].hight);      }
         }
         
         // Effekter ska vara n del av info
