@@ -180,7 +180,7 @@ BILD SPRITES on MAP
     
 	
   //spriteTimer: 0,
-  move: function(){return:false;},
+  move: function(){return false;},
 	draw: function(){
        ctx.drawImage(this.sprite, this.x, this.y, 60, 60);
 

@@ -52,10 +52,10 @@ let iii;
  
         // Rita obj
         gameObj[i].draw();
-        let rita = [1,2,3,4];
+        let rita = [];
         if (rita.findIndex(index => index == i) != -1) {
             console.log("-i-"+i+ " "+ gameObj[i].hitAreaX + " " + gameObj[i].hitAreaY + " " + gameObj[i].haWidth+ " " + gameObj[i].haHight);
-            if (gameObj[i].hitAreaX) {
+            if (gameObj[i].hitAreaX != undefined) {
                 drawTrRuta(gameObj[i].hitAreaX, gameObj[i].hitAreaY, gameObj[i].haWidth, gameObj[i].haHight, );
             } else{
                 drawTrRuta(gameObj[i].x, gameObj[i].y, gameObj[i].width, gameObj[i].hight);      }

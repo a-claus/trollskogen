@@ -100,7 +100,6 @@ let edgeO = {miljo: true, figur : false, info: false, floor: 1,
 				   ctx.fillRect(380, 0, 20, 400);}}
 
 function drawTrRuta(x, y, width, hight){
-		console.log("dtr");
 		var ctx = myGameArea.context;
 		ctx.fillStyle = "brown";
 		ctx.globalAlpha = 0.2;
@@ -526,7 +525,7 @@ let edgeNorr={
 	  namn:"edgeVaster",
 	  hitAreaX: 0, hitAreaY: 0, z:0,
 	  speedX: 0, speedY: 0,
-	  haWidth: 6, haHight: 400, hojd: 5,
+	  haWidth: 14, haHight: 400, hojd: 5,
 	  draw: function(){},
 	  move: function (){return false;},
 	  hitAction : function(){
