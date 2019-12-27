@@ -28,15 +28,14 @@ function studio(){
 //x
 
 class ObstacleKub { //extends Figur
-    constructor(x, y, z, hight, width, hojd){
+    constructor(x, y, z, hight, width){
     	this.namn ="ObstacleKub";
-        this.x = x;
-        this.y = y;
+        this.hitAreaX = x;
+        this.hitAreaY = y;
         this.z = z;
-		this.width = width;
-        this.hight = hight;
-        this.hojd = hojd;
-        this.floor = Math.abs(this.z);
+		this.haWidth = width;
+        this.haHight = hight;
+      //  this.floor = Math.abs(this.z);
     }
     move(){return false;}
     draw(){}
@@ -45,14 +44,14 @@ class ObstacleKub { //extends Figur
 
 function makeBro(vs){
 	if (vs="NS"){
-		gameObj.push(new ObstacleKub(150,170,2,60,20,.3)); //vast
-		gameObj.push(new ObstacleKub(170,230,2,60,20,.3)); //ost
-		gameObj.push(new ObstacleKub(170,0,2,60,400,0)); //road
+		gameObj.push(new ObstacleKub(150,170,[2, 2.3],60,20)); //vast
+		gameObj.push(new ObstacleKub(170,230,[2, 2.3],60,20)); //ost
+		gameObj.push(new ObstacleKub(170,0,[2, 2],60,400)); //road
 	}
 	if (vs="VO"){
-		gameObj.push(new ObstacleKub(150,170,2,20,60,.3)); //vast
-		gameObj.push(new ObstacleKub(230,170,2,20,60,.3)); //ost
-		gameObj.push(new ObstacleKub(0,170,2,400,60,0)); // road
+		gameObj.push(new ObstacleKub(150,170,[2, 2.3],20,60)); //vast
+		gameObj.push(new ObstacleKub(230,170,[2, 2.3],20,60,)); //ost
+		gameObj.push(new ObstacleKub(0,170,[2, 2],400,60)); // road
 	}
 
 }
@@ -99,10 +98,10 @@ let edgeO = {miljo: true, figur : false, info: false, floor: 1,
 				ctx.fillStyle = "rgb(203,195,151)";
 				   ctx.fillRect(380, 0, 20, 400);}}
 
-function drawTrRuta(x, y, width, hight){
+function drawTrRuta(x, y, width, hight, z=1){
 		var ctx = myGameArea.context;
 		ctx.fillStyle = "brown";
-		ctx.globalAlpha = 0.2;
+		ctx.globalAlpha = 0.1 + z*.1;
 		ctx.fillRect(x, y, width, hight);
 		ctx.globalAlpha = 1;
 	}
@@ -275,8 +274,8 @@ let broVertikal = {
         ctx.drawImage(bro, 150, 150);
     }
 }
-var hojd = 1;
-
+// var hojd = 1; dec 2019
+/*
 let brokantV = {
 	floor:2,  miljo: false, figur : true, info: false,
 	vem: "brokantHitAreaV",
@@ -312,19 +311,19 @@ let brokantV = {
 		else {
 			gameObj[0].speedX = 0; hojd = 1; return 0;}
     }
-}	
+}*/	
 
 let plan1 = {
 	namn: "plan1", miljo: false, figur : true, info: false,
 	draw: function(){},
 	move: function(){return false;},
 	floor: 1,
-	x:0, y:0, width: 400, height: 400, z: 1, hojd : 0,
+	x:0, y:0, width: 400, height: 400, z: [1,1],
 	hitAction: function(){}
 };
 
 
-
+/* dec 2019
 
 let brokantVfall = {
 	floor:2,  miljo: false, figur : true, info: false,
@@ -354,8 +353,9 @@ let brokantVfall = {
 		}
     }
 }	
-
+*/
 //var hojd = 1;
+/* dec 2019
 let brokantO = {
 	floor:2,  miljo: false, figur : true, info: false,
 	vem: "brokantHitAreao",
@@ -363,8 +363,8 @@ let brokantO = {
 	draw: function(){},
 	move: function(){},
 	//ctx.fillRect(230, 170, 20, 60);
-	x: 230, y: 170, z:2, 
-    speedX: 0, speedY: 0, hojd: .3,
+	x: 230, y: 170, z:[2, 2.3], 
+    speedX: 0, speedY: 0,
 	width: 20, hight: 60,
 	doIt: function(){
 		
@@ -393,6 +393,8 @@ let brokantO = {
 			gameObj[0].speedX = 0; hojd = 1; return 0;}
     }
 }	
+*/
+/* gammal dec19
 let brokantOfall = {
 	floor:2,  miljo: false, figur : true, info: false,
 	vem: "brokantHitFall",
@@ -487,14 +489,15 @@ let brokantNfall = {
 		}
     }
 }
+*/
 let edgeNorr={
 	namn:"edgeNorr",
 	
 	draw: function(){},
 	move: function (){return false;},
-	  hitAreaX: 0, hitAreaY: 0, z: 0,
+	  hitAreaX: 0, hitAreaY: 0, z: [0, 5],
 	  speedX: 0, speedY: 0,
-	  haWidth: 400, haHight: 6, hojd: 5,
+	  haWidth: 400, haHight: 20,
   hitAction : function(){
 	  movepause = true;
 	  gameStatus.push(nyruta);
@@ -507,10 +510,10 @@ let edgeNorr={
    {
 	  namn:"edgeSoder",
 	  //x: 0, y: 300, z: 0,
-	  hitAreaX: 0, hitAreaY: 380, z: 0,
+	  hitAreaX: 0, hitAreaY: 380, z: [0, 5],
 	  speedX: 0, speedY: 0,
 	  //width: 350, hight: 3, hojd: 5,
-	   haWidth: 400, haHight: 20, hojd: 5,
+	   haWidth: 400, haHight: 20,
 	  draw: function(){},
 	  move: function (){return false;},
 	  hitAction : function(){
@@ -523,9 +526,9 @@ let edgeNorr={
   let edgeVaster =
    {
 	  namn:"edgeVaster",
-	  hitAreaX: 0, hitAreaY: 0, z:0,
+	  hitAreaX: 0, hitAreaY: 0, z: [0, 5],
 	  speedX: 0, speedY: 0,
-	  haWidth: 14, haHight: 400, hojd: 5,
+	  haWidth: 20, haHight: 400,
 	  draw: function(){},
 	  move: function (){return false;},
 	  hitAction : function(){
@@ -538,9 +541,9 @@ let edgeNorr={
   let edgeOster =
    {
 	  namn:"edgeOster",
-	  hitAreaX: 394, hitAreaY: 0, z: 0,
+	  hitAreaX: 380, hitAreaY: 0, z: [0, 5],
 	  speedX: 0, speedY: 0,
-	  haWidth: 6, haHight: 400, hojd: 5,
+	  haWidth: 20, haHight: 400, 
 	  draw: function(){},
 	  move: function (){return false;},
 	  hitAction : function(){
@@ -553,21 +556,21 @@ let edgeNorr={
   let msHitArea =
    {
 	  namn:"msHitArea",
-	  hitAreaX: 50, hitAreaY: 50, z: 0,
+	  hitAreaX: 50, hitAreaY: 50, z: [0, 5],
 	  speedX: 0, speedY: 0,
-	  haWidth: 300, haHight: 300, hojd: 5,
+	  haWidth: 300, haHight: 300,
 	  draw: function(){},
 	  move: function (){return false;},
 	  hitAction : function(){                  
                     let killern = kartObj.findIndex(function(obj) { return obj["namn"] === this.ms;});
                     kartObj.splice(killern, 1);
 					paparazzi = true;
-					this.z = 10; zeta = true; // istället för att radera objektet 
+					this.z = [10,10]; zeta = true; // istället för att radera objektet 
 	  }
   };
 
 
-
+/* gammal dec 19
 let brokantS = {
 	floor:2,  miljo: false, figur : true, info: false,
 	vem: "brokantHitAreaS",
@@ -650,6 +653,8 @@ let broHitAreaNS = {
    	ctx.globalAlpha = 1;
     }
 }	
+*/
+
 let kvadrat = {
 	
 	miljo: true, figur : true, info: false, floor:1,
@@ -730,7 +735,7 @@ switch (wood.namn){
 	case "Hyllan": 
 		console.log("Hylla");
 		kartObj.push(glanta, entre, kvadrat);
-		gameObj.push(new ObstacleKub(150,150,1,100,100,.3));
+		gameObj.push(new ObstacleKub(150, 150, [1, 1.3], 100, 100));
 		//makeHylla();
 	
 	break;

@@ -3,6 +3,10 @@
 
 TODO
 ----------------------
+14b6 function obstacleZ verkar skicka hit trots att det borde vara lika värde på höjd och golv, förhindrar att gå. mapdrawer rad 120
+
+14b5 Ändra z till array
+
 14b4 drawHitArea
 
 14b3 kanterna fungerar inte byta kartbit

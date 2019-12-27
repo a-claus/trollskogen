@@ -23,16 +23,16 @@ console.log(gameObj);
         //var objR = {};
             var objR = [];
             //objR[obj.index] = obj.z;  //obj.key
-            objR.push(obj.hojd + obj.z );
+            objR.push(obj.z[1] );
             return objR;
         });
         listZ = listArrayOrder(listZ);
         zeta = false;
     }
-//console.log(listZ);
+
+
     // Loop
 let iii;
-//console.log("GO"+gameObj.length);
     for (iii = 0; iii < gameObj.length; iii++){
         golv = []; tak = [];
         
@@ -52,11 +52,12 @@ let iii;
  
         // Rita obj
         gameObj[i].draw();
-        let rita = [];
-        if (rita.findIndex(index => index == i) != -1) {
-            console.log("-i-"+i+ " "+ gameObj[i].hitAreaX + " " + gameObj[i].hitAreaY + " " + gameObj[i].haWidth+ " " + gameObj[i].haHight);
+        let rita = [];//"ObstacleKub", "Prinsen"
+
+        if (rita.findIndex(index => index == gameObj[i].namn) != -1) {
+            //console.log("-i-"+i+ " "+ gameObj[i].hitAreaX + " " + gameObj[i].hitAreaY + " " + gameObj[i].haWidth+ " " + gameObj[i].haHight);
             if (gameObj[i].hitAreaX != undefined) {
-                drawTrRuta(gameObj[i].hitAreaX, gameObj[i].hitAreaY, gameObj[i].haWidth, gameObj[i].haHight, );
+                drawTrRuta(gameObj[i].hitAreaX, gameObj[i].hitAreaY, gameObj[i].haWidth, gameObj[i].haHight, gameObj[i].z[1]);
             } else{
                 drawTrRuta(gameObj[i].x, gameObj[i].y, gameObj[i].width, gameObj[i].hight);      }
         }
@@ -118,16 +119,16 @@ function checkMoveInOrder(index){
 
 function obstacleZ(index, hittad){
     //hit over under
-    let zGolvA = gameObj[index].z;
-    let zTakA = gameObj[index].z + gameObj[index].hojd;
-    let zGolvB = gameObj[hittad].z;
-    let zTakB = gameObj[hittad].z + gameObj[hittad].hojd;
+    let zGolvA = gameObj[index].z[0];
+    let zTakA = gameObj[index].z[1];
+    let zGolvB = gameObj[hittad].z[0];
+    let zTakB = gameObj[hittad].z[1];
     console.log("obsZ");
-    if (zGolvA == undefined || zGolvB == undefined) {console.log("saknar Z");return "saknas";}
+    if (zGolvA == undefined || zGolvB == undefined) {console.log("saknar Z"); return "saknas";}
     
-    if (zTakA <= zGolvB) {return "over";}
-    if (zGolvA >= zTakB ) {return "under";}
-    //if (zGolvA < zTakB && zTakA > zGolvB) 
+    if (zTakA <= zGolvB) {return "over";} 
+    if (zGolvA >= zTakB ) {return "under";} 
+    
         return "hit";
     
    // return "";
@@ -139,17 +140,17 @@ function checkFall(index){
     golv.sort(function(a, b){return b - a}); //10 8 6
     
     if (golv[0] == undefined) {
-        golv[0] = gameObj[index].z; //test
+        golv[0] = gameObj[index].z[0]; //test
         golv[0] = 1; 
        // console.log("fel?:" + index);
     }
         
-    diff = gameObj[index].z - golv[0];
+    diff = gameObj[index].z[0] - golv[0];
    // console.log("---" + diff );
     
      
     if (diff > 0 ) {
-        gameObj[index].fall.ZunderZero = gameObj[index].z;
+        gameObj[index].fall.tyngdpunkt = gameObj[index].z[0];
         gameObj[index].fall.on = true;
     }
 
@@ -178,21 +179,21 @@ gameObj[index].fall.acc -= 0.05;
             }
         }
 
-        gameObj[index].fall.ZunderZero +=  gameObj[index].fall.acc;
+        gameObj[index].fall.tyngdpunkt +=  gameObj[index].fall.acc;
         
 
-        if  (gameObj[index].fall.ZunderZero < golv[0] ) gameObj[index].z = golv[0];
-        if  (gameObj[index].fall.ZunderZero >= golv[0] ){
-            gameObj[index].z = gameObj[index].fall.ZunderZero;
+        if  (gameObj[index].fall.tyngdpunkt < golv[0] ) gameObj[index].z[0] = golv[0];
+        if  (gameObj[index].fall.tyngdpunkt >= golv[0] ){
+            gameObj[index].z = gameObj[index].fall.tyngdpunkt;
              //  gameObj[index].fall.on = false;
         }
         
             if (gameObj[index].fall.acc >= -0.1 && gameObj[index].fall.acc <= .1){
-                if (gameObj[index].fall.ZunderZero >= .9 && gameObj[index].fall.ZunderZero <= 1.1){
+                if (gameObj[index].fall.tyngdpunkt >= .9 && gameObj[index].fall.tyngdpunkt <= 1.1){
                 gameObj[index].fall.acc = 0;
                 gameObj[index].fall.on = false;
-                gameObj[index].z = golv[0];
-                gameObj[index].fall.ZunderZero = golv[0];  
+                gameObj[index].z[0] = golv[0];
+                gameObj[index].fall.tyngdpunkt = golv[0];  
             }}
 
     
@@ -201,9 +202,9 @@ gameObj[index].fall.acc -= 0.05;
         golv[0] =1; 
         console.log("fel?:" + index);}
     
-    gameObj[index].fall.drawer = 1 + gameObj[index].fall.ZunderZero - golv[0];
+    gameObj[index].fall.drawer = 1 + gameObj[index].fall.tyngdpunkt - golv[0];
     console.log("z" + gameObj[index].z);
-    console.log(gameObj[index].fall.acc + " / " +gameObj[index].fall.ZunderZero); 
+    console.log(gameObj[index].fall.acc + " / " +gameObj[index].fall.tyngdpunkt); 
     console.log("b" + gameObj[index].fall.drawer + " / " + gameObj[index].fall.on); 
 }
     
@@ -260,8 +261,8 @@ if (j == 2) {
                     console.log("Bulls Eye" + bullsEye);
                     if (bullsEye == "saknas") jjj = j;
                     if (bullsEye == "hit") jjj = j;
-                    if (bullsEye == "under") golv.push(gameObj[j].z + gameObj[j].hojd);
-                    if (bullsEye == "over") tak.push(gameObj[j].z);
+                    if (bullsEye == "under") golv.push(gameObj[j].z[1]);
+                    if (bullsEye == "over") tak.push(gameObj[j].z[0]);
                   //  console.log("_____G____" + golv.length);
                    // console.log("_____G___:" + golv[golv.length - 1]);
                    // console.log("z" + gameObj[i].z)

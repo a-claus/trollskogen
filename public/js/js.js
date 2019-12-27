@@ -515,7 +515,7 @@ var yLong=figur[num].y-figur[0].y;
 
 
 function getIndexGameObj(input){
-            var index = gameObj.findIndex(zz => zz["namn"]==input);
+            var index = gameObj.findIndex(zz => zz["namn"] == input);
             return index;
 }
 

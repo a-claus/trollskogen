@@ -37,10 +37,9 @@ KARTA
 
 	x: 180,
 	y: 180,
-	area: [this.x + 10, this.y + 10, this.x + 30, this.y + 30],
+	z: [1, 1.3],
 	speedX: 0,
 	speedY: 0,
-	floor: 1,
 	jump: {fall:0, hojd:1, golv:1}, 
 	fall: 0,
 
@@ -54,12 +53,11 @@ BILD SPRITES MAP
 	halvaHight: 20,
 
 	moving: false,
-	z: 1, hojd: .3,
+	//z: 1, hojd: .3,
 	fall: {
 		on: false,
 		acc: 0,
-		tyngdPunkt: 1,
-		ZunderZero: 1,
+		tyngdpunkt: 1,
 		drawer: 1
 	},
 	
