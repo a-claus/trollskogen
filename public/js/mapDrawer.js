@@ -142,59 +142,58 @@ function checkFall(index){
     if (golv[0] == undefined) {
         golv[0] = gameObj[index].z[0]; //test
         golv[0] = 1; 
-       // console.log("fel?:" + index);
+      // console.log("fel?:" + index);
     }
         
     diff = gameObj[index].z[0] - golv[0];
    // console.log("---" + diff );
     
      
-    if (diff > 0 ) {
-        gameObj[index].fall.tyngdpunkt = gameObj[index].z[0];
+    if (diff > 0) {
+       // gameObj[index].fall.tyngdpunkt = gameObj[index].z[0];
         gameObj[index].fall.on = true;
     }
 
    // console.log(gameObj[index].fall.on + "---" + gameObj[index].z);
     if (gameObj[index].fall.on == true){
-      
-        gravity(index, diff);}
-
-        
-   
+      gravity(index, golv[0]);}
+ 
 }
 
-function gravity(index, diff){
+function gravity(index, golv){
 // kolla fall
 
     
 gameObj[index].fall.acc -= 0.05;
 
-    
 
-    if (diff <= 0)
-        { 
-            if (gameObj[index].fall.acc <= 0) {
-                gameObj[index].fall.acc = gameObj[index].fall.acc / 2;
-                gameObj[index].fall.acc += 0.1;
-            }
-        }
+if (gameObj[index].fall.tyngdpunkt < golv){
+    if (gameObj[index].fall.acc <= 0) {
+        gameObj[index].fall.acc = gameObj[index].fall.acc / 2;
+        gameObj[index].fall.acc += 0.1;
+    }
+}
 
-        gameObj[index].fall.tyngdpunkt +=  gameObj[index].fall.acc;
-        
+gameObj[index].fall.tyngdpunkt +=  gameObj[index].fall.acc;
 
-        if  (gameObj[index].fall.tyngdpunkt < golv[0] ) gameObj[index].z[0] = golv[0];
+           
+console.log("golv" + golv );
+        if  (gameObj[index].fall.tyngdpunkt < golv[0] ) gameObj[index].z[0] = golv
         if  (gameObj[index].fall.tyngdpunkt >= golv[0] ){
-            gameObj[index].z = gameObj[index].fall.tyngdpunkt;
+            gameObj[index].z[0] = gameObj[index].fall.tyngdpunkt;
+            gameObj[index].z[1] = gameObj[index].fall.tyngdpunkt + .3;
              //  gameObj[index].fall.on = false;
         }
         
             if (gameObj[index].fall.acc >= -0.1 && gameObj[index].fall.acc <= .1){
                 if (gameObj[index].fall.tyngdpunkt >= .9 && gameObj[index].fall.tyngdpunkt <= 1.1){
-                gameObj[index].fall.acc = 0;
-                gameObj[index].fall.on = false;
-                gameObj[index].z[0] = golv[0];
-                gameObj[index].fall.tyngdpunkt = golv[0];  
-            }}
+                    gameObj[index].fall.acc = 0;
+                    gameObj[index].fall.on = false;
+                    gameObj[index].z[0] = golv;
+                    gameObj[index].z[1] = golv +.3;
+                    gameObj[index].fall.tyngdpunkt = golv;  
+                }
+            }
 
     
     if (golv[0] == undefined) {
@@ -202,7 +201,7 @@ gameObj[index].fall.acc -= 0.05;
         golv[0] =1; 
         console.log("fel?:" + index);}
     
-    gameObj[index].fall.drawer = 1 + gameObj[index].fall.tyngdpunkt - golv[0];
+    gameObj[index].fall.drawer = 1 + gameObj[index].fall.tyngdpunkt - golv;
     console.log("z" + gameObj[index].z);
     console.log(gameObj[index].fall.acc + " / " +gameObj[index].fall.tyngdpunkt); 
     console.log("b" + gameObj[index].fall.drawer + " / " + gameObj[index].fall.on); 
