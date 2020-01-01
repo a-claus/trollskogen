@@ -16,7 +16,7 @@ function updateGameArea(){
     }    
     drawFoto(1);
     // Gameobj placeme
-console.log(gameObj);
+//console.log(gameObj);
     // Sortera höjd gameobj
     if (zeta == true){
         listZ = gameObj.map(obj => { 
@@ -202,7 +202,7 @@ console.log("golv" + golv );
         console.log("fel?:" + index);}
     
     gameObj[index].fall.drawer = 1 + gameObj[index].fall.tyngdpunkt - golv;
-    console.log("z" + gameObj[index].z);
+    console.log("z" + gameObj[index].z[0]);
     console.log(gameObj[index].fall.acc + " / " +gameObj[index].fall.tyngdpunkt); 
     console.log("b" + gameObj[index].fall.drawer + " / " + gameObj[index].fall.on); 
 }
