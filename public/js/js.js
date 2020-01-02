@@ -1,4 +1,3 @@
-
 var mapImages=[];
 var cardImages = []; 
 var historik=[];
