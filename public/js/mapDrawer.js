@@ -40,7 +40,6 @@ let iii;
         // Kolla om obj flyttar om det kan.
         if (gameObj[i] == undefined) console.log(" i undefined iii " + iii);
 
-        if (gameObj[i].move() == undefined) console.log(i + "gameObj[i]" + gameObj[i].namn);
         if (gameObj[i].move() == true){
             walk = checkMoveInOrder(i);
             gameObj[i].x = gameObj[i].x + walk * gameObj[i].speedX;
@@ -98,9 +97,8 @@ function checkMoveInOrder(index){
 
 
                     if (hit != null){
-
-                        walker.go=0;
-                        console.log("hit"  );
+                        walker.go = 0;
+                        console.log("hit");
                         if (index == 0 || hit == 0){
                             hittad = index + hit;
                             var tempGo = gameObj[index + hit].hitAction(); //verkar inte vara ngt problem att skicka med nuffra i parantesen
@@ -119,14 +117,19 @@ function checkMoveInOrder(index){
 
 function obstacleZ(index, hittad){
     //hit over under
-    let zGolvA = gameObj[index].z[0];
+    let hogst = gameObj[index].z[0];
+    if (gameObj[index].fall.tyngdpunkt>hogst) hogst = gameObj[index].fall.tyngdpunkt;
+    let zGolvA = hogst;
     let zTakA = gameObj[index].z[1];
     let zGolvB = gameObj[hittad].z[0];
     let zTakB = gameObj[hittad].z[1];
     console.log("obsZ");
-    if (zGolvA == undefined || zGolvB == undefined) {console.log("saknar Z"); return "saknas";}
+    console.log(zGolvA +"-" +zTakA);
+    console.log(zGolvB +"-" +zTakB);
+
+    if (zGolvA == undefined || zGolvB == undefined) {console.log("saknar Z" + index + " " + hittad); return "saknas";}
     
-    if (zTakA <= zGolvB) {return "over";} 
+    //if (zTakA <= zGolvB) {return "over";} 
     if (zGolvA >= zTakB ) {return "under";} 
     
         return "hit";
@@ -141,7 +144,7 @@ function checkFall(index){
     
     if (golv[0] == undefined) {
         golv[0] = gameObj[index].z[0]; //test
-        golv[0] = 1; 
+      //  golv[0] = 1; 
       // console.log("fel?:" + index);
     }
         
@@ -160,14 +163,14 @@ function checkFall(index){
  
 }
 
-function gravity(index, golv){
+function gravity(index, golva){
 // kolla fall
 
     
 gameObj[index].fall.acc -= 0.05;
 
 
-if (gameObj[index].fall.tyngdpunkt < golv){
+if (gameObj[index].fall.tyngdpunkt < golva){
     if (gameObj[index].fall.acc <= 0) {
         gameObj[index].fall.acc = gameObj[index].fall.acc / 2;
         gameObj[index].fall.acc += 0.1;
@@ -178,20 +181,20 @@ gameObj[index].fall.tyngdpunkt +=  gameObj[index].fall.acc;
 
            
 console.log("golv" + golv );
-        if  (gameObj[index].fall.tyngdpunkt < golv[0] ) gameObj[index].z[0] = golv
-        if  (gameObj[index].fall.tyngdpunkt >= golv[0] ){
+        if  (gameObj[index].fall.tyngdpunkt < golva ) gameObj[index].z[0] = golva;
+        if  (gameObj[index].fall.tyngdpunkt >= golva ){
             gameObj[index].z[0] = gameObj[index].fall.tyngdpunkt;
             gameObj[index].z[1] = gameObj[index].fall.tyngdpunkt + .3;
              //  gameObj[index].fall.on = false;
         }
         
             if (gameObj[index].fall.acc >= -0.1 && gameObj[index].fall.acc <= .1){
-                if (gameObj[index].fall.tyngdpunkt >= .9 && gameObj[index].fall.tyngdpunkt <= 1.1){
+                if (gameObj[index].fall.tyngdpunkt >= golva - .1 && gameObj[index].fall.tyngdpunkt <= golva +.1){
                     gameObj[index].fall.acc = 0;
                     gameObj[index].fall.on = false;
-                    gameObj[index].z[0] = golv;
-                    gameObj[index].z[1] = golv +.3;
-                    gameObj[index].fall.tyngdpunkt = golv;  
+                    gameObj[index].z[0] = golva;
+                    gameObj[index].z[1] = golva +.3;
+                    gameObj[index].fall.tyngdpunkt = golva;  
                 }
             }
 
@@ -199,12 +202,14 @@ console.log("golv" + golv );
     if (golv[0] == undefined) {
         //golv[0] = gameObj[index].floor; 
         golv[0] =1; 
-        console.log("fel?:" + index);}
+        console.log(".......fel?:" + index);
+        console.log(golv[1])}
     
     gameObj[index].fall.drawer = 1 + gameObj[index].fall.tyngdpunkt - golv;
+   console.log("index" + index);
     console.log("z" + gameObj[index].z[0]);
     console.log(gameObj[index].fall.acc + " / " +gameObj[index].fall.tyngdpunkt); 
-    console.log("b" + gameObj[index].fall.drawer + " / " + gameObj[index].fall.on); 
+    console.log("drawer" + gameObj[index].fall.drawer + " / " + gameObj[index].fall.on); 
 }
     
 
@@ -258,7 +263,7 @@ if (j == 2) {
 
                     bullsEye = obstacleZ(i, j);
                     console.log("Bulls Eye" + bullsEye);
-                    if (bullsEye == "saknas") jjj = j;
+                    if (bullsEye == "saknas") {jjj = j; console.log("J" + jjj);}
                     if (bullsEye == "hit") jjj = j;
                     if (bullsEye == "under") golv.push(gameObj[j].z[1]);
                     if (bullsEye == "over") tak.push(gameObj[j].z[0]);

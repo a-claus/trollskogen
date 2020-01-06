@@ -32,7 +32,7 @@ gameObj.push(
     //placeMe: true,
     moving: false,
     cardImg: cardImages[cardImages.length-1],
-    x: 170, y: 170, speedX: 0,speedY: 0, floor: 1, 
+    x: 170, y: 170, speedX: 0,speedY: 0, z:[1, 1.1]
     width: 50, hight: 50, 
   vaderstrack: "soder",
   draw: function(){ctx.drawImage(mapImages[this.indexS], this.x, this.y,50,50);},
