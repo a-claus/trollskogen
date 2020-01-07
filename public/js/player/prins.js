@@ -99,9 +99,9 @@ BILD SPRITES MAP
 });
 
 function hopp(jump){
-	console.log("----------------hoppla-------------------------");
-	if (jump.acc == 0){
-		
+
+	if (jump.acc == 0 && jump.on == false){
+		console.log("----------------hoppla-------------------------");
 		jump.on = true;
 		jump.acc = 0.4;
 		return jump;

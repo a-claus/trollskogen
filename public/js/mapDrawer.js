@@ -118,7 +118,7 @@ function checkMoveInOrder(index){
 function obstacleZ(index, hittad){
     //hit over under
     let hogst = gameObj[index].z[0];
-    if (gameObj[index].fall.tyngdpunkt>hogst) hogst = gameObj[index].fall.tyngdpunkt;
+    if (gameObj[index].fall.tyngdpunkt > hogst) hogst = gameObj[index].fall.tyngdpunkt;
     let zGolvA = hogst;
     let zTakA = gameObj[index].z[1];
     let zGolvB = gameObj[hittad].z[0];
@@ -153,13 +153,16 @@ function checkFall(index){
     
      
     if (diff > 0) {
-       // gameObj[index].fall.tyngdpunkt = gameObj[index].z[0];
+        gameObj[index].fall.tyngdpunkt = gameObj[index].z[0];
         gameObj[index].fall.on = true;
     }
 
    // console.log(gameObj[index].fall.on + "---" + gameObj[index].z);
     if (gameObj[index].fall.on == true){
-      gravity(index, golv[0]);}
+        if (golv[0] == undefined) console.log("Golv0 undefined");
+        console.log(golv);
+        gravity(index, golv[0]);
+    }
  
 }
 
@@ -180,7 +183,6 @@ if (gameObj[index].fall.tyngdpunkt < golva){
 gameObj[index].fall.tyngdpunkt +=  gameObj[index].fall.acc;
 
            
-console.log("golv" + golv );
         if  (gameObj[index].fall.tyngdpunkt < golva ) gameObj[index].z[0] = golva;
         if  (gameObj[index].fall.tyngdpunkt >= golva ){
             gameObj[index].z[0] = gameObj[index].fall.tyngdpunkt;
@@ -189,6 +191,7 @@ console.log("golv" + golv );
         }
         
             if (gameObj[index].fall.acc >= -0.1 && gameObj[index].fall.acc <= .1){
+                console.log("Golva" + golva);
                 if (gameObj[index].fall.tyngdpunkt >= golva - .1 && gameObj[index].fall.tyngdpunkt <= golva +.1){
                     gameObj[index].fall.acc = 0;
                     gameObj[index].fall.on = false;
@@ -207,9 +210,9 @@ console.log("golv" + golv );
     
     gameObj[index].fall.drawer = 1 + gameObj[index].fall.tyngdpunkt - golv;
    console.log("index" + index);
-    console.log("z" + gameObj[index].z[0]);
-    console.log(gameObj[index].fall.acc + " / " +gameObj[index].fall.tyngdpunkt); 
-    console.log("drawer" + gameObj[index].fall.drawer + " / " + gameObj[index].fall.on); 
+    console.log("z0" + gameObj[index].z[0]);
+    console.log(gameObj[index].fall.acc + "acc / tp" +gameObj[index].fall.tyngdpunkt); 
+    console.log("drawer" + gameObj[index].fall.drawer + " draw/ onoff" + gameObj[index].fall.on); 
 }
     
 

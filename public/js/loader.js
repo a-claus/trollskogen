@@ -317,8 +317,8 @@ let plan1 = {
 	namn: "plan1", miljo: false, figur : true, info: false,
 	draw: function(){},
 	move: function(){return false;},
-	floor: 1,
-	x:0, y:0, width: 400, height: 400, z: [1,1],
+	hojd:0,
+	x:0, y:0, width: 400, height: 400, z: [1, 1],
 	hitAction: function(){}
 };
 

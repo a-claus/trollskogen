@@ -33,11 +33,11 @@ gameObj.push(
     indexCI: cardImages.length - 1,
     moving: false,
     cardImg: cardImages[cardImages.length-1],
-    x: 75, y: 75, speedX: 0,speedY: 0, z: 1, hojd:.5,
+    x: 75, y: 75, speedX: 0,speedY: 0, z: [1, 1.5], hojd:.5,
     width: 40 , hight: 40, 
     vaderstrack: "soder",
     status: 0,
-    hojd: 5, uppner:0, 
+    uppner:0, 
     angle: 45,
     counter: 0,
   draw: function(){
