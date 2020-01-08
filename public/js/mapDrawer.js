@@ -144,17 +144,17 @@ function checkFall(index){
     let c; let diff;
     //console.log("_____");
     //console.log(golv);
-    //if (golv.length < 1)("Ruta saknar golv!");
-    gameObj[index].golv = zTakB; xyz
-    
-    golv.sort(function(a, b){return b - a}); //10 8 6
+    if (golv.length > 0){
+        golv.sort(function(a, b){return b - a}); //10 8 6
+        gameObj[index].golv = golv[0];
+    }
     
     if (golv[0] == undefined) {
         golv[0] = gameObj[index].z[0]; //test
        golv[0] = 1; 
-      // console.log("fel?:" + index);
+      console.log("fel?:" + index);
     }
-        
+    golv[0] = gameObj[index].golv;
     diff = gameObj[index].z[0] - golv[0];
    // console.log("---" + diff );
     
