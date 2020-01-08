@@ -318,7 +318,7 @@ let plan1 = {
 	draw: function(){},
 	move: function(){return false;},
 	hojd:0,
-	x:0, y:0, width: 400, height: 400, z: [1, 1],
+	x:0, y:0, width: 400, hight: 400, z: [.9, 1], hojd: .1,
 	hitAction: function(){}
 };
 
@@ -748,7 +748,8 @@ switch (wood.namn){
 		ajaxer("./js/kartbitar/mimersbrunn.js");
 	break;
 	
-	case "Start": 
+	case "Start":
+
 		gameObj.push(plan1);
 		ajaxer("./js/kartbitar/start.js"); break;
 	case "Ravin1":
@@ -786,6 +787,7 @@ console.log("magic" + vaderstrack + wood[vaderstrack] );
 	}
 
 console.log(kartObj);
+console.log(gameObj);
 }
 function xbagMagi(vad){
 	switch(vad){

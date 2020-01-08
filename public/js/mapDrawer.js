@@ -4,7 +4,7 @@ var magStigNamn = "none";
 let golv; let tak;
 
 
-let zeta = true; listZ = [];
+let zeta = true; takZ = [];
 
 function updateGameArea(){
     var walk; let z; 
@@ -15,18 +15,21 @@ function updateGameArea(){
         paparazzi = false;
     }    
     drawFoto(1);
-    // Gameobj placeme
-//console.log(gameObj);
-    // Sortera höjd gameobj
+    
+    /*_______________________________ 
+    Sortera tak gameobj, för att räkna ut vilkoen ordning gemeObj ska ritas.
+    _________________________________*/
     if (zeta == true){
-        listZ = gameObj.map(obj => { 
+        takZ = gameObj.map(obj => { 
+
         //var objR = {};
             var objR = [];
             //objR[obj.index] = obj.z;  //obj.key
             objR.push(obj.z[1] );
             return objR;
         });
-        listZ = listArrayOrder(listZ);
+        
+        takZ = listArrayOrder(takZ);
         zeta = false;
     }
 
@@ -36,7 +39,7 @@ let iii;
     for (iii = 0; iii < gameObj.length; iii++){
         golv = []; tak = [];
         
-        let i = listZ[iii] ;
+        let i = takZ[iii] ;
         // Kolla om obj flyttar om det kan.
         if (gameObj[i] == undefined) console.log(" i undefined iii " + iii);
 
@@ -130,7 +133,7 @@ function obstacleZ(index, hittad){
     if (zGolvA == undefined || zGolvB == undefined) {console.log("saknar Z" + index + " " + hittad); return "saknas";}
     
     //if (zTakA <= zGolvB) {return "over";} 
-    if (zGolvA >= zTakB ) {return "under";} 
+    if (zGolvA >= zTakB ) {console.log("hittad"); return "under"; } 
     
         return "hit";
     
@@ -139,12 +142,16 @@ function obstacleZ(index, hittad){
 
 function checkFall(index){
     let c; let diff;
+    //console.log("_____");
+    //console.log(golv);
+    //if (golv.length < 1)("Ruta saknar golv!");
+    gameObj[index].golv = zTakB; xyz
     
     golv.sort(function(a, b){return b - a}); //10 8 6
     
     if (golv[0] == undefined) {
         golv[0] = gameObj[index].z[0]; //test
-      //  golv[0] = 1; 
+       golv[0] = 1; 
       // console.log("fel?:" + index);
     }
         
@@ -229,6 +236,7 @@ function objectHit(i){
    
     //let jHojd = .5;
     //let zetA = false; let zetB = false; 
+    console.log("OH");
     
     if (gameObj[i].hitAreaX){
         iX = gameObj[i].hitAreaX + gameObj[i].haWidth/2 + gameObj[i].speedX
