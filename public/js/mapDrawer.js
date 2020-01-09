@@ -111,12 +111,7 @@ function checkMoveInOrder(index){
             //}
         return walker.go;
 
-
-
-
 }
-
-
 
 function obstacleZ(index, hittad){
     //hit over under
@@ -126,9 +121,9 @@ function obstacleZ(index, hittad){
     let zTakA = gameObj[index].z[1];
     let zGolvB = gameObj[hittad].z[0];
     let zTakB = gameObj[hittad].z[1];
-    console.log("obsZ");
-    console.log(zGolvA +"-" +zTakA);
-    console.log(zGolvB +"-" +zTakB);
+    //console.log("obsZ");
+    //console.log(zGolvA + "-" +zTakA);
+    //console.log(zGolvB + "-" +zTakB);
 
     if (zGolvA == undefined || zGolvB == undefined) {console.log("saknar Z" + index + " " + hittad); return "saknas";}
     
@@ -148,13 +143,13 @@ function checkFall(index){
         golv.sort(function(a, b){return b - a}); //10 8 6
         gameObj[index].golv = golv[0];
     }
-    
+    golv[0] = gameObj[index].golv;
     if (golv[0] == undefined) {
         golv[0] = gameObj[index].z[0]; //test
        golv[0] = 1; 
       console.log("fel?:" + index);
     }
-    golv[0] = gameObj[index].golv;
+   
     diff = gameObj[index].z[0] - golv[0];
    // console.log("---" + diff );
     
@@ -287,7 +282,7 @@ if (j == 2) {
          
         }
     }
-    if (jjj>-1) return jjj;
+    if (jjj > -1) return jjj;
     if (jjj == -1) return null;
 }
 

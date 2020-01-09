@@ -570,90 +570,6 @@ let edgeNorr={
   };
 
 
-/* gammal dec 19
-let brokantS = {
-	floor:2,  miljo: false, figur : true, info: false,
-	vem: "brokantHitAreaS",
-	moving: false,
-	draw: function(){},
-	move: function(){},
-	
-	x: 170, y: 230,
-    speedX: 0, speedY: 0,
-	width: 60, hight: 20, 
-	doIt: function(){
-		
-		var ind = gameObj.findIndex(obj => obj.vem == objectSpecial);
-		if (mapArea(0, ind) == true){
-			gameObj[0].jump.golv = 1.2;
-		}
-		else
-		{
-			gameObj[0].jump.golv = 1;
-			objectSpecial = "none";	
-		}
-	},
-	hitAction: function(){
-		console.log("brokant" + gameObj[0].jump.hojd);
-		//hojd=1.2;
-		if (gameObj[0].jump.hojd >= 1.2){ //speedX
-			//gameObj[0].speedX = -1;
-			gameObj[0].move();
-			 gameObj[0].jump.golv = 1.2;
-			objectSpecial = this.vem;
-			return 1;} 
-		else {
-			gameObj[0].speedX = 0; hojd = 1; return 0;}
-    }
-}	
-let brokantSfall = {
-	floor:2,  miljo: false, figur : true, info: false,
-	vem: "brokantHitFallS",
-	moving: false,
-	draw: function(){},
-	move: function(){},
-	//ctx.fillRect(230, 170, 20, 60);
-	x: 170, y: 250,
-    speedX: 0, speedY: 0,
-	width: 60, hight: 10,
-	hitAction: function(){
-		
-		//hojd=1.2;
-			if ( gameObj[0].hojd > 0.75){
-			//gameObj[0].speedX = -1;
-			gameObj[0].move();
-			 gameObj[0].jump.golv = .0;
-			//objectSpecial = this.vem;
-			return 1;} 
-		else {
-			gameObj[0].skada++;
-			gameObj[0].move();
-			gameObj[0].jump.golv = 1;
-			gameObj[0].floor = 1;
-			return 1;
-		}
-    }
-}	
-let broHitAreaNS = {
-	
-	miljo: false, figur : false, info: true, floor:1,
-	draw: function(){
-		var ctx = myGameArea.context;
-	ctx.fillStyle = "red";
-	ctx.globalAlpha = 0.2;
-	//mittruta 170,170 230,230
-	//norr x170 y 150 60, 20
-   	ctx.fillRect(170, 150, 60, 10);
-   	//soder
-   	ctx.fillRect(170, 240, 60, 10);
-   	//ost 150, 170, 20 60
-   	ctx.fillRect(150, 170, 10, 60);
-   	//vast
-   	ctx.fillRect(240, 170, 10, 60);
-   	ctx.globalAlpha = 1;
-    }
-}	
-*/
 
 let kvadrat = {
 	
@@ -750,7 +666,7 @@ switch (wood.namn){
 	
 	case "Start":
 
-		gameObj.push(plan1);
+		//gameObj.push(plan1);
 		ajaxer("./js/kartbitar/start.js"); break;
 	case "Ravin1":
 		ajaxer("./js/kartbitar/ravin.js");
@@ -761,6 +677,8 @@ switch (wood.namn){
 		console.log("kartbit existerar inte");
 		kartObj.push(glanta);
 	}
+
+
 	//console.log("kant" + wood.edge);
 switch (wood.edge){
 	case "soder": kartObj.push(edgeS); break;
@@ -772,6 +690,11 @@ switch (wood.edge){
 	case "ost" : kartObj.push(edgeO); break;
 	case "vast":  kartObj.push(edgeV); break;
 }
+switch (wood.floors){
+	default:
+		gameObj.push(plan1);
+}
+
 //magisk stig
 console.log("magic" + vaderstrack + wood[vaderstrack] );
 

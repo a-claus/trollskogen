@@ -58,7 +58,13 @@ KARTA
 	y: 180,
 	speedX: 0,
 	speedY: 0,
-	z: [4, 4.2], hojd:.2,
+  z: [4, 4.2], hojd:.2,
+  fall: {
+		on: false,
+		acc: 0,
+		tyngdpunkt: 1,
+		drawer: 1
+	},
 	
 
 /*--------------------------------
@@ -93,7 +99,7 @@ BILD SPRITES MAP
           }
 
           
-          if ( vs==0) {//norr
+          if (vs == 0) {//norr
             if (180 <= this.angle && this.angle <= 270) {
               this.turn.status = true;
               this.turn.ur = false;
@@ -106,7 +112,7 @@ BILD SPRITES MAP
             else
               {this.turn.status = false;}
           }
-          if ( vs==1) {//soder
+          if (vs == 1) {//soder
             if (90 <= this.angle && this.angle <= 180) {
               this.turn.status = true;
               this.turn.ur = true;
@@ -119,7 +125,7 @@ BILD SPRITES MAP
              else
               {this.turn.status = false;}
           }
-          if ( vs==2) {//vast
+          if (vs == 2) {//vast
             if (180 <= this.angle && this.angle <= 270) {
               this.turn.status = true;
               this.turn.ur = true;
@@ -132,7 +138,7 @@ BILD SPRITES MAP
              else
               {this.turn.status = false;}
           }
-          if ( vs==3) {//ost
+          if (vs == 3) {//ost
             if (0 <= this.angle && this.angle <= 90) {
               this.turn.status = true;
               this.turn.ur = true;
