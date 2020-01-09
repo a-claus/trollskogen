@@ -3,18 +3,14 @@
 
 TODO
 ----------------------
-14b6 function obstacleZ verkar skicka hit trots att det borde vara lika värde på höjd och golv, förhindrar att gå. mapdrawer rad 120
 
-14b5 Ändra z till array
+15 Hur löser jag flygandet och saker på varandra? När flera zeta kan vara på varandra.
 
 14b4 drawHitArea
 
-14b3 kanterna fungerar inte byta kartbit
+14b3 kanterna fungerar inte byta kartbit.
 
 
-14b2 Lägga hitaction för hemlig väg. Hemliga vägen försvinner för snabbt.
-
-15. Ser inte kvadraten, när andra saker inte är där.
 
 14: Hopp hitarea höjder
 
