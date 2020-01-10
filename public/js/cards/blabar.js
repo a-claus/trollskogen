@@ -55,13 +55,9 @@ drawRuta: function(){
   gameObj[0].skada = 0;
   drawRuta("Blåbär", "Blåbär är gott och hälsosamt.", gameObj[index].cardImg, [{text: "Mums!", action: moveStart}]);
 
-    
 },
- 
   sprite: mapImages[mapImages.length-1],
     
-	
-	//spriteTimer: 0,
 	draw: function(){
        if (this.x < 400){ 
           ctx.drawImage(this.sprite, this.x, this.y, 60, 60);
