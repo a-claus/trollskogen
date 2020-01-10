@@ -20,12 +20,14 @@ function updateGameArea(){
     Sortera tak gameobj, för att räkna ut vilkoen ordning gemeObj ska ritas.
     _________________________________*/
     if (zeta == true){
+        console.log(gameObj);
         takZ = gameObj.map(obj => { 
 
         //var objR = {};
             var objR = [];
             //objR[obj.index] = obj.z;  //obj.key
-            objR.push(obj.z[1] );
+            console.log(obj.z[1]);
+            objR.push(obj.z[1]);
             return objR;
         });
         

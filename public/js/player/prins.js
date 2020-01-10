@@ -37,7 +37,7 @@ KARTA
 
 	x: 180,
 	y: 180,
-	z: [1, 1.3], golv: 1,
+	z: [4, 4.3], golv: 1,
 	speedX: 0,
 	speedY: 0,
 	jump: {fall:0, hojd:1, golv:1}, 
