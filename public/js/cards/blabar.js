@@ -32,7 +32,7 @@ gameObj.push(
     //placeMe: true,
     moving: false,
     cardImg: cardImages[cardImages.length-1],
-    x: 170, y: 170, speedX: 0, speedY: 0, z:[2, 2.1], hojd:.1,
+    x: 170, y: 170, speedX: 0, speedY: 0, z:[4, 4.1], hojd:.1,
     width: 50, hight: 50, golv: 1,
     fall: {
       on: false,
@@ -40,9 +40,12 @@ gameObj.push(
       tyngdpunkt: 1,
       drawer: 1
     },
-
+    
+   
   vaderstrack: "soder",
-  draw: function(){ctx.drawImage(mapImages[this.indexS], this.x, this.y,50,50);},
+  draw: function(){
+    sizer = fallDrawer(this.x, this.y, this.width, this.hight, this.fall.drawer);
+    ctx.drawImage(mapImages[this.indexS], sizer.x, sizer.y, sizer.width, sizer.hight);},
   move: function (){ return false;},
 
 hitAction : function(){
@@ -56,13 +59,15 @@ drawRuta: function(){
   drawRuta("Blåbär", "Blåbär är gott och hälsosamt.", gameObj[index].cardImg, [{text: "Mums!", action: moveStart}]);
 
 },
-  sprite: mapImages[mapImages.length-1],
+  sprite: mapImages[mapImages.length-1]
+  /*
+  ,
     
 	draw: function(){
        if (this.x < 400){ 
           ctx.drawImage(this.sprite, this.x, this.y, 60, 60);
         }
-    }
+    }*/
 
 	});
 
@@ -73,3 +78,16 @@ console.log("Blåbär klar");
 hitObjects++;
 
 gameStatus.push(moveStart);
+
+function fallDrawer(x, y, width, hight, size){
+  //      this.x - (40 * this.fall.drawer/2-20), this.y - (40 * this.fall.drawer/2-20), 40 * this.fall.drawer, 40 * this.fall.drawer);
+  let sizer  = {};
+  let just = size * width-size;
+  sizer.x = x - just/2;
+  sizer.y = y - just/2;
+  sizer.width = just;
+  sizer.hight = just;
+  return sizer;
+
+  //return size * hojd/2-size;
+}
