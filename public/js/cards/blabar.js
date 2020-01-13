@@ -32,8 +32,9 @@ gameObj.push(
     //placeMe: true,
     moving: false,
     cardImg: cardImages[cardImages.length-1],
-    x: 170, y: 170, speedX: 0, speedY: 0, z:[4, 4.1], hojd:.1,
+    x: 175, y: 175, speedX: 0, speedY: 0, z:[3, 3.1], hojd:.1,
     width: 50, hight: 50, golv: 1,
+    hitAreaX: 170,hitAreaY:170 , haWidth: 60 , haHight: 60,
     fall: {
       on: false,
       acc: 0,
@@ -82,9 +83,11 @@ gameStatus.push(moveStart);
 function fallDrawer(x, y, width, hight, size){
   //      this.x - (40 * this.fall.drawer/2-20), this.y - (40 * this.fall.drawer/2-20), 40 * this.fall.drawer, 40 * this.fall.drawer);
   let sizer  = {};
-  let just = size * width-size;
-  sizer.x = x - just/2;
-  sizer.y = y - just/2;
+  let just = size * width - size; //20+
+  x = x + width / 2;
+  y = y + hight / 2;
+  sizer.x = x - just / 2;
+  sizer.y = y - just / 2;
   sizer.width = just;
   sizer.hight = just;
   return sizer;
