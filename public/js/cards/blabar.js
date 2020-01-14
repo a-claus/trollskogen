@@ -34,7 +34,7 @@ gameObj.push(
     cardImg: cardImages[cardImages.length-1],
     x: 175, y: 175, speedX: 0, speedY: 0, z:[3, 3.1], hojd:.1,
     width: 50, hight: 50, golv: 1,
-    hitAreaX: 170,hitAreaY:170 , haWidth: 60 , haHight: 60,
+    hitAreaX: 175,hitAreaY:175 , haWidth: 50 , haHight: 50,
     fall: {
       on: false,
       acc: 0,

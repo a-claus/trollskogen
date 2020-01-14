@@ -56,7 +56,7 @@ let iii;
  
         // Rita obj
         gameObj[i].draw();
-        let rita = ["Blåbär"];//"ObstacleKub", "Prinsen"
+        let rita = [];//"ObstacleKub", "Prinsen"
 
         if (rita.findIndex(index => index == gameObj[i].namn) != -1) {
             //console.log("-i-"+i+ " "+ gameObj[i].hitAreaX + " " + gameObj[i].hitAreaY + " " + gameObj[i].haWidth+ " " + gameObj[i].haHight);
@@ -209,14 +209,14 @@ gameObj[index].fall.tyngdpunkt +=  gameObj[index].fall.acc;
     if (golv[0] == undefined) {
         //golv[0] = gameObj[index].floor; 
         golv[0] =1; 
-        console.log(".......fel?:" + index);
+    //    console.log(".......fel?:" + index);
         console.log(golv[1])}
     
     gameObj[index].fall.drawer = 1 + gameObj[index].fall.tyngdpunkt - golv;
-   console.log("index" + index);
-    console.log("z0" + gameObj[index].z[0]);
-    console.log(gameObj[index].fall.acc + "acc / tp" +gameObj[index].fall.tyngdpunkt); 
-    console.log("drawer" + gameObj[index].fall.drawer + " draw/ onoff" + gameObj[index].fall.on); 
+  // console.log("index" + index);
+   // console.log("z0" + gameObj[index].z[0]);
+   // console.log(gameObj[index].fall.acc + "acc / tp" +gameObj[index].fall.tyngdpunkt); 
+   // console.log("drawer" + gameObj[index].fall.drawer + " draw/ onoff" + gameObj[index].fall.on); 
 }
     
 

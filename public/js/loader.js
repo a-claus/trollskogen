@@ -145,39 +145,43 @@ let entre = {
 }
 
 let entreN = {
-	namn: "EntreN",
+	namn: "EntreN", visible: true,
 		
 	miljo: true, figur : false, info: false, floor:1,
 	draw: function(){
+		if (this.visible== true){
 		var ctx = myGameArea.context;
 		ctx.fillStyle = "white";
-   		ctx.fillRect(170, 0, 60, 60);
+   		ctx.fillRect(170, 0, 60, 60);}
     }
 }
 let entreS = {
-	namn: "EntreS",
+	namn: "EntreS", visible: true,
 	miljo: true, figur : false, info: false, floor:1,
 	draw: function(){
+		if (this.visible == true){
 		var ctx = myGameArea.context;
 	ctx.fillStyle = "white";
-   	ctx.fillRect(170, 340, 60, 60);
+   	ctx.fillRect(170, 340, 60, 60);}
     }
 }
 let entreV = {
-	namn: "EntreV",
+	namn: "EntreV", visible: true,
 	miljo: true, figur : false, info: false, floor:1,
 	draw: function(){
+		if (this.visible == true){
 		var ctx = myGameArea.context;
 	ctx.fillStyle = "white";
-   	ctx.fillRect(0, 170, 60, 60);}
+   	ctx.fillRect(0, 170, 60, 60);}}
 }
 let entreO = {
-	namn: "EntreO",
+	namn: "EntreO", visible: true,
 	miljo: true, figur : false, info: false, floor:1,
 	draw: function(){
+		if (this.visible == true){
 		var ctx = myGameArea.context;
 		   ctx.fillStyle = "white";
-   			ctx.fillRect(340, 170, 60, 60);
+   			ctx.fillRect(340, 170, 60, 60);}
     }
 }
 
@@ -559,13 +563,16 @@ let edgeNorr={
 	  hitAreaX: 50, hitAreaY: 50, z: [0, 5],
 	  speedX: 0, speedY: 0,
 	  haWidth: 300, haHight: 300,
+	  koIndex: "NN",
+
 	  draw: function(){},
 	  move: function (){return false;},
 	  hitAction : function(){                  
-                    let killern = kartObj.findIndex(function(obj) { return obj["namn"] === this.ms;});
-                    kartObj.splice(killern, 1);
+                   // let killern = kartObj.findIndex(function(obj) { return obj["namn"] === this.ms;});
+                   // kartObj.splice(killern, 1);
+                   kartObj[this.koIndex].visible = false;
 					paparazzi = true;
-					this.z = [10,10]; zeta = true; // istället för att radera objektet 
+					this.z = [-1, -1]; zeta = true; // istället för att radera objektet 
 	  }
   };
 
@@ -706,7 +713,9 @@ console.log("magic" + vaderstrack + wood[vaderstrack] );
 		case "vast": kartObj.push(entreV); gameObj.push(msHitArea); gameObj[gameObj.length - 1].ms = "entreV";break;
 		case "ost": kartObj.push(entreO); gameObj.push(msHitArea); gameObj[gameObj.length - 1].ms = "entreO";break;
 	}
-	//hitarea
+		gameObj[gameObj.length - 1].koIndex = kartObj.length - 1; 
+
+	// anar att ms kan plockas bort som egenskap
 	}
 
 console.log(kartObj);
