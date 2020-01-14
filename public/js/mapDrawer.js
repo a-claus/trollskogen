@@ -56,7 +56,7 @@ let iii;
  
         // Rita obj
         gameObj[i].draw();
-        let rita = [];//"ObstacleKub", "Prinsen"
+        let rita = ["Blåbär"];//"ObstacleKub", "Prinsen"
 
         if (rita.findIndex(index => index == gameObj[i].namn) != -1) {
             //console.log("-i-"+i+ " "+ gameObj[i].hitAreaX + " " + gameObj[i].hitAreaY + " " + gameObj[i].haWidth+ " " + gameObj[i].haHight);
@@ -130,7 +130,7 @@ function obstacleZ(index, hittad){
     if (zGolvA == undefined || zGolvB == undefined) {console.log("saknar Z" + index + " " + hittad); return "saknas";}
     
     //if (zTakA <= zGolvB) {return "over";} 
-    if (zGolvA >= zTakB ) {console.log("hittad"); return "under"; } 
+    if (zGolvA >= zTakB ) {console.log("hittad" + index + "-" +hittad); return "under"; } 
     
         return "hit";
     
