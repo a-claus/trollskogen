@@ -506,7 +506,7 @@ let edgeNorr={
 	  movepause = true;
 	  gameStatus.push(nyruta);
 	  hitIndex = this.index;
-	  console.log("Nyruta");   
+	   
   }
   };
   //--
@@ -516,12 +516,11 @@ let edgeNorr={
 	  //x: 0, y: 300, z: 0,
 	  hitAreaX: 0, hitAreaY: 380, z: [0, 5],
 	  speedX: 0, speedY: 0,
-	  //width: 350, hight: 3, hojd: 5,
+	  
 	   haWidth: 400, haHight: 20,
 	  draw: function(){},
 	  move: function (){return false;},
 	  hitAction : function(){
-	  console.log("+++++Nyruta");	
 	  movepause = true;
 	  gameStatus.push(nyruta);
 	  hitIndex = this.index;
@@ -539,8 +538,7 @@ let edgeNorr={
 	  movepause = true;
 	  gameStatus.push(nyruta);
 	  hitIndex = this.index;
-	  console.log("Nyruta");   
-	  }
+	}
   };
   let edgeOster =
    {
@@ -554,7 +552,7 @@ let edgeNorr={
 	  movepause = true;
 	  gameStatus.push(nyruta);
 	  hitIndex = this.index;
-	  console.log("Nyruta");   
+	
 	  }
   };
   let msHitArea =

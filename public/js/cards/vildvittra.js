@@ -59,11 +59,6 @@ KARTA
 	speedX: 0,
 	speedY: 0,
   z: [4, 4.2], hojd:.2,
-  fall: {
-		on: false,
-		acc: 0,
-		tyngdpunkt: 1,
-		drawer: 1
 	},
 	
 

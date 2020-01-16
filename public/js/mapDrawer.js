@@ -30,8 +30,9 @@ function updateGameArea(){
             objR.push(obj.z[1]);
             return objR;
         });
-        
+        console.log(takZ);
         takZ = listArrayOrder(takZ);
+        
         zeta = false;
     }
 
@@ -56,10 +57,10 @@ let iii;
  
         // Rita obj
         gameObj[i].draw();
-        let rita = ["Blåbär"];//"ObstacleKub", "Prinsen"
+
+        let rita = [];//"ObstacleKub", "Prinsen" "Blåbär"
 
         if (rita.findIndex(index => index == gameObj[i].namn) != -1) {
-            //console.log("-i-"+i+ " "+ gameObj[i].hitAreaX + " " + gameObj[i].hitAreaY + " " + gameObj[i].haWidth+ " " + gameObj[i].haHight);
             if (gameObj[i].hitAreaX != undefined) {
                 drawTrRuta(gameObj[i].hitAreaX, gameObj[i].hitAreaY, gameObj[i].haWidth, gameObj[i].haHight, gameObj[i].z[1]);
             } else{
@@ -94,6 +95,9 @@ function checkMoveInOrder(index){
     var hit;
 
             walker = findwall(pointOfpic(index));
+           //let array = [];
+           //array.push({x: gameObj[index].x + gameObj[index].width/2, y: gameObj[index].y + gameObj[index].hight/2});
+            //walker = findwall(array);
             if (gameObj[index].specialMove) walker = gameObj[index].specialMove(walker); //??? Alven? Move som inte ska påverkas av väggar
             if (gameObj[index].hojd >= 5) walker = {go:1, area: "flyger"};
             //if (hitObjects > 0){
@@ -118,7 +122,7 @@ function checkMoveInOrder(index){
 function obstacleZ(index, hittad){
     //hit over under
     let hogst = gameObj[index].z[0];
-    if (gameObj[index].fall.tyngdpunkt > hogst) hogst = gameObj[index].fall.tyngdpunkt;
+   // if (gameObj[index].fall.tyngdpunkt > hogst) hogst = gameObj[index].fall.tyngdpunkt; //XYZ
     let zGolvA = hogst;
     let zTakA = gameObj[index].z[1];
     let zGolvB = gameObj[hittad].z[0];
@@ -139,33 +143,40 @@ function obstacleZ(index, hittad){
 
 function checkFall(index){
     let c; let diff;
-    //console.log("_____");
-    //console.log(golv);
+    /*-----------------
+        Finns det något under spelare. Vad är närmast under i så fall.
+    -------------------*/
     if (golv.length > 0){
         golv.sort(function(a, b){return b - a}); //10 8 6
         gameObj[index].golv = golv[0];
     }
     golv[0] = gameObj[index].golv;
+
+    /*-----------------
+        Lägger in en botten om det inte skulle finnas en botten, som det borde.
+    -------------------*/
     if (golv[0] == undefined) {
         golv[0] = gameObj[index].z[0]; //test
        golv[0] = 1; 
       console.log("fel?:" + index);
     }
    
+     /*-----------------
+        Kontrollera hur långt under boten är och om figur/sak ska falla.
+    -------------------*/
     diff = gameObj[index].z[0] - golv[0];
-   // console.log("---" + diff );
-    
-     
+   
     if (diff > 0) {
         gameObj[index].fall.tyngdpunkt = gameObj[index].z[0];
         gameObj[index].fall.on = true;
     }
 
-   // console.log(gameObj[index].fall.on + "---" + gameObj[index].z);
+   /*-----------------
+        Om gameObj som ska falla då ska det räknas ut hur mycket. 
+    -------------------*/
     if (gameObj[index].fall.on == true){
-        if (golv[0] == undefined) console.log("Golv0 undefined");
-        console.log(golv);
         gravity(index, golv[0]);
+        zeta = true;
     }
  
 }
@@ -173,10 +184,14 @@ function checkFall(index){
 function gravity(index, golva){
 // kolla fall
 
-    
+   /*-----------------
+        Gravitationsökning för fall
+    -------------------*/  
 gameObj[index].fall.acc -= 0.05;
 
-
+/*-----------------
+        Har spelare landat, så kommer uppåt kraft.
+    -------------------*/ 
 if (gameObj[index].fall.tyngdpunkt < golva){
     if (gameObj[index].fall.acc <= 0) {
         gameObj[index].fall.acc = gameObj[index].fall.acc / 2;
@@ -184,16 +199,28 @@ if (gameObj[index].fall.tyngdpunkt < golva){
     }
 }
 
+/*-----------------
+        Tyngdpunkten beräkning
+    -------------------*/ 
 gameObj[index].fall.tyngdpunkt +=  gameObj[index].fall.acc;
 
-           
+/*-----------------
+       Om tyngdpunkt under golv,  så står spelare på golv.
+    -------------------*/            
         if  (gameObj[index].fall.tyngdpunkt < golva ) gameObj[index].z[0] = golva;
+
+/*-----------------
+       Om tyngdpunkt är över golv,  så är z samma som tyngdpunkten
+    -------------------*/
         if  (gameObj[index].fall.tyngdpunkt >= golva ){
             gameObj[index].z[0] = gameObj[index].fall.tyngdpunkt;
-            gameObj[index].z[1] = gameObj[index].fall.tyngdpunkt + .3;
+            gameObj[index].z[1] = gameObj[index].fall.tyngdpunkt + gameObj[index].fall.hojd;
              //  gameObj[index].fall.on = false;
         }
         
+        /*-----------------
+      När fall är avslutat acc och tyngdpunkt är = 0
+    -------------------*/
             if (gameObj[index].fall.acc >= -0.1 && gameObj[index].fall.acc <= .1){
                 console.log("Golva" + golva);
                 if (gameObj[index].fall.tyngdpunkt >= golva - .1 && gameObj[index].fall.tyngdpunkt <= golva +.1){
@@ -209,14 +236,18 @@ gameObj[index].fall.tyngdpunkt +=  gameObj[index].fall.acc;
     if (golv[0] == undefined) {
         //golv[0] = gameObj[index].floor; 
         golv[0] =1; 
-    //    console.log(".......fel?:" + index);
+        console.log("Gravity fel?:" + index);
         console.log(golv[1])}
     
+       /*-----------------
+      Ändra storlek på onjekt som ska ritas
+    -------------------*/
     gameObj[index].fall.drawer = 1 + gameObj[index].fall.tyngdpunkt - golv;
-  // console.log("index" + index);
-   // console.log("z0" + gameObj[index].z[0]);
-   // console.log(gameObj[index].fall.acc + "acc / tp" +gameObj[index].fall.tyngdpunkt); 
-   // console.log("drawer" + gameObj[index].fall.drawer + " draw/ onoff" + gameObj[index].fall.on); 
+
+
+
+      
+
 }
     
 
@@ -233,7 +264,7 @@ function objectHit(i){
    
     //let jHojd = .5;
     //let zetA = false; let zetB = false; 
-    console.log("OH");
+    console.log("OH fuction");
     
     if (gameObj[i].hitAreaX){
         iX = gameObj[i].hitAreaX + gameObj[i].haWidth/2 + gameObj[i].speedX
@@ -294,11 +325,11 @@ var minne;
 
 function findwall(p){
    var ctx = myGameArea.context;
-
+console.log("p-findwall:" + p[0].x + "-" +p[0].y);
 var c; var cString; var walker = {}; var minne;
 //var position = [{x:p.v, y: p.n}, {x: p.o, y: p.n}, {x: p.v, y: p.s},{x: p.o, y: p.s}]
 for (var i = 0; i<p.length; i++){ 
-    //console.log("p-findwall:" + p[i].x + "-" +p[i].y);
+    console.log("p-findwall:" + p[i].x + "-" +p[i].y);
 	c = ctx.getImageData(p[i].x, p[i].y, 1, 1).data;
     cString = c[0]+" "+c[1]+" "+c[2]; 
    //if (minne != cString) console.log("color" + cString);
@@ -403,6 +434,10 @@ function getPosition(index){
 function pointOfpic(index){
     //l¨Leverera två punkter för att kolla at man inte går i vägg eller något
 
+      let array = [];
+      array.push({x: gameObj[index].x + gameObj[index].width/2, y: gameObj[index].y + gameObj[index].hight/2});
+        
+
 var v = gameObj[index].x+5;
 var n = gameObj[index].y +5; 
 var s = gameObj[index].y + gameObj[index].hight-5;
@@ -413,21 +448,25 @@ var p=[];
         s = s + gameObj[index].speedY
         p.push({x:v+5 , y:s});
         p.push({x:o-5, y:s})
+        array[0].y+=2;
     }
     if (gameObj[index].vaderstrack == "norr") {
         n = n + gameObj[index].speedY;
         p.push({x:v+5 , y:n});
         p.push({x:o-5, y:n})
+        array[0].y-=2;
     }
     if (gameObj[index].vaderstrack == "vaster") {
         v = v + gameObj[index].speedX;
          p.push({x:v , y:n+5});
         p.push({x:v, y:s-5})
+        array[0].x-=2;
     }
     if (gameObj[index].vaderstrack == "oster") {
         o = o + gameObj[index].speedX;
         p.push({x:o , y:n+5});
-        p.push({x:o, y:s-5})
+        p.push({x:o, y:s-5});
+        array[0].x+=2;
     }
     if (gameObj[index].vaderstrack == "nv") {
         v = v + gameObj[index].speedX;
@@ -449,7 +488,8 @@ var p=[];
         s = s + gameObj[index].speedY;
         p.push({x:o , y:s});
     }
-return p;
+    return array;
+//return p;
 
 }
 

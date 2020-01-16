@@ -115,7 +115,7 @@ bytPlats("Hyllan"); //newBagv1
 //bytPlats(8,"card"); //alven newBagv1
 //bytPlats(7,"card"); //hugin newBagv1
 //bytPlats(5,"card"); //svamp newBagv1
-bytPlats(6,"card"); //6 blåbär saknar effekt
+//bytPlats(6,"card"); //6 blåbär saknar effekt
 //bytPlats( 2, "card" ); //Lilltroll saknar effekt
 //bytPlats( 9, "card" );
 //bytPlats( 10, "card" );
