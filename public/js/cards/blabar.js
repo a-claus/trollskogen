@@ -80,17 +80,3 @@ hitObjects++;
 
 gameStatus.push(moveStart);
 
-function fallDrawer(x, y, width, hight, size){
-  //      this.x - (40 * this.fall.drawer/2-20), this.y - (40 * this.fall.drawer/2-20), 40 * this.fall.drawer, 40 * this.fall.drawer);
-  let sizer  = {};
-  let just = size * width - size; //20+
-  x = x + width / 2;
-  y = y + hight / 2;
-  sizer.x = x - just / 2;
-  sizer.y = y - just / 2;
-  sizer.width = just;
-  sizer.hight = just;
-  return sizer;
-
-  //return size * hojd/2-size;
-}

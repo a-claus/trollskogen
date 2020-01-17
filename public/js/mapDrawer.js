@@ -42,7 +42,7 @@ let iii;
     for (iii = 0; iii < gameObj.length; iii++){
         golv = []; tak = [];
         
-        let i = ritOrder[iii] ;
+        let i = ritOrder[iii];
         // Kolla om obj flyttar om det kan.
         if (gameObj[i] == undefined) console.log(" i undefined iii " + iii);
 
