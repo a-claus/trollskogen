@@ -499,7 +499,7 @@ let edgeNorr={
 	
 	draw: function(){},
 	move: function (){return false;},
-	  hitAreaX: 0, hitAreaY: 0, z: [0, 5],
+	  hitAreaX: 0, hitAreaY: 0, z: [0, 5.1],
 	  speedX: 0, speedY: 0,
 	  haWidth: 400, haHight: 20,
   hitAction : function(){
@@ -514,7 +514,7 @@ let edgeNorr={
    {
 	  namn:"edgeSoder",
 	  //x: 0, y: 300, z: 0,
-	  hitAreaX: 0, hitAreaY: 380, z: [0, 5],
+	  hitAreaX: 0, hitAreaY: 380, z: [0, 5.2],
 	  speedX: 0, speedY: 0,
 	  
 	   haWidth: 400, haHight: 20,
@@ -529,7 +529,7 @@ let edgeNorr={
   let edgeVaster =
    {
 	  namn:"edgeVaster",
-	  hitAreaX: 0, hitAreaY: 0, z: [0, 5],
+	  hitAreaX: 0, hitAreaY: 0, z: [0, 5.3],
 	  speedX: 0, speedY: 0,
 	  haWidth: 20, haHight: 400,
 	  draw: function(){},
@@ -543,7 +543,7 @@ let edgeNorr={
   let edgeOster =
    {
 	  namn:"edgeOster",
-	  hitAreaX: 380, hitAreaY: 0, z: [0, 5],
+	  hitAreaX: 380, hitAreaY: 0, z: [0, 5.4],
 	  speedX: 0, speedY: 0,
 	  haWidth: 20, haHight: 400, 
 	  draw: function(){},

@@ -118,7 +118,7 @@ bytPlats("Hyllan"); //newBagv1
 //bytPlats(6,"card"); //6 blåbär saknar effekt
 //bytPlats( 2, "card" ); //Lilltroll saknar effekt
 //bytPlats( 9, "card" );
-//bytPlats( 10, "card" );
+bytPlats( 10, "card" ); //Lyktstolpe
 
 
 function bytPlatsMedBlank(namn, vad, ruta){

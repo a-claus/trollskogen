@@ -24,24 +24,30 @@ gameObj.push(
     namn: "Lyktstolpe",
     vad: "figur",
     miljo: false, figur: true, info: false,
-    //action: "dice",
+    
     index: gameObj.length,
     indexS: mapImages.length - 1,
-    //indexCI: cardImages.length - 1,
     placeMe: false,
     moving: false,
     cardImg: cardImages[cardImages.length-1],
   vaderstrack: "soder",
-  draw: function(){ctx.drawImage(mapImages[this.indexS], this.x, this.y);
-             ctx.fillStyle = "red";
-             ctx.globalAlpha = 0.2;
-            ctx.fillRect(this.hitAreaX, this.hitAreaY, this.haWidth, this.haHight);
-            ctx.globalAlpha = 1;
+  draw: function(){//ctx.drawImage(mapImages[this.indexS], this.x, this.y);
+    sizer = fallDrawer(this.x, this.y, this.width, this.hight, this.fall.drawer);
+    ctx.drawImage(mapImages[this.indexS], sizer.x, sizer.y, sizer.width, sizer.hight);
+  
       },
   move: function (){ return false;},
    x: 170, y: 170, speedX: 0,speedY: 0,floor: 1, 
    width: 50, hight:50, 
+   z:[3, 4], hojd:1,
+   fall: {
+    on: false,
+    acc: 0,
+    tyngdpunkt: 1,
+    drawer: 1
+  },
    hitAreaX: 195, hitAreaY: 232, haWidth: 25, haHight:25, 
+
 
   /*--------------------------------
 HIT

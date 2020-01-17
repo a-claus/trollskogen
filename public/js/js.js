@@ -844,7 +844,19 @@ return indexOrdning;
         ctx.putImageData(iData, 0, 0);
     }
 
-
+    function fallDrawer(x, y, width, hight, size){
+       
+        let sizer  = {};
+        let just = size * width - size; //20+
+        x = x + width / 2;
+        y = y + hight / 2;
+        sizer.x = x - just / 2;
+        sizer.y = y - just / 2;
+        sizer.width = just;
+        sizer.hight = just;
+        return sizer;
+    
+      }
 
 /*---------------------------------------------------------------
     MATH FUNCTION

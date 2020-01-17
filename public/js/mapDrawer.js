@@ -4,7 +4,7 @@ var magStigNamn = "none";
 let golv; let tak;
 
 
-let zeta = true; takZ = [];
+let zeta = true; ritOrder = [];
 
 function updateGameArea(){
     var walk; let z; 
@@ -21,7 +21,7 @@ function updateGameArea(){
     _________________________________*/
     if (zeta == true){
         console.log(gameObj);
-        takZ = gameObj.map(obj => { 
+        ritOrder = gameObj.map(obj => { 
 
         //var objR = {};
             var objR = [];
@@ -30,9 +30,9 @@ function updateGameArea(){
             objR.push(obj.z[1]);
             return objR;
         });
-        console.log(takZ);
-        takZ = listArrayOrder(takZ);
-        
+        console.log(ritOrder);
+        ritOrder = listArrayOrder(ritOrder);
+        console.log(ritOrder);
         zeta = false;
     }
 
@@ -42,7 +42,7 @@ let iii;
     for (iii = 0; iii < gameObj.length; iii++){
         golv = []; tak = [];
         
-        let i = takZ[iii] ;
+        let i = ritOrder[iii] ;
         // Kolla om obj flyttar om det kan.
         if (gameObj[i] == undefined) console.log(" i undefined iii " + iii);
 
@@ -185,7 +185,7 @@ function gravity(index, golva){
 // kolla fall
 
    /*-----------------
-        Gravitationsökning för fall
+        Gravitations-ökning för fall
     -------------------*/  
 gameObj[index].fall.acc -= 0.05;
 
@@ -204,6 +204,7 @@ if (gameObj[index].fall.tyngdpunkt < golva){
     -------------------*/ 
 gameObj[index].fall.tyngdpunkt +=  gameObj[index].fall.acc;
 
+
 /*-----------------
        Om tyngdpunkt under golv,  så står spelare på golv.
     -------------------*/            
@@ -214,7 +215,7 @@ gameObj[index].fall.tyngdpunkt +=  gameObj[index].fall.acc;
     -------------------*/
         if  (gameObj[index].fall.tyngdpunkt >= golva ){
             gameObj[index].z[0] = gameObj[index].fall.tyngdpunkt;
-            gameObj[index].z[1] = gameObj[index].fall.tyngdpunkt + gameObj[index].fall.hojd;
+            gameObj[index].z[1] = gameObj[index].fall.tyngdpunkt + gameObj[index].hojd;
              //  gameObj[index].fall.on = false;
         }
         

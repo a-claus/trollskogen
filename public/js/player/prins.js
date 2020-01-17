@@ -53,7 +53,8 @@ BILD SPRITES MAP
 	halvaHight: 20,
 
 	moving: false,
-	//z: 1, hojd: .3,
+	//z: 1, 
+	hojd: .3,
 	fall: {
 		on: false,
 		acc: 0,
