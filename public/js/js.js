@@ -847,13 +847,14 @@ return indexOrdning;
     function fallDrawer(x, y, width, hight, size){
        
         let sizer  = {};
-        let just = size * width - size; //20+
+        let justX = size * width - size; 
+        let justY = size * hight - size; 
         x = x + width / 2;
         y = y + hight / 2;
-        sizer.x = x - just / 2;
-        sizer.y = y - just / 2;
-        sizer.width = just;
-        sizer.hight = just;
+        sizer.x = x - justX / 2;
+        sizer.y = y - justY / 2;
+        sizer.width = justX;
+        sizer.hight = justY;
         return sizer;
     
       }

@@ -38,7 +38,7 @@ gameObj.push(
       },
   move: function (){ return false;},
    x: 170, y: 170, speedX: 0,speedY: 0,floor: 1, 
-   width: 50, hight:50, 
+   width: 50, hight:60, 
    z:[3, 4], hojd:1,
    fall: {
     on: false,
@@ -46,7 +46,7 @@ gameObj.push(
     tyngdpunkt: 1,
     drawer: 1
   },
-   hitAreaX: 195, hitAreaY: 232, haWidth: 25, haHight:25, 
+   hitAreaX: 188, hitAreaY: 205, haWidth: 26, haHight:26, 
 
 
   /*--------------------------------

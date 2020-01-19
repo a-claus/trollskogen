@@ -1,7 +1,10 @@
 
 var moveV = false; var moveO = false; moveS = false; var moveN = false; 
 var magStigNamn = "none";
-let golv; let tak;
+let golv; let tak;let a;
+console.log(a);
+
+
 
 
 let zeta = true; ritOrder = [];
@@ -42,7 +45,9 @@ let iii;
     for (iii = 0; iii < gameObj.length; iii++){
         golv = []; tak = [];
         
+        let h = ritOrder[iii - 1];
         let i = ritOrder[iii];
+        let j = ritOrder[iii + 1];
         // Kolla om obj flyttar om det kan.
         if (gameObj[i] == undefined) console.log(" i undefined iii " + iii);
 
@@ -53,7 +58,11 @@ let iii;
         }
 
         // Kolla om obj ska hoppa falla och funkar
-        if (gameObj[i].fall) checkFall(i);
+        if (gameObj[i].fall) {
+            checkFall(i);
+            if(gameObj[i].z[1]  < gameObj[i].z[h]) zeta = true;
+            if(gameObj[i].z[1] > gameObj[i].z[j]) zeta = true;
+        }
  
         // Rita obj
         gameObj[i].draw();
@@ -176,7 +185,7 @@ function checkFall(index){
     -------------------*/
     if (gameObj[index].fall.on == true){
         gravity(index, golv[0]);
-        zeta = true;
+        
     }
  
 }
@@ -333,7 +342,7 @@ for (var i = 0; i<p.length; i++){
     console.log("p-findwall:" + p[i].x + "-" +p[i].y);
 	c = ctx.getImageData(p[i].x, p[i].y, 1, 1).data;
     cString = c[0]+" "+c[1]+" "+c[2]; 
-   //if (minne != cString) console.log("color" + cString);
+   if (minne != cString) console.log("-- color --" + cString);
     minne = cString;
 
 
@@ -375,8 +384,8 @@ for (var i = 0; i<p.length; i++){
             walker.go = 1;
             walker.area = "road";
             break;
+
           case "128 128 128": //kvadrat
-           
             walker.go = 1;
             walker.area = "road";
             break;
