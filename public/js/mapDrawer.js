@@ -1,15 +1,14 @@
 
 var moveV = false; var moveO = false; moveS = false; var moveN = false; 
 var magStigNamn = "none";
-let golv; let tak;let a;
-console.log(a);
+let golv; let tak;
 
-
-
+let aa=0;
 
 let zeta = true; ritOrder = [];
 
 function updateGameArea(){
+    console.log(aa++);
     var walk; let z; 
 
     // kartobj, fotografering
@@ -91,6 +90,7 @@ let iii;
 
         //magicstig
     }
+    console.log(aa++);
 }
 
 
@@ -335,14 +335,14 @@ var minne;
 
 function findwall(p){
    var ctx = myGameArea.context;
-console.log("p-findwall:" + p[0].x + "-" +p[0].y);
+
 var c; var cString; var walker = {}; var minne;
 //var position = [{x:p.v, y: p.n}, {x: p.o, y: p.n}, {x: p.v, y: p.s},{x: p.o, y: p.s}]
 for (var i = 0; i<p.length; i++){ 
-    console.log("p-findwall:" + p[i].x + "-" +p[i].y);
+   
 	c = ctx.getImageData(p[i].x, p[i].y, 1, 1).data;
     cString = c[0]+" "+c[1]+" "+c[2]; 
-   if (minne != cString) console.log("-- color --" + cString);
+    if (minne != cString) console.log("-- color --" + cString);
     minne = cString;
 
 

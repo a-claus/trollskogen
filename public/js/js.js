@@ -70,7 +70,6 @@ function start(){
     setDraw();
     console.log("start");
     button.push(new Button(move, 150, 170, "Start")); 
-    console.log("SSSSTART");
     return false;
 
 }
@@ -122,34 +121,30 @@ function deleteObj(){
 let turnklar = true;
 
 function loop(){
-    
-       
-//console.log(gameStatus);  
-let igen = false;
-if (turnklar == true){
-   turnklar = false; 
-   if (gameStatus.length > 0){
-   if (movepause==true) {
-    var array= [];
-    for (var i=0; i < gameStatus.length; i++){
-        if (gameStatus[i].name != "move"){
-            array.push(gameStatus[i]);
+    let igen = false;
+    if (turnklar == true){
+        turnklar = false; 
+        if (gameStatus.length > 0){
+            if (movepause == true) {
+                var array= [];
+                for (var i=0; i < gameStatus.length; i++){
+                    if (gameStatus[i].name != "move"){
+                        array.push(gameStatus[i]);
+                    }
+                }
+                gameStatus = array;
+                console.log(gameStatus);  
+                movepause = false;
+            }
+        }
+        if (gameStatus[0] == undefined)  gameStatus.splice(0, 1);
+        if (gameStatus.length > 0){
+            igen = gameStatus[0]();
+            if (igen == true) gameStatus.push(gameStatus[0]);
+            gameStatus.splice(0, 1);
         }
     }
-    gameStatus = array;
-    console.log(gameStatus);  
-    movepause = false;
-}}
-  if (gameStatus[0] == undefined)  gameStatus.splice(0, 1);
-    if (gameStatus.length > 0){
-        igen = gameStatus[0]();
-        if (igen == true) gameStatus.push(gameStatus[0]);
-        gameStatus.splice(0, 1);
-    }
-}
-
-    
-    turnklar=true;
+    turnklar = true;
 }    
 
 
