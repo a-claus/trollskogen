@@ -3,12 +3,12 @@ var moveV = false; var moveO = false; moveS = false; var moveN = false;
 var magStigNamn = "none";
 let golv; let tak;
 
-let aa=0;
+
 
 let zeta = true; ritOrder = [];
 
 function updateGameArea(){
-    console.log(aa++);
+   
     var walk; let z; 
 
     // kartobj, fotografering
@@ -66,7 +66,7 @@ let iii;
         // Rita obj
         gameObj[i].draw();
 
-        let rita = [];//"ObstacleKub", "Prinsen" "Blåbär"
+        let rita = ["Lyktstolpe"];//"ObstacleKub", "Prinsen" "Blåbär"
 
         if (rita.findIndex(index => index == gameObj[i].namn) != -1) {
             if (gameObj[i].hitAreaX != undefined) {
@@ -90,7 +90,7 @@ let iii;
 
         //magicstig
     }
-    console.log(aa++);
+  
 }
 
 
@@ -108,7 +108,7 @@ function checkMoveInOrder(index){
            //array.push({x: gameObj[index].x + gameObj[index].width/2, y: gameObj[index].y + gameObj[index].hight/2});
             //walker = findwall(array);
             if (gameObj[index].specialMove) walker = gameObj[index].specialMove(walker); //??? Alven? Move som inte ska påverkas av väggar
-            if (gameObj[index].hojd >= 5) walker = {go:1, area: "flyger"};
+        //    if (gameObj[index].hojd >= 5) walker = {go:1, area: "flyger"};
             //if (hitObjects > 0){
                 hit = objectHit(index);
             //    console.log("hit" + hit);
@@ -274,7 +274,7 @@ function objectHit(i){
    
     //let jHojd = .5;
     //let zetA = false; let zetB = false; 
-    console.log("OH fuction");
+    //console.log("OH fuction");
     
     if (gameObj[i].hitAreaX){
         iX = gameObj[i].hitAreaX + gameObj[i].haWidth/2 + gameObj[i].speedX
@@ -342,7 +342,7 @@ for (var i = 0; i<p.length; i++){
    
 	c = ctx.getImageData(p[i].x, p[i].y, 1, 1).data;
     cString = c[0]+" "+c[1]+" "+c[2]; 
-    if (minne != cString) console.log("-- color --" + cString);
+    //if (minne != cString) console.log("-- color --" + cString);
     minne = cString;
 
 
@@ -353,58 +353,24 @@ for (var i = 0; i<p.length; i++){
             walker.area = "road";
             break;
 
-         case "215 215 181": //bro
-            walker.go = 1;
-            walker.area = "road";
-            break;  
-
-             case "215 215 185": //bro
-            walker.go = 1;
-            walker.area = "road";
-            break;     
-        
-        case "187 191 165" || "187 191 168":
-             //if (gameObj[0]) {
-                walker.go = 3;
-                walker.area = "road"; //}
-          //  else
-              //  {return 0;}
-
-        break;
-/*
-        case "165 42 42": //brown? //hoppa ner
-            if (id==0) {special="tunnel Jump"; 
-                       figur[0].status="jump"; }
-            return 0;
-            break;*/
-
-
-         case "120 120 120": //under bron
-           
-            walker.go = 1;
-            walker.area = "road";
-            break;
-
-          case "128 128 128": //kvadrat
-            walker.go = 1;
-            walker.area = "road";
-            break;
-
-
-        case "0 128 0":
-            walker.go=0;
+            case "0 128 0": 
+            walker.go = 0;
             walker.area = "wood";
-        break;
-        case "121 121 121": //under bron
-            //if (id==0) { special="tunnel"; }
-           walker.go = 1;
-            walker.area = "road";
-            break;
+            break; 
+            case "0 152 43": 
+            walker.go = 0;
+            walker.area = "wood";
+            break; 
+            case "203 195 151": 
+            walker.go = 0;
+            walker.area = "betong";
+            break;       
+
     
         
         	default:
-                walker.go=0;
-                walker.area ="thing";
+                walker.go=1;
+                walker.area ="road";
             
     }
 

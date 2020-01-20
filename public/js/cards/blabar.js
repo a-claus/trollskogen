@@ -15,7 +15,7 @@ cardImages.push(new Image());
 cardImages[cardImages.length-1].src="./img/blabar.png";
 
 
-
+kartObj.push();
 
 
 gameObj.push(
