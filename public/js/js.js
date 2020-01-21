@@ -577,12 +577,12 @@ function mapChange(vaderstrack){
     
     wood.vaderstrack = invNSVO(vaderstrack);
     setDraw(invNSVO(vaderstrack));
-
+     
     var nyttCard = map[wood.mapNR].card;
     
    // if (nyRuta==81) imageObj.src=map[81].bild;
    
-    if (nyttCard == 0 || nyttCard>1){
+    if (nyttCard == 0 || nyttCard > 1){
         
         if (card[nyttCard].url) {
             movepause = true;

@@ -12,24 +12,24 @@ function drawFoto(floor){
 }
 
 function studio(){
-
+console.log("studio");
 
 	for (let floor = 1; floor <= wood.floors; floor++){
 	for (let i = 0; i < kartObj.length; i++){
 		
 		if (kartObj[i].miljo == true && kartObj[i].floor == floor){
-		
 			kartObj[i].draw();
+
 		}
 	}
 	kamera(floor);
-	//context.clearRect(0, 0, 400, 400);
+	
 
 
 }
 
 }
-//x
+
 
 class ObstacleKub { //extends Figur
     constructor(x, y, z, hight, width){

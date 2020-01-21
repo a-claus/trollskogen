@@ -18,7 +18,6 @@ kartObj.push({
     abc:1,
     miljo: true, figur : false, info: false, floor:1,
 	draw: function(){
-        console.log(kartObj);
        	var ctx = myGameArea.context;
         ctx.drawImage(this.img, 150, 150, 100, 100);
       
@@ -40,8 +39,8 @@ gameObj.push({
 
     speedY: 0, speedX: 0,
     width: 100, hight: 100,
-    img: mapImages[mapImages.length-1],
-    cardImg: cardImages[cardImages.length-1],
+    //img: mapImages[mapImages.length-1],
+    //cardImg: cardImages[cardImages.length-1],
     text: "",
     button: [],
     count: 0,
@@ -86,6 +85,7 @@ gameObj.push({
 
 })
 
- 
+console.log(gameStatus); 
 hitObjects++;
+
 gameStatus.push(moveStart);
