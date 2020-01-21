@@ -12,9 +12,13 @@ function drawFoto(floor){
 }
 
 function studio(){
+
+
 	for (let floor = 1; floor <= wood.floors; floor++){
 	for (let i = 0; i < kartObj.length; i++){
+		
 		if (kartObj[i].miljo == true && kartObj[i].floor == floor){
+		
 			kartObj[i].draw();
 		}
 	}

@@ -10,15 +10,20 @@ mapImages.push(new Image());
 mapImages[mapImages.length-1].src = "./img/brunn.png";
 cardImages.push(new Image());
 cardImages[cardImages.length-1].src="./img/mimer.png";
-
+console.log("------------------" + mapImages.length);
+console.log(kartObj);
 kartObj.push({
-img: mapImages[mapImages.length-1],
-miljo: true, figur : false, info: false, floor:1,
+    namn: "Mim Br",
+    img: mapImages[mapImages.length-1],
+    abc:1,
+    miljo: true, figur : false, info: false, floor:1,
 	draw: function(){
-        console.log("------------------");
+        console.log(kartObj);
        	var ctx = myGameArea.context;
-		ctx.drawImage(this.img, 150, 150); 
-    });
+        ctx.drawImage(this.img, 150, 150, 100, 100);
+      
+    }
+});
 
 gameObj.push({
     vem: "Mimers Brunn",
@@ -44,7 +49,7 @@ gameObj.push({
     	//var ctx = myGameArea.context;
 		//ctx.drawImage(this.img, 150, 150); 
 		},
-    move: function(){return false},
+    move: function(){return false;},
     hitAction: function(){
         gameObj[0].placeMe = true;
         console.log("runMM!");
