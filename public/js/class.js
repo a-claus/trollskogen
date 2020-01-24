@@ -406,7 +406,7 @@ class Wood{
         if (mapNR==81) {
             this.vaderstrack = "soder";
             this.floors = 1;}
-            console.log("******" + map[mapNR].download);
+            console.log("*****" + map[mapNR].download);
         if (map[mapNR].download == true) movepause = true;
 
       // if (kartbit[this.kartbit].hasOwnProperty("func")==true){

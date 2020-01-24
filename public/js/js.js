@@ -124,19 +124,8 @@ function loop(){
     let igen = false;
     if (turnklar == true){
         turnklar = false; 
-        if (gameStatus.length > 0){
-            if (movepause == true) {
-                var array= [];
-                for (var i=0; i < gameStatus.length; i++){
-                    if (gameStatus[i].name != "move"){
-                        array.push(gameStatus[i]);
-                    }
-                }
-                gameStatus = array;
-                console.log(gameStatus);  
-                movepause = false;
-            }
-        }
+        if (movepause == true) gameStatus = removeMove(gameStatus);
+        
         if (gameStatus[0] == undefined)  gameStatus.splice(0, 1);
         if (gameStatus.length > 0){
             igen = gameStatus[0]();
@@ -145,7 +134,30 @@ function loop(){
         }
     }
     turnklar = true;
+    
 }    
+
+/*-------------------------------------------
+Loop function
+--------------------------------------------*/
+
+function removeMove(array){
+    var arrayEnd = array.length - 1;  
+    for (var i = arrayEnd; i > -1; i--){   
+        if (array[i].name === "move") {
+            console.log("AA" +arrayEnd); 
+            console.log(i);  
+            console.log(array[i].name);  
+            array[i] = 5;  
+            console.log(array[i].name);   
+            array.splice(i, 1);
+            console.log("AB" +arrayEnd); 
+        }
+    }
+    console.log(array);  
+    movepause = false;  
+    return array;  
+}
 
 
 

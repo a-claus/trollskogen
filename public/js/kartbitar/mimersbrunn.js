@@ -6,6 +6,7 @@
 //---------------------------------------------
 
 console.log("MB");
+console.log(gameStatus); 
 mapImages.push(new Image());
 mapImages[mapImages.length-1].src = "./img/brunn.png";
 cardImages.push(new Image());
