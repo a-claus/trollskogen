@@ -118,7 +118,17 @@ function deleteObj(){
             return true;
 }
 //function runStatusar(value, index, array){
+
+/*-------------------------------------------
+Loop function
+--------------------------------------------*/
+
 let turnklar = true;
+/*let wait =[];
+
+if (wait.length > 0){
+
+}*/
 
 function loop(){
     let igen = false;
@@ -137,9 +147,7 @@ function loop(){
     
 }    
 
-/*-------------------------------------------
-Loop function
---------------------------------------------*/
+
 
 function removeMove(array){
     var arrayEnd = array.length - 1;  
@@ -159,7 +167,9 @@ function removeMove(array){
     return array;  
 }
 
+/*-------------------------------------------
 
+--------------------------------------------*/
 
 
 function drawMeny(){ 
