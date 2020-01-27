@@ -124,9 +124,9 @@ Loop function
 --------------------------------------------*/
 
 let turnklar = true;
-/*let wait =[];
+let wait =[];
 
-if (wait.length > 0){
+/*if (wait.length > 0){
 
 }*/
 
@@ -140,7 +140,6 @@ function loop(){
         
         if (gameStatus[0] == undefined)  gameStatus.splice(0, 1);
         if (gameStatus.length > 0){
-            console.log("oooo ----" + gameStatus[0].name);
             igen = gameStatus[0]();
             if (igen == true) gameStatus.push(gameStatus[0]);
             gameStatus.splice(0, 1);
@@ -164,6 +163,10 @@ function removeMove(){
     movepause = false;  
     return false; 
 }
+
+
+function moveStart(){ movepause = false; if (wait.length == 0) gameStatus.push(move); return false;}
+function moveFunc(){leaveCard(); movepause = false; gameStatus.push(move); return false;}
 
 /*-------------------------------------------
 
@@ -236,8 +239,6 @@ function startaIgen(){
     }
 
 
-function moveStart(){ movepause = false; gameStatus.push(move); return false;}
-function moveFunc(){leaveCard(); movepause = false; gameStatus.push(move); return false;}
 
 function diceFunc(){console.log("df"); queue.push(diceRuta);}
 var hittad;
@@ -574,7 +575,7 @@ function ajaxer(url){
         //gameStatus.push(ajaxwait);
        // ajaxQueue++;
        
-        getFile(url);
+        getFile(url, {}, function(){console.log("JAAAAA");});
        
 
 }

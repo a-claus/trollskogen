@@ -116,7 +116,7 @@ function checkMoveInOrder(index){
 
                     if (hit != null){
                         walker.go = 0;
-                        console.log("hit");
+                    //    console.log("hit");
                         if (index == 0 || hit == 0){
                             hittad = index + hit;
                             var tempGo = gameObj[index + hit].hitAction(); //verkar inte vara ngt problem att skicka med nuffra i parantesen
@@ -311,7 +311,7 @@ if (j == 2) {
                      
 
                     bullsEye = obstacleZ(i, j);
-                    console.log("Bulls Eye" + bullsEye);
+                   // console.log("Bulls Eye" + bullsEye);
                     if (bullsEye == "saknas") {jjj = j; console.log("J" + jjj);}
                     if (bullsEye == "hit") jjj = j;
                     if (bullsEye == "under") golv.push(gameObj[j].z[1]);
@@ -319,7 +319,7 @@ if (j == 2) {
                   //  console.log("_____G____" + golv.length);
                    // console.log("_____G___:" + golv[golv.length - 1]);
                    // console.log("z" + gameObj[i].z)
-                    console.log("J:" + jjj);
+                  //  console.log("J:" + jjj);
                 }
             }
          
