@@ -131,13 +131,16 @@ if (wait.length > 0){
 }*/
 
 function loop(){
+    
     let igen = false;
     if (turnklar == true){
         turnklar = false; 
-        if (movepause == true) gameStatus = removeMove(gameStatus);
+        if (movepause == true) gameStatus.unshift(removeMove);
+            //removeMove(gameStatus); 
         
         if (gameStatus[0] == undefined)  gameStatus.splice(0, 1);
         if (gameStatus.length > 0){
+            console.log("oooo ----" + gameStatus[0].name);
             igen = gameStatus[0]();
             if (igen == true) gameStatus.push(gameStatus[0]);
             gameStatus.splice(0, 1);
@@ -149,22 +152,17 @@ function loop(){
 
 
 
-function removeMove(array){
-    var arrayEnd = array.length - 1;  
+function removeMove(){
+    console.log("RM");
+    var arrayEnd = gameStatus.length - 1;  
     for (var i = arrayEnd; i > -1; i--){   
-        if (array[i].name === "move") {
-            console.log("AA" +arrayEnd); 
-            console.log(i);  
-            console.log(array[i].name);  
-            array[i] = 5;  
-            console.log(array[i].name);   
-            array.splice(i, 1);
-            console.log("AB" +arrayEnd); 
+        if (gameStatus[i].name === "move") {
+             gameStatus.splice(i, 1); 
         }
     }
-    console.log(array);  
+    console.log(gameStatus);  
     movepause = false;  
-    return array;  
+    return false; 
 }
 
 /*-------------------------------------------
