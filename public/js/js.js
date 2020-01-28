@@ -168,6 +168,15 @@ function removeMove(){
 function moveStart(){ movepause = false; if (wait.length == 0) gameStatus.push(move); return false;}
 function moveFunc(){leaveCard(); movepause = false; gameStatus.push(move); return false;}
 
+function notWaiting(klar = "NN"){ 
+    //            var index = gameObj.findIndex(zz => zz["namn"] == input);
+
+    let index = wait.findIndex(zz => zz == klar);
+    console.log(index);
+    if (index == -1 && wait.length > 0) index = 0; 
+    wait.splice(index, 1);
+    if (wait.length == 0) gameStatus.push(move); 
+}
 /*-------------------------------------------
 
 --------------------------------------------*/
@@ -570,12 +579,14 @@ function deleteObjects(){
 
 }
 
-function ajaxer(url){
+function ajaxer(url, name = "NN"){
     console.log("ajaxwe");
         //gameStatus.push(ajaxwait);
        // ajaxQueue++;
        
-        getFile(url, {}, function(){console.log("JAAAAA");});
+        getFile(url);
+        wait.push(name);
+     //   getFile(url, {}, function(abc){console.log("JAAAAA");});
        
 
 }

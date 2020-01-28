@@ -86,7 +86,6 @@ gameObj.push({
 
 })
 
-console.log(gameStatus); 
 hitObjects++;
-
-gameStatus.push(moveStart);
+notWaiting();
+//gameStatus.push(moveStart);
