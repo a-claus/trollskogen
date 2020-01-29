@@ -3,11 +3,12 @@
 	foto[2] = new Image();
 
 function kamera(floor){
-	var ctx = myGameArea.context;
+	//var ctx = myGameArea.context;
 	foto[floor].src = myGameArea.foto();
 }
 
 function drawFoto(floor){
+	//var ctx = myGameArea.context;
 	ctx.drawImage(foto[floor], 0, 0);
 }
 
@@ -18,6 +19,7 @@ console.log("studio");
 	for (let i = 0; i < kartObj.length; i++){
 		
 		if (kartObj[i].miljo == true && kartObj[i].floor == floor){
+			console.log(kartObj[i].namn);
 			kartObj[i].draw();
 
 		}
@@ -670,13 +672,11 @@ switch (wood.namn){
 	break;
 	case "Mimers Brunn":
 		kartObj.push(glanta, entre, mb);
-		ajaxer("./js/kartbitar/mimersbrunn.js");
+		ajaxer("./js/kartbitar/mimersbrunn.js", "MB");
 	break;
 	
 	case "Start":
-
-		//gameObj.push(plan1);
-		ajaxer("./js/kartbitar/start.js"); break;
+		ajaxer("./js/kartbitar/start.js", "START"); break;
 	case "Ravin1":
 		ajaxer("./js/kartbitar/ravin.js");
 		//kartObj.push(ravin1);

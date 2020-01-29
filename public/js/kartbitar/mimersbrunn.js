@@ -8,20 +8,25 @@
 console.log("MB");
 console.log(gameStatus); 
 mapImages.push(new Image());
-mapImages[mapImages.length-1].src = "./img/brunn.png";
+mapImages[mapImages.length-1].src = "./img/h_hart.png";//./img/brunn.png
 cardImages.push(new Image());
 cardImages[cardImages.length-1].src="./img/mimer.png";
 console.log("------------------" + mapImages.length);
 console.log(kartObj);
+let ima = new Image();
+ima.src = "./img/bag.png";
+
 kartObj.push({
     namn: "Mim Br",
     img: mapImages[mapImages.length-1],
-    abc:1,
     miljo: true, figur : false, info: false, floor:1,
 	draw: function(){
-       	var ctx = myGameArea.context;
-        ctx.drawImage(this.img, 150, 150, 100, 100);
-      
+       	//var ctx = myGameArea.context;
+        ctx.fillStyle = "grey";
+        ctx.fillRect(150, 150, 10, 10);
+       // console.log(this);
+        ctx.drawImage(this.img, 150, 150,100 ,100);//, 100, 100
+     // alert();
     }
 });
 
@@ -87,5 +92,5 @@ gameObj.push({
 })
 
 hitObjects++;
-notWaiting();
+notWaiting("MB");
 //gameStatus.push(moveStart);

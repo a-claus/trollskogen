@@ -24,12 +24,9 @@ var figur=[];
 var moving = false;
 
 function startGame() {
-   console.log("SG");
+   console.log("StartGame");
    gameObj.push(edgeNorr, edgeSoder, edgeOster, edgeVaster);
     myGameArea.start();
-    //figur.push(new Player()); ???
-   // wood = new Wood(81); 
-   
 }
 
 function drawPolygon(coord, color="rgb(146,42,42)"){
@@ -172,9 +169,11 @@ function notWaiting(klar = "NN"){
     //            var index = gameObj.findIndex(zz => zz["namn"] == input);
 
     let index = wait.findIndex(zz => zz == klar);
-    console.log(index);
+    console.log(wait);
     if (index == -1 && wait.length > 0) index = 0; 
+     console.log(wait.length);
     wait.splice(index, 1);
+    console.log(wait);
     if (wait.length == 0) gameStatus.push(move); 
 }
 /*-------------------------------------------
@@ -580,10 +579,8 @@ function deleteObjects(){
 }
 
 function ajaxer(url, name = "NN"){
-    console.log("ajaxwe");
-        //gameStatus.push(ajaxwait);
-       // ajaxQueue++;
-       
+     console.log(wait); 
+    console.log("url" + url); 
         getFile(url);
         wait.push(name);
      //   getFile(url, {}, function(abc){console.log("JAAAAA");});
@@ -618,13 +615,8 @@ function mapChange(vaderstrack){
         
         if (card[nyttCard].url) {
             movepause = true;
-           // gameStatus.push(ajaxwait);
-           // ajaxQueue++;
+           
             getFile(card[nyttCard].url);
-        }
-        else{
-           // figur.push(new Monster(map[wood.mapNR].card));
-           // figur[1].floor=1;
         }
 
         }

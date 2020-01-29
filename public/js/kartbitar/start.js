@@ -25,5 +25,5 @@ kartObj.push(
         ctx.drawImage(this.img, 0, 0, 400, 400);}
 });
 
-
-ajaxQueue--;
+wait = [];
+//notWaiting("START");
