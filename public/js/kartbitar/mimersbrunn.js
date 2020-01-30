@@ -5,28 +5,24 @@
 //
 //---------------------------------------------
 
-console.log("MB");
-console.log(gameStatus); 
+
+wait.push("MBbild", "MBbild2");
 mapImages.push(new Image());
-mapImages[mapImages.length-1].src = "./img/h_hart.png";//./img/brunn.png
+mapImages[mapImages.length-1].addEventListener('load', notWaiting.bind("MBbild") );
+mapImages[mapImages.length-1].src = "./img/brunn.png";
 cardImages.push(new Image());
+cardImages[cardImages.length-1].addEventListener('load', notWaiting.bind("MBbild2") );
 cardImages[cardImages.length-1].src="./img/mimer.png";
-console.log("------------------" + mapImages.length);
-console.log(kartObj);
-let ima = new Image();
-ima.src = "./img/bag.png";
+
+
+
 
 kartObj.push({
     namn: "Mim Br",
     img: mapImages[mapImages.length-1],
     miljo: true, figur : false, info: false, floor:1,
 	draw: function(){
-       	//var ctx = myGameArea.context;
-        ctx.fillStyle = "grey";
-        ctx.fillRect(150, 150, 10, 10);
-       // console.log(this);
         ctx.drawImage(this.img, 150, 150,100 ,100);//, 100, 100
-     // alert();
     }
 });
 
@@ -46,7 +42,7 @@ gameObj.push({
     speedY: 0, speedX: 0,
     width: 100, hight: 100,
     //img: mapImages[mapImages.length-1],
-    //cardImg: cardImages[cardImages.length-1],
+    cardImg: cardImages[cardImages.length-1],
     text: "",
     button: [],
     count: 0,
@@ -56,6 +52,7 @@ gameObj.push({
 		},
     move: function(){return false;},
     hitAction: function(){
+        movepause = true;
         gameObj[0].placeMe = true;
         console.log("runMM!");
         gameStatus.push(this.drawRuta);
@@ -66,7 +63,7 @@ gameObj.push({
         //var ij = gameObj[0].findIndex(function(index) { return index["upgrades"] ==="Mimers Brunn";} );
         const harInte = gameObj[0].upgrade.findIndex(upg => upg === "Mimers Brunn");
         const index = getIndexGameObj("Mimers Brunn");
-        console.log ("MB" + harInte + gameObj[index].count++);
+        console.log ("MB" + index);
         //let img = this.cardImg;
     if (harInte == -1){
         
@@ -92,5 +89,6 @@ gameObj.push({
 })
 
 hitObjects++;
-notWaiting("MB");
-//gameStatus.push(moveStart);
+
+
+   notWaiting("MB");  

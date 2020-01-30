@@ -169,7 +169,7 @@ function notWaiting(klar = "NN"){
     //            var index = gameObj.findIndex(zz => zz["namn"] == input);
 
     let index = wait.findIndex(zz => zz == klar);
-    console.log(wait);
+        console.log(wait);
     if (index == -1 && wait.length > 0) index = 0; 
      console.log(wait.length);
     wait.splice(index, 1);
@@ -258,7 +258,7 @@ function drawRuta(rubrik="tom", text="tom", img="tom", buttons="tom"){
     console.log("dr");
     console.log(gameStatus);
     console.log(buttons);
-    movepause=true;
+    //movepause=true;
     if (rubrik=="tom")
         {
             rubrik=figurRubrik;
