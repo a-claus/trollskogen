@@ -8,14 +8,28 @@ När man äter blåbären, så repareras alla hjärtan.
 
 */
 
+wait.push("Blåbär", "Blabarbild", "Blabarbild2");
 
 mapImages.push(new Image());
-mapImages[mapImages.length-1].src="./img/blabar.png";
 cardImages.push(new Image());
+
+mapImages[mapImages.length-1].addEventListener('load', notWaiting.bind("Blabarbild") );
+cardImages[cardImages.length-1].addEventListener('load', notWaiting.bind("Blabarbild2") );
+
+mapImages[mapImages.length-1].src="./img/blabar.png";
 cardImages[cardImages.length-1].src="./img/blabar.png";
 
+//findPos();
 
-kartObj.push();
+
+kartObj.push({
+    namn: "Blåbar",
+    img: mapImages[mapImages.length-1],
+    miljo: true, figur : false, info: false, floor:1,
+  draw: function(){
+        ctx.drawImage(this.img, 175, 175, 50 ,50);//, 100, 100
+    }
+});
 
 
 gameObj.push(
@@ -27,9 +41,9 @@ gameObj.push(
     action: "upgrade",
     figur: true,
     index: kartObj.length,
-    indexS: mapImages.length - 1,
+   
     indexCI: cardImages.length - 1,
-    //placeMe: true,
+    
     moving: false,
     cardImg: cardImages[cardImages.length-1],
     x: 175, y: 175, speedX: 0, speedY: 0, z:[3, 3.1], hojd:.1,
@@ -45,11 +59,13 @@ gameObj.push(
    
   vaderstrack: "soder",
   draw: function(){
-    sizer = fallDrawer(this.x, this.y, this.width, this.hight, this.fall.drawer);
-    ctx.drawImage(mapImages[this.indexS], sizer.x, sizer.y, sizer.width, sizer.hight);},
+  //  sizer = fallDrawer(this.x, this.y, this.width, this.hight, this.fall.drawer);
+   // ctx.drawImage(mapImages[this.indexS], sizer.x, sizer.y, sizer.width, sizer.hight);
+ },
   move: function (){ return false;},
 
 hitAction : function(){
+  movepause = true;
   gameObj[0].placeMe = true;
   gameStatus.push(this.drawRuta);
   hitIndex = this.index;
@@ -78,5 +94,5 @@ drawRuta: function(){
 console.log("Blåbär klar");
 hitObjects++;
 
-gameStatus.push(moveStart);
+notWaiting("Blåbär");
 
