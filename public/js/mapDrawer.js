@@ -333,16 +333,19 @@ if (j == 2) {
 	//if (id==0) {special="";} 
 var minne;
 
+function getRGB(x, y){
+   let c = ctx.getImageData(x, y, 1, 1).data;
+    return c[0]+" "+c[1]+" "+c[2];
+}
+
 function findwall(p){
    var ctx = myGameArea.context;
 
 var c; var cString; var walker = {}; var minne;
 //var position = [{x:p.v, y: p.n}, {x: p.o, y: p.n}, {x: p.v, y: p.s},{x: p.o, y: p.s}]
 for (var i = 0; i<p.length; i++){ 
-   
-	c = ctx.getImageData(p[i].x, p[i].y, 1, 1).data;
-    cString = c[0]+" "+c[1]+" "+c[2]; 
-    //if (minne != cString) console.log("-- color --" + cString);
+   cString = getRGB(p[i].x, p[i].y);
+	
     minne = cString;
 
 

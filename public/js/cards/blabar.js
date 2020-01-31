@@ -77,19 +77,29 @@ drawRuta: function(){
 
 },
   sprite: mapImages[mapImages.length-1]
-  /*
-  ,
-    
-	draw: function(){
-       if (this.x < 400){ 
-          ctx.drawImage(this.sprite, this.x, this.y, 60, 60);
-        }
-    }*/
+  
 
 	});
 
+function getPosition(){
+  let x; let y; let color; let i = 0;
+  let incX; let incY;
 
-//kartbit[13].func=loadSIS;
+   while (i < 2){
+    x += incX;
+    y += incY; 
+    color = getRGB(x, y);
+
+    if (color == "255 255 255") i = 1;
+    if (i == 1){
+      if (color != "255 255 255"){
+        i=2;
+      }
+    }
+
+   }
+}
+
 
 console.log("Blåbär klar");
 hitObjects++;
