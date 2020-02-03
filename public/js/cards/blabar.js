@@ -26,7 +26,9 @@ kartObj.push({
     namn: "Blåbar",
     img: mapImages[mapImages.length-1],
     miljo: true, figur : false, info: false, floor:1,
+    x: -1, y: -1,
   draw: function(){
+      if (this.x == -1) getPosition();
         ctx.drawImage(this.img, 175, 175, 50 ,50);//, 100, 100
     }
 });
@@ -84,7 +86,8 @@ drawRuta: function(){
 function getPosition(){
   let x; let y; let color; let i = 0;
   let incX; let incY;
-
+  incX = Math.floor(Math.random()*2);
+  incY = Math.floor(Math.random()*2);
    while (i < 2){
     x += incX;
     y += incY; 
