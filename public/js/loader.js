@@ -592,6 +592,16 @@ let kvadrat = {
     },
     move:{}
 }	
+let minikvadrat = {
+	
+	miljo: true, figur : true, info: false, floor:1,
+	draw: function(){
+		var ctx = myGameArea.context;
+		ctx.fillStyle = "yellow";
+   		ctx.fillRect(150, 150, 50, 50);
+    },
+    move:{}
+}
 
 let ravin1 = {
 	image: "img/stup1.png", floor:1, miljo: true, figur : false, info: false,
@@ -661,8 +671,9 @@ switch (wood.namn){
 	break;
 	case "Hyllan": 
 		console.log("Hylla");
-		kartObj.push(glanta, entre, kvadrat);
-		gameObj.push(new ObstacleKub(150, 150, [1, 1.3], 100, 100));
+		kartObj.push(glanta, entre, kvadrat, minikvadrat);
+		gameObj.push(new ObstacleKub(150, 150, [1, 1.5], 100, 100));
+		gameObj.push(new ObstacleKub(150, 150, [1.5, 2.0], 50, 50));
 		//makeHylla();
 	
 	break;

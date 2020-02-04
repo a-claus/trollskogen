@@ -107,7 +107,7 @@ function bytPlats(namn, vad="namn"){
 	map[indexZZ] = map[4];
 	map[4] = tmp;
 }
-//bytPlats("Hyllan"); //newBagv1
+bytPlats("Hyllan"); //newBagv1
 //bytPlats("Svärdet i stenen"); newBagv1
 //bytPlats(0,"card"); //skatt // newBagv1
 //bytPlats("FyraBroNS");
@@ -115,7 +115,7 @@ function bytPlats(namn, vad="namn"){
 //bytPlats(8,"card"); //alven newBagv1
 //bytPlats(7,"card"); //hugin newBagv1
 //bytPlats(5,"card"); //svamp newBagv1
-bytPlats(6,"card"); //6 blåbär saknar effekt
+//bytPlats(6,"card"); //6  klar: z och foto
 //bytPlats( 2, "card" ); //Lilltroll saknar effekt
 //bytPlats( 9, "card" );
 //bytPlats( 10, "card" ); //Lyktstolpe
