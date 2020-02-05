@@ -43,10 +43,12 @@ function updateGameArea(){
 let iii;
     for (iii = 0; iii < gameObj.length; iii++){
         golv = []; tak = [];
-        
-        let h = ritOrder[iii - 1];
+        let h = ritOrder[iii]; let j = ritOrder[iii];
+       
         let i = ritOrder[iii];
-        let j = ritOrder[iii + 1];
+          h = ritOrder[iii - 1];
+          console.log("h" + h + "iii" + iii);
+        if (iii != gameObj.length - 1) j = ritOrder[iii + 1];
         // Kolla om obj flyttar om det kan.
         if (gameObj[i] == undefined) console.log(" i undefined iii " + iii);
 
@@ -59,8 +61,8 @@ let iii;
         // Kolla om obj ska hoppa falla och funkar
         if (gameObj[i].fall) {
             checkFall(i);
-            if(gameObj[i].z[1]  < gameObj[i].z[h]) zeta = true;
-            if(gameObj[i].z[1] > gameObj[i].z[j]) zeta = true;
+            if (gameObj[i].z[1]  < gameObj[h].z[1]) zeta = true;
+            if(gameObj[i].z[1] > gameObj[j].z[1]) zeta = true;
         }
  
         // Rita obj
