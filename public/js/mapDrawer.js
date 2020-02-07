@@ -32,10 +32,8 @@ function updateGameArea(){
             objR.push(obj.z[1]);
             return objR;
         });
-        console.log(ritOrder);
+        
         ritOrder = listArrayOrder(ritOrder);
-        console.log(ritOrder);
-    
         zeta = false;
     }
 
@@ -63,13 +61,17 @@ let iii;
         if (gameObj[i].fall) {
             checkFall(i);
             if (iii > 0){
-                if (gameObj[i].z[1] < gameObj[i-1].z[1]) 
-                {
-                paparazzi = true;}}
-            if(iii < ritorder.length-1){
-                if (gameObj[i].z[1] > gameObj[i+1].z[1]) 
-                {
-                paparazzi = true;}}
+                if (gameObj[i].z[1] < gameObj[ritOrder[iii-1]].z[1]) {
+                    console.log("papp-");
+                    zeta = true;
+                }
+            }
+            if(iii < ritOrder.length-1){
+                if (gameObj[i].z[1] > gameObj[ritOrder[iii+1]].z[1]) {
+                    console.log("papp+");
+                    zeta = true;
+                }
+            }
         }
  
         // Rita obj
@@ -149,10 +151,14 @@ function obstacleZ(index, hittad){
     //console.log(zGolvA + "-" +zTakA);
     //console.log(zGolvB + "-" +zTakB);
 
-    if (zGolvA == undefined || zGolvB == undefined) {console.log("saknar Z" + index + " " + hittad); return "saknas";}
+    if (zGolvA == undefined || zGolvB == undefined) {
+        //console.log("saknar Z" + index + " " + hittad); 
+        return "saknas";}
     
     //if (zTakA <= zGolvB) {return "over";} 
-    if (zGolvA >= zTakB ) {console.log("hittad" + index + "-" +hittad); return "under"; } 
+    if (zGolvA >= zTakB ) {
+      //  console.log("hittad" + index + "-" +hittad); 
+      return "under"; } 
     
         return "hit";
     
@@ -321,7 +327,7 @@ if (j == 2) {
 
                     bullsEye = obstacleZ(i, j);
                    // console.log("Bulls Eye" + bullsEye);
-                    if (bullsEye == "saknas") {jjj = j; console.log("J" + jjj);}
+                    if (bullsEye == "saknas") {jjj = j; }
                     if (bullsEye == "hit") jjj = j;
                     if (bullsEye == "under") golv.push(gameObj[j].z[1]);
                     if (bullsEye == "over") tak.push(gameObj[j].z[0]);
