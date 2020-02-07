@@ -842,7 +842,11 @@ function listArrayOrder(array){
         indexOrdning[k] = plac;
         plac = 0; 
     }
-return indexOrdning;
+    let arr=[];
+    for (k=0; k<indexOrdning.length; k++){
+        arr.push(indexOrdning.findIndex(zz => zz == k));
+    }
+return arr;
 }
 
 
