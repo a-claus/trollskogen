@@ -34,6 +34,7 @@ function updateGameArea(){
         });
         
         ritOrder = listArrayOrder(ritOrder);
+        console.log(ritOrder);
         zeta = false;
     }
 
@@ -45,6 +46,7 @@ let iii;
        // let fore = ritOrder[iii]; let efter = ritOrder[iii];
       
         let i = ritOrder[iii];
+     //   if (gameObj[0].z[0]>1.25) console.log(gameObj[i].namn);
        //   fore = ritOrder[iii - 1];
        //   console.log("fore: " + fore + "  iii: " + iii);
         //if (iii != gameObj.length - 1) efter = ritOrder[iii + 1];
@@ -58,17 +60,17 @@ let iii;
         }
 
         // Kolla om obj ska hoppa falla och funkar
-        if (gameObj[i].fall) {
+        if (gameObj[i].fall){
             checkFall(i);
             if (iii > 0){
                 if (gameObj[i].z[1] < gameObj[ritOrder[iii-1]].z[1]) {
-                    console.log("papp-");
+                    console.log("papp -");
                     zeta = true;
                 }
             }
-            if(iii < ritOrder.length-1){
+            if (iii < ritOrder.length-1){
                 if (gameObj[i].z[1] > gameObj[ritOrder[iii+1]].z[1]) {
-                    console.log("papp+");
+                    console.log("papp +");
                     zeta = true;
                 }
             }
@@ -267,6 +269,11 @@ gameObj[index].fall.tyngdpunkt +=  gameObj[index].fall.acc;
        /*-----------------
       Ändra storlek på onjekt som ska ritas
     -------------------*/
+    if (gameObj[0].z[0] > 1.25) {
+        console.log("tp: " + gameObj[index].fall.tyngdpunkt);
+        console.log("golv: " + golv);
+        console.log("draw: " + gameObj[index].fall.drawer);
+                                                            }
     gameObj[index].fall.drawer = 1 + gameObj[index].fall.tyngdpunkt - golv;
 
 

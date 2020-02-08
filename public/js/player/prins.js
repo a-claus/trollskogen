@@ -91,7 +91,8 @@ BILD SPRITES MAP
     	if (this.spriteTimer == 30) {this.spriteTimer = 0;}
     	if (this.spriteTimer < 15) { spriteNR = 0; }
     	if (this.spriteTimer > 14) { spriteNR = 1; }
-    	if (this.moving == false) { spriteNR = 2; }
+		if (this.moving == false) { spriteNR = 2; }
+		
 		var ctx = myGameArea.context;
     	ctx.drawImage(this.sprite, this.spriteSchema[this.vaderstrack][spriteNR][0], this.spriteSchema[this.vaderstrack][spriteNR][1], this.spriteSchema[this.vaderstrack][spriteNR][2], this.spriteSchema[this.vaderstrack][spriteNR][3], this.x - (40 * this.fall.drawer/2-20), this.y - (40 * this.fall.drawer/2-20), 40 * this.fall.drawer, 40 * this.fall.drawer);
 		//ctx.drawImage(this.sprite, this.spriteSchema[this.vaderstrack][spriteNR][0], this.spriteSchema[this.vaderstrack][spriteNR][1], this.spriteSchema[this.vaderstrack][spriteNR][2], this.spriteSchema[this.vaderstrack][spriteNR][3], this.x - this.halvaWidth - (40 * this.jump.hojd/2-20), this.y - this.halvaHight -(40 * this.jump.hojd/2-20), 40 * this.jump.hojd, 40 * this.jump.hojd);
