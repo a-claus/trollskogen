@@ -269,12 +269,13 @@ gameObj[index].fall.tyngdpunkt +=  gameObj[index].fall.acc;
        /*-----------------
       Ändra storlek på onjekt som ska ritas
     -------------------*/
-    if (gameObj[0].z[0] > 1.25) {
+   /* if (gameObj[0].z[0] > 1.25) {
         console.log("tp: " + gameObj[index].fall.tyngdpunkt);
+        console.log("golv: " + golv[0]);
         console.log("golv: " + golv);
         console.log("draw: " + gameObj[index].fall.drawer);
-                                                            }
-    gameObj[index].fall.drawer = 1 + gameObj[index].fall.tyngdpunkt - golv;
+                                                            }*/
+    gameObj[index].fall.drawer = 1 + gameObj[index].fall.tyngdpunkt - golv[0];
 
 
 
