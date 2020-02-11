@@ -71,7 +71,7 @@ BILD SPRITES MAP
     	if (keyMap[39] == true || moveO == true) {this.speedX = 2; this.moving = true; this.vaderstrack="oster";  moving = true;}
     	if (keyMap[38] == true || moveN == true) {this.speedY = -2; this.moving = true; this.vaderstrack="norr";  moving = true;}
     	if (keyMap[40] == true || moveS == true) {this.speedY = 2; this.moving = true; this.vaderstrack="soder";  moving = true;}
-		if (keyMap[32] == true) {keyMap[32] == false; this.fall = hopp(this.fall); console.log(this.z);}
+		if (keyMap[32] == true) {keyMap[32] == false; this.fall = hopp(this.fall); }
 		return moving;
 	},
 	spriteSchema:
@@ -107,7 +107,7 @@ function hopp(jump){
 		console.log("----------------hoppla-------------------------");
 		
 		jump.on = true;
-		jump.acc = 0.25;//0.4
+		jump.acc = 0.3;//0.4
 		return jump;
 	}
 	return jump;
