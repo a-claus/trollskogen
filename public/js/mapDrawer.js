@@ -43,14 +43,10 @@ function updateGameArea(){
 let iii;
     for (iii = 0; iii < gameObj.length; iii++){
         golv = []; tak = [];
-       // let fore = ritOrder[iii]; let efter = ritOrder[iii];
+       
       
         let i = ritOrder[iii];
-     //   if (gameObj[0].z[0]>1.25) console.log(gameObj[i].namn);
-       //   fore = ritOrder[iii - 1];
-       //   console.log("fore: " + fore + "  iii: " + iii);
-        //if (iii != gameObj.length - 1) efter = ritOrder[iii + 1];
-        // Kolla om obj flyttar om det kan.
+ 
         if (gameObj[i] == undefined) console.log(" i undefined iii " + iii);
 
         if (gameObj[i].move() == true){
@@ -168,7 +164,20 @@ function obstacleZ(index, hittad){
 }
 
 function checkFall(index){
-    let c; let diff;
+    let c; let diff; let g;
+// kolla efter golv
+
+golv =[];
+
+ 
+ for (let i=0; i < gameObj.length; i++){
+     g = "";
+    if (i != index) g = obstacleZ(index, i); 
+    if (g == "under") golv.push(gameObj[i].z[1]);
+}
+ 
+
+
     /*-----------------
         Finns det något under spelare. Vad är närmast under i så fall.
     -------------------*/
