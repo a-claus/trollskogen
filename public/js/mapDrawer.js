@@ -75,7 +75,7 @@ let iii;
         // Rita obj
         gameObj[i].draw();
 
-        let rita = ["Lyktstolpe"];//"ObstacleKub", "Prinsen" "Blåbär"
+        let rita = ["edgeSoder"];//"ObstacleKub", "Prinsen" "Blåbär"
 
         if (rita.findIndex(index => index == gameObj[i].namn) != -1) {
             if (gameObj[i].hitAreaX != undefined) {
@@ -291,54 +291,32 @@ gameObj[index].fall.tyngdpunkt +=  gameObj[index].fall.acc;
 
 
 
-function objectHit(i){
+function objectHit(i, retur = "hit"){
     
-    var floor = gameObj[i].floor;
-    var iX; var iY; var iZ;
-    var jX; var jY; var jW; var jH; 
+    //var floor = gameObj[i].floor;
+    //var iX; var iY; var iZ;
+    //var jX; var jY; var jW; var jH; 
     let bullsEye; let jjj = -1;
-    let NS; let VO;
-
    
-    //let jHojd = .5;
-    //let zetA = false; let zetB = false; 
-    //console.log("OH fuction");
-    
-    if (gameObj[i].hitAreaX){
-        iX = gameObj[i].hitAreaX + gameObj[i].haWidth/2 + gameObj[i].speedX
-        iY = gameObj[i].hitAreaY + gameObj[i].haHight/2 + gameObj[i].speedY;
-    }
-    else{
-        iX = gameObj[i].x + gameObj[i].width / 2 + gameObj[i].speedX;
-        iY = gameObj[i].y + gameObj[i].hight / 2 + gameObj[i].speedY;
-        
-    }
+
+  
+
+    let ixy = getObjCenter(i, true);
+    let jxy;
     
     for (var j=0; j < gameObj.length; j++){
 	   if (j != i ){ 
-            if (gameObj[j].hitAreaX > -1){
-                jX = gameObj[j].hitAreaX;
-                jY = gameObj[j].hitAreaY;
-                jW = gameObj[j].haWidth;
-                jH = gameObj[j].haHight;
-            }
-            else {
-                jX = gameObj[j].x + 10;
-                jY = gameObj[j].y + 10;
-                jW = gameObj[j].width - 10;
-                jH = gameObj[j].hight - 10;
-            }   
-      
-if (j == 2) {
-
-}
-
-            if (iX < jX + jW && iX > jX){
-              //  console.log("j"+ j +" :"+ iY + " --- " + jY + "/" + (jY + jH));
-                if (iY < jY + jH && iY > jY){
-                     
+           jxy = getObjArea(j, false);
+           
+           console.log("ab"+ i+ j);
+            if (ixy.x < jxy.x + jxy.w && ixy.x > jxy.x){
+                console.log("a"+ i+ j);
+                if (ixy.y < jxy.y + jxy.h && ixy.y > jxy.y){
+                    console.log("b"+ i+ j);
 
                     bullsEye = obstacleZ(i, j);
+
+                    if (retur == "hit")
                    // console.log("Bulls Eye" + bullsEye);
                     if (bullsEye == "saknas") {jjj = j; }
                     if (bullsEye == "hit") jjj = j;
@@ -355,6 +333,50 @@ if (j == 2) {
     }
     if (jjj > -1) return jjj;
     if (jjj == -1) return null;
+}
+
+
+function getObjCenter(i, go = true){
+    let obj={}; let add = {x: 0, y: 0};
+
+    if (go == true){ 
+        add.x = gameObj[i].speedX;
+        add.y = gameObj[i].speedY;
+    }
+    if (gameObj[i].hitAreaX){
+            obj.x = gameObj[i].hitAreaX + gameObj[i].haWidth/2 + add.x
+            obj.y = gameObj[i].hitAreaY + gameObj[i].haHight/2 + add.y;
+        }
+    else {
+            obj.x = gameObj[i].x + gameObj[i].width / 2 + add.x;
+            obj.y = gameObj[i].y + gameObj[i].hight / 2 + add.y;
+        
+        }
+        return obj;    
+}
+
+
+function getObjArea(i, go = false){
+    obj={}; add = {x: 0, y: 0};
+
+    if (go == true){ 
+        add.x = gameObj[i].speedX;
+        add.y = gameObj[i].speedY;
+    }
+    if (gameObj[i].hitAreaX > -1){
+            obj.x = gameObj[i].hitAreaX + add.x
+            obj.y = gameObj[i].hitAreaY + add.y;
+            obj.w = gameObj[i].haWidth;
+            obj.h = gameObj[i].haHight;
+        }
+    else{
+            obj.x = gameObj[i].x + 6 + add.x;
+            obj.y = gameObj[i].y + 6 + add.y;
+            obj.w = gameObj[i].width - 12;
+            obj.h = gameObj[i].hight - 12;
+        }
+    
+return obj;
 }
 
 
