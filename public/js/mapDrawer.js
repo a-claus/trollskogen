@@ -1,7 +1,7 @@
 
 var moveV = false; var moveO = false; moveS = false; var moveN = false; 
 var magStigNamn = "none";
-let golv; let tak;
+//let golv; let tak;
 
 
 
@@ -53,6 +53,7 @@ let iii;
             walk = checkMoveInOrder(i);
             gameObj[i].x = gameObj[i].x + walk * gameObj[i].speedX;
             gameObj[i].y = gameObj[i].y + walk * gameObj[i].speedY;
+            gameObj[i].speedX = 0; gameObj[i].speedY = 0;
         }
 
         // Kolla om obj ska hoppa falla och funkar
@@ -101,8 +102,6 @@ let iii;
     }
   
 }
-
-
 
 
 //var counter=0; ?
@@ -170,12 +169,12 @@ function checkFall(index){
 golv =[];
 
  
- for (let i=0; i < gameObj.length; i++){
-     g = "";
-    if (i != index) g = obstacleZ(index, i); 
-    if (g == "under") golv.push(gameObj[i].z[1]);
-}
- 
+
+     golv = objectHit(index, "under"); 
+    
+   // if (g == "under") golv.push(gameObj[i].z[1]);
+
+    
 
 
     /*-----------------
@@ -190,7 +189,7 @@ golv =[];
     /*-----------------
         Lägger in en botten om det inte skulle finnas en botten, som det borde.
     -------------------*/
-    if (golv[0] == undefined) {
+    if (golv[0] == undefined ) {
         golv[0] = gameObj[index].z[0]; //test
        golv[0] = 1; 
       console.log("fel?:" + index);
@@ -296,43 +295,47 @@ function objectHit(i, retur = "hit"){
     //var floor = gameObj[i].floor;
     //var iX; var iY; var iZ;
     //var jX; var jY; var jW; var jH; 
-    let bullsEye; let jjj = -1;
+    let bullsEye; let array = [];
    
 
   
 
     let ixy = getObjCenter(i, true);
-    let jxy;
+    let jxy; 
     
     for (var j=0; j < gameObj.length; j++){
 	   if (j != i ){ 
            jxy = getObjArea(j, false);
            
-           console.log("ab"+ i+ j);
+           
             if (ixy.x < jxy.x + jxy.w && ixy.x > jxy.x){
-                console.log("a"+ i+ j);
+                
                 if (ixy.y < jxy.y + jxy.h && ixy.y > jxy.y){
-                    console.log("b"+ i+ j);
+                 
 
                     bullsEye = obstacleZ(i, j);
 
-                    if (retur == "hit")
-                   // console.log("Bulls Eye" + bullsEye);
-                    if (bullsEye == "saknas") {jjj = j; }
-                    if (bullsEye == "hit") jjj = j;
-                    if (bullsEye == "under") golv.push(gameObj[j].z[1]);
-                    if (bullsEye == "over") tak.push(gameObj[j].z[0]);
-                  //  console.log("_____G____" + golv.length);
-                   // console.log("_____G___:" + golv[golv.length - 1]);
-                   // console.log("z" + gameObj[i].z)
-                  //  console.log("J:" + jjj);
+                    if (retur == "hit"){
+                        if (bullsEye == "hit") return j;
+                    }
+                    if (retur == "under" ){
+                        if (bullsEye == "under") {
+                          
+                            array.push(gameObj[j].z[1]);
+                        }
+                    }
+                    if (retur == "over"){
+                        if (bullsEye == "over") array.push(tak.push(gameObj[j].z[0]));
+                    }
                 }
             }
          
         }
     }
-    if (jjj > -1) return jjj;
-    if (jjj == -1) return null;
+
+    
+    if (retur == "hit") return null;
+    if (retur == "under" || retur == "over") return array;
 }
 
 
