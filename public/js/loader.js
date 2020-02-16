@@ -15,7 +15,7 @@ function drawFoto(floor){
 function studio(){
 console.log("studio");
 
-	for (let floor = 1; floor <= wood.floors; floor++){
+	for (let floor = 1; floor < wood.floors + 1; floor++){
 	for (let i = 0; i < kartObj.length; i++){
 		
 		if (kartObj[i].miljo == true && kartObj[i].floor == floor){
@@ -221,14 +221,16 @@ let roadV = {
         ctx.fillRect(0, 170, 200, 60);
 	}}
 let roadVertikal = {
+	namn: "rVert",
 	miljo: true, figur : false, info: false,
 	floor:1,
     draw : function (){
-
-            ctx.fillStyle = "white";
-        ctx.fillRect(170, 0, 60, 400);
+    	console.log("Ritar RV")
+        ctx.fillStyle = "white";
+        ctx.fillRect(170, 0, 60, 400);//170
 	}}
 let roadHorisontal = {
+	namn: "roadH",
 	miljo: true, figur : false, info: false, 
 	floor:1,
     draw : function (){
@@ -279,6 +281,7 @@ let broHorisontal= {
     }
 }
 let broVertikal = {
+	namn: "broV",
 	floor:2, miljo: true, figur : false, info: false, 
     draw : function (){
         ctx.drawImage(bro, 150, 150);
@@ -655,9 +658,9 @@ switch (wood.namn){
 		//bro alltid floor 2;
 	break;
 	case "FyraBroNS": 
-		console.log("FBNS");
-		kartObj.push(roadHorisontal, tunnelV, tunnelO, roadVertikal, broVertikal,testRuta);
-		makeBro("NS");
+		//console.log("FBNS");
+		//kartObj.push(roadHorisontal, tunnelV, tunnelO, roadVertikal, broVertikal,testRuta);
+		//makeBro("NS");
 		/*gameObj.push(brokantV);
 		gameObj.push(brokantVfall);
 		gameObj.push(brokantO);
@@ -668,6 +671,19 @@ switch (wood.namn){
 		//tunnlar är alltid floor 1;
 		//roadHorisontal.floor=1;
 		//bro alltid floor 2;
+	//break;
+	//case "Hyllan": 
+		//bilder Tunnel och övervån.
+		//brokant övervån
+		console.log("Bro");
+		kartObj.push(roadHorisontal, tunnelV, tunnelO, roadVertikal, broVertikal); //bind
+		gameObj.push(new ObstacleKub(150, 0, [1.8, 2.0], 100, 400));
+		gameObj.push(new ObstacleKub(150, 150, [2.0, 2.2], 10, 100));
+		gameObj.push(new ObstacleKub(240, 150, [2.0, 2.2], 10, 100));
+		roadVertikal.floor = 2;
+		roadHorisontal.floor = 1;
+		
+	
 	break;
 	case "Hyllan": 
 		console.log("Hylla");

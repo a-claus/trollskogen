@@ -107,10 +107,10 @@ function bytPlats(namn, vad="namn"){
 	map[indexZZ] = map[4];
 	map[4] = tmp;
 }
-bytPlats("Hyllan"); //newBagv1
+//bytPlats("Hyllan"); //newBagv1
 //bytPlats("Svärdet i stenen"); newBagv1
 //bytPlats(0,"card"); //skatt // newBagv1
-//bytPlats("FyraBroNS");
+bytPlats("FyraBroNS");
 //bytPlats("Mimers Brunn"); // newBagv1 saknar effekt
 //bytPlats(8,"card"); //alven newBagv1
 //bytPlats(7,"card"); //hugin newBagv1

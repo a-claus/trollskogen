@@ -6,37 +6,6 @@ TODO
 
 15 Hur löser jag flygandet och saker på varandra? När flera zeta kan vara på varandra.
 
-14b4 drawHitArea
-
-14b3 kanterna fungerar inte byta kartbit.
-
-
-
-14: Hopp hitarea höjder
-
-
-
-	 
-
-	Det verkar som z:a inte hamnar på platta och därför låser obj.
-		Den har landat, avslutat hoppet. Men sen startar hoppet igen, antagligen för att den är på en höjd.
-
-	Just nu fastnar movingobject i kvadrat.
-
-	Lyckas introdusera z sökning. Nu försöker jag skapa objekt att stå på. Kan vara så att de olika floorerna ställer till det. Ska introducera en ruta med en ruta att stå på. Döper den till Hylla
-
-	- I mapDrawer har jag två sökningar. En på färg, en på area. 
-	Borde jag lägga in ett höjdvärde i xyz?
-	
-	Jag loopar ju i mapdrawer NU höjdyta, för höjdyta, tills spelaren höjd uppnåtts, för att rita från botten och upp. 
-	Men när jag tänker krock måste jag loopa hinder all the way.
-	Floor = z är hojd.
-	------
-	14a Jag kommer köra kartrutan i floor, men hitobjects i z?  Funderar om det blir problem med monster på vån 2. Inte om man lägger ett plan på broar. Och att allt faller, 
-
-
-	Om jag ger alla varelser en höjd och z postion, så borde det inte vara några problem att rita ut allt, jo för att förhindra krockar. 
-
 
 
 17b - Kanske skapa -array för colors = not walkable.

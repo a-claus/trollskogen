@@ -394,7 +394,9 @@ class Wood{
         this.vast=map[mapNR].vast;
         this.typ=map[mapNR].typ;
         this.namn=map[mapNR].namn;
-        this.floors=map[mapNR].floors;
+        this.floors = map[mapNR].floors;
+        //gameObj[0].floor=2;  
+
 //--------- new ------------
         this.kartbit=map[mapNR].kartbit;
         this.monster=map[mapNR].monster;

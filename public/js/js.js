@@ -598,10 +598,8 @@ function mapChange(vaderstrack){
     if (vaderstrack == "jump") {gameObj[0].vaderstrack = tempArray[1]; vaderstrack=tempArray[1]}
     
     wood.update(nyRuta);
-
-
-    
     setFloor(vaderstrack);
+    
     var nyRuta = wood.mapNR;
     
     wood.vaderstrack = invNSVO(vaderstrack);
