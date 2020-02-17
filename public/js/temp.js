@@ -1,6 +1,6 @@
 //variabler
 
-
+console.log("tempjs");
 
 function updateGameArea(){
     

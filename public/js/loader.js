@@ -1,18 +1,31 @@
-	let foto = []; let paparazzi = true;
-	foto[1] = new Image();
-	foto[2] = new Image();
+/*------------------------------------------------------------
+FOTO
+_______________________________________________________________*/	
+
+let foto = []; let paparazzi = true; 
+foto[1] = new Image();
+foto[2] = new Image();
+foto[3] = new Image();
+foto[4] = new Image();
 
 function kamera(floor){
 	//var ctx = myGameArea.context;
+
 	foto[floor].src = myGameArea.foto();
 }
 
 function drawFoto(floor){
 	//var ctx = myGameArea.context;
+	if (wood.floor < floor) floor = wood.floor;
 	ctx.drawImage(foto[floor], 0, 0);
 }
 
 function studio(){
+	
+	//console.log(kartObj.map(function(o) { return o.floor; }));
+	//console.log(Math.max.apply(Math, kartObj.map(function(o) { return o.floor; })))
+	//console.log(kartObj.reduce((prev, current) => (prev.floor > current.floor) ? prev : current));
+	//kartObj.reduce((prev, current) => (prev.floor > current.floor) ? prev : current)
 console.log("studio");
 
 	for (let floor = 1; floor < wood.floors + 1; floor++){
@@ -31,6 +44,10 @@ console.log("studio");
 }
 
 }
+
+/*------------------------------------------------------------
+
+_______________________________________________________________*/
 
 
 class ObstacleKub { //extends Figur

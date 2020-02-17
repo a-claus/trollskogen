@@ -15,8 +15,8 @@ function updateGameArea(){
     if (paparazzi == true){
         studio();
         paparazzi = false;
-    }    
-    drawFoto(1);
+    }   console.log(gameObj[0].z[1]);
+    drawFoto(Math.floor(gameObj[0].z[1]));
     
     /*_______________________________ 
     Sortera tak gameobj, för att räkna ut vilkoen ordning gemeObj ska ritas.

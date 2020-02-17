@@ -569,7 +569,8 @@ function deleteObjects(){
     kartObj.splice(1, kartObj.length - 1);
     mapImages.splice(mapImages.length - 1);
     kartObj.push({
-        miljo: false, figur : false, info: true,
+        namn: "meny",
+        miljo: false, figur : false, info: true, floor: 0,
         draw: function(){
             drawMeny();}
     });    
@@ -599,7 +600,7 @@ function mapChange(vaderstrack){
     
     wood.update(nyRuta);
     setFloor(vaderstrack);
-    
+
     var nyRuta = wood.mapNR;
     
     wood.vaderstrack = invNSVO(vaderstrack);

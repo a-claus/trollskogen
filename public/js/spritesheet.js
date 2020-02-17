@@ -52,7 +52,7 @@ ICONstyrka.src = "img/styrka.png";
 
 
  kartObj.push({
- 	miljo: false, figur : false, info: true,
+ 	miljo: false, figur : false, info: true, namn: "meny", floor: 0,
  	draw: function(){
  		drawMeny();}
  });	
