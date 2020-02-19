@@ -79,6 +79,7 @@ function makeMap(){
 var y=0;
 
 for (var i = 0; i < 81; i++){
+	if (kartbit[y].typ != "glanta"){crupier[i] = 1;}
 
  		map[blanda[i]] = {
  			namn:kartbit[y].namn, 
@@ -90,7 +91,8 @@ for (var i = 0; i < 81; i++){
  			floors:kartbit[y].floors,
  			download:kartbit[y].download,
  			kartbit: y,
- 			card: crupier[i]
+ 			//card: crupier[i]
+ 			card: 1
  		};
  
  	y++;
@@ -110,7 +112,8 @@ function bytPlats(namn, vad="namn"){
 //bytPlats("Hyllan"); //newBagv1
 //bytPlats("Svärdet i stenen"); newBagv1
 //bytPlats(0,"card"); //skatt // newBagv1
-bytPlats("FyraBroNS");
+//bytPlats("FyraBroNS");
+bytPlats("FyraBroVO");
 //bytPlats("Mimers Brunn"); // newBagv1 saknar effekt
 //bytPlats(8,"card"); //alven newBagv1
 //bytPlats(7,"card"); //hugin newBagv1

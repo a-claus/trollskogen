@@ -11,7 +11,15 @@ let temp; let tempArray = [];
 
 const NSVO=["norr","soder","vast","ost"]; //soder
 const inverseNSVO=["soder","norr","ost","vast"];
-function invNSVO(vaderstrack){for (i=0; i<4; i++){if (vaderstrack==NSVO[i]) break;} return inverseNSVO[i];}
+function invNSVO(vaderstrack){
+    console.log(vaderstrack)
+    for (i=0; i<4; i++){
+        if (vaderstrack == NSVO[i]) break;
+    } 
+     console.log("return", inverseNSVO[i])
+    return inverseNSVO[i];
+}
+
 var special;
 var imageObj = new Image();
 var doFunc; 
@@ -603,7 +611,7 @@ function mapChange(vaderstrack){
 
     var nyRuta = wood.mapNR;
     
-    wood.vaderstrack = invNSVO(vaderstrack);
+    //wood.vaderstrack = invNSVO(vaderstrack);
     setDraw(invNSVO(vaderstrack));
      
     var nyttCard = map[wood.mapNR].card;

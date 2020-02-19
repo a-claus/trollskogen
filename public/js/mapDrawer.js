@@ -15,8 +15,9 @@ function updateGameArea(){
     if (paparazzi == true){
         studio();
         paparazzi = false;
-    }   console.log(gameObj[0].z[1]);
-    drawFoto(Math.floor(gameObj[0].z[1]));
+    }   
+
+    drawFoto(Math.floor(gameObj[0].z[0]));
     
     /*_______________________________ 
     Sortera tak gameobj, för att räkna ut vilkoen ordning gemeObj ska ritas.
@@ -76,7 +77,7 @@ let iii;
         // Rita obj
         gameObj[i].draw();
 
-        let rita = ["edgeSoder"];//"ObstacleKub", "Prinsen" "Blåbär"
+        let rita = ["msHitArea"];//"ObstacleKub", "Prinsen" "Blåbär"
 
         if (rita.findIndex(index => index == gameObj[i].namn) != -1) {
             if (gameObj[i].hitAreaX != undefined) {
@@ -112,20 +113,22 @@ function checkMoveInOrder(index){
     var hit;
 
             walker = findwall(pointOfpic(index));
-           //let array = [];
-           //array.push({x: gameObj[index].x + gameObj[index].width/2, y: gameObj[index].y + gameObj[index].hight/2});
-            //walker = findwall(array);
+          
             if (gameObj[index].specialMove) walker = gameObj[index].specialMove(walker); //??? Alven? Move som inte ska påverkas av väggar
-        //    if (gameObj[index].hojd >= 5) walker = {go:1, area: "flyger"};
-            //if (hitObjects > 0){
+      
                 hit = objectHit(index);
-            //    console.log("hit" + hit);
+           
 
 
                     if (hit != null){
+                         
                         walker.go = 0;
                     //    console.log("hit");
                         if (index == 0 || hit == 0){
+                            console.log("hit:" + gameObj[hit].namn);
+                            console.log("hit:" + gameObj[hit].z[0]);
+                            console.log("hit:" + gameObj[0].z[1]);
+
                             hittad = index + hit;
                             var tempGo = gameObj[index + hit].hitAction(); //verkar inte vara ngt problem att skicka med nuffra i parantesen
                             if (tempGo > 0) walker.go += tempGo;
@@ -152,7 +155,7 @@ function obstacleZ(index, hittad){
         //console.log("saknar Z" + index + " " + hittad); 
         return "saknas";}
     
-    //if (zTakA <= zGolvB) {return "over";} 
+    if (zTakA < zGolvB) {return "over";} 
     if (zGolvA >= zTakB ) {
       //  console.log("hittad" + index + "-" +hittad); 
       return "under"; } 

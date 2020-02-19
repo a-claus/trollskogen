@@ -51,7 +51,7 @@ _______________________________________________________________*/
 
 
 class ObstacleKub { //extends Figur
-    constructor(x, y, z, hight, width){
+    constructor(x, y, z, width, hight){
     	this.namn ="ObstacleKub";
         this.hitAreaX = x;
         this.hitAreaY = y;
@@ -201,6 +201,7 @@ let entreO = {
 	namn: "EntreO", visible: true,
 	miljo: true, figur : false, info: false, floor:1,
 	draw: function(){
+
 		if (this.visible == true){
 		var ctx = myGameArea.context;
 		   ctx.fillStyle = "white";
@@ -659,39 +660,24 @@ switch (wood.namn){
 	break;
 
 	case "FyraBroVO": 
-		kartObj.push(roadVertikal, tunnelN, tunnelS, roadHorisontal, broHorisontal,testRuta);
-		/*gameObj.push(brokantN);
-		gameObj.push(brokantNfall);
-		gameObj.push(brokantS);
-		gameObj.push(brokantSfall);*/
-		console.log("FBVO");
-		makeBro("VO")
+		kartObj.push(roadVertikal, tunnelN, tunnelS, roadHorisontal, broHorisontal);
+		console.log("Bro");
+		//kartObj.push(roadHorisontal, tunnelV, tunnelO, roadVertikal, broVertikal); //bind
+		gameObj.push(new ObstacleKub(0, 150, [1.8, 2.0], 400, 100));
+		gameObj.push(new ObstacleKub(150, 150, [2.0, 2.2], 100, 10));
+		gameObj.push(new ObstacleKub(150, 240, [2.0, 2.2], 100, 10));
 		
+		
+	
 		//hitObjects++;
-		//roadVertikal.floor=1;
+		roadVertikal.floor=1;
 		
 		//tunnlar är alltid floor 1;
-		//roadHorisontal.floor=2;
-		//bro alltid floor 2;
+		roadHorisontal.floor=2;
+		
 	break;
 	case "FyraBroNS": 
-		//console.log("FBNS");
-		//kartObj.push(roadHorisontal, tunnelV, tunnelO, roadVertikal, broVertikal,testRuta);
-		//makeBro("NS");
-		/*gameObj.push(brokantV);
-		gameObj.push(brokantVfall);
-		gameObj.push(brokantO);
-		gameObj.push(brokantOfall);*/
-		
-		//hitObjects++;
-		//roadVertikal.floor=2;
-		//tunnlar är alltid floor 1;
-		//roadHorisontal.floor=1;
-		//bro alltid floor 2;
-	//break;
-	//case "Hyllan": 
-		//bilder Tunnel och övervån.
-		//brokant övervån
+	
 		console.log("Bro");
 		kartObj.push(roadHorisontal, tunnelV, tunnelO, roadVertikal, broVertikal); //bind
 		gameObj.push(new ObstacleKub(150, 0, [1.8, 2.0], 100, 400));
@@ -749,15 +735,15 @@ switch (wood.floors){
 }
 
 //magisk stig
-console.log("magic" + vaderstrack + wood[vaderstrack] );
+console.log("magic" + wood[vaderstrack]);
 
-	if (wood[vaderstrack]==0 || wood[vaderstrack]==99 ){
-		
+	if (wood[vaderstrack] == 0 || wood[vaderstrack] == 99 ){
+		console.log(vaderstrack);
 	switch(vaderstrack){
-		case "norr": kartObj.push(entreN); gameObj.push(msHitArea); gameObj[gameObj.length - 1].ms = "entreN"; break;
-		case "soder": kartObj.push(entreS); gameObj.push(msHitArea); gameObj[gameObj.length - 1].ms = "entreS"; break;
-		case "vast": kartObj.push(entreV); gameObj.push(msHitArea); gameObj[gameObj.length - 1].ms = "entreV";break;
-		case "ost": kartObj.push(entreO); gameObj.push(msHitArea); gameObj[gameObj.length - 1].ms = "entreO";break;
+		case "norr": kartObj.push(entreN); entreN.visible = true; gameObj.push(msHitArea); gameObj[gameObj.length - 1].ms = "entreN"; break;
+		case "soder": kartObj.push(entreS); entreS.visible = true; gameObj.push(msHitArea); gameObj[gameObj.length - 1].ms = "entreS"; break;
+		case "vast": kartObj.push(entreV); entreV.visible = true;gameObj.push(msHitArea); gameObj[gameObj.length - 1].ms = "entreV";break;
+		case "ost": kartObj.push(entreO); entreO.visible = true; gameObj.push(msHitArea); gameObj[gameObj.length - 1].ms = "entreO";break;
 	}
 		gameObj[gameObj.length - 1].koIndex = kartObj.length - 1; 
 

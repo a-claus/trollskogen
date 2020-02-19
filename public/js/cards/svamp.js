@@ -7,15 +7,27 @@
 ger slumpvis bonuc. IQ, styrka, extra hjärta och gift
 
 */
-
+;
+wait.push("Svamp", "svampbild1", "svampbild2");
 
 mapImages.push(new Image());
-mapImages[mapImages.length-1].src="./img/svamp.png";
 cardImages.push(new Image());
+
+
+mapImages[mapImages.length-1].addEventListener('load', notWaiting.bind("svamobild"));
+cardImages[cardImages.length-1].addEventListener('load', notWaiting.bind("svampbild2"));
+
+
+mapImages[mapImages.length-1].src="./img/svamp.png";
 cardImages[cardImages.length-1].src="./img/svamp.png";
 
 
-
+kartObj.push({
+  namn;"Svamp",
+   img: mapImages[mapImages.length-1],
+    miljo: true, figur : false, info: false, 
+    floor:1,
+  });
 
 
 gameObj.push(
