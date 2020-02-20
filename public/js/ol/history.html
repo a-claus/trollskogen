@@ -1,0 +1,502 @@
+
+
+
+<!doctype html>
+<html>
+	<head>
+		<title>Serviceresor - TLV</title>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		
+		<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+		<link rel="stylesheet" href="layout/styleAB.css" type="text/css">
+		<link rel="stylesheet" href="layout/styleMap.css" type="text/css">
+
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato">
+		
+		<script src="OpenLayers.js"></script> 
+		<script src="inc/js/proj4js-combined.js"></script>
+		<script src="inc/js/calender/calendarDateInput.js"></script>	
+		<script src="inc/js/bootstrap.min.js"></script>
+		
+		<link rel="stylesheet" href="layout/jquery-ui.css">
+		<script src="inc/js/jquery-ui.js"></script>
+		
+				
+	</head>
+	
+	<body>
+	<div class="header" >
+				<div class="logga" >
+					<img style="padding-top:7px; padding-left:10px;" src="layout/tlv.jpg" alt="Färdtjänstförvaltningen - Trafiklednings Verktyg"/> 
+				</div>
+
+<div class="sokbox">
+				<form method="get">
+					<select accesskey="A" name="bolag" style="font-size:20px;  padding:0px; margin:0px; height: 32px;  width=170px; float:left;" >
+				
+					<option value="2">Taxi Göteborg</option><option value="3">HDCom</option><option value="7">Göteborgs buss</option><option value="8">Taxi kurir</option><option  SELECTED value="9">Taxisystem</option><option value="10">Taxiteknik</option>					</select>
+					
+
+
+				   
+				  <span style="margin-left:20px;" > 
+
+				  <input type="text" style="height: 30px; font-size:20px;  padding:0px; margin:0px; "  size=5  name="sokid" id="sokid" value ="660" accesskey="S" />
+				  <input type="image" style="position: absolute; right:1; top:1; margin-left:-4px; border:0px; "  src="layout/sok.jpg" name="image" accesskey="Q">
+				  </span>
+				  
+				  <input type="hidden" value="historik" name="s">
+				  <input type="hidden" value="gbg" name="karttyp">
+				  
+				  <input type="hidden" value="" name="datum">
+				   <input type="hidden" value="" name="tid">
+				   <input type="hidden" value="" name="omfang">
+				</form> 
+			</div>
+
+				
+	<div class="navbox">	
+	
+		<div class="buttonwrapper">
+						<img class="naviSpace" src="layout/naviIconSystem.png" />
+			<a class="ovalbutton"								href="index.php?bolag=9&sokid=660&karttyp=gbg" style="margin-left: -2px"><span>Realtid</span></a> 
+			
+			<a class="ovalbuttonActive"						href="index.php?bolag=9&sokid=660&karttyp=gbg&datum=&tid=&omfang=&historik=&hkx=&hky=&lkx=&lky=&s=historik" style="margin-left: -1px; margin-right: 15px"><span>Historik</span></a>
+
+			
+			<img class="naviSpace" src="layout/naviIconMap.png" />
+						<a class="ovalbuttonActive"	href="index.php?bolag=9&sokid=660&datum=&tid=&omfang=&historik=&hkx=&hky=&lkx=&lky=&s=historik&karttyp=gbg" style="margin-left: -2px"><span>GBG</span></a> 
+			<a class="ovalbutton"	href="index.php?bolag=9&sokid=660&datum=&tid=&omfang=&historik=&hkx=&hky=&lkx=&lky=&s=historik&karttyp=lm" style="margin-left: -1px"><span>LM</span></a> 
+						<a class="ovalbutton"							href="index.php?bolag=9&sokid=660&datum=&tid=&omfang=&historik=&hkx=&hky=&lkx=&lky=&s=historik&karttyp=osm" style="margin-left: -1px; margin-right: 15px"><span>OSM</span></a>
+	
+
+			
+							<img class="naviSpace" src="layout/naviIconAdmin.png" />
+				<a class="ovalbutton"	href="http://193.14.232.29/fardnet/system/tlvAdmin/" style="margin-left: -2px"><span>Administration</span></a> 
+			
+	
+		</div>
+	</div>
+
+</div>
+
+
+<div id="overlay">
+     <div>
+          <p>Sökningen gav ingen träff</p>
+		  <a href='#' accesskey="c" onclick='overlay()'>Stäng</a>
+     </div>
+</div>	<div id="container">
+	<div id="infoi"><script type="text/javascript">
+
+
+$().ready(function() {
+
+$.validator.addMethod("tid", function(value, element) {  
+return this.optional(element) || /^(([0-1]?[0-9])|([2][0-3])):([0-5]?[0-9])(:([0-5]?[0-9]))?$/i.test(value);  
+}, "Please enter a valid time.");
+
+    $("#login").validate({
+            rules: {
+                    time: "required time",
+            },
+
+     });
+
+ });
+
+ /*
+ $('tidtest').keyup(function(){
+  $(this).next().text($(this).val().length < 5 ? window.alert("sometext"));
+});
+
+$("tidtest").keyup(function(){
+  $("tidtest").css("background-color","pink");
+ }); 
+ */
+ 
+ </script>
+
+
+
+
+
+	<p class="vansterMenyRubrik">Sökinställningar</p>
+	<div class="vansterSokInnehall">
+		<p><b>Fordon: </b>660</p>
+		<p><b>Bolag: </b>Taxisystem</p>
+
+		<p class="vHistorikRubrik">Datum</p>
+
+				
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+  
+
+
+$.datepicker.regional['sv'] = {
+  closeText: 'Stäng',
+	prevText: '< Föregående',
+	nextText: 'Nästa >',
+	currentText: 'Nu',
+	monthNames: ['Januari','Februari','Mars','April','Maj','Juni','Juli','Augusti','September','Oktober','November','December'],
+    monthNamesShort: ['Jan','Feb','Mar','Apr','Maj','Jun','Jul','Aug','Sep','Okt','Nov','Dec'],
+	dayNamesShort: ['Sön','Mån','Tis','Ons','Tor','Fre','Lör'],
+	dayNames: ['Söndag','Måndag','Tisdag','Onsdag','Torsdag','Fredag','Lördag'],
+	dayNamesMin: ['Sö','Må','Ti','On','To','Fr','Lö'],
+	weekHeader: 'Не',
+	dateFormat: 'yy-mm-dd',
+	firstDay: 1,
+	isRTL: false,
+	showMonthAfterYear: false,
+	yearSuffix: ''
+};
+$.datepicker.setDefaults($.datepicker.regional['sv']);
+
+/*
+$.timepicker.regional['sv'] = {
+	timeOnlyTitle: 'Välj klockslag',
+	timeText: 'Tid',
+	hourText: 'Timma',
+	minuteText: 'Minut',
+	secondText: 'Sekund',
+	millisecText: 'Millisekund',
+	timezoneText: 'Tidszon',
+	currentText: 'Nu',
+	closeText: 'Stäng',
+	timeFormat: 'HH:mm',
+	amNames: ['AM', 'A'],
+	pmNames: ['PM', 'P'],
+	isRTL: false
+};
+$.timepicker.setDefaults($.timepicker.regional['sv']);
+*/  
+  </script>
+
+  
+		<form action="?s=historik" method="GET">
+		  <p><input type="text" id="datepicker" name="datum" value="2020-02-20"></p>
+			<p class="vHistorikRubrik">Från tid</p>
+			<input type="text" name="tid" value="14:51" width="50" style="width: 50px" />
+
+			<p class="vHistorikRubrik">Antal minuter framåt</p>
+			<select name="omfang" width="100" style="width: 150px" >	
+				<option value="10" >10 minuter</option>
+				<option value="15" >15 minuter</option>
+				<option value="30" >30 minuter</option>
+				<option value="45" >45 minuter</option>
+				<option value="60" >60 minuter</option>
+			</select>
+			<br/>
+
+			<br/>
+			<input type="hidden" value="historik" name="s">
+			<input type="hidden" value="gbg" name="karttyp">
+			<input type="hidden" value="1" name="historik">
+			<input type="hidden" value="9" name="bolag">
+			<input type="hidden" value="660" name="sokid">
+			
+			<input type="hidden" value="" name="hkx">
+			<input type="hidden" value="" name="hky">
+			<input type="hidden" value="" name="lkx">
+			<input type="hidden" value="" name="lky">
+			
+			
+				
+			<input  class="vHistorikKnapp" type="submit" value="Sök" />
+		</form>
+	</div>
+	<p></p>
+<p class="vansterMenyRubrik">Sökintervall</p>
+<div class="vansterSokInnehall">
+<p>Från: 2020-02-20 14:51:34</p><p>Till: 2020-02-20 15:01:34</p>
+</div>
+
+
+
+
+</div>﻿<div style="height:98%" id="mapdiv"></div>
+  
+  <script>
+
+Proj4js.defs["EPSG:27700"]  = "+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +datum=OSGB36 +units=m +no_defs";
+Proj4js.defs["EPSG:3007"] = "+proj=tmerc +lat_0=0 +lon_0=12 +k=1 +x_0=150000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs";
+
+
+
+				   
+		var zoombar = new OpenLayers.Control.PanZoomBar({'position': new OpenLayers.Pixel(100,0) });
+		zoombar.position = new OpenLayers.Pixel(150,35);
+		
+
+
+	stadskarta = new OpenLayers.Layer.WMS( "Stadskarta",
+	 "http://geodata.sbk.goteborg.se/service/wms/stadskarta/v3",
+	{layers: 'stadskarta'});
+	
+	ortfoto = new OpenLayers.Layer.WMS( "Flygfoto",
+	 "http://geodata.sbk.goteborg.se/service/wms/ortofoto/v3?",
+	{layers: 'orto'});
+	
+                map = new OpenLayers.Map ("mapdiv", {
+                controls:[
+                    new OpenLayers.Control.Navigation(),
+                   // new OpenLayers.Control.Zoom(),
+                    new OpenLayers.Control.ScaleLine(),
+                 //   new OpenLayers.Control.Permalink('permalink'),
+                    new OpenLayers.Control.MousePosition(),                    
+                    new OpenLayers.Control.Attribution()],
+				//	sphericalMercator: true,
+					projection: "EPSG:3007",
+					units: "m",
+					
+					resolutions: [80.233454144064439, 40.116727072032219, 20.05836353601611, 10.029181768008055,
+									5.0145908840040274, 2.5072954420020137, 1.2536477210010069, 0.62682386050050343,
+									0.31341193025025171, 0.15670596512512586],
+									
+					maxExtent: new OpenLayers.Bounds(124400, 6375000, 172000, 6422000),
+					
+					restrictedExtent: new OpenLayers.Bounds(124989, 6375448, 185967, 6436185)
+				
+            } );
+			
+		map.addControl(new OpenLayers.Control.Scale('scale'));
+		map.addControl(new OpenLayers.Control.MousePosition()); 
+		map.addControl(new OpenLayers.Control.LayerSwitcher());
+		map.addControl(zoombar);
+
+
+
+
+
+	map.addLayer(stadskarta);
+	map.addLayer(ortfoto);
+	
+    map.zoomToMaxExtent();
+
+/*	
+	LmFG = new OpenLayers.Layer.WMS( "LM-Färg Karta",
+	 "http://geodata.goteborg.se/kartor/lm/topowebb/wms/v1?",
+	{layers: 'topowebbkartan'} );
+	map.addLayer(LmFG);
+*/	
+
+	
+	var proj = new OpenLayers.Projection("EPSG:4326");
+	var point = new OpenLayers.LonLat(11.951633, 57.696756);
+	point.transform(proj, map.getProjectionObject());
+	
+	var zoom=4;
+	
+
+
+	
+ 
+var size = new OpenLayers.Size(21,25); 
+var offset = new OpenLayers.Pixel(-(size.w/2), -size.h); 
+
+
+var pastyle = new OpenLayers.Style({
+	'pointRadius': 24,
+	externalGraphic: '${riktning}' 
+});
+
+var fordonkmlurl= 'api/hamtaData/historikKML.php?bolag=9&sokid=660&datum=2020-02-20&tid=&omfang=&historik=&r=' + Math.random();
+
+var kmlFordon = new OpenLayers.Layer.Vector("Fordon", {
+
+
+	styleMap: pastyle,
+	projection: new OpenLayers.Projection("EPSG:4326"), 
+          strategies: [
+		  new OpenLayers.Strategy.Fixed()],
+		  
+          protocol: new OpenLayers.Protocol.HTTP({
+             url: fordonkmlurl,
+             format: new OpenLayers.Format.KML({
+                extractAttributes: true,
+                extractStyles: false
+		
+            })
+          })
+});
+
+map.addLayers([kmlFordon]);
+
+
+							
+
+
+
+								 						  
+
+
+function UpdateKmlLayer(layer) {
+
+	
+			// Checking if jQuery is working
+			// $('body').append("jQuery running");
+			$("#aInfo").html("Ingen fordonsinformation kunde hittas");
+			
+			/* The script */
+		$.ajax({
+				type: "GET",
+								url: "api/hamtaData/skapaP.php?bolag=9&sokid=660&r=" + Math.random()+Math.random(),
+				contentType: "text/xml; charset=utf-8'",
+				dataType: "xml",
+				cache: false,
+				async:false, 
+				
+				success: function(xml) {
+					$(xml).find('position').each(function() {
+				//		var id = $(this).find("id").text();
+						coordinates = $(this).find("coordinates").text();
+						var speed = $(this).find("speed").text();
+						var timestamp = $(this).find("timestamp").text();
+						
+					// $('body').append(Math.random()); 
+					//	$('body').append("<p>(" + id + ") " + coordinates + " " + description + "</p>");
+					$("#aInfo").html("<b>Fordon: 660</b><br/>Positionstid: " + timestamp + "<br/>" + "Hastighet: " + speed + " km/h");	
+					});
+					
+					
+				},
+				error: function() {
+					$("#aInfo").html("Ingen fordonsinformation kunde hittas");
+					
+				}
+				
+			});
+			
+	
+	    var lonLat = new OpenLayers.LonLat.fromString(coordinates)
+          .transform(
+            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+            map.getProjectionObject() // to Spherical Mercator Projection
+          );
+    var zoom=17;
+    map.setCenter (lonLat);  
+	
+	
+	kmlFordon.refresh({ force: true, params: { 'key': Math.random()} });
+
+	 
+	 
+				
+}
+
+$(document).ready(function() {
+  
+     map.setCenter (point, 8)	
+	UpdateKmlLayer();
+});
+
+selectControl = new OpenLayers.Control.SelectFeature(kmlFordon,{
+        hover:true,
+        autoActivate:true
+    }); 
+	
+map.addControl(selectControl);
+selectControl.activate();
+kmlFordon.events.on({
+	'featureselected': onFeatureSelect,
+	'featureunselected': onFeatureUnselect
+});
+
+
+            // Needed only for interaction, not for the display.
+            function onPopupClose(evt) {
+                // 'this' is the popup.
+                var feature = this.feature;
+                if (feature.layer) { // The feature is not destroyed
+                    selectControl.unselect(feature);
+                } else { // After "moveend" or "refresh" events on POIs layer all 
+                         //     features have been destroyed by the Strategy.BBOX
+                    this.destroy();
+                }
+            }
+            function onFeatureSelect(evt) {
+                feature = evt.feature;
+                popup = new OpenLayers.Popup.FramedCloud("featurePopup",
+                                         feature.geometry.getBounds().getCenterLonLat(),
+                                         new OpenLayers.Size(100,100),
+                                         "<h2>"+feature.attributes.title + "</h2>" +
+                                         feature.attributes.description,
+                                         null, false, onPopupClose);
+                feature.popup = popup;
+                popup.feature = feature;
+                map.addPopup(popup, true);
+            }
+            function onFeatureUnselect(evt) {
+                feature = evt.feature;
+                if (feature.popup) {
+                    popup.feature = null;
+                    map.removePopup(feature.popup);
+                    feature.popup.destroy();
+                    feature.popup = null;
+                }
+            }
+			
+			
+
+
+
+    var lonLatStart = new OpenLayers.LonLat(10.511256115613,0)
+          .transform(
+            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+            map.getProjectionObject() // to Spherical Mercator Projection
+          );
+          
+
+
+			var size = new OpenLayers.Size(21, 25);
+			var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
+			var iconStop = new OpenLayers.Icon('http://193.14.232.29/fardnet/system/tlv/img/marker-green.png',size,offset);		 
+
+			
+
+    
+
+	
+    var lonLatStop = new OpenLayers.LonLat(10.511256115613,0)
+          .transform(
+            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+            map.getProjectionObject() // to Spherical Mercator Projection
+          );
+          
+    var zoom=16;
+    var markers = new OpenLayers.Layer.Markers( "Hämta/Lämna" );
+    map.addLayer(markers);
+	
+	
+    markers.addMarker(new OpenLayers.Marker(lonLatStart));	
+	
+	markers.addMarker(new OpenLayers.Marker(lonLatStop, iconStop));
+	
+	var popup = new OpenLayers.Popup.FramedCloud("PopupStart", lonLatStart, null, "Från adress", null, true);
+	map.addPopup(popup, false);
+	
+	var popup = new OpenLayers.Popup.FramedCloud("PopupStop", lonLatStop, null, "Till adress", null, true);
+	map.addPopup(popup, false);		
+		
+		
+</script>
+
+
+
+
+
+  	<div>
+		
+		<script type="text/javascript" language="javascript">
+				document.getElementById("sokid").focus();
+		</script>	
+
+		<script src="inc/js/modal.js"></script>
+	</div>
+	</div>	
+	</body>
+</html>
