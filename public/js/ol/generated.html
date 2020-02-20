@@ -25,10 +25,7 @@
 	</head>
 	
 	<body onload=" ">
-	﻿<div id="wrap">
-   <div id="sokbox"></div>
-    <div id="navbox"></div>
-</div>
+	﻿
 
 <div class="header" >
 				<div class="logga" >
@@ -75,12 +72,8 @@
 </div>
 
 
-<div id="overlay">
-     <div>
-          <p>Sökningen gav ingen träff</p>
-		  <a href='#' accesskey="c" onclick='overlay()'>Stäng</a>
-     </div>
-</div>	<div id="container">
+
+<div id="container">
 	﻿<link
       rel="stylesheet"
       href="ol/ol.css"
@@ -223,13 +216,7 @@ for (let i = 0; i < allahpl.length; i++ ){
     });
 }
 } 
-   var marker = [];
-   for (let i = 0; i <flexMpl.length; i++ ){
-    marker.push(new ol.Feature({
-      geometry: new ol.geom.Point(ol.proj.transform([flexMpl[i].lon, flexMpl[i].lat], 'EPSG:3006', 'EPSG:3857')),
-    }));
-
-} 
+  
 //console.log(flexMpl);
 
     let flexlinjer = [];
@@ -255,7 +242,7 @@ function checkMplVal(array, val = ["Alla Mölndal", "Alla göteborg"]){
      console.log(checkMplVal(flexMpl[2].flexlinjer, ["Tynnered"]));
 
 function ritaMpl(val = ["Alla Mölndal", "Alla göteborg"]){
-  marker = [];
+
   for (i = 0; i < flexMpl.length; i++ ){
     if (checkMplVal(flexMpl[i].flexlinjer ,val)==true){
       marker.push(new ol.Feature({
@@ -263,12 +250,25 @@ function ritaMpl(val = ["Alla Mölndal", "Alla göteborg"]){
     }));
     }
   }
-  drawvectors();
+  console.log("M", marker.length);
+ 
 }
 
 //console.log(flexMpl);
 
 
+//Detta ritar in alla mpl:er
+ var marker = [];
+   
+
+   for (let i = 0; i < flexMpl.length; i++){
+    	marker.push(new ol.Feature({
+      		geometry: new ol.geom.Point(ol.proj.transform([flexMpl[i].lon, flexMpl[i].lat], 'EPSG:3006', 'EPSG:3857'))
+    	}));
+
+	}
+
+/*
     vectorSource = new ol.source.Vector({
         features: marker
     });
@@ -276,9 +276,43 @@ function ritaMpl(val = ["Alla Mölndal", "Alla göteborg"]){
         source: vectorSource,
     });
     map.addLayer(markerVectorLayer);
-//vectorSource.clear(marker);
+	*/
+	
+	/*Detta tar inte bort punkterna i markerArrayrn utan endast rensar marker som source. Frågan blir om det är bäst att skapa flera source eller en som man fyller med nytt innehåll hela tiden*/
+	
+	console.log(marker.length);
+	/*marker = [];
 
-//console.log(marker);
+ for (let i = 0; i < 10; i++){
+    	marker.push(new ol.Feature({
+      		geometry: new ol.geom.Point(ol.proj.transform([flexMpl[i].lon, flexMpl[i].lat], 'EPSG:3006', 'EPSG:3857'))
+    	}));
+
+	} 
+
+*/
+function drawMpler(){
+		console.log(marker.length);
+  //vectorSource.clear(marker); 
+	marker =[];
+	console.log(marker.length);
+	ritaMpl();
+	console.log(marker.length);
+	 vectorSource = new ol.source.Vector({
+     features: marker
+    });
+    markerVectorLayer = new ol.layer.Vector({
+        source: vectorSource,
+    });
+    map.addLayer(markerVectorLayer);
+}
+
+drawMpler();
+	
+	
+	//markerVectorLayer.refresh(markerVectorLayer);
+
+
 //ritaMpl();
 
 </script>
