@@ -33,3 +33,21 @@ for (let baseLayerElement of baseLayerElements){
 		})
 	})
 }
+
+
+const circleStyle = new ol.style.Circle({
+	fill: new ol.style.Fill({
+	  color: [245, 49, 5, 1]
+	}),
+	radius:10,
+	stroke: strokeStyle
+  })
+  
+  /*
+  ,
+	   style: new ol.style.Style({
+		image: circleStyle
+	   })
+  
+  */
+  

@@ -56,6 +56,10 @@
 				</form> 
 			</div>
 
+// -------------------------------------- nykod -----------------
+      <div id="flexsokbox" class="flexsokbox"></div>  
+      
+// -------------------------------------- nykod    slut  -----------------------
 				
 	<div class="navbox">	
         <div class="buttonwrapper">
@@ -219,7 +223,9 @@ for (let i = 0; i < allahpl.length; i++ ){
   
 //console.log(flexMpl);
 
-    let flexlinjer = [];
+let flexlinjer = [];
+
+// -------------------------------------- nykod blandat -----------------
 
     function getFlexlinjer(){
       
@@ -230,34 +236,38 @@ for (let i = 0; i < allahpl.length; i++ ){
       }  
       flexlinjer.sort();
     }
-    getFlexlinjer();
+    console.log(flexlinjer);
+
+getFlexlinjer();
+
+
+const selectElement = document.querySelector('.flexsokbox');
+
+selectElement.addEventListener('change', (e) => {
+  ritaMpl([e.target.value], false);
+  console.log(e.target.value);
+});
+            
+
+let text = '<select id=\" flexmeny \"';
+  for (i = 0; i < flexlinjer.length; i++ ){
+    console.log(flexlinjer[i]);
+    text += '<option value=\"' + flexlinjer[i] + '\">' + flexlinjer[i] + '</option>';}
+  text += "</select>";
+
+  document.getElementById("flexsokbox").innerHTML=text;
+
+
 
 function checkMplVal(array, val = ["Alla Mölndal", "Alla göteborg"]){
       let findLinjer = array.filter(element => val.includes(element));
-      if (findLinjer.length > 0) return true; else return false;
-     }
-
-     console.log(checkMplVal(flexMpl[2].flexlinjer));
-     console.log(checkMplVal(flexMpl[2].flexlinjer, ["Angered Vardag"]));
-     console.log(checkMplVal(flexMpl[2].flexlinjer, ["Tynnered"]));
-
-function ritaMpl(val = ["Alla Mölndal", "Alla göteborg"]){
-
-  for (i = 0; i < flexMpl.length; i++ ){
-    if (checkMplVal(flexMpl[i].flexlinjer ,val)==true){
-      marker.push(new ol.Feature({
-      geometry: new ol.geom.Point(ol.proj.transform([flexMpl[i].lon, flexMpl[i].lat], 'EPSG:3006', 'EPSG:3857')),
-    }));
-    }
-  }
-  console.log("M", marker.length);
- 
+      if (findLinjer.length > 0) {return true;} else {return false;}
 }
 
-//console.log(flexMpl);
 
 
-//Detta ritar in alla mpl:er
+
+
  var marker = [];
    
 
@@ -268,37 +278,20 @@ function ritaMpl(val = ["Alla Mölndal", "Alla göteborg"]){
 
 	}
 
-/*
-    vectorSource = new ol.source.Vector({
-        features: marker
-    });
-    markerVectorLayer = new ol.layer.Vector({
-        source: vectorSource,
-    });
-    map.addLayer(markerVectorLayer);
-	*/
 	
-	/*Detta tar inte bort punkterna i markerArrayrn utan endast rensar marker som source. Frågan blir om det är bäst att skapa flera source eller en som man fyller med nytt innehåll hela tiden*/
-	
-	console.log(marker.length);
-	/*marker = [];
 
- for (let i = 0; i < 10; i++){
-    	marker.push(new ol.Feature({
-      		geometry: new ol.geom.Point(ol.proj.transform([flexMpl[i].lon, flexMpl[i].lat], 'EPSG:3006', 'EPSG:3857'))
-    	}));
 
-	} 
-
-*/
-function drawMpler(){
-		console.log(marker.length);
-  //vectorSource.clear(marker); 
-	marker =[];
-	console.log(marker.length);
-	ritaMpl();
-	console.log(marker.length);
-	 vectorSource = new ol.source.Vector({
+function ritaMpl(val = [ "Alla Mölndal"], add=true){ //"Alla Mölndal", "Alla göteborg"
+  if (add == false) vectorSource.clear(marker);;
+  marker =[];
+  for (i = 0; i < flexMpl.length; i++ ){
+    if (checkMplVal(flexMpl[i].flexlinjer ,val)==true){
+      marker.push(new ol.Feature({
+      geometry: new ol.geom.Point(ol.proj.transform([flexMpl[i].lon, flexMpl[i].lat], 'EPSG:3006', 'EPSG:3857'))
+    }));
+    }
+  }
+  vectorSource = new ol.source.Vector({
      features: marker
     });
     markerVectorLayer = new ol.layer.Vector({
@@ -307,13 +300,13 @@ function drawMpler(){
     map.addLayer(markerVectorLayer);
 }
 
-drawMpler();
-	
-	
-	//markerVectorLayer.refresh(markerVectorLayer);
 
 
-//ritaMpl();
+ritaMpl();
+
+// -------------------------------------- nykod slut -----------------
+
+	
 
 </script>
 	</div>
