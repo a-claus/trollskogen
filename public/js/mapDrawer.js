@@ -226,6 +226,7 @@ function gravity(index, golva){
         Gravitations-ökning för fall
     -------------------*/  
 gameObj[index].fall.acc -= 0.05;
+console.log(gameObj[0].fall.acc);
 
 /*-----------------
         Har spelare landat, så kommer uppåt kraft.
@@ -244,9 +245,12 @@ gameObj[index].fall.tyngdpunkt +=  gameObj[index].fall.acc;
 
 
 /*-----------------
-       Om tyngdpunkt under golv,  så står spelare på golv.
+       Om tyngdpunkt under golv,  så står spelare på golv. Ska också kolla om blir skadad.
     -------------------*/            
-        if  (gameObj[index].fall.tyngdpunkt < golva ) gameObj[index].z[0] = golva;
+        if  (gameObj[index].fall.tyngdpunkt < golva ) {
+            gameObj[index].z[0] = golva;
+            if (index == 0 && gameObj[index].fall.acc < -.3) console.log("AJ " +gameObj[index].fall.acc  );
+        }
 
 /*-----------------
        Om tyngdpunkt är över golv,  så är z samma som tyngdpunkten

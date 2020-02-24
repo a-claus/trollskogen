@@ -112,8 +112,8 @@ function bytPlats(namn, vad="namn"){
 //bytPlats("Hyllan"); //newBagv1
 //bytPlats("Svärdet i stenen"); newBagv1
 //bytPlats(0,"card"); //skatt // newBagv1
-//bytPlats("FyraBroNS");
-bytPlats("FyraBroVO");
+bytPlats("FyraBroNS");
+//bytPlats("FyraBroVO");
 //bytPlats("Mimers Brunn"); // newBagv1 saknar effekt
 //bytPlats(8,"card"); //alven newBagv1
 //bytPlats(7,"card"); //hugin newBagv1
