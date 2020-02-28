@@ -1,4 +1,4 @@
-const input = document.querySelector('input[type="file"]')
+﻿const input = document.querySelector('input[type="file"]')
 input.addEventListener('change', function (e){
     console.log(input.files)
 
@@ -135,7 +135,7 @@ function cleanFile(lines){
 }
 
 function sendFile(input){
-var data = new Blob([input], {type: "text/plain"});
+var data = new Blob([input], {type: "text/plain; charset=utf-8"});
 
 console.log(data);
 

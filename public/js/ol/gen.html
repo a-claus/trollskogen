@@ -85,9 +85,9 @@ var baselayer = new ol.layer.Tile({
       });
 
 
-var popup = new ol.Overlay.Popup;
-popup.setOffset([0, -35]);
-map.addOverlay(popup);
+//var popup = new ol.Overlay.Popup;
+//popup.setOffset([0, -35]);
+//map.addOverlay(popup);
 
 let mplIcons = [];
 let flexMpl = [];
@@ -144,6 +144,7 @@ for (let i = 0; i < allahpl.length; i++ ){
     });
 }
 } 
+
 /*
    var marker = [];
    for (let i = 0; i <flexMpl.length; i++ ){
@@ -169,6 +170,37 @@ function getFlexlinjer(){
     }
 getFlexlinjer();
 
+
+function filterLordag(flexlinje){
+  var eSaturday = flexlinje.search("Lördag");
+  if (eSaturday > -1) return true; else return false; 
+}
+
+function filterVardag(flexlinje){
+  var eVardag = flexlinje.search("Vardag");
+  if (eVardag > -1) {return true;} else {if (filterLordag(flexlinje) == true) return false; else return true;} 
+}
+
+class Flexlinje
+  {
+    constructor(namn){
+      this.namn = namn;
+      this.vardag = filterVardag(namn);
+      //this.vardagTid = [800,1600]; 
+      //this.lunchVardag = [1200, 1300];
+      this.lordag = filterLordag(namn);
+      this.sondag = false;
+    }
+  }
+/* Frågan hur man ska bygga flexlinjerna klasserna, färdiga från php-databas, fast då kanske enklare att skapa objekten direkt.
+
+let torslanda = new Flexlinje("Torslanda");
+
+eller ska man pusha i Getflexlinjer 
+
+flexlinjer.push(new Flexlinje(flexMpl[i].flexlinjer[j])); 
+
+*/
 
 const selectElement = document.querySelector('.sokbox');
 
@@ -200,27 +232,64 @@ function checkMplVal(array, val = ["Alla Mölndal", "Alla göteborg"]){
 
 	}
 
-function filterLordag(flexlinje){
-  var eSaturday = flexlinje.search("Lördag");
-  if (eSaturday > -1) return true; else return false; 
+//if (flexlinjer.indexOf(flexMpl[i].flexlinjer[j]) == -1) flexlinjer.push(flexMpl[i].flexlinjer[j]);
+
+function findIndexMpl(mpl){
+  
+  for(i = 0; i < flexMpl.length; i++){
+   
+    if (mpl == flexMpl[i].mpl) return i;
+  }
 }
 
-funtion findConexion(a, b){
+function tabortGbgMdl(flxL) {
+  if (flxL != "Alla göteborg" && flxL != "Alla Mölndal"){ return flxL;}
+}
 
-  flexlinjer: allahpl[i][8].split(","),
-       mpl: allahpl[i][0],
-  //ta reda på a:s flexlinjer
-    //lista a:s linjer
+for (i = 0; i < flexMpl.length; i++){
+  flexMpl[i].flexlinjer = flexMpl[i].flexlinjer.filter(tabortGbgMdl);
+}
+//console.log(flexMpl);
+
+function findConexion(a, b){
+
+  //get index of a och b  
+  let indexA = findIndexMpl(a); 
+  let indexB = findIndexMpl(b);  //8
+  
+  let linjer = flexMpl[indexA].flexlinjer;
+  //linjer = linjer.filter(tabortGbgMdl);
+  console.log(linjer);
+
+  let findLinjer = flexMpl[indexA].flexlinjer.filter(element => flexMpl[indexB].flexlinjer.includes(element));
+  
+  
+  
 
   //ta reda på b:s flexlinjer
 
   //c kolla ifall a och b har gemensam flexlinje
-
+  let k= 0;
+while (k < linjer.length){
+  for (i = 0; i < flexMpl.length; i++){
+    if ( flexMpl[i].flexlinjer.indexOf(linjer[k] ) > -1){
+    for (j = 0; j < flexMpl[i].flexlinjer.length; j++){
+      if (linjer.indexOf(flexMpl[i].flexlinjer[j]) == -1) {
+      linjer.push(flexMpl[i].flexlinjer[j]);
+      findLinjer = linjer.filter(element => flexMpl[indexB].flexlinjer.includes(element));
+        console.log("findLinjer", findLinjer);
+      }
+    } 
+    }
+  }
+  k++
+}
   //om inte sök upp loppa alla mpler
     // har mpl annan linje adda den på listaLinjerAtt Kolla
 
 
-}
+} console.log("findLinjer");
+findConexion(200, 792);//4616
 
 
   let center = {}; 
