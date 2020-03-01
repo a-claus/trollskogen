@@ -259,31 +259,55 @@ function findConexion(a, b){
   
   let linjer = flexMpl[indexA].flexlinjer;
   //linjer = linjer.filter(tabortGbgMdl);
-  console.log(linjer);
+  //console.log(linjer);
 
   let findLinjer = flexMpl[indexA].flexlinjer.filter(element => flexMpl[indexB].flexlinjer.includes(element));
   
   
   
-
+  //let track = {}; 
   //ta reda på b:s flexlinjer
 
   //c kolla ifall a och b har gemensam flexlinje
-  let k= 0;
+ let hittade = [a, b];
+let k= 0;
+track = []; final = [];
 while (k < linjer.length){
-  for (i = 0; i < flexMpl.length; i++){
-    if ( flexMpl[i].flexlinjer.indexOf(linjer[k] ) > -1){
-    for (j = 0; j < flexMpl[i].flexlinjer.length; j++){
-      if (linjer.indexOf(flexMpl[i].flexlinjer[j]) == -1) {
-      linjer.push(flexMpl[i].flexlinjer[j]);
-      findLinjer = linjer.filter(element => flexMpl[indexB].flexlinjer.includes(element));
-        console.log("findLinjer", findLinjer);
-      }
-    } 
-    }
-  }
-  k++
+  	for (i = 0; i < flexMpl.length; i++){
+  		if (hittade.indexOf(flexMpl[i].mpl == -1)){
+    	if ( flexMpl[i].flexlinjer.indexOf(linjer[k]) > -1){ // Här är en mpl som går på linjen k
+    		
+    		for (j = 0; j < flexMpl[i].flexlinjer.length; j++){
+      			if (linjer.indexOf(flexMpl[i].flexlinjer[j]) == -1) { // Här hittar den en en line som inte finns bland de andra alternativen.
+      				hittade.push(flexMpl[i].mpl);
+      				console.log(flexMpl[indexB].flexlinjer.indexOf(flexMpl[i].flexlinjer[j]));
+      				console.log(flexMpl[indexB].flexlinjer);
+      				console.log(flexMpl[i].flexlinjer[j]);
+
+      				if (flexMpl[indexB].flexlinjer.indexOf(flexMpl[i].flexlinjer[j]) < 0){ //Inte hittat conexion. Då behöver vi lägga till den bland linjerna som ska undersökas.
+      					linjer.push(flexMpl[i].flexlinjer[j]);
+      					// Lägga till kopplingen
+      					track.push({mpl: flexMpl[i].mpl , con: [linjer[k], flexMpl[i].flexlinjer[j]]});	
+      				} else { 
+      					      					linjer.push(flexMpl[i].flexlinjer[j]);
+
+      					final.push({mpl: flexMpl[i].mpl, con: [linjer[k], flexMpl[i].flexlinjer[j]]});	
+// Hittat conexion}
+      				//findLinjer = linjer.filter(element => flexMpl[indexB].flexlinjer.includes(element));
+
+        			//console.log("findLinjer", findLinjer,flexMpl[i]);
+        			//console.log(flexMpl[i].mpl);
+        		}
+
+      			}
+    		} 
+   		}
+   		}
+  	}
+  	k++
 }
+console.log(track);
+console.log(final);
   //om inte sök upp loppa alla mpler
     // har mpl annan linje adda den på listaLinjerAtt Kolla
 
