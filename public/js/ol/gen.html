@@ -237,7 +237,6 @@ function checkMplVal(array, val = ["Alla Mölndal", "Alla göteborg"]){
 function findIndexMpl(mpl){
   
   for(i = 0; i < flexMpl.length; i++){
-   
     if (mpl == flexMpl[i].mpl) return i;
   }
 }
@@ -246,12 +245,26 @@ function tabortGbgMdl(flxL) {
   if (flxL != "Alla göteborg" && flxL != "Alla Mölndal"){ return flxL;}
 }
 
-for (i = 0; i < flexMpl.length; i++){
-  flexMpl[i].flexlinjer = flexMpl[i].flexlinjer.filter(tabortGbgMdl);
-}
+
 //console.log(flexMpl);
 
-function findConexion(a, b){
+function findConexion(a, b, filter = "vardag"){
+
+//-----------filtrering  
+let mpler = flexMpl;
+for (i = 0; i < mpler.length; i++){
+  mpler[i].flexlinjer = mpler[i].flexlinjer.filter(tabortGbgMdl);
+}
+/*
+console.log(mpler);
+//for (i of mpler) {
+for (i = mpler.length-1; i>-1; i--){
+  
+  if (mpler[i].flexlinjer.length == 1)  mpler.slice(i, 1);
+}
+console.log("b",mpler.length);
+*/
+//-----------------------------------------------------------------
 
   //get index of a och b  
   let indexA = findIndexMpl(a); 
@@ -261,7 +274,7 @@ function findConexion(a, b){
   //linjer = linjer.filter(tabortGbgMdl);
   //console.log(linjer);
 
-  let findLinjer = flexMpl[indexA].flexlinjer.filter(element => flexMpl[indexB].flexlinjer.includes(element));
+  let findLinjer = mpler[indexA].flexlinjer.filter(element => mpler[indexB].flexlinjer.includes(element));
   
   
   
@@ -273,25 +286,25 @@ function findConexion(a, b){
 let k= 0;
 track = []; final = [];
 while (k < linjer.length){
-  	for (i = 0; i < flexMpl.length; i++){
-  		if (hittade.indexOf(flexMpl[i].mpl == -1)){
-    	if ( flexMpl[i].flexlinjer.indexOf(linjer[k]) > -1){ // Här är en mpl som går på linjen k
+  	for (i = 0; i < mpler.length; i++){
+  		if (hittade.indexOf(mpler[i].mpl == -1)){
+    	if ( mpler[i].flexlinjer.indexOf(linjer[k]) > -1){ // Här är en mpl som går på linjen k
     		
-    		for (j = 0; j < flexMpl[i].flexlinjer.length; j++){
-      			if (linjer.indexOf(flexMpl[i].flexlinjer[j]) == -1) { // Här hittar den en en line som inte finns bland de andra alternativen.
-      				hittade.push(flexMpl[i].mpl);
-      				console.log(flexMpl[indexB].flexlinjer.indexOf(flexMpl[i].flexlinjer[j]));
-      				console.log(flexMpl[indexB].flexlinjer);
-      				console.log(flexMpl[i].flexlinjer[j]);
+    		for (j = 0; j < mpler[i].flexlinjer.length; j++){
+      			if (linjer.indexOf(mpler[i].flexlinjer[j]) == -1) { // Här hittar den en en line som inte finns bland de andra alternativen.
+      				hittade.push(mpler[i].mpl);
+      				console.log(mpler[indexB].flexlinjer.indexOf(flexMpl[i].flexlinjer[j]));
+      				console.log(mpler[indexB].flexlinjer);
+      				console.log(mpler[i].flexlinjer[j]);
 
-      				if (flexMpl[indexB].flexlinjer.indexOf(flexMpl[i].flexlinjer[j]) < 0){ //Inte hittat conexion. Då behöver vi lägga till den bland linjerna som ska undersökas.
-      					linjer.push(flexMpl[i].flexlinjer[j]);
+      				if (mpler[indexB].flexlinjer.indexOf(mpler[i].flexlinjer[j]) < 0){ //Inte hittat conexion. Då behöver vi lägga till den bland linjerna som ska undersökas.
+      					linjer.push(mpler[i].flexlinjer[j]);
       					// Lägga till kopplingen
-      					track.push({mpl: flexMpl[i].mpl , con: [linjer[k], flexMpl[i].flexlinjer[j]]});	
+      					track.push({mpl: mpler[i].mpl , con: [linjer[k], mpler[i].flexlinjer[j]]});	
       				} else { 
-      					      					linjer.push(flexMpl[i].flexlinjer[j]);
+      					      					linjer.push(mpler[i].flexlinjer[j]);
 
-      					final.push({mpl: flexMpl[i].mpl, con: [linjer[k], flexMpl[i].flexlinjer[j]]});	
+      					final.push({mpl: mpler[i].mpl, con: [linjer[k], mpler[i].flexlinjer[j]]});	
 // Hittat conexion}
       				//findLinjer = linjer.filter(element => flexMpl[indexB].flexlinjer.includes(element));
 
