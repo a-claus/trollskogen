@@ -326,8 +326,6 @@ while (k < linjer.length){
  
       				if (mpler[indexB].flexlinjer.indexOf(mpler[i].flexlinjer[j]) == -1){ //Inte hittat conexion. Då behöver vi lägga till den bland linjerna som ska undersökas.
       					linjer.push(mpler[i].flexlinjer[j]);
-      					console.log(linjer);
-      					//console.log(linjer);
       					// Lägga till kopplingen
       					track.push({mpl: mpler[i].mpl , con: [linjer[k], mpler[i].flexlinjer[j]]});	
       				} else { 
@@ -425,7 +423,7 @@ for (i = tracks.length - 1; i > -1; i--){
 	//if (goal == true) {i = -1}
 
 }
-console.log(road);
+
 
 //-----------------
 } else {
@@ -445,23 +443,38 @@ console.log();
  
 let theWay = [];
 startisar = mpler[indexA].flexlinjer; //Till sökningar
-  console.log(startisar);
-
-  console.log(road);
-
-
+let kort = road[road.length-1].length;
  for (i=0; i < road.length; i++){
- 	if (startisar.indexOf(road[i][0]) > -1) theWay.push(road[i]);
+  if (kort < road[i].length) break;
+ 	if (startisar.indexOf(road[i][0]) > -1) {
+     kort = road[i].length;
+     theWay.push(road[i]);
+     }
  }
  console.log(theWay);
 
+let byten = {}
+
+// slå ihop the ways arrayer
+for (i=0; i < kort;i++){
+  for(j=0;j<road.length; j++){
+    if (road[j][i])
+  }
+}
+//loopa allamötesplatser
+
+// kolla om det finns två träffar av linjer
+
+//spara obj f_linje, t_linje, mplarray
 
 
+
+//
 
 } 
 
 
-findConexion(200, 800);//4616
+findConexion(200, 4616);//4616
 
 
   let center = {}; 
