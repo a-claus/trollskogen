@@ -245,71 +245,96 @@ function tabortGbgMdl(flxL) {
   if (flxL != "Alla göteborg" && flxL != "Alla Mölndal"){ return flxL;}
 }
 
+console.log(flexMpl[5]);
 
-//console.log(flexMpl);
+const abab = [1,2,3];
+var be = abab;
+be[1] = 5;
+console.log(abab);
+console.log(be);  
+
 
 function findConexion(a, b, filter = "vardag"){
-
+let road = []; let temp = [];
+var indexA = findIndexMpl(a); 
+let index;
 //-----------filtrering  
-let mpler = flexMpl;
-for (i = 0; i < mpler.length; i++){
-  mpler[i].flexlinjer = mpler[i].flexlinjer.filter(tabortGbgMdl);
-}
-/*
+//var mpler = [];
+//var mpler;
+//let mpler = [];
+//mpler = flexMpl.concat();
+var mpler = JSON.parse(JSON.stringify(flexMpl));
+
+//mpler = flexMpl;
+//mpler.push(flexMpl);
 console.log(mpler);
-//for (i of mpler) {
-for (i = mpler.length-1; i>-1; i--){
-  
-  if (mpler[i].flexlinjer.length == 1)  mpler.slice(i, 1);
+for (i = 0; i < mpler.length; i++){
+	index = mpler[i].flexlinjer.indexOf("Alla göteborg");
+ 	if (index > -1) mpler[i].flexlinjer.splice(index,1);
+  	index = mpler[i].flexlinjer.indexOf("Alla Mölndal");
+  	if (index > -1) mpler[i].flexlinjer.splice(index,1);
 }
-console.log("b",mpler.length);
+console.log(mpler[5]);
+/*
+Välja vardag eller lördag.
 */
 //-----------------------------------------------------------------
 
   //get index of a och b  
-  let indexA = findIndexMpl(a); 
-  let indexB = findIndexMpl(b);  //8
-  
-  let linjer = flexMpl[indexA].flexlinjer;
-  //linjer = linjer.filter(tabortGbgMdl);
-  //console.log(linjer);
+  //let indexA = findIndexMpl(a); 
+  let indexB = findIndexMpl(b);
 
+  //let linjer = [];
+  //linjer.push( mpler[indexA].flexlinjer); //startLinjerna som fylls på med conexions, som inte når slutmål
+  let linjer = JSON.parse(JSON.stringify(mpler[indexA].flexlinjer));
+  const startLinjer = mpler[indexA].flexlinjer; //Till sökningar
+  const slutLinjer = mpler[indexB].flexlinjer;
+  let goal = false; 
+// Undersökning om slut och start har någon gensam linje. Svar fås ut av array.
   let findLinjer = mpler[indexA].flexlinjer.filter(element => mpler[indexB].flexlinjer.includes(element));
-  
-  
-  
-  //let track = {}; 
-  //ta reda på b:s flexlinjer
+//---------------- 
+ 
+ 
 
-  //c kolla ifall a och b har gemensam flexlinje
+  /* Tänker om man lägger in att man hoppar redan genomsökta mpl redan är utnyttjade så skulle man minska looparna. Dock gäller det att göra det på rätt sätt vilket kan vara knixligt. */
  let hittade = [a, b];
-let k= 0;
+//------------------------
+
+
+/* ------------------ SÖKMOTOR -------------------
+
+Denna räknar ut om det går ngn linje mellan A och B och sparar track. (Borde kunna spara vilka mpl:er), men hoppar detta för tillfället och letar upp dem sen istället.
+
+1. Tar först fram mötesplatser som har någon samma mpl som start.
+2. Undersöker sen om den mpl har någon annan linje, än vad tidigare mplatser har. 
+3. Om den har läggs den till.
+4. Avslutar när vi har spårat till slutmpl
+
+---------------------------------------------------*/
+if (findLinjer.length < 1){
+ let k= 0;
+
 track = []; final = [];
 while (k < linjer.length){
   	for (i = 0; i < mpler.length; i++){
   		if (hittade.indexOf(mpler[i].mpl == -1)){
-    	if ( mpler[i].flexlinjer.indexOf(linjer[k]) > -1){ // Här är en mpl som går på linjen k
+    	if (mpler[i].flexlinjer.indexOf(linjer[k]) > -1){ // Här är en mpl som går på linjen k
     		
     		for (j = 0; j < mpler[i].flexlinjer.length; j++){
       			if (linjer.indexOf(mpler[i].flexlinjer[j]) == -1) { // Här hittar den en en line som inte finns bland de andra alternativen.
       				hittade.push(mpler[i].mpl);
-      				console.log(mpler[indexB].flexlinjer.indexOf(flexMpl[i].flexlinjer[j]));
-      				console.log(mpler[indexB].flexlinjer);
-      				console.log(mpler[i].flexlinjer[j]);
-
-      				if (mpler[indexB].flexlinjer.indexOf(mpler[i].flexlinjer[j]) < 0){ //Inte hittat conexion. Då behöver vi lägga till den bland linjerna som ska undersökas.
+ 
+      				if (mpler[indexB].flexlinjer.indexOf(mpler[i].flexlinjer[j]) == -1){ //Inte hittat conexion. Då behöver vi lägga till den bland linjerna som ska undersökas.
       					linjer.push(mpler[i].flexlinjer[j]);
+      					console.log(linjer);
+      					//console.log(linjer);
       					// Lägga till kopplingen
       					track.push({mpl: mpler[i].mpl , con: [linjer[k], mpler[i].flexlinjer[j]]});	
       				} else { 
-      					      					linjer.push(mpler[i].flexlinjer[j]);
+      					 
+      					 if (mpler[indexB].flexlinjer.indexOf(linjer[k]))
+							final.push({mpl: mpler[i].mpl, con: [linjer[k], mpler[i].flexlinjer[j]]});	
 
-      					final.push({mpl: mpler[i].mpl, con: [linjer[k], mpler[i].flexlinjer[j]]});	
-// Hittat conexion}
-      				//findLinjer = linjer.filter(element => flexMpl[indexB].flexlinjer.includes(element));
-
-        			//console.log("findLinjer", findLinjer,flexMpl[i]);
-        			//console.log(flexMpl[i].mpl);
         		}
 
       			}
@@ -319,14 +344,124 @@ while (k < linjer.length){
   	}
   	k++
 }
-console.log(track);
-console.log(final);
-  //om inte sök upp loppa alla mpler
-    // har mpl annan linje adda den på listaLinjerAtt Kolla
+console.log(mpler[indexB].flexlinjer);
+//------------- SÖKMOTOR SLUT ----------------------
+// med info i dessa två arrayer med objekt. I objekten ligger informationen om två linjer kan nå varandra.
+//console.log(track); 
+//console.log(final);
+//-------------------------------------
+//------------- SÖKMOTOR SLUT ----------------------
 
 
-} console.log("findLinjer");
-findConexion(200, 792);//4616
+/*------------ Om det finns linjer som går att pussla ihop mellan A och B ------------*/  
+
+//XYZ Lägga in spärr om det inte finns någon conexion.
+
+
+
+
+/* ------------------ PUSSLA IHOP LINJERNA -------------------
+
+1. Börjar från slutmål
+2. Sätter ihop när två linjer går ihop. I ny array. Road
+3. Avslutar när kortaste vägen hittat till Startlinjerna
+
+
+---------------------------------------------------*/
+
+//Lite förberedelser
+let tracks = track.concat(final);
+
+
+for (i=0; i < mpler[indexB].flexlinjer.length; i++){
+	 	road.push([mpler[indexB].flexlinjer[i]]);
+	 }
+
+for (i = 1; i < final.length; i++){
+	let raknare = 0;
+	for (j = 0; j < road.length; j++){
+		if (final[i].con[1] != road[j][0]) raknare++;
+	}
+	if (raknare == road.length) road.push(final[i].con[1]);
+}
+
+
+
+
+//----------- Track Roads ------------------------------
+
+for (i = tracks.length - 1; i > -1; i--){
+
+	let L = road.length;
+	for (j = 0; j < L; j++){
+		if (road[j][0] == tracks[i].con[1]){
+			temp = [];
+			temp.push(tracks[i].con[0]);
+			temp = temp.concat(road[j]);
+			
+			let LL = road.length ;
+			let nope = false;
+			for (k = LL - 1; k > -1; k--) { 
+				      let dublettEller = road[k].filter(element => temp.includes(element));
+				    
+				      if (dublettEller.length == temp.length) {
+				      	nope = true; 
+				      	//console.log(k);
+				      	break;
+				      }
+
+			}
+			if (nope == false) {
+				//if (startLinjer.indexOf(temp[0]) > -1) goal = true;
+				road.push(temp);
+			}
+
+			
+
+			
+		}
+
+	}
+	//if (goal == true) {i = -1}
+
+}
+console.log(road);
+
+//-----------------
+} else {
+	//XYZ
+	alert ("Vi har direkflex mellan dessa mötesplatser: " + findLinjer);
+}
+console.log();
+ /* __________________De olika spåren __________________________
+
+ ______________________PUSSLA IHOP LINJERNA SLUT_________________________*/ 
+
+/* __________________ HITTA MÖTESPLATSERNA MAN KAN BYTA PÅ __________________________
+	1 . Ta bort de i road som inte går mellan a och b
+	2. Ta bort de som kräver mer byten.
+	3. Hitta mpl:atrser i de roader som är kvar.
+ _______________________________________________*/ 
+ 
+let theWay = [];
+startisar = mpler[indexA].flexlinjer; //Till sökningar
+  console.log(startisar);
+
+  console.log(road);
+
+
+ for (i=0; i < road.length; i++){
+ 	if (startisar.indexOf(road[i][0]) > -1) theWay.push(road[i]);
+ }
+ console.log(theWay);
+
+
+
+
+} 
+
+
+findConexion(200, 800);//4616
 
 
   let center = {}; 
