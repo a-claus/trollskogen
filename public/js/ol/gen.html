@@ -453,7 +453,7 @@ let kort = road[road.length-1].length;
  }
  console.log(theWay);
 
-let byten = {}
+let bytMpler = [];
 
 // slå ihop the ways arrayer
 
@@ -462,7 +462,17 @@ for (i=0; i < kort;i++){
     if (road[j][i]){}
   }
 }
+console.log(lista);
+
 //loopa allamötesplatser
+ //let dublettEller = road[k].filter(element => temp.includes(element));
+for (i = 0; i < flexMpl.length; i++){
+	temp = flexMpl[i].flexlinjer.filter(element => lista.includes(element));
+	if(temp.length == 2){
+		bytMpler.push({start:temp[0], slut: temp[1], mpl:flexMpl[i].mpl, index: i});
+	}
+}
+console.log(bytMpler);
 
 // kolla om det finns två träffar av linjer
 
