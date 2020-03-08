@@ -5,6 +5,7 @@
 <html>
   <head>
 		<title>Färdtjänstförvaltningen - Flexkartan</title>
+	
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.5.0/proj4.js"></script>
@@ -20,11 +21,21 @@
 		
 		<link rel="stylesheet" href="layout/jquery-ui.css">
 		<script src="inc/js/jquery-ui.js"></script>
+			<script src="style.js"></script>
 
 		
 	</head>
 	
 	<body onload=" ">
+
+
+<!-- Trigger/Open The Modal -->
+
+ 
+
+
+
+
 	﻿<div class="header" >
 				<div class="logga" >
 					<img style="padding-top:7px; padding-left:10px;" src="layout/tlv.jpg" alt="Färdtjänstförvaltningen - Trafiklednings Verktyg"/> 
@@ -47,6 +58,28 @@
 
 </div>
 
+<button id="myBtn">Sök flexlinje</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+  <label for="fname">Från mötesplats</label>
+  <input type="text" id="fname" name="fname" value="200">
+   <label for="fname">Till mötesplats</label>
+  <input type="text" id="fname" name="fname" value="300">
+  <button id="myBtn">Sök flexlinje</button>
+  <div id="output">
+  
+ </div>
+   
+   
+  </div>
+
+</div>
+
 
 <div id="overlay">
      <div>
@@ -57,6 +90,39 @@
 	﻿<link rel="stylesheet" href="ol/ol.css" type="text/css"/>
 <link rel="stylesheet" href="/layout/map_style.css">
 <div style="height:100%" id="map"></div>
+
+
+
+
+
+
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
   
 <script>
 
@@ -477,11 +543,10 @@ console.log(bytMpler);
 // kolla om det finns två träffar av linjer
 
 //spara obj f_linje, t_linje, mplarray
-
-
-
 //
-
+<a href="function()"> </a>
+rad = "<p>", ,"</p>";
+document.getElementById("demo").innerHTML = person.fullName();
 } 
 
 
