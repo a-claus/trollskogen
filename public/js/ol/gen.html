@@ -70,10 +70,10 @@
   <input type="text" id="fname" name="fname" value="200">
    <label for="fname">Till mötesplats</label>
   <input type="text" id="fname" name="fname" value="300">
-  <button id="myBtn">Sök flexlinje</button>
-  <div id="output">
-  
- </div>
+  <button id="myBtn" onclick = "findConexion(200, 792)">Sök flexlinje</button>
+  <div id="outputt">
+    <p>a</p>
+   </div>
    
    
   </div>
@@ -522,10 +522,10 @@ let kort = road[road.length-1].length;
 let bytMpler = [];
 
 // slå ihop the ways arrayer
-
+let lista = [];
 for (i=0; i < kort;i++){
-  for(j=0;j<road.length; j++){
-    if (road[j][i]){}
+  for(j=0;j<theWay.length; j++){
+      if (lista.indexOf(theWay[j][i]) == -1) lista.push(theWay[j][i]);
   }
 }
 console.log(lista);
@@ -544,13 +544,23 @@ console.log(bytMpler);
 
 //spara obj f_linje, t_linje, mplarray
 //
-<a href="function()"> </a>
-rad = "<p>", ,"</p>";
-document.getElementById("demo").innerHTML = person.fullName();
+/*
+  Skriv linje
+  skriv 
+
+*/
+let radd="";
+for (i=0;i<theWay.length;i++){
+  console.log("what");
+radd += "<p class = \'lista\' id=\'tw",i," \' onclick = \'skrivInfo(i)\'>", theWay[i],"</p>";
+}
+document.getElementById("outputt").innerHTML = radd;
 } 
 
+function skrivInfo(index){
 
-findConexion(200, 4616);//4616
+}
+//4616
 
 
   let center = {}; 
