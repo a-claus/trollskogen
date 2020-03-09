@@ -550,15 +550,27 @@ console.log(bytMpler);
 
 */
 let radd="";
-for (i=0;i<theWay.length;i++){
-  console.log("what");
-radd += "<p class = \'lista\' id=\'tw",i," \' onclick = \'skrivInfo(i)\'>", theWay[i],"</p>";
+console.log(theWay.length);
+for (i=0; i<theWay.length; i++){
+	radd += "<p class = \'lista\' id=\'tw" + i +" \' onclick = \'skrivInfo("+i+")\'>" + theWay[i] +"</p>";
+
+	for (j=0; j < theWay.length-1; j++){
+		//radd += "<p class = \'lista\' id=\'tw" + i +" \' onclick = \'skrivInfo("+i+")\'>" + theWay[i][j] +"</p>";
+
+		for (k=0; k < bytMpler.length; k++){
+			
+			if (bytMpler[k].start.indexOf(theWay[i][j])> -1 && bytMpler[k].slut.indexOf(theWay[i][j+1]) || bytMpler[k].start.indexOf(theWay[i][j+1])> -1 && bytMpler[k].slut.indexOf(theWay[i][j]) > -1) radd += "<p style=\"display:inline\"> " + bytMpler[k].mpl+ " </p>";
+		}
+
+	}
+//	radd += "<p class = \'lista\' id=\'tw" + i +" \' onclick = \'skrivInfo("+i+")\'>" + theWay[i] +"</p>";
 }
+
 document.getElementById("outputt").innerHTML = radd;
 } 
 
 function skrivInfo(index){
-
+console.log(index);
 }
 //4616
 
