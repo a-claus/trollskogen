@@ -21,15 +21,41 @@
 		
 		<link rel="stylesheet" href="layout/jquery-ui.css">
 		<script src="inc/js/jquery-ui.js"></script>
-			<script src="style.js"></script>
+		<!-- NYTT -->
+		<link rel="stylesheet" href="./style.css" type="text/css">
+			
+		<!-- NYTT SLUT -->
 
 		
 	</head>
 	
-	<body onload=" ">
+	<body>
+
+		<!-- NYTT  -->
+<button id="myBtn">Sök flexlinje</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+  <label for="textStart">Från mötesplats</label>
+  <input type="text" id="textStart" name="textStart" value="200">
+   <label for="textSlut">Till mötesplats</label>
+  <input type="text" id="textSlut" name="textSlut" value="300">
+  <button onclick = "findConexion()">Sök flexlinje</button>
+  <div id="outputt"></div>
+   
+   
+  </div>
+
+</div>
+
+<!-- NYTT SLUT -->
 
 
-<!-- Trigger/Open The Modal -->
+
 
  
 
@@ -58,25 +84,6 @@
 
 </div>
 
-<button id="myBtn">Sök flexlinje</button>
-
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-  <label for="textStart">Från mötesplats</label>
-  <input type="text" id="textStart" name="textStart" value="200">
-   <label for="textSlut">Till mötesplats</label>
-  <input type="text" id="textSlut" name="textSlut" value="300">
-  <button id="myBtn" onclick = "findConexion()">Sök flexlinje</button>
-  <div id="outputt"></div>
-   
-   
-  </div>
-
-</div>
 
 
 <div id="overlay">
@@ -93,7 +100,7 @@
 
 
 
-
+<!-- NYTT -->
 <script>
 // Get the modal
 var modal = document.getElementById("myModal");
@@ -121,6 +128,8 @@ window.onclick = function(event) {
   }
 }
 </script>
+
+<!-- NYTT SLUT -->
   
 <script>
 
@@ -296,8 +305,7 @@ function checkMplVal(array, val = ["Alla Mölndal", "Alla göteborg"]){
 
 	}
 
-//if (flexlinjer.indexOf(flexMpl[i].flexlinjer[j]) == -1) flexlinjer.push(flexMpl[i].flexlinjer[j]);
-
+// -------NYTT
 function findIndexMpl(mpl){
   
   for(i = 0; i < flexMpl.length; i++){
@@ -309,59 +317,47 @@ function tabortGbgMdl(flxL) {
   if (flxL != "Alla göteborg" && flxL != "Alla Mölndal"){ return flxL;}
 }
 
-console.log(flexMpl[5]);
-
-const abab = [1,2,3];
-var be = abab;
-be[1] = 5;
-console.log(abab);
-console.log(be);  
-
+ 
 
 function findConexion(filter = "vardag"){
   let a = document.getElementById("textStart").value;
   let b = document.getElementById("textSlut").value;
+
+
  
-  fc_continue(a,b);
+  fc_continue(a, b, filter);
 }
 
 
-function fc_continue(a,b){  
+function fc_continue(a, b, filter){  
 let road = []; let temp = [];
 var indexA = findIndexMpl(a); 
 let index;
-//-----------filtrering  
-//var mpler = [];
-//var mpler;
-//let mpler = [];
-//mpler = flexMpl.concat();
+//-----------filtrering ---------------- 
+
 var mpler = JSON.parse(JSON.stringify(flexMpl));
 
-//mpler = flexMpl;
-//mpler.push(flexMpl);
-console.log(mpler);
+
 for (i = 0; i < mpler.length; i++){
 	index = mpler[i].flexlinjer.indexOf("Alla göteborg");
  	if (index > -1) mpler[i].flexlinjer.splice(index,1);
   	index = mpler[i].flexlinjer.indexOf("Alla Mölndal");
   	if (index > -1) mpler[i].flexlinjer.splice(index,1);
 }
-console.log(mpler[5]);
-/*
-Välja vardag eller lördag.
-*/
-//-----------------------------------------------------------------
 
-  //get index of a och b  
-  //let indexA = findIndexMpl(a); 
+/*
+Välja vardag eller lördag. xyz
+*/
+//---------------- Filtrering slut -------------------------------------------------
+
+  
   let indexB = findIndexMpl(b);
 
-  //let linjer = [];
-  //linjer.push( mpler[indexA].flexlinjer); //startLinjerna som fylls på med conexions, som inte når slutmål
   let linjer = JSON.parse(JSON.stringify(mpler[indexA].flexlinjer));
   const startLinjer = mpler[indexA].flexlinjer; //Till sökningar
   const slutLinjer = mpler[indexB].flexlinjer;
   let goal = false; 
+
 // Undersökning om slut och start har någon gensam linje. Svar fås ut av array.
   let findLinjer = mpler[indexA].flexlinjer.filter(element => mpler[indexB].flexlinjer.includes(element));
 //---------------- 
@@ -530,38 +526,26 @@ let kort = road[road.length-1].length;
 
 let bytMpler = [];
 
-// slå ihop the ways arrayer
 
-for (i=0; i < kort;i++){
-  for(j=0;j<theWay.length; j++){
-      if (lista.indexOf(theWay[j][i]) == -1) lista.push(theWay[j][i]);
-  }
-}
-console.log(lista);
-
-//loopa allamötesplatser
- //let dublettEller = road[k].filter(element => temp.includes(element));
 for (i = 0; i < flexMpl.length; i++){
-	temp = flexMpl[i].flexlinjer.filter(element => lista.includes(element));
-	if(temp.length == 2){
-		bytMpler.push({start:temp[0], slut: temp[1], mpl:flexMpl[i].mpl, index: i});
+	for (j = 0; j < lista.length; j++){
+		if(flexMpl[i].flexlinjer.indexOf(lista[j]) != -1){
+			if(flexMpl[i].flexlinjer.indexOf(lista[j + 1]) != -1){
+				bytMpler.push({start: lista[j], slut: lista[j + 1], mpl:flexMpl[i].mpl, index: i});
+				//break; //xyz förhindrar dubletter, men förlorar annat, så behöver annan lösning
+			}
+		}
 	}
 }
+
+
 console.log(bytMpler);
 
-// kolla om det finns två träffar av linjer
 
-//spara obj f_linje, t_linje, mplarray
-//
-/*
-  Skriv linje
-  skriv 
-
-*/
 let radd="";
 //console.log(theWay.length);
 for (i=0; i<theWay.length; i++){
-	radd += "<p class = \'lista\' id=\'tw" + i +" \' onclick = \'skrivInfo("+i+")\'>" + theWay[i] +"</p>";
+	radd += "<p class = \'list_a\' id=\'tw" + i +" \' onclick = \'skrivInfo("+i+")\'>" + theWay[i] +"</p>";
 
 	for (j=0; j < theWay[i].length; j++){
     radd += " --- ";
@@ -571,16 +555,13 @@ console.log(theWay[i][j] + "-" + theWay[i][j+1]);
 			if (theWay[i][j] == bytMpler[k].start || theWay[i][j] == bytMpler[k].slut){
         if (theWay[i][j+1] == bytMpler[k].start || theWay[i][j+1] == bytMpler[k].slut){
           console.log(bytMpler[k].start + "/" + bytMpler[k].slut);
-          radd += "<p style=\"display:inline\"> " + bytMpler[k].mpl+ " </p>"
+          radd += "<p class = \'lista\' style=\"display:inline\" onclick = \'skrivInfo("+bytMpler[k].index+")\'>" + bytMpler[k].mpl+ " </p>"
         }
       }
-      /*
-			if (bytMpler[k].start.indexOf(theWay[i][j])> -1 && bytMpler[k].slut.indexOf(theWay[i][j+1]) > 1 || bytMpler[k].start.indexOf(theWay[i][j+1])> -1 && bytMpler[k].slut.indexOf(theWay[i][j]) > -1) 
-        {radd += "<p style=\"display:inline\"> " + bytMpler[k].mpl+ " </p>";}*/
+    
 		}
 
 	}
-//	radd += "<p class = \'lista\' id=\'tw" + i +" \' onclick = \'skrivInfo("+i+")\'>" + theWay[i] +"</p>";
 }
 
 document.getElementById("outputt").innerHTML = radd;
@@ -590,7 +571,7 @@ function skrivInfo(index){
 console.log(index);
 }
 //4616
-
+// -------NYTT SLUT
 
   let center = {}; 
 function ritaMpl(val = [ "Alla Mölndal"], add=true){ //"Alla Mölndal", "Alla göteborg"
