@@ -66,14 +66,12 @@
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close">&times;</span>
-  <label for="fname">Från mötesplats</label>
-  <input type="text" id="fname" name="fname" value="200">
-   <label for="fname">Till mötesplats</label>
-  <input type="text" id="fname" name="fname" value="300">
-  <button id="myBtn" onclick = "findConexion(200, 600)">Sök flexlinje</button>
-  <div id="outputt">
-    <p>a</p>
-   </div>
+  <label for="textStart">Från mötesplats</label>
+  <input type="text" id="textStart" name="textStart" value="200">
+   <label for="textSlut">Till mötesplats</label>
+  <input type="text" id="textSlut" name="textSlut" value="300">
+  <button id="myBtn" onclick = "findConexion()">Sök flexlinje</button>
+  <div id="outputt"></div>
    
    
   </div>
@@ -320,7 +318,15 @@ console.log(abab);
 console.log(be);  
 
 
-function findConexion(a, b, filter = "vardag"){
+function findConexion(filter = "vardag"){
+  let a = document.getElementById("textStart").value;
+  let b = document.getElementById("textSlut").value;
+ 
+  fc_continue(a,b);
+}
+
+
+function fc_continue(a,b){  
 let road = []; let temp = [];
 var indexA = findIndexMpl(a); 
 let index;
@@ -507,7 +513,7 @@ console.log();
 	3. Hitta mpl:atrser i de roader som är kvar.
  _______________________________________________*/ 
  
-let theWay = [];
+let theWay = []; let lista = [];
 startisar = mpler[indexA].flexlinjer; //Till sökningar
 let kort = road[road.length-1].length;
  for (i=0; i < road.length; i++){
@@ -515,14 +521,17 @@ let kort = road[road.length-1].length;
  	if (startisar.indexOf(road[i][0]) > -1) {
      kort = road[i].length;
      theWay.push(road[i]);
+     lista = lista.concat(road[i]);
+     lista.push("ny");
      }
  }
  console.log(theWay);
+ console.log(lista);
 
 let bytMpler = [];
 
 // slå ihop the ways arrayer
-let lista = [];
+
 for (i=0; i < kort;i++){
   for(j=0;j<theWay.length; j++){
       if (lista.indexOf(theWay[j][i]) == -1) lista.push(theWay[j][i]);
@@ -550,16 +559,24 @@ console.log(bytMpler);
 
 */
 let radd="";
-console.log(theWay.length);
+//console.log(theWay.length);
 for (i=0; i<theWay.length; i++){
 	radd += "<p class = \'lista\' id=\'tw" + i +" \' onclick = \'skrivInfo("+i+")\'>" + theWay[i] +"</p>";
 
-	for (j=0; j < theWay.length-1; j++){
+	for (j=0; j < theWay[i].length; j++){
+    radd += " --- ";
 		//radd += "<p class = \'lista\' id=\'tw" + i +" \' onclick = \'skrivInfo("+i+")\'>" + theWay[i][j] +"</p>";
-
+console.log(theWay[i][j] + "-" + theWay[i][j+1]);
 		for (k=0; k < bytMpler.length; k++){
-			
-			if (bytMpler[k].start.indexOf(theWay[i][j])> -1 && bytMpler[k].slut.indexOf(theWay[i][j+1]) || bytMpler[k].start.indexOf(theWay[i][j+1])> -1 && bytMpler[k].slut.indexOf(theWay[i][j]) > -1) radd += "<p style=\"display:inline\"> " + bytMpler[k].mpl+ " </p>";
+			if (theWay[i][j] == bytMpler[k].start || theWay[i][j] == bytMpler[k].slut){
+        if (theWay[i][j+1] == bytMpler[k].start || theWay[i][j+1] == bytMpler[k].slut){
+          console.log(bytMpler[k].start + "/" + bytMpler[k].slut);
+          radd += "<p style=\"display:inline\"> " + bytMpler[k].mpl+ " </p>"
+        }
+      }
+      /*
+			if (bytMpler[k].start.indexOf(theWay[i][j])> -1 && bytMpler[k].slut.indexOf(theWay[i][j+1]) > 1 || bytMpler[k].start.indexOf(theWay[i][j+1])> -1 && bytMpler[k].slut.indexOf(theWay[i][j]) > -1) 
+        {radd += "<p style=\"display:inline\"> " + bytMpler[k].mpl+ " </p>";}*/
 		}
 
 	}
