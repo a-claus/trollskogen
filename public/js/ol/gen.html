@@ -322,10 +322,18 @@ function tabortGbgMdl(flxL) {
 function findConexion(filter = "vardag"){
   let a = document.getElementById("textStart").value;
   let b = document.getElementById("textSlut").value;
+//nytt 2
+ if (isNaN(a) || a < 99 || a > 10000) 
+ 	{ alert(a + " var inte någon mpl!"); } 
+ else 
+ 	{if (isNaN(b) || b < 99 || b > 10000) {
+ 		alert(b + " var inte någon mpl!"); 
+ 	} 
+ else {
+ 		 fc_continue(a, b, filter);}
+ 	} 
 
-
- 
-  fc_continue(a, b, filter);
+ 	//xyz Mötesplatser som inte nummer ska lösas
 }
 
 
@@ -410,18 +418,26 @@ while (k < linjer.length){
   	}
   	k++
 }
-console.log(mpler[indexB].flexlinjer);
+
 //------------- SÖKMOTOR SLUT ----------------------
 // med info i dessa två arrayer med objekt. I objekten ligger informationen om två linjer kan nå varandra.
-//console.log(track); 
-//console.log(final);
+
+
 //-------------------------------------
 //------------- SÖKMOTOR SLUT ----------------------
 
 
 /*------------ Om det finns linjer som går att pussla ihop mellan A och B ------------*/  
 
-//XYZ Lägga in spärr om det inte finns någon conexion.
+//Avbryt om det inte finns någon conexion.
+
+//nytt 2
+if (final.length == 0) return;
+
+// xyz rensar inte gammal informatio
+
+
+
 
 
 
