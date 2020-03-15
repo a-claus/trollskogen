@@ -336,6 +336,11 @@ function findConexion(filter = "vardag"){
  	//xyz Mötesplatser som inte nummer ska lösas
 }
 
+function removeDuplicates(array) {
+  array.splice(0, array.length, ...(new Set(array)));
+  return array;
+}
+
 
 function fc_continue(a, b, filter){  
 let road = []; let temp = [];
@@ -557,6 +562,9 @@ for (i = 0; i < flexMpl.length; i++){
 
 console.log(bytMpler);
 
+bytMpler = removeDuplicates(bytMpler);
+
+console.log(bytMpler);
 
 let radd="";
 //console.log(theWay.length);
@@ -566,12 +574,16 @@ for (i=0; i<theWay.length; i++){
 	for (j=0; j < theWay[i].length; j++){
     radd += " --- ";
 		//radd += "<p class = \'lista\' id=\'tw" + i +" \' onclick = \'skrivInfo("+i+")\'>" + theWay[i][j] +"</p>";
+		temp = []; //2
 console.log(theWay[i][j] + "-" + theWay[i][j+1]);
 		for (k=0; k < bytMpler.length; k++){
 			if (theWay[i][j] == bytMpler[k].start || theWay[i][j] == bytMpler[k].slut){
         if (theWay[i][j+1] == bytMpler[k].start || theWay[i][j+1] == bytMpler[k].slut){
           console.log(bytMpler[k].start + "/" + bytMpler[k].slut);
+          if (temp.indexOf(bytMpler[k].mpl) == -1){ //2
           radd += "<p class = \'lista\' style=\"display:inline\" onclick = \'skrivInfo("+bytMpler[k].index+")\'>" + bytMpler[k].mpl+ " </p>"
+          temp.push(bytMpler[k].mpl); //2
+      	} //2
         }
       }
     
