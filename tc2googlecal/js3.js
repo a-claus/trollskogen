@@ -27,7 +27,9 @@ input.addEventListener('change', function (e){
              //L = array.length;
 
             txt =  line.slice(0, 25);
-            adr = txt.replace(/\s+/g, '');
+            pos = txt.search("  ");
+            //adr = txt.replace(/\s+/g, '');
+            adr = txt.slice(0, pos);
             txt =  line.slice(26, 35);
             nr_f = txt.replace(/\s+/g, '');
             txt =  line.slice(36, 45);
@@ -42,69 +44,15 @@ input.addEventListener('change', function (e){
             long = txt.replace(/\s+/g, ''); 
 
              array.push({adr: adr, nr: nr_f, nr_t: nr_t, num_x: n_x, num_y: n_y, lat: lat, long:long});
-             //for (j=0; j<7; j++){
-               // array[L][j].replace(/,/g, '.');
-             //}
-             //j=line.slice(0, 38);
              
-               //console.log(line.slice(38, 42)); 
              
 }
 
-              //168 är varje rad
-             //console.log(line);
+              
                })
 
         console.log(array);
-/*
-       let te = reader.result;
-       let L = te.length + 0;
-        for (i = 0; i < L; i++){
-           
-                switch (te.charAt(i)){
-                    case " ":
-                        j++;
-                        if (j < 3) text += " ";
-                    break
-                    default:
-                        j=0;
-                        text += te.charAt(i);
-                }
 
-
-        }*()
-
-
-       /*reader.result.replace(/(\r\n|\r|\n)/g, '\n');
-       //console.log(reader.result); \r\n|\r|\n
-        const lines = reader.result.split("\n").map(function(line){
-            j=0; let text = "";
-             console.log(line.length);
-            
-            for (i = 0; i < line.lenght; i++){
-                console.log(line.charAt(i));
-                switch (line.charAt(i)){
-                    case " ":
-                        j++;
-                        if (j < 3) text += " ";
-                    break
-                    default:
-                        j=0;
-                        text += line.charAt(i);
-                }
-
-
-            }*/
-               
-
-            
-          //  console.log(text);
-            //return text.split("  ");
-         //   let lines = text.split("  ");
-
-       // })
-       
-        //let cal = cleanFile(lines);
         sendFile(array);
 
     }
@@ -112,52 +60,11 @@ input.addEventListener('change', function (e){
      reader.readAsText(input.files[0], 'ISO-8859-1');
 },false)
 
-function cleanFile(lines){
-    let g_cal;
-    let rad=0;
-    
-    //g_cal[rad] = ["Subject","Start Date","Start Time","End Date","End Time","All Day Event", "Description"];
-    g_cal = '\"Subject\",\"Start Date\",\"Start Time\",\"End Date\",\"End Time\",\"All Day Event\", \"Description\" \n';
 
-    for (var i = 0; i<lines.length; i++){
-        if (lines[i].length == 11 && lines[i][0] != '\" Vecka\"'){
-            if (lines[i][7] != '\" \"'){
-         
-            if (lines[i][1]=='\" \"')lines[i][1] = lines[i-1][1];
-            //g_cal.push([]);
-           /* g_cal[rad].push(lines[i][5].replace(/\"/g,""));
-            g_cal[rad].push(lines[i][1].replace(/\"/g,""));
-            g_cal[rad].push(lines[i][3].replace(/\"/g,""));
-            g_cal[rad].push(lines[i][1].replace(/\"/g,""));
-            g_cal[rad].push(lines[i][4].replace(/\"/g,""));
-            g_cal[rad].push("false");
-            g_cal[rad].push(lines[i][9].replace(/\"/g,"") + "\n");   
-            g_cal[rad].push(lines[i][5]);
-            g_cal[rad].push(lines[i][1]);
-            g_cal[rad].push(lines[i][3]);
-            g_cal[rad].push(lines[i][1]);
-            g_cal[rad].push(lines[i][4]);
-            g_cal[rad].push("false");
-            g_cal[rad].push(lines[i][9]); */
-            g_cal += lines[i][5] + ",";
-            g_cal +=lines[i][1] + ",";
-            g_cal += lines[i][3]+ ",";
-            g_cal += lines[i][1]+ ",";
-            g_cal += lines[i][4]+ ",";
-            g_cal += '\"'+ "false" + " \",";
-            g_cal += lines[i][9] + "\n";
-            }
-        }
-    
-    };
 
-    console.log(g_cal);
-    return g_cal;
-
-}
 
 function sendFile(input){
-var data = new Blob([input], {type: "text/plain; charset=utf-8"});
+var data = new Blob([JSON.stringify(input)], {type: "text/plain; charset=utf-8"});
 
 console.log(data);
 

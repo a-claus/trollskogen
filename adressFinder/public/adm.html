@@ -1,0 +1,69 @@
+<!DOCTYPE html >
+<html lang="se">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Admin av tider</title>
+
+
+
+
+ <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'>
+ 	
+ </script>
+ <script>let sida="adm";
+ let nuff=1234567890;</script>
+  <script src="js/cal.js">
+  
+  </script> 
+  <link rel="stylesheet" type="text/css" href="css/view.css">
+ 
+
+
+</head>
+
+<body>
+<div class="row">
+    <div class="column left">
+        <div id="kalender" class="kalender" onmouseover="setManad(0)"></div>
+        <div id="kalender3" class="kalender" onmouseover="setManad(1)"></div>
+    </div>
+    <div class="column right">
+        <h1>Adm bokning</h1> 
+        <hr /> 
+        <div id="infoBok" >
+    <p id="infotext"></p>
+</div>
+        <div id="form">
+	        <p id="arbetspass" class="rubb">Lägg in arbetspass</p>
+            <p id ="infopass"></p>
+            <label>Start:</label>
+            <input id="start_pass" name="start_pass" class="input tel" type="text" maxlength="4" value="hhmm" /> 
+            <br />
+            <label>Slut:</label>
+            <input id="slut_pass" name="slut_pass" class="input tel" type="text" maxlength="4" value="hhmm" /> 
+        </div>
+        <br />
+        <div id="arbetspassClick" class="ruta val" onclick="getAndSendAdm()"> Lägg in tid!</div>
+   
+        <hr />
+       
+        <div id="form">
+            <p id="registrera" class="rubb">Registrera kunder</p>
+            <label>Telefonnummer:</label>
+            <input id="tel" name="telefonnummer" class="input tel" type="text" maxlength="255" value="07" /> 
+            <div id="regKund" class="ruta val" onclick="getAndSendTel()">Registrera!</div>
+        
+        </div>
+         <hr />
+       
+        <p id="avboka" class="rubb">Avboka tider</p>
+
+        <div id="tiderna"></div>
+    </div>
+</div>
+
+
+</body>
+</html>

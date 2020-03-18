@@ -1,0 +1,22 @@
+[
+  {
+    "tel": "0702728173",
+    "status": "OK"
+  },
+  {
+    "tel": "1234567890",
+    "status": "OK"
+  },
+  {
+    "tel": "072233445",
+    "status": "OK"
+  },
+  {
+    "tel": "07test",
+    "status": "OK"
+  },
+  {
+    "tel": "07abc",
+    "status": "OK"
+  }
+]

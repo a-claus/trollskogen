@@ -1,0 +1,36 @@
+<!DOCTYPE html >
+<html lang="se">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Get koordinater adress</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+ <script>let sida="index";</script>
+  <script src="./js/cal.js">
+   </script> 
+  <link rel="stylesheet" type="text/css" href="css/view.css">
+ 
+
+
+</head>
+
+<body>
+<div id="container">
+  <div id="input_sokAdress" class="container"> 
+    <input type="text" id="sokadress" name="sokadress"><br><br>
+  </div> 
+  <div id="output_sokAdress" class="container">  </div>
+</div>
+<script>
+ $("#sokadress").change(function(){
+  console.log("a" + this.value);
+ // getAndSend(this.value);
+  postAjax('./endpoint', {sok: this.value});
+});
+</script>
+
+</body>
+</html>
