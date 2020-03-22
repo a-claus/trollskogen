@@ -11,7 +11,8 @@ input.addEventListener('change', function (e){
         sendFile(cal);
 
     }
-    reader.readAsText(input.files[0])
+    //reader.readAsText(input.files[0])
+     reader.readAsText(input.files[0], 'ISO-8859-1');
 },false)
 
 function cleanFile(lines){

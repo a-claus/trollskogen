@@ -31,10 +31,7 @@ function jsonCatcher(){
 	
 	let data=fs.readFileSync("./public/json/adresser.json");
 	gbgAdr=JSON.parse(data);
-	console.log(gbgAdr.length);
-	//let data2=fs.readFileSync("./public/json/nummer.json");
-	//nummer=JSON.parse(data2);
-	
+	console.log(gbgAdr.length);	
 }
 jsonCatcher();
 
@@ -47,7 +44,7 @@ app.use((req, res, next)=> {console.log(`Info ${req.path} (${req.method})`);
 console.log(" vad");
 
 app.post('/endpoint', (req,res)=> {
-	console.log("ajax");
+	console.log("post" + req.body);
 	let sokning = req.body;
 	let output = [];
 	
@@ -56,67 +53,55 @@ app.post('/endpoint', (req,res)=> {
 	const input = req.body.sok;
 	console.log("post" + input);
 	
-	/*const { error } = validateInput(req.body);
+	const { error } = validateInput(req.body);
 	if (error){ 
 		
-		res.status(500).send("Telefonnumret är inte korrekt");
+		res.status(500).send("Du har använt otilllåtna tecken");
 	//res.send(bookningar);
 	}
-	 else if (controlNummer(nyBookning.tel)== "BAD")
-	{
-		console.log("bad");
-		res.status(500).send("Det här numret är inte registrerat och vill du boka online får du be Paula registrera ditt telefonnummer.");
-		//res.send(bookningar, "Du är inte registrerad för att boka online. Om du själv inte ringer, så kommer Paula höra av sig inom kort till dig.");
-	} 	
 	else
-	{*/
-		console.log("next");
-	//console.log(req.body);
-	//	skapa object
-		
-		
-	//lägga till id och status
-	hitta = new RegExp(input);
+	{
+	
+	let list=["xyz"];
+	let counter=0;
+	hitta = new RegExp(input.toLowerCase());
 	for (i=0; i < gbgAdr.length; i++){
-		if (hitta.test(gbgAdr[i].adr) == true) {
+		if (hitta.test(gbgAdr[i].adr.toLowerCase()) == true) {
 			output.push(gbgAdr[i]);
-			if (output.length > 5) break;
+			if (list.indexOf(gbgAdr[i].adr) == -1){
+				list.push(gbgAdr[i].adr);
+				counter++;
+				if (counter > 5) break;
+			}
 		}
 
 	}
+
 	
-	console.log(output);
 	
 	
 	res.send(output);
-
+}
 
 })
 
 
 
 
-function controlNummer(nummerIn){
-	nummerIn = nummerIn.replace("-", "");
-	var pos = nummer.findIndex(ii => ii.tel === nummerIn);
-	if (pos != -1){
-		return "OK";
-	}
-	return "BAD";
-}
+
 
 
 
 
 function validateInput(json){
 	const schema = {
-		start: Joi.number().integer().required(),
-		slut: Joi.number().integer().required(),
-		dag: Joi.number().integer().required(),
-		manad: Joi.number().integer().required(),
-		tider: Joi.string().required(),
+		//start: Joi.number().integer().required(),
+		//slut: Joi.number().integer().required(),
+		//dag: Joi.number().integer().required(),
+		//manad: Joi.number().integer().required(),
+		sok: Joi.string().required(),
 		//epost: string().email().lowercase(),
-		tel: Joi.string().min(5).max(11).required()
+		//tel: Joi.string().min(5).max(11).required()
 	}
 	return Joi.validate(json, schema);
 }

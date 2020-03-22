@@ -26,8 +26,8 @@
 </div>
 <script>
  $("#sokadress").change(function(){
-  console.log("a" + this.value);
- // getAndSend(this.value);
+  console.log(this.value);
+
   postAjax('./endpoint', {sok: this.value});
 });
 </script>
