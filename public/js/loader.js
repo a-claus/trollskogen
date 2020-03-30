@@ -630,6 +630,7 @@ let ravin1 = {
         ctx.drawImage(this.image, 0, 0, 400, 400);
     }
 }
+/* 2020 mars
 let mb = {
 	
     draw : function (){
@@ -641,11 +642,12 @@ let mim = {
         ctx.drawImage(broVO,150,150);
     }
 }
+
 let sis = {
     draw : function (){
         ctx.drawImage(broVO,150,150);
     }
-}
+}*/
 
 
 
@@ -667,8 +669,6 @@ switch (wood.namn){
 		gameObj.push(new ObstacleKub(150, 150, [2.0, 2.2], 100, 10));
 		gameObj.push(new ObstacleKub(150, 240, [2.0, 2.2], 100, 10));
 		
-		
-	
 		//hitObjects++;
 		roadVertikal.floor=1;
 		
@@ -697,11 +697,11 @@ switch (wood.namn){
 	
 	break;
 	case "Svärdet i stenen":
-		kartObj.push(glanta, entre, sis);
+		kartObj.push(glanta, entre);
 		ajaxer("./js/kartbitar/excalibur.js");
 	break;
 	case "Mimers Brunn":
-		kartObj.push(glanta, entre, mb);
+		kartObj.push(glanta, entre);
 		ajaxer("./js/kartbitar/mimersbrunn.js", "MB");
 	break;
 	

@@ -48,7 +48,10 @@ let iii;
       
         let i = ritOrder[iii];
  
-        if (gameObj[i] == undefined) console.log(" i undefined iii " + iii);
+        if (gameObj[i] == undefined) {
+            console.log(" i undefined iii " + iii + "-" + i);
+            console.log(gameObj);
+    }
 
         if (gameObj[i].move() == true){
             walk = checkMoveInOrder(i);

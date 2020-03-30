@@ -8,6 +8,14 @@ let drawFunc;
 let temp; let tempArray = [];
 
 
+let val = 1;
+
+for (let i = 364; i > 300; i--){
+    val = val * i/365;
+console.log(366 - i + ": " + val * 100);
+}
+
+
 
 const NSVO=["norr","soder","vast","ost"]; //soder
 const inverseNSVO=["soder","norr","ost","vast"];

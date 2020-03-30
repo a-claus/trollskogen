@@ -1,4 +1,7 @@
 
+
+
+
 var card=[];
 card.push({id:0, namn:"Skatten", vad:"skatt", url: "./js/cards/egblomma.js",no:[]});
 card.push({id:1, namn:"blank", vad:"blank",no:[]});

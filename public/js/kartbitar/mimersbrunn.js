@@ -36,7 +36,7 @@ gameObj.push({
     info: false,
     x:150, y: 150,
     z:[1, 2], hojd:1,
-    width: 50, hight: 50, golv: 1,
+    golv: 1,
     hitAreaX: 160, hitAreaY: 160 , haWidth: 80 , haHight: 80,
 
     speedY: 0, speedX: 0,

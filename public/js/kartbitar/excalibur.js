@@ -1,11 +1,28 @@
 
 console.log("SIS");
+
+wait.push("SisBild", "SisBild2", "SisBild3");
 mapImages.push(new Image());
+mapImages[mapImages.length-1].addEventListener('load', notWaiting.bind("SisBild") );
 mapImages[mapImages.length-1].src = "./img/swordofstone.png";
+
 cardImages.push(new Image());
+cardImages[cardImages.length-1].addEventListener('load', notWaiting.bind("SisBild2") );
 cardImages[cardImages.length-1].src="./img/excalibur.png";
+
 sakImg.push(new Image());
+sakImages[sakImages.length-1].addEventListener('load', notWaiting.bind("SisBild3") );
 sakImg[cardImages.length-1].src="./img/sword.png";
+
+
+kartObj.push({
+    namn: "Mim Br",
+    img: mapImages[mapImages.length-1],
+    miljo: true, figur : false, info: false, floor:1,
+    draw: function(){
+        ctx.drawImage(this.img, 150, 150,100,100);//, 100, 100
+    }
+});
 
 gameObj.push({
 
@@ -16,18 +33,18 @@ vem: "Svärdet i stenen",
     miljo: false,
     figur: true,
     info: false,
-    x:150, y: 150,
+    x:150, y: 150, z:[1, 2], hojd:1,
     speedY: 0, speedX: 0,
     width: 100, hight: 100,
     index: gameObj.length,
-    img: mapImages[mapImages.length-1],
+    //img: mapImages[mapImages.length-1],
     cardImg: cardImages[cardImages.length-1],
     text: "",
     draw: function(){
-        var ctx = myGameArea.context;
-        ctx.drawImage(this.img, 150, 150); 
+        //var ctx = myGameArea.context;
+        //ctx.drawImage(this.img, 150, 150); 
         },
-    move: function(){},
+    move: function(){return false;},
     hitAction: function(){
         gameObj[0].placeMe = true;
         console.log("SIS!");
@@ -97,5 +114,6 @@ vem: "Svärdet i stenen",
 });
 
 hitObjects++;
-gameStatus.push(moveStart);
+//gameStatus.push(moveStart);
+ notWaiting("SIS"); 
 
