@@ -183,7 +183,7 @@ var iconStyle = [
         image: new ol.style.Circle({
             radius: 5,
             fill: new ol.style.Fill({
-                color: 'rgba(255,255,255,1)'
+                color: 'rgba(100,255,255,1)'
             }),
             stroke: new ol.style.Stroke({
                 color: 'rgba(0,0,0,1)'
@@ -322,23 +322,10 @@ function tabortGbgMdl(flxL) {
 function findConexion(filter = "vardag"){
   let a = document.getElementById("textStart").value;
   let b = document.getElementById("textSlut").value;
-//nytt 2
- if (isNaN(a) || a < 99 || a > 10000) 
- 	{ alert(a + " var inte någon mpl!"); } 
- else 
- 	{if (isNaN(b) || b < 99 || b > 10000) {
- 		alert(b + " var inte någon mpl!"); 
- 	} 
- else {
- 		 fc_continue(a, b, filter);}
- 	} 
 
- 	//xyz Mötesplatser som inte nummer ska lösas
-}
 
-function removeDuplicates(array) {
-  array.splice(0, array.length, ...(new Set(array)));
-  return array;
+ 
+  fc_continue(a, b, filter);
 }
 
 
@@ -423,26 +410,18 @@ while (k < linjer.length){
   	}
   	k++
 }
-
+console.log(mpler[indexB].flexlinjer);
 //------------- SÖKMOTOR SLUT ----------------------
 // med info i dessa två arrayer med objekt. I objekten ligger informationen om två linjer kan nå varandra.
-
-
+//console.log(track); 
+//console.log(final);
 //-------------------------------------
 //------------- SÖKMOTOR SLUT ----------------------
 
 
 /*------------ Om det finns linjer som går att pussla ihop mellan A och B ------------*/  
 
-//Avbryt om det inte finns någon conexion.
-
-//nytt 2
-if (final.length == 0) return;
-
-// xyz rensar inte gammal informatio
-
-
-
+//XYZ Lägga in spärr om det inte finns någon conexion.
 
 
 
@@ -562,9 +541,6 @@ for (i = 0; i < flexMpl.length; i++){
 
 console.log(bytMpler);
 
-bytMpler = removeDuplicates(bytMpler);
-
-console.log(bytMpler);
 
 let radd="";
 //console.log(theWay.length);
@@ -574,16 +550,12 @@ for (i=0; i<theWay.length; i++){
 	for (j=0; j < theWay[i].length; j++){
     radd += " --- ";
 		//radd += "<p class = \'lista\' id=\'tw" + i +" \' onclick = \'skrivInfo("+i+")\'>" + theWay[i][j] +"</p>";
-		temp = []; //2
 console.log(theWay[i][j] + "-" + theWay[i][j+1]);
 		for (k=0; k < bytMpler.length; k++){
 			if (theWay[i][j] == bytMpler[k].start || theWay[i][j] == bytMpler[k].slut){
         if (theWay[i][j+1] == bytMpler[k].start || theWay[i][j+1] == bytMpler[k].slut){
           console.log(bytMpler[k].start + "/" + bytMpler[k].slut);
-          if (temp.indexOf(bytMpler[k].mpl) == -1){ //2
           radd += "<p class = \'lista\' style=\"display:inline\" onclick = \'skrivInfo("+bytMpler[k].index+")\'>" + bytMpler[k].mpl+ " </p>"
-          temp.push(bytMpler[k].mpl); //2
-      	} //2
         }
       }
     
@@ -602,22 +574,40 @@ console.log(index);
 // -------NYTT SLUT
 
   let center = {}; 
-function ritaMpl(val = [ "Alla Mölndal"], add=true){ //"Alla Mölndal", "Alla göteborg"
+
+
+
+let enmpl = [];
+enmpl.push(flexMpl[600]);
+
+//ritaValdaMpl(enmpl);
+
+function ritaMplLinje(val = [ "Alla Mölndal"], add = true){
+  //filtreraFlexlinje
+  let filterLinje = [];
+  for (i = 0; i < flexMpl.length; i++ ){
+    if (checkMplVal(flexMpl[i].flexlinjer ,val)==true) filterLinje.push(flexMpl[i]);
+  }
+  ritaMpl(filterLinje, add);
+}
+
+function ritaMpl(arrayGPS, add=true){ //"Alla Mölndal", "Alla göteborg"
 let countLat = 0; let countLon =0; count = 0;
   if (add == false) vectorSource.clear(mplIcons);
   mplIcons =[];
-  for (i = 0; i < flexMpl.length; i++ ){
-    if (checkMplVal(flexMpl[i].flexlinjer ,val)==true){
-      countLat +=  flexMpl[i].lat; countLon +=  flexMpl[i].lon; count++;
+  console.log(arrayGPS);
+  for (i = 0; i < arrayGPS.length; i++ ){
+
+      countLat +=  arrayGPS[i].lat; countLon +=  arrayGPS[i].lon; count++;
         var iconFeature = new ol.Feature({
       type: 'click',
-      geometry: new ol.geom.Point(ol.proj.transform([flexMpl[i].lon, flexMpl[i].lat], 'EPSG:3006', 'EPSG:3857')),
-      text_adress: 'Mötesplats: ' + flexMpl[i].adress,
-      text_trafikAdress: 'Adress: ' + flexMpl[i].trafik_adress,
-      text_områden: 'Områden: ' + flexMpl[i].flexlinjer,
+      geometry: new ol.geom.Point(ol.proj.transform([arrayGPS[i].lon, arrayGPS[i].lat], 'EPSG:3006', 'EPSG:3857')),
+      text_adress: 'Mötesplats: ' + arrayGPS[i].adress,
+      text_trafikAdress: 'Adress: ' + arrayGPS[i].trafik_adress,
+      text_områden: 'Områden: ' + arrayGPS[i].flexlinjer,
     });
   mplIcons.push(iconFeature);
-  }
+  
 }
 center ={lon: countLon/count, lat:countLat/count};
   console.log(center);
@@ -631,7 +621,8 @@ center ={lon: countLon/count, lat:countLat/count};
     map.addLayer(markerVectorLayer);
 }
 
-ritaMpl();
+ritaMplLinje();
+ritaMpl(enmpl, true);
 
 map.on('click', function(evt) {
     var f = map.forEachFeatureAtPixel(
