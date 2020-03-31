@@ -558,29 +558,34 @@ console.log(theWay[i][j] + "-" + theWay[i][j+1]);
           radd += "<p class = \'lista\' style=\"display:inline\" onclick = \'skrivInfo("+bytMpler[k].index+")\'>" + bytMpler[k].mpl+ " </p>"
         }
       }
-    
 		}
-
 	}
 }
 
 document.getElementById("outputt").innerHTML = radd;
 } 
-
+//NYTT 31 m
 function skrivInfo(index){
-console.log(index);
+  console.log(index);
+  let array = [];
+  array.push(allahpl[index]);
+  ritaMpl(array, false);
+
+  // 1 Måste skilja på click från grupp och en mpl
+  // 2 jag vill ändra add till tvärtom. 
+  // 3 set icon feature
+  // 4 hur ska linjerna listas 
+  // 5 skriva ut dem snyggare
 }
-//4616
-// -------NYTT SLUT
+// -------NYTT SLUT 31 m
 
-  let center = {}; 
-
+let center = {}; 
 
 
 let enmpl = [];
 enmpl.push(flexMpl[600]);
 
-//ritaValdaMpl(enmpl);
+
 
 function ritaMplLinje(val = [ "Alla Mölndal"], add = true){
   //filtreraFlexlinje
