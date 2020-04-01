@@ -31,7 +31,7 @@ kartbit.push({index:9,namn:"Road",norr:0,soder:1,ost:1,vast:0, typ:"glanta",floo
 kartbit.push({index:10,namn:"Road",norr:0,soder:1,ost:0,vast:1, typ:"glanta",floors:1,actionIndex:-1});
 kartbit.push({index:11,namn:"FyraBroVO",norr:1,soder:1,ost:2,vast:2, typ:"bro",floors:2,actionIndex:-1});
 kartbit.push({index:12,namn:"FyraBroNS",norr:2,soder:2,ost:1,vast:1, typ:"bro",floors:2,actionIndex:-1});
-kartbit.push({index:13,namn:"Svärdet i stenen", norr:1,soder:1,ost:1,vast:1, typ:"glantaSp", floors:1, actionIndex:0});
+kartbit.push({index:13,namn:"Svärdet i stenen", norr:1,soder:1,ost:1,vast:1, typ:"glantaSp", floors:1, actionIndex:0, download:true});
 kartbit.push({index:14,namn:"Mimers Brunn", norr:1,soder:1,ost:1,vast:1, typ:"glantaSp", floors:1, download: true});
 kartbit.push({index:15,namn:"Ravin1", norr:1, soder:1, ost:1, vast:1, typ:"stup", floors:1, actionIndex:-1});
 kartbit.push({index:16,namn:"Ravin",norr:2,soder:1,ost:1,vast:2, typ:"stup",floors:2,actionIndex:-1});
@@ -113,9 +113,9 @@ function bytPlats(namn, vad="namn"){
 	map[4] = tmp;
 }
 //bytPlats("Hyllan"); //newBagv1
-//bytPlats("Svärdet i stenen"); newBagv1
+bytPlats("Svärdet i stenen"); //newBagv1
 //bytPlats(0,"card"); //skatt // newBagv1
-bytPlats("FyraBroNS");
+//bytPlats("FyraBroNS");
 //bytPlats("FyraBroVO");
 //bytPlats("Mimers Brunn"); // newBagv1 saknar effekt
 //bytPlats(8,"card"); //alven newBagv1

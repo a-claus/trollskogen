@@ -1,7 +1,8 @@
 
 console.log("SIS");
+console.log(gameStatus);
 
-wait.push("SisBild", "SisBild2");
+wait.push("SisBild", "SisBild2", "SisBild2");
 mapImages.push(new Image());
 mapImages[mapImages.length-1].addEventListener('load', notWaiting.bind("SisBild") );
 mapImages[mapImages.length-1].src = "./img/swordofstone.png";
@@ -9,17 +10,18 @@ mapImages[mapImages.length-1].src = "./img/swordofstone.png";
 cardImages.push(new Image());
 cardImages[cardImages.length-1].addEventListener('load', notWaiting.bind("SisBild2") );
 cardImages[cardImages.length-1].src="./img/excalibur.png";
-/*
+
 sakImg.push(new Image());
-sakImages[sakImages.length-1].addEventListener('load', notWaiting.bind("SisBild3") );
-sakImg[cardImages.length-1].src="./img/sword.png";
-*/
+sakImg[sakImg.length-1].addEventListener('load', notWaiting.bind("SisBild3") );
+sakImg[sakImg.length-1].src="./img/sword.png";
+
 
 kartObj.push({
     namn: "SIS K Obj",
     img: mapImages[mapImages.length-1],
     miljo: true, figur : false, info: false, floor:1,
     draw: function(){
+        console.log("SISK");
         ctx.drawImage(this.img, 150, 150,100,100);//, 100, 100
     }
 });
@@ -114,6 +116,7 @@ vem: "Svärdet i stenen",
 });
 
 hitObjects++;
-//gameStatus.push(moveStart);
+
  notWaiting("SIS"); 
+ console.log("KLAR SIS");
 

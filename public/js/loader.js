@@ -698,7 +698,7 @@ switch (wood.namn){
 	break;
 	case "Svärdet i stenen":
 		kartObj.push(glanta, entre);
-		ajaxer("./js/kartbitar/excalibur.js");
+		ajaxer("./js/kartbitar/excalibur.js", "SIS");
 	break;
 	case "Mimers Brunn":
 		kartObj.push(glanta, entre);
@@ -753,6 +753,7 @@ console.log("magic" + wood[vaderstrack]);
 console.log(kartObj);
 console.log(gameObj);
 }
+
 function xbagMagi(vad){
 	switch(vad){
 		case "blomma": if(wood.mapNR==4) kartObj.push(entreN); break;

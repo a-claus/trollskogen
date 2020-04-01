@@ -99,9 +99,7 @@ function ajaxwait(){
             - Bara köra på för fullt?
 
         */
-        // ajaxQ.status  waitBlock / waitDrive?  / klar
-        // ajaxQ.namn 
-        // ajaxQ.action 
+        
         
             ajaxQ.forEach(function(element, index) { //index array
                 
@@ -148,7 +146,10 @@ function loop(){
     let igen = false;
     if (turnklar == true){
         turnklar = false; 
-        if (movepause == true) gameStatus.unshift(removeMove);
+        if (movepause == true) {
+            gameStatus.unshift(removeMove);
+            console.log("movePause");
+        }
             //removeMove(gameStatus); 
         
         if (gameStatus[0] == undefined)  gameStatus.splice(0, 1);
@@ -166,13 +167,20 @@ function loop(){
 
 function removeMove(){
     console.log("RM");
-    var arrayEnd = gameStatus.length - 1;  
-    for (var i = arrayEnd; i > -1; i--){   
-        if (gameStatus[i].name === "move") {
-             gameStatus.splice(i, 1); 
+   
+    var arrayEnd = gameStatus.length ; 
+    let array = []; 
+
+    for (var i = 0; i < arrayEnd; i++){  
+        if (gameStatus[i].name != "move") {
+            array.push(gameStatus[i]); 
         }
     }
-    console.log(gameStatus);  
+    gameStatus = [];
+    gameStatus = array;
+   for (var i = 0; i < gameStatus.length; i++){ 
+    console.log("del move kvar: " + gameStatus[i].name);
+   }
     movepause = false;  
     return false; 
 }

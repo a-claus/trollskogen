@@ -29,6 +29,7 @@ function updateGameArea(){
         //var objR = {};
             var objR = [];
             //objR[obj.index] = obj.z;  //obj.key
+            console.log(obj.namn);
             console.log(obj.z[1]);
             objR.push(obj.z[1]);
             return objR;

@@ -4,7 +4,7 @@
 // MIMERS BRUNN
 //
 //---------------------------------------------
-
+console.log(gameStatus);
 
 wait.push("MBbild", "MBbild2");
 mapImages.push(new Image());
@@ -91,4 +91,5 @@ gameObj.push({
 hitObjects++;
 
 
-   notWaiting("MB");  
+   notWaiting("MB"); 
+   console.log("KLAR MIM"); 
