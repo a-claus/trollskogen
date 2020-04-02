@@ -97,6 +97,7 @@ vem: "Svärdet i stenen",
 
     },
     getSword: function(){
+        zeta =true;
         gameStatus.push(putEquipmentToBag, move);
 
     },

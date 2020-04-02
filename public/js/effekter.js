@@ -47,6 +47,7 @@ function putEquipmentToBag(){
     
     x: 200 - sakImg[sakImg.length - 1].width/ 2,
     y: 200 - sakImg[sakImg.length - 1].height / 2,
+    z:[5, 5.1],
     width: sakImg[sakImg.length - 1].width,
     height: sakImg[sakImg.length - 1].height,
     xTill: 40,

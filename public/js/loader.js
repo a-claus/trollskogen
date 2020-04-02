@@ -708,7 +708,20 @@ switch (wood.namn){
 	case "Start":
 		ajaxer("./js/kartbitar/start.js", "START"); break;
 	case "Ravin1":
-		ajaxer("./js/kartbitar/ravin.js");
+		console.log("Ravin");
+		//kartObj.push(roadHorisontal, tunnelV, tunnelO, roadVertikal, broVertikal); //bind
+		gameObj.push(new ObstacleKub(150, 0, [1.8, 2], 100, 100));//norr
+		gameObj.push(new ObstacleKub(150, 300, [.8, 1], 100, 100));//soder
+		gameObj.push(new ObstacleKub(0, 150, [.8, 1], 100, 100));//vast
+		gameObj.push(new ObstacleKub(300, 150, [1.8, 2], 100, 100));//ost
+		roadVast.floor = 1;
+		roadSyd.floor = 1;
+		roadNorr.floor = 2;
+		roadOst.floor = 2;
+
+		ajaxer("./js/kartbitar/ravin.js", "ravin");
+
+
 		//kartObj.push(ravin1);
 	break;
 

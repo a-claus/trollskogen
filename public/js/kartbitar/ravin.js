@@ -69,4 +69,4 @@ gameObj.push({
 });
 
 
-ajaxQueue--;
+notWaiting("ravin"); 
