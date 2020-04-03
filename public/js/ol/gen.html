@@ -564,6 +564,35 @@ console.log(theWay[i][j] + "-" + theWay[i][j+1]);
 
 document.getElementById("outputt").innerHTML = radd;
 } 
+
+function divFyllare(theWay, indexA, indexB, bytMpler){
+  radd = "";
+  for (i=0; i<theWay.length; i++){
+    radd += "<p class = \'list_a\' id=\'tw" + i +" \' onclick = \'skrivInfo("+i+")\'>" + theWay[i] +"</p>";
+    radd += "<p class = \'lista\' style=\"display:inline\" onclick = \'skrivInfo("+indexA+")\'>" + a + " </p>"
+    for (j=0; j < theWay[i].length; j++){
+      radd += " ---> ";
+      temp = [];
+      for (k=0; k < bytMpler.length; k++){
+        if (theWay[i][j] == bytMpler[k].start || theWay[i][j] == bytMpler[k].slut){
+          if (theWay[i][j+1] == bytMpler[k].start || theWay[i][j+1] == bytMpler[k].slut){
+            console.log(bytMpler[k].start + "/" + bytMpler[k].slut);
+            if (temp.indexOf(bytMpler[k].mpl) == -1){  //spärr mot att skriva ut dublett
+              radd += "<p class = \'lista\' style=\"display:inline\" onclick = \'skrivInfo("+bytMpler[k].index+")\'>" + bytMpler[k].mpl+ " </p>"
+              temp.push(bytMpler[k].mpl); 
+            }
+          }
+        }
+      }
+    }
+    radd += "<p class = \'lista\' style=\"display:inline\" onclick = \'skrivInfo("+indexB+")\'>" + b + " </p>"
+  }
+  return radd;
+}
+
+
+
+var listaMpl = [];
 //NYTT 31 m
 function skrivInfo(index){
   console.log(index);
