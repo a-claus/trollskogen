@@ -35,7 +35,7 @@ function mouse_up(ev){
 }
 
 function clickHit(x,y){
-    console.log("click1" + hitArea.length);
+    console.log("clickX: " + x + "  clickY: " + y );
     for (var i=0; i<hitArea.length; i++){
             console.log("click2");
             if (x>hitArea[i].x && x<hitArea[i].x+hitArea[i].width && y>hitArea[i].y && y<hitArea[i].y+hitArea[i].height) 

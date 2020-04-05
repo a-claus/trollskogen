@@ -124,7 +124,7 @@ let edgeO = {miljo: true, figur : false, info: false, floor: 1,
 function drawTrRuta(x, y, width, hight, z=1){
 		var ctx = myGameArea.context;
 		ctx.fillStyle = "brown";
-		ctx.globalAlpha = 0.1 + z*.1;
+		ctx.globalAlpha = 0.05 + z*.1;
 		ctx.fillRect(x, y, width, hight);
 		ctx.globalAlpha = 1;
 	}
@@ -710,14 +710,10 @@ switch (wood.namn){
 	case "Ravin1":
 		console.log("Ravin");
 		//kartObj.push(roadHorisontal, tunnelV, tunnelO, roadVertikal, broVertikal); //bind
-		gameObj.push(new ObstacleKub(150, 0, [1.8, 2], 100, 100));//norr
-		gameObj.push(new ObstacleKub(150, 300, [.8, 1], 100, 100));//soder
-		gameObj.push(new ObstacleKub(0, 150, [.8, 1], 100, 100));//vast
-		gameObj.push(new ObstacleKub(300, 150, [1.8, 2], 100, 100));//ost
-		roadVast.floor = 1;
-		roadSyd.floor = 1;
-		roadNorr.floor = 2;
-		roadOst.floor = 2;
+		//roadVast.floor = 1;
+		//roadSyd.floor = 1;
+		//roadNorr.floor = 2;
+		//roadOst.floor = 2;
 
 		ajaxer("./js/kartbitar/ravin.js", "ravin");
 
