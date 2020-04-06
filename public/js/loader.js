@@ -100,8 +100,9 @@ let glanta = {
     	ctx.fill();}
 }
 
-let edgeN = {namn: "edge", miljo: true, figur : false, info: false, floor:1,
+let edgeN = {namn: "edge", miljo: true, figur : false, info: false, floor:2,
 	draw: function(){
+		console.log("xxx edeeN");
 		var ctx = myGameArea.context;
 		ctx.fillStyle = "rgb(203,195,151)";
 	   ctx.fillRect(0, 0, 400, 20);}}
@@ -623,13 +624,13 @@ let minikvadrat = {
     },
     move:{}
 }
-
+/*
 let ravin1 = {
 	image: "img/stup1.png", floor:1, miljo: true, figur : false, info: false,
     draw: function (){
         ctx.drawImage(this.image, 0, 0, 400, 400);
     }
-}
+}*/
 /* 2020 mars
 let mb = {
 	

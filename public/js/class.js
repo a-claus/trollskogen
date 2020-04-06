@@ -402,7 +402,8 @@ class Wood{
         this.kartbit=map[mapNR].kartbit;
         this.monster=map[mapNR].monster;
         if (map[mapNR].edge) {
-            this.edge=map[mapNR].edge;}
+            this.edge = map[mapNR].edge;
+            console.log("edge___");}
         else
             { this.edge = "not";}
 

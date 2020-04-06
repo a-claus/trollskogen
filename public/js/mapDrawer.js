@@ -81,7 +81,7 @@ let iii;
         // Rita obj
         gameObj[i].draw();
 
-        let rita = [ "ObstacleKub"];//"ObstacleKub", "msHitArea""Prinsen" "Blåbär"
+        let rita = [];//"ObstacleKub", "msHitArea""Prinsen" "Blåbär"
 
         if (rita.findIndex(index => index == gameObj[i].namn) != -1) {
             if (gameObj[i].hitAreaX != undefined) {
