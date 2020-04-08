@@ -100,9 +100,9 @@ let glanta = {
     	ctx.fill();}
 }
 
-let edgeN = {namn: "edge", miljo: true, figur : false, info: false, floor:2,
+let edgeN = {namn: "Mapedge", miljo: true, figur : false, info: false, floor:2,
 	draw: function(){
-		console.log("xxx edeeN");
+		console.log("Map edeeN");
 		var ctx = myGameArea.context;
 		ctx.fillStyle = "rgb(203,195,151)";
 	   ctx.fillRect(0, 0, 400, 20);}}
