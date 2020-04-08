@@ -710,16 +710,11 @@ switch (wood.namn){
 		ajaxer("./js/kartbitar/start.js", "START"); break;
 	case "Ravin1":
 		console.log("Ravin");
-		//kartObj.push(roadHorisontal, tunnelV, tunnelO, roadVertikal, broVertikal); //bind
-		//roadVast.floor = 1;
-		//roadSyd.floor = 1;
-		//roadNorr.floor = 2;
-		//roadOst.floor = 2;
-
 		ajaxer("./js/kartbitar/ravin.js", "ravin");
-
-
-		//kartObj.push(ravin1);
+	break;
+	case "Ravin2":
+		console.log("Ravin2");
+		ajaxer("./js/kartbitar/ravin.js", "ravin");
 	break;
 
 	default:

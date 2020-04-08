@@ -34,7 +34,7 @@ kartbit.push({index:12,namn:"FyraBroNS",norr:2,soder:2,ost:1,vast:1, typ:"bro",f
 kartbit.push({index:13,namn:"Svärdet i stenen", norr:1,soder:1,ost:1,vast:1, typ:"glantaSp", floors:1, actionIndex:0, download:true});
 kartbit.push({index:14,namn:"Mimers Brunn", norr:1,soder:1,ost:1,vast:1, typ:"glantaSp", floors:1, download: true});
 kartbit.push({index:15,namn:"Ravin1", norr:2, soder:1, ost:2, vast:1, typ:"stup", floors:2, actionIndex:-1, download:true}); //, download:true
-kartbit.push({index:16,namn:"Ravin",norr:2,soder:1,ost:1,vast:2, typ:"stup",floors:2,actionIndex:-1});
+kartbit.push({index:16,namn:"Ravin2",norr:2,soder:1,ost:1,vast:2, typ:"stup",floors:2,actionIndex:-1, download:true});
 kartbit.push({index:17,namn:"Hyllan",norr:1,soder:1,ost:1,vast:1, typ:"glantaSp",floors:1, actionIndex:-1});
 kartbit.push({namn:"Start",norr:1,soder:1,ost:1,vast:1, typ:"start", bildBG: "/img/map_start.png", floors:1, actionIndex:-1});
 
@@ -125,8 +125,8 @@ bytPlats("Svärdet i stenen"); //newBagv1
 //bytPlats( 2, "card" ); //Lilltroll saknar effekt
 //bytPlats( 9, "card" );
 //bytPlats( 10, "card" ); //Lyktstolpe
-bytPlats("Ravin1"); //Ravin1
-
+//bytPlats("Ravin1"); //Ravin1
+bytPlats("Ravin2"); //Ravin2
 
 function bytPlatsMedBlank(namn, vad, ruta){
 
