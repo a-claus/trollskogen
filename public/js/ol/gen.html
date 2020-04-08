@@ -329,6 +329,7 @@ function findConexion(filter = "vardag"){
 }
 
 
+let tempArray =[];
 function fc_continue(a, b, filter){  
 let road = []; let temp = [];
 var indexA = findIndexMpl(a); 
@@ -541,7 +542,7 @@ for (i = 0; i < flexMpl.length; i++){
 
 console.log(bytMpler);
 
-
+/*
 let radd="";
 //console.log(theWay.length);
 for (i=0; i<theWay.length; i++){
@@ -560,16 +561,20 @@ console.log(theWay[i][j] + "-" + theWay[i][j+1]);
       }
 		}
 	}
-}
+}*/
+divFyllare(theWay, indexA, indexB, bytMpler);
 
 document.getElementById("outputt").innerHTML = radd;
 } 
 
 function divFyllare(theWay, indexA, indexB, bytMpler){
-  radd = "";
+  radd = ""; tempArray = []; temp2 = [];
   for (i=0; i<theWay.length; i++){
-    radd += "<p class = \'list_a\' id=\'tw" + i +" \' onclick = \'skrivInfo("+i+")\'>" + theWay[i] +"</p>";
-    radd += "<p class = \'lista\' style=\"display:inline\" onclick = \'skrivInfo("+indexA+")\'>" + a + " </p>"
+    radd += "<p class = \'list_a\' id=\'tw" + i +" \' onclick = \'skrivInfo("+i+",\'dubbelArray\')\'>" + theWay[i] +"</p>";
+    radd += "<p class = \'lista\' style=\"display:inline\" onclick = \'skrivInfo("+indexA+")\'>" + flexMpl[indexA].mpl + " </p>";
+   
+   temp2 = [];
+   temp2.push(indexA);
     for (j=0; j < theWay[i].length; j++){
       radd += " ---> ";
       temp = [];
@@ -580,12 +585,15 @@ function divFyllare(theWay, indexA, indexB, bytMpler){
             if (temp.indexOf(bytMpler[k].mpl) == -1){  //spärr mot att skriva ut dublett
               radd += "<p class = \'lista\' style=\"display:inline\" onclick = \'skrivInfo("+bytMpler[k].index+")\'>" + bytMpler[k].mpl+ " </p>"
               temp.push(bytMpler[k].mpl); 
+              temp2.push(bytMpler[k].mpl);
             }
           }
         }
       }
     }
-    radd += "<p class = \'lista\' style=\"display:inline\" onclick = \'skrivInfo("+indexB+")\'>" + b + " </p>"
+    radd += "<p class = \'lista\' style=\"display:inline\" onclick = \'skrivInfo("+indexB+")\'>" + flexMpl[indexB].mpl + " </p>";
+    temp.push(indexB);
+    tempArray.push(temp2);
   }
   return radd;
 }
@@ -594,11 +602,24 @@ function divFyllare(theWay, indexA, indexB, bytMpler){
 
 var listaMpl = [];
 //NYTT 31 m
-function skrivInfo(index){
+function skrivInfo(index, typ="index"){
+  console.log(tempArray);
   console.log(index);
   let array = [];
-  array.push(allahpl[index]);
-  ritaMpl(array, false); }
+switch (typ) {
+  case "dubbelArray":
+    for (i=0; i < tempArray.length; i++){
+      array.push(tempArray[i]);
+    }
+  break;
+
+  default:
+    array.push(flexMpl[index]);
+}
+  
+  
+  ritaMpl(array, false); 
+  }
 
   // 1 Måste skilja på click från grupp och en mpl
   // 2 jag vill ändra add till tvärtom. 
