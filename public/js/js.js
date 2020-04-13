@@ -624,6 +624,7 @@ function mapChange(vaderstrack){
     
     wood.update(nyRuta);
     setFloor(vaderstrack);
+    closeOpenDoor();
 
     var nyRuta = wood.mapNR;
     
@@ -644,6 +645,13 @@ function mapChange(vaderstrack){
 
         }
     
+}
+
+function closeOpenDoor(){
+    gameObj[1].open = true;
+    gameObj[2].open = true;
+    gameObj[3].open = true;
+    gameObj[4].open = true;
 }
 
 function unsetKartbitsaction(){

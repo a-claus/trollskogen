@@ -70,7 +70,6 @@ if (wood.norr == 2 && wood.vast == 2){
 	gameObj.push(new ObstacleKub(210, 0, [1, 2], 26, 155)); //NV
 	gameObj.push(new ObstacleKub(235, 0, [1, 2], 40, 140)); //NV
 
-
 	
 //KLippor
 	gameObj.push(new ObstacleKub(100, 223, [1, 1.7], 51, 110)); //NV
@@ -84,6 +83,49 @@ if (wood.norr == 2 && wood.vast == 2){
 
 }
 
+if (wood.vast == 2 && wood.soder == 2){
+	mapImages[mapImages.length-1].src = "./img/stup3.png";
+
+	gameObj.push(new ObstacleKub(0, 0, [1, 3.2], 130, 150)); //NV
+	gameObj.push(new ObstacleKub(240, 0, [1, 3.2], 30, 75 ));//NO
+	gameObj.push(new ObstacleKub(270, 0, [1, 3.2], 30, 110 ));//NO
+
+	gameObj.push(new ObstacleKub(300, 0, [1, 3.2], 95, 150));//NO
+	gameObj.push(new ObstacleKub(0, 265, [1, 3.2], 145, 135));//SV
+	gameObj.push(new ObstacleKub(0, 240, [1, 3.2], 100, 26));//SV
+	gameObj.push(new ObstacleKub(290, 250, [1, 3.2], 110, 150));//SO
+	gameObj.push(new ObstacleKub(265, 270, [1, 3.2], 26, 130));//SO
+	gameObj.push(new ObstacleKub(145, 310, [1, 3.2], 30, 90));//SO
+
+
+//övre väg
+let wi; let hi;
+let xer = [0, 104, 160, 204, 232, 278]; 
+let yer = [150, 157, 191, 226, 252, 286]; 
+
+for (i=0; i< xer.length-1; i++){
+	wi = xer[i+1] - xer[i]; hi = 400 - yer[i];
+	gameObj.push(new ObstacleKub(xer[i], yer[i], [1, 2], wi, hi)); //NV
+
+}
+/*
+//KLippor
+for (i=0; i< xer.length-1; i++){
+	wi = xer[i+1] - xer[i]; hi = 400 - yer[i];
+	gameObj.push(new ObstacleKub(xer[i], yer[i], [1, 2], wi, hi)); //NV
+
+}
+	gameObj.push(new ObstacleKub(100, 223, [1, 1.7], 51, 110)); //NV
+	gameObj.push(new ObstacleKub(150, 200, [1, 1.7], 26, 140)); //NV
+	gameObj.push(new ObstacleKub(165, 180, [1, 1.7], 26, 116)); //NV
+	gameObj.push(new ObstacleKub(190, 170, [1, 1.7], 26, 90)); //NV
+	gameObj.push(new ObstacleKub(215, 140, [1, 1.7], 26, 90)); //NV
+	gameObj.push(new ObstacleKub(240, 125, [1, 1.7], 26, 85)); //NV
+	gameObj.push(new ObstacleKub(265, 155, [1, 1.7], 26, 55)); //NV
+*/
+
+
+}
 
 
 

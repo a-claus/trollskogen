@@ -22,16 +22,13 @@ function drawFoto(floor){
 
 function studio(){
 	
-	//console.log(kartObj.map(function(o) { return o.floor; }));
-	//console.log(Math.max.apply(Math, kartObj.map(function(o) { return o.floor; })))
-	//console.log(kartObj.reduce((prev, current) => (prev.floor > current.floor) ? prev : current));
-	//kartObj.reduce((prev, current) => (prev.floor > current.floor) ? prev : current)
-console.log("studio");
+	console.log("studio");
 
 	for (let floor = 1; floor < wood.floors + 1; floor++){
 	for (let i = 0; i < kartObj.length; i++){
 		
-		if (kartObj[i].miljo == true && kartObj[i].floor == floor){
+		if (kartObj[i].miljo == true)
+			if  (kartObj[i].floor == "alla" || kartObj[i].floor == floor){
 			console.log(kartObj[i].namn);
 			kartObj[i].draw();
 
@@ -100,24 +97,28 @@ let glanta = {
     	ctx.fill();}
 }
 
-let edgeN = {namn: "Mapedge", miljo: true, figur : false, info: false, floor:2,
+let edgeN = {namn: "Mapedge", miljo: true, figur : false, info: false, floor: "alla",
 	draw: function(){
 		console.log("Map edeeN");
+		gameObj[1].open = false;
 		var ctx = myGameArea.context;
 		ctx.fillStyle = "rgb(203,195,151)";
 	   ctx.fillRect(0, 0, 400, 20);}}
-let edgeS = {miljo: true, figur : false, info: false, floor:1,
+let edgeS = {miljo: true, figur : false, info: false, floor: "alla",
 		draw: function(){
 			var ctx = myGameArea.context;
+			gameObj[2].open = false;
 			ctx.fillStyle = "rgb(203,195,151)";
 		   ctx.fillRect(0, 380, 400, 20);}}
-let edgeV = {miljo: true, figur : false, info: false, floor: 1,
+let edgeV = {miljo: true, figur : false, info: false, floor: "alla",
 			draw: function(){
 				var ctx = myGameArea.context;
+				gameObj[4].open = false;
 			ctx.fillStyle = "rgb(203,195,151)";
 			   ctx.fillRect(0, 0, 20, 400);}}
-let edgeO = {miljo: true, figur : false, info: false, floor: 1,
+let edgeO = {miljo: true, figur : false, info: false, floor: "alla",
 				draw: function(){
+					gameObj[3].open = false;
 					var ctx = myGameArea.context;
 				ctx.fillStyle = "rgb(203,195,151)";
 				   ctx.fillRect(380, 0, 20, 400);}}
@@ -171,7 +172,7 @@ let entre = {
 let entreN = {
 	namn: "EntreN", visible: true,
 		
-	miljo: true, figur : false, info: false, floor:1,
+	miljo: true, figur : false, info: false, floor: "alla",
 	draw: function(){
 		if (this.visible== true){
 		var ctx = myGameArea.context;
@@ -181,7 +182,7 @@ let entreN = {
 }
 let entreS = {
 	namn: "EntreS", visible: true,
-	miljo: true, figur : false, info: false, floor:1,
+	miljo: true, figur : false, info: false, floor: "alla",
 	draw: function(){
 		if (this.visible == true){
 		var ctx = myGameArea.context;
@@ -191,7 +192,7 @@ let entreS = {
 }
 let entreV = {
 	namn: "EntreV", visible: true,
-	miljo: true, figur : false, info: false, floor:1,
+	miljo: true, figur : false, info: false, floor: "alla",
 	draw: function(){
 		if (this.visible == true){
 		var ctx = myGameArea.context;
@@ -200,7 +201,7 @@ let entreV = {
 }
 let entreO = {
 	namn: "EntreO", visible: true,
-	miljo: true, figur : false, info: false, floor:1,
+	miljo: true, figur : false, info: false, floor: "alla",
 	draw: function(){
 
 		if (this.visible == true){
@@ -523,7 +524,7 @@ let brokantNfall = {
 }
 */
 let edgeNorr={
-	namn:"edgeNorr",
+	namn:"edgeNorr", open:true,
 	
 	draw: function(){},
 	move: function (){return false;},
@@ -531,16 +532,18 @@ let edgeNorr={
 	  speedX: 0, speedY: 0,
 	  haWidth: 400, haHight: 20,
   hitAction : function(){
+  	if (this.open == true){
 	  movepause = true;
 	  gameStatus.push(nyruta);
 	  hitIndex = this.index;
+	}
 	   
   }
   };
   //--
   let edgeSoder =
    {
-	  namn:"edgeSoder",
+	  namn:"edgeSoder",open:true,
 	  //x: 0, y: 300, z: 0,
 	  hitAreaX: 0, hitAreaY: 380, z: [0, 5.2],
 	  speedX: 0, speedY: 0,
@@ -549,39 +552,43 @@ let edgeNorr={
 	  draw: function(){},
 	  move: function (){return false;},
 	  hitAction : function(){
+	  		if (this.open == true){
 	  movepause = true;
 	  gameStatus.push(nyruta);
 	  hitIndex = this.index;
-	    }
+	    }}
   };
   let edgeVaster =
    {
-	  namn:"edgeVaster",
+	  namn:"edgeVaster",open:true,
 	  hitAreaX: 0, hitAreaY: 0, z: [0, 5.3],
 	  speedX: 0, speedY: 0,
 	  haWidth: 20, haHight: 400,
 	  draw: function(){},
 	  move: function (){return false;},
 	  hitAction : function(){
+	  		if (this.open == true){
 	  movepause = true;
 	  gameStatus.push(nyruta);
 	  hitIndex = this.index;
 	}
+	}
   };
   let edgeOster =
    {
-	  namn:"edgeOster",
+	  namn:"edgeOster",open:true,
 	  hitAreaX: 380, hitAreaY: 0, z: [0, 5.4],
 	  speedX: 0, speedY: 0,
 	  haWidth: 20, haHight: 400, 
 	  draw: function(){},
 	  move: function (){return false;},
 	  hitAction : function(){
+	  		if (this.open == true){
 	  movepause = true;
 	  gameStatus.push(nyruta);
 	  hitIndex = this.index;
 	
-	  }
+	  }}
   };
   let msHitArea =
    {
@@ -713,6 +720,10 @@ switch (wood.namn){
 		ajaxer("./js/kartbitar/ravin.js", "ravin");
 	break;
 	case "Ravin2":
+		console.log("Ravin2");
+		ajaxer("./js/kartbitar/ravin.js", "ravin");
+	break;
+		case "Ravin3":
 		console.log("Ravin2");
 		ajaxer("./js/kartbitar/ravin.js", "ravin");
 	break;

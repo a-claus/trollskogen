@@ -36,6 +36,8 @@ kartbit.push({index:14,namn:"Mimers Brunn", norr:1,soder:1,ost:1,vast:1, typ:"gl
 kartbit.push({index:15,namn:"Ravin1", norr:2, soder:1, ost:2, vast:1, typ:"stup", floors:2, actionIndex:-1, download:true}); //, download:true
 kartbit.push({index:16,namn:"Ravin2",norr:2,soder:1,ost:1,vast:2, typ:"stup",floors:2,actionIndex:-1, download:true});
 kartbit.push({index:17,namn:"Hyllan",norr:1,soder:1,ost:1,vast:1, typ:"glantaSp",floors:1, actionIndex:-1});
+kartbit.push({index:18, namn:"Ravin3",norr:1,soder:2,ost:1,vast:2, typ:"glantaSp", floors:2, actionIndex:-1, download: true});
+kartbit.push({index:19, namn:"Ravin4",norr:1,soder:2,ost:2,vast:1, typ:"glantaSp", floors:2, actionIndex:-1, download:true});
 kartbit.push({namn:"Start",norr:1,soder:1,ost:1,vast:1, typ:"start", bildBG: "/img/map_start.png", floors:1, actionIndex:-1});
 
 
@@ -99,7 +101,7 @@ for (var i = 0; i < 81; i++){
  		};
  
  	y++;
- 	if (y == 18){ y = 0; } //lottar ut kartbitar
+ 	if (y == 19){ y = 0; } //lottar ut kartbitar
 }
 }
 makeMap();
@@ -126,7 +128,7 @@ bytPlats("Svärdet i stenen"); //newBagv1
 //bytPlats( 9, "card" );
 //bytPlats( 10, "card" ); //Lyktstolpe
 //bytPlats("Ravin1"); //Ravin1
-bytPlats("Ravin2"); //Ravin2
+bytPlats("Ravin3"); //Ravin2
 
 function bytPlatsMedBlank(namn, vad, ruta){
 
@@ -153,8 +155,8 @@ map[72].edge="cornerSV";
 map[0].edge="cornerNV";
 
 //map[4].norr=99;
-map.push({kartbit: 18, namn:"Start", norr:1, soder:1, ost:1, vast:1, typ:"start", bildBG:"img/map_start.png",actionIndex:-1, floors:1});
-//map[4]={kartbit:4, namn:"Mimers Brunn", norr:1,soder:1,ost:1,vast:1, typ:"glantaSp", floors:1, actionIndex:0, sak:1};
+//kartbit: 18, 
+map.push({namn:"Start", norr:1, soder:1, ost:1, vast:1, typ:"start", bildBG:"img/map_start.png",actionIndex:-1, floors:1});
 console.log(map);
 console.log(card);
 console.log("KLAR MED KARTBITAR");
