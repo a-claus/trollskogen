@@ -88,7 +88,7 @@ if (wood.vast == 2 && wood.soder == 2){
 
 	gameObj.push(new ObstacleKub(0, 0, [1, 3.2], 130, 150)); //NV
 	gameObj.push(new ObstacleKub(240, 0, [1, 3.2], 30, 75 ));//NO
-	gameObj.push(new ObstacleKub(270, 0, [1, 3.2], 30, 110 ));//NO
+	gameObj.push(new ObstacleKub(270, 0, [1, 3.2], 30, 130 ));//NO
 
 	gameObj.push(new ObstacleKub(300, 0, [1, 3.2], 95, 150));//NO
 	gameObj.push(new ObstacleKub(0, 265, [1, 3.2], 145, 135));//SV
@@ -100,12 +100,21 @@ if (wood.vast == 2 && wood.soder == 2){
 
 //övre väg
 let wi; let hi;
-let xer = [0, 104, 160, 204, 232, 278]; 
+let xer = [0, 111, 160, 204, 232, 278]; 
 let yer = [150, 157, 191, 226, 252, 286]; 
 
 for (i=0; i< xer.length-1; i++){
-	wi = xer[i+1] - xer[i]; hi = 400 - yer[i];
+	wi = xer[i+1] - xer[i] +1; hi = 400 - yer[i];
 	gameObj.push(new ObstacleKub(xer[i], yer[i], [1, 2], wi, hi)); //NV
+
+}
+
+ xer = [110, 140, 155, 170, 190, 215, 259, 300]; 
+ yer = [50, 53, 85, 129, 140, 170, 200, 220]; 
+
+for (i=0; i< xer.length-1; i++){
+	wi = xer[i+1] - xer[i] +1; hi = yer[i]+130;
+	gameObj.push(new ObstacleKub(xer[i], yer[i], [1, 1.7], wi, hi)); //NV
 
 }
 /*
