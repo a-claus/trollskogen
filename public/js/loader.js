@@ -527,12 +527,13 @@ let edgeNorr={
 	namn:"edgeNorr", open:true,
 	
 	draw: function(){},
-	move: function (){return false;},
+	move: function (){ return false;},
 	  hitAreaX: 0, hitAreaY: 0, z: [0, 5.1],
 	  speedX: 0, speedY: 0,
 	  haWidth: 400, haHight: 20,
   hitAction : function(){
   	if (this.open == true){
+
 	  movepause = true;
 	  gameStatus.push(nyruta);
 	  hitIndex = this.index;
@@ -723,8 +724,11 @@ switch (wood.namn){
 		console.log("Ravin2");
 		ajaxer("./js/kartbitar/ravin.js", "ravin");
 	break;
-		case "Ravin3":
+	case "Ravin3":
 		console.log("Ravin2");
+		ajaxer("./js/kartbitar/ravin.js", "ravin");
+	break;
+	case "Ravin4":
 		ajaxer("./js/kartbitar/ravin.js", "ravin");
 	break;
 

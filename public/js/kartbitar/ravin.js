@@ -12,10 +12,6 @@ mapImages[mapImages.length-1].addEventListener('load', notWaiting.bind("Ravinbil
 
 
 
-
-mapImages.push(new Image());
-mapImages[mapImages.length-1].addEventListener('load', notWaiting.bind("Ravinbild") );
-
 if (wood.norr == 2 && wood.ost == 2){
 
 	mapImages[mapImages.length-1].src = "./img/stup1.png";
@@ -109,7 +105,7 @@ for (i=0; i< xer.length-1; i++){
 
 }
 
- xer = [110, 140, 155, 170, 190, 215, 259, 300]; 
+ xer = [110, 140, 155, 170, 190, 215, 259	, 300]; 
  yer = [50, 53, 85, 129, 140, 170, 200, 220]; 
 
 for (i=0; i< xer.length-1; i++){
@@ -117,24 +113,43 @@ for (i=0; i< xer.length-1; i++){
 	gameObj.push(new ObstacleKub(xer[i], yer[i], [1, 1.7], wi, hi)); //NV
 
 }
-/*
-//KLippor
-for (i=0; i< xer.length-1; i++){
-	wi = xer[i+1] - xer[i]; hi = 400 - yer[i];
-	gameObj.push(new ObstacleKub(xer[i], yer[i], [1, 2], wi, hi)); //NV
-
 }
-	gameObj.push(new ObstacleKub(100, 223, [1, 1.7], 51, 110)); //NV
-	gameObj.push(new ObstacleKub(150, 200, [1, 1.7], 26, 140)); //NV
-	gameObj.push(new ObstacleKub(165, 180, [1, 1.7], 26, 116)); //NV
-	gameObj.push(new ObstacleKub(190, 170, [1, 1.7], 26, 90)); //NV
-	gameObj.push(new ObstacleKub(215, 140, [1, 1.7], 26, 90)); //NV
-	gameObj.push(new ObstacleKub(240, 125, [1, 1.7], 26, 85)); //NV
-	gameObj.push(new ObstacleKub(265, 155, [1, 1.7], 26, 55)); //NV
-*/
+
+if (wood.ost == 2 && wood.soder == 2){
+	mapImages[mapImages.length-1].src = "./img/stup4.png";
+	let wi; let hi;
+	let xer = [144,171,202,211,218,246,302,400]; 
+	let yer = [268,235,207,214,188,168,143]; 
+
+	for (i=0; i< xer.length-1; i++){
+		wi = xer[i+1] - xer[i] + 1; hi = 400 - yer[i];
+		gameObj.push(new ObstacleKub(xer[i], yer[i], [1, 2.0], wi, hi));
+	}
+	
+	gameObj.push(new ObstacleKub(0, 0, [1, 3.2], 127, 127));
+	gameObj.push(new ObstacleKub(263, 0, [1, 3.2], 137, 100));
+	gameObj.push(new ObstacleKub(0, 263, [1, 3.2], 150, 137));
+	gameObj.push(new ObstacleKub(255, 255, [1, 3.2], 145, 145));
+	gameObj.push(new ObstacleKub(126, 0, [1, 3.2], 25, 90));
+	gameObj.push(new ObstacleKub(0, 126, [1, 3.2], 80, 25));
+	gameObj.push(new ObstacleKub(0, 240, [1, 3.2], 100, 25));
+	gameObj.push(new ObstacleKub(279, 100, [1, 3.2], 120, 65));
+	gameObj.push(new ObstacleKub(230, 310, [1, 3.2], 30, 90));
+
+	xer = [105, 135, 164, 196, 213, 234, 280]; 
+	yer = [204,188, 147, 128, 81, 60, 56]; 
+
+	for (i=0; i< xer.length-1; i++){
+		wi = xer[i+1] - xer[i] + 1; hi = 400 - yer[i];
+		gameObj.push(new ObstacleKub(xer[i], yer[i], [1, 1.91], wi, 135));
+	}
 
 
-}
+}		
+
+
+
+
 
 
 

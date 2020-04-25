@@ -59,7 +59,8 @@ BILD SPRITES MAP
 		on: false,
 		acc: 0,
 		tyngdpunkt: 1,
-		drawer: 1
+		drawer: 1,
+		hardLandning:.5
 	},
 	
 	move: function (){ 
@@ -107,7 +108,7 @@ function hopp(jump){
 		console.log("----------------hoppla-------------------------");
 		
 		jump.on = true;
-		jump.acc = 0.3;//0.4
+		jump.acc = 0.25;//0.4
 		return jump;
 	}
 	return jump;

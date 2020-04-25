@@ -101,7 +101,7 @@ for (var i = 0; i < 81; i++){
  		};
  
  	y++;
- 	if (y == 19){ y = 0; } //lottar ut kartbitar
+ 	if (y == 20){ y = 0; } //lottar ut kartbitar
 }
 }
 makeMap();
@@ -128,7 +128,7 @@ bytPlats("Svärdet i stenen"); //newBagv1
 //bytPlats( 9, "card" );
 //bytPlats( 10, "card" ); //Lyktstolpe
 //bytPlats("Ravin1"); //Ravin1
-bytPlats("Ravin3"); //Ravin2
+bytPlats("Ravin4"); //Ravin2
 
 function bytPlatsMedBlank(namn, vad, ruta){
 

@@ -195,9 +195,9 @@ function notWaiting(klar = "NN"){
     let index = wait.findIndex(zz => zz == klar);
         console.log(wait);
     if (index == -1 && wait.length > 0) index = 0; 
-     console.log(wait.length);
+   
     wait.splice(index, 1);
-    console.log(wait);
+    
     if (wait.length == 0) gameStatus.push(move); 
 }
 /*-------------------------------------------
@@ -218,8 +218,21 @@ function drawMeny(){
         drawIQ(0,250,10);
         drawMagi(0,330,350);
         drawBag();
+        drawEffekt();
+}
 
-    
+let listaEffekt = [];
+function drawEffekt(){
+    let deletelista = []; del = false;
+    for (i=0; i < listaEffekt.length; i++){
+        del = listaEffekt[i].draw();
+        console.log(del);
+        if (del == true) deletelista.push(i);
+        
+    }
+    for (i = deletelista.length-1; i >-1; i--){
+        listaEffekt.splice(deletelista[i],1);
+    }
 }
 
 function drawBag(){

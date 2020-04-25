@@ -151,7 +151,23 @@ function effekten(vart, plunus){
 
 	
 	return false;
+
+
 }
+
+let darkMoln =
+   {
+	  namn:"darkMoln", 
+	  x: 280, y: 0, counter: 0, 
+	  draw: function(){ //3,4,5
+	  	 ctx = myGameArea.context;
+	  	ctx.drawImage(ef_img[3 + (this.counter++ %3)], this.x, this.y, 90, 50);
+	  	
+	  	if (this.counter > 300) return true;
+	  	return false
+	  }
+	  //move: function (){return false;},
+  };
 
 function deadOrAlive(plunus){
 	gameObj[0].skada += plunus;

@@ -50,8 +50,8 @@ let iii;
         let i = ritOrder[iii];
  
         if (gameObj[i] == undefined) {
-            console.log(" i undefined iii " + iii + "-" + i);
-            console.log(gameObj);
+            console.log(" i undefined iii " + iii + "/" + i);
+            //console.log(gameObj[i-1].namn);
     }
 
         if (gameObj[i].move() == true){
@@ -81,7 +81,7 @@ let iii;
         // Rita obj
         gameObj[i].draw();
 
-        let rita = ["ObstacleKub"];//"ObstacleKub", "msHitArea""Prinsen" "Blåbär"
+        let rita = [];//"ObstacleKub", "msHitArea""Prinsen" "Blåbär"
 
         if (rita.findIndex(index => index == gameObj[i].namn) != -1) {
             if (gameObj[i].hitAreaX != undefined) {
@@ -230,12 +230,12 @@ function gravity(index, golva){
         Gravitations-ökning för fall
     -------------------*/  
 gameObj[index].fall.acc -= 0.05;
-console.log(gameObj[0].fall.acc);
 
 /*-----------------
         Har spelare landat, så kommer uppåt kraft.
     -------------------*/ 
 if (gameObj[index].fall.tyngdpunkt < golva){
+
     if (gameObj[index].fall.acc <= 0) {
         gameObj[index].fall.acc = gameObj[index].fall.acc / 2;
         gameObj[index].fall.acc += 0.1;
@@ -252,6 +252,10 @@ gameObj[index].fall.tyngdpunkt +=  gameObj[index].fall.acc;
        Om tyngdpunkt under golv,  så står spelare på golv. Ska också kolla om blir skadad.
     -------------------*/            
         if  (gameObj[index].fall.tyngdpunkt < golva ) {
+            if (gameObj[0].fall.acc < -0.25){
+                console.log("AAJ" + gameObj[0].fall.acc);
+                listaEffekt.push(darkMoln);
+            }
             gameObj[index].z[0] = golva;
             if (index == 0 && gameObj[index].fall.acc < -.3) console.log("AJ " +gameObj[index].fall.acc  );
         }
