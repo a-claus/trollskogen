@@ -22,8 +22,13 @@ kartObj.push(
    
   draw: function(){
     	var ctx = myGameArea.context;
-        ctx.drawImage(this.img, 0, 0, 400, 400);}
+        ctx.drawImage(this.img, 0, 0, 400, 400);
+    }
+        
+  
 });
-
+stars.xy = spiral({x:200, y:200});
+stars.counter = stars.xy.length * 50;
+listaEffekt.push(stars);
 wait = [];
 //notWaiting("START");

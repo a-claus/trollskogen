@@ -161,7 +161,6 @@ console.log(map);
 console.log(card);
 console.log("KLAR MED KARTBITAR");
 
-
 //wood = new Wood(81);
 
 

@@ -163,14 +163,18 @@ let darkMoln =
 	  	 ctx = myGameArea.context;
 	  	ctx.drawImage(ef_img[3 + (this.counter++ %3)], this.x, this.y, 90, 50);
 	  	
-	  	if (this.counter > 300) return true;
+	  	if (this.counter > 500) {this.counter = 0; return true;}
 	  	return false
 	  }
 	  //move: function (){return false;},
   };
 
 function deadOrAlive(plunus){
-	gameObj[0].skada += plunus;
+	// listaEffekt.push(darkMoln);
+	if (plunus > 0){
+		listaEffekt.push(darkMoln);
+		gameObj[0].skada += plunus;
+	}
 	
 	if (gameObj[0].skada < 0) {gameObj[0].skada == 0;}
 	drawHarts(0, 300, 10);
@@ -189,15 +193,48 @@ function aliveOrNot(figur){
 }
 
 function death(){
-	
 	console.log(gameStatus);
 	var rubrik = "GAME OVER";
 	var text = gameObj[0].vem + " kunde blivit en hjälte. Nu förmulnad i Trollskogen. Ska vi sända bud till slottet och meddela misslyckandet, så de kan skicka en ny dumdristig äventyrare in i Trollskogen för att rädda kung Sebastian?";
 	var buttons = [ {text: "Spela", action: startaIgen}, {text:" Sluta", action: end}];
 	movepause = true;
 	drawRuta(rubrik, text, rip, buttons);
-	//gameStatus.push(drawRuta);
-	
 return false;
 }
+
+ef_imgStars=[];
+ef_imgStars.push(new Image());
+ef_imgStars.push(new Image());
+ef_imgStars.push(new Image());
+ef_imgStars.push(new Image());
+ef_imgStars.push(new Image());
+ef_imgStars.push(new Image());
+ef_imgStars.push(new Image());
+ef_imgStars.push(new Image());
+ef_imgStars[0].src = "./img/effektStars/effektStars.001.png";
+ef_imgStars[1].src = "./img/effektStars/effektStars.002.png";
+ef_imgStars[2].src = "./img/effektStars/effektStars.003.png";
+ef_imgStars[3].src = "./img/effektStars/effektStars.004.png";
+ef_imgStars[4].src = "./img/effektStars/effektStars.005.png";
+ef_imgStars[5].src = "./img/effektStars/effektStars.006.png";
+ef_imgStars[6].src = "./img/effektStars/effektStars.007.png";
+ef_imgStars[7].src = "./img/effektStars/effektStars.008.png";
+
+let stars=
+   {
+	  namn:"stars", 
+	  xy: [],
+	  counter: 0,
+	  c:0,
+	  draw: function(){ //3,4,5
+	  	console.log("stars",this.c);
+	  	this.counter--;
+	  	this.c = Math.floor(this.counter/50);
+		ctx = myGameArea.context;
+	  	ctx.drawImage(ef_imgStars[(this.c%8)], this.xy[this.c].x-25, this.xy[this.c].y-25, 50, 50);
+	  	if (this.counter == 0) {return true;}
+	  	return false;
+	  }
+	  //move: function (){return false;},
+  };
 

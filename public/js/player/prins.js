@@ -22,7 +22,7 @@ gameObj.unshift(
 EGENSKAPER
 ----------------------------------*/
  	liv: 3,
-    skada: 0,
+    skada: -.5,
     styrka: 3,
     iq:1,
     magi: 0,

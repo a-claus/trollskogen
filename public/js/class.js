@@ -515,6 +515,7 @@ drawBro(floor){
 }
 
 function inverseVaderstrack(vaderstrack){
+    if (vaderstrack=="jump") return "jump";
     if (vaderstrack=="soder") return "norr";
     if (vaderstrack=="norr") return "soder";
     if (vaderstrack=="ost") return "vast";
@@ -522,18 +523,25 @@ function inverseVaderstrack(vaderstrack){
 }
 
 function setFloor(vaderstrack){
-    console.log(wood);
+    let floor;
     vaderstrack = inverseVaderstrack(vaderstrack);
 
     console.log("setFloor " + wood.kartbit + vaderstrack);
-   let floor = kartbit[wood.kartbit][vaderstrack];
-    if (floor == 0) floor=1
+   if (vaderstrack!= "jump") {
+        floor = kartbit[wood.kartbit][vaderstrack];
+   if (floor == 0) floor = 1
         gameObj[0].z[0] = floor;
         gameObj[0].z[1] = floor + .3;
+    }else
+    {
+        gameObj[0].z[0] = 4;
+        gameObj[0].z[1] = 4 + .3;
+    }
 
-        if (gameObj[0].floor > 99) gameObj[0].floor -= 100; //xyz
-        if (gameObj[0].floor == 99) gameObj[0].floor = map[4].norr; //xyz
-        if (gameObj[0].floor == 0) gameObj[0].floor = 1;  
+    //    if (gameObj[0].floor > 99) gameObj[0].floor -= 100; //xyz
+      //  if (gameObj[0].floor == 99) gameObj[0].floor = map[4].norr; //xyz
+       // if (gameObj[0].floor == 0) gameObj[0].floor = 1;  
+
 }
 
 function countMap(kartbit, vaderstrack){

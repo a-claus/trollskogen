@@ -24,15 +24,26 @@ function studio(){
 	
 	console.log("studio");
 
-	for (let floor = 1; floor < wood.floors + 1; floor++){
+	for (let floor = 1; floor < 4; floor++){
 	for (let i = 0; i < kartObj.length; i++){
 		
-		if (kartObj[i].miljo == true)
-			if  (kartObj[i].floor == "alla" || kartObj[i].floor == floor){
-			console.log(kartObj[i].namn);
+		//if (kartObj[i].miljo == true)
+			if  (kartObj[i].floor == floor){
+			console.log(kartObj[i].namn, ":",floor);
 			kartObj[i].draw();
 
 		}
+
+	}
+	for (let i = 0; i < kartObj.length; i++){
+		
+		//if (kartObj[i].miljo == true)
+			if  (kartObj[i].floor == "alla"){
+			console.log(kartObj[i].namn, ":",floor);
+			kartObj[i].draw();
+
+		}
+
 	}
 	kamera(floor);
 	
@@ -82,6 +93,25 @@ let bg = {
 	var ctx = myGameArea.context;
 	ctx.fillStyle = "green";
    	ctx.fillRect(0, 0, 400, 400);
+    }
+}
+
+let kanter = {
+	namn: "bg", miljo: true, figur : false, info: false, floor: "alla",
+	draw: function(){
+		var ctx = myGameArea.context;
+		ctx.fillStyle = "green";
+   		ctx.fillRect(0, 0, 30, 170);
+   		ctx.fillRect(0, 220, 30, 170);
+
+   		ctx.fillRect(0, 0, 170, 30);
+   		ctx.fillRect(220, 0, 170, 30);
+
+   		ctx.fillRect(370, 0, 30, 170);
+   		ctx.fillRect(370, 220, 30, 170);
+
+   		ctx.fillRect(0, 370, 170, 30);
+   		ctx.fillRect(220, 370, 170, 30);
     }
 }
 
@@ -632,13 +662,7 @@ let minikvadrat = {
     },
     move:{}
 }
-/*
-let ravin1 = {
-	image: "img/stup1.png", floor:1, miljo: true, figur : false, info: false,
-    draw: function (){
-        ctx.drawImage(this.image, 0, 0, 400, 400);
-    }
-}*/
+
 /* 2020 mars
 let mb = {
 	
@@ -720,15 +744,14 @@ switch (wood.namn){
 		console.log("Ravin");
 		ajaxer("./js/kartbitar/ravin.js", "ravin");
 	break;
-	case "Ravin2":
-		console.log("Ravin2");
+	case "Ravin2" : 
 		ajaxer("./js/kartbitar/ravin.js", "ravin");
 	break;
 	case "Ravin3":
-		console.log("Ravin2");
 		ajaxer("./js/kartbitar/ravin.js", "ravin");
 	break;
 	case "Ravin4":
+
 		ajaxer("./js/kartbitar/ravin.js", "ravin");
 	break;
 

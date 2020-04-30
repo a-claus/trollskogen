@@ -9,11 +9,11 @@ let temp; let tempArray = [];
 
 
 let val = 1;
-
+/*
 for (let i = 364; i > 300; i--){
     val = val * i/365;
 console.log(366 - i + ": " + val * 100);
-}
+}*/
 
 
 
@@ -43,6 +43,8 @@ function startGame() {
    console.log("StartGame");
    gameObj.push(edgeNorr, edgeSoder, edgeOster, edgeVaster);
     myGameArea.start();
+
+
 }
 
 function drawPolygon(coord, color="rgb(146,42,42)"){
@@ -226,7 +228,6 @@ function drawEffekt(){
     let deletelista = []; del = false;
     for (i=0; i < listaEffekt.length; i++){
         del = listaEffekt[i].draw();
-        console.log(del);
         if (del == true) deletelista.push(i);
         
     }
@@ -276,9 +277,12 @@ function startaIgen(){
     crupier = lottaCards();
     blanda = shuffle();
     //lotta ny karta
-    makeMap();
-    wood.update(81);
+    
+    //makeMap();
+    //wood.update(81);
     setDraw("soder");
+    mapChange("jump");
+    //göra gravplats
    //gameStatus.push(move);
     deleteObject("Prinsen");
     }
@@ -315,7 +319,7 @@ function drawRuta(rubrik="tom", text="tom", img="tom", buttons="tom"){
     for (var i = 0; i < buttons.length; i++){
         button.push(new Button(buttons[i].action, x+190, bhsY + i * 50, buttons[i].text));
     }
-    console.log(text.rubrik + "drawRuta");
+   
 }
 
 function drawDiceRuta(text, img, buttons, bonus = 0){
@@ -333,7 +337,7 @@ function drawDiceRuta(text, img, buttons, bonus = 0){
     console.log(buttons);
     let bhsY = y + 200 - buttons.length * 50;
     for (var i = 0; i < buttons.length; i++){
-        button.push(new Button(buttons[i].action, x+190, bhsY + i * 50, buttons[i].text));
+        button.push(new Bueffekttton(buttons[i].action, x+190, bhsY + i * 50, buttons[i].text));
     }
 
 }
@@ -493,65 +497,8 @@ return (a-Math.floor(a));
 
 
 
-function xdrawRoads(karta, width=50, height=50, color="white"){
-    var vaderstrack=["norr", "soder", "vast", "ost"];
-    var xPos=[170,170,0,340];
-    var yPos=[0,340,170,170];
-    var ms=magicStig();
-    for (x=0; x<vaderstrack.length; x++){
-       
-        if (map[karta][vaderstrack[x]]==1 || vaderstrack[x]==ms){
-            
-            ctx.fillStyle = color;
-            ctx.fillRect(xPos[x], yPos[x], 60, 60);
-
-        }
-    }
-}
 
 
-
-function xdrawBro(karta){
-    var vaderstrack=["norr","vast"];
-   
-    //ctx = myGameArea.context;
-    
-    ctx.fillStyle="white";
-    var aX; var bY;
-    ctx.fillRect(0, 170, 400, 60);
-
-   
-
-    ctx.fillRect(170, 0, 60, 400);
-    ctx.fillStyle="rgb(120,120,120)";
-        if (map[karta][vaderstrack[0]]==2){
-            ctx.fillRect(170,150,60,100);
-
-        }else{
-             ctx.fillRect(150,170,100,60);
-
-    }
-    ctx.fillStyle="brown";
-
-    //ctx.rect(160,160,80,80);
-
-    
-
-        if (map[karta][vaderstrack[0]]==2){aX=0;bY=4;} else {bY=0;aX=4;}
-            for (var d=0;d<3;d++){
-                if (d==1)    ctx.fillStyle="rgb(50, 50, 50)";
-                if (d==2)    ctx.fillStyle="white";
-
-
-
-                ctx.fillRect(166+aX*d, 166+bY*d, 66-aX*d*2, 66-bY*d*2);
-            }
-}
-/*
-  
-
-
-*/
 
 var cardAction;
 
@@ -626,12 +573,14 @@ function ajaxer(url, name = "NN"){
 
 }
 
-function mapChange(vaderstrack){
+function mapChange(vaderstrack, nyRuta){
     //console.log(tempArray);
    deleteObjects();
     historik.push(wood.mapNR);
-  //  if (vaderstrack )
-    var nyRuta = countMap(wood.mapNR, vaderstrack);
+
+    if (nyRuta==1000){
+        nyRuta = countMap(wood.mapNR, vaderstrack);
+    }
     //console.log("a:"+ nyRuta + vaderstrack);
     if (vaderstrack == "jump") {gameObj[0].vaderstrack = tempArray[1]; vaderstrack=tempArray[1]}
     
@@ -756,6 +705,87 @@ function drawImage(image, x, y, scale = 1, rotation = 0){
     ctx.drawImage(image, x, y);
 }
 */
+
+function spiral (startXY){
+const W = 30;
+
+let rekt = {x1: startXY.x, x2: startXY.y + W, y1: startXY.x, y2: startXY.y + W}; 
+
+let nyrekt = {};
+
+let xy=[];
+xy.push(startXY);
+let temp; var check; var i=0;
+do {
+    i++;
+ nyrekt.x1 = rekt.x1; 
+ nyrekt.x2 = rekt.x2; 
+nyrekt.y1 = rekt.y1;
+nyrekt.y2 = rekt.y2;
+temp = xy.length%4;
+//varannan gång är det H och varannan gång är det L
+
+//samt varanna gång plus och varannan gång minus
+if (temp == 0){ //neråt
+    nyrekt.y1 = rekt.y2;
+    nyrekt.y2 +=  rekt.y2 - rekt.y1;
+
+    rekt.y2 = nyrekt.y2;
+    check = rekt.y2;
+};
+
+if (temp == 1){ //höger
+    
+    nyrekt.x1 = rekt.x2;
+    nyrekt.x2 +=  rekt.x2 - rekt.x1;
+
+    rekt.x2 = nyrekt.x2;
+    check = rekt.x2;
+};
+
+if (temp == 2){ //neråt
+   
+    nyrekt.y2 = rekt.y1;
+    nyrekt.y1 -=  rekt.y2 - rekt.y1;
+
+    rekt.y1 = nyrekt.y1;
+    check = rekt.y1;
+};
+
+if (temp == 3){ //höger
+    
+    nyrekt.x2 = rekt.x1;
+    nyrekt.x1 -=  rekt.x2 - rekt.x1;
+
+    rekt.x1 = nyrekt.x1;
+    check = rekt.x1;
+};
+xy.push({x:(nyrekt.x1+nyrekt.x2)/2, y:(nyrekt.y1+ nyrekt.y2)/2});
+
+//räkan ut mittpunkt i nya rektangeln, spara
+
+//räkna ut storleken på nya kvadraten
+//console.log("ch" + check);
+}
+while(check > -100 && check < 500);
+
+//console.log(xy);
+/*
+var ctx = myGameArea.context;
+ctx.fillStyle = "black";
+for (i=0; i<xy.length-1; i++){
+    ctx.fillRect(xy[i].x, xy[i].y, 8, 8); 
+    ctx.beginPath();
+ctx.moveTo(xy[i].x, xy[i].y);
+ctx.lineTo(xy[i+1].x, xy[i+1].y);
+ctx.stroke();
+}*/
+return xy;
+
+}
+
+
+
 function textbox(text, style, x, y, radwidth){
     if (text == undefined) {return;} //text = "Saknas";}
     text = " " + text;

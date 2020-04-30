@@ -76,8 +76,15 @@ blink:function(){
     drawScreenImage();
   }
   if (gameObj[hittad].c > 79){
-    gameStatus.push(nyruta);
-    tempArray = [4, gameObj[0].vaderstrack]; //
+    console.log("inte färdg");
+    /* tagit bort info om vädersträcket, vilket på nya rutor
+    avgör var man hamnar. Måste lösa detta. Tänker att man ramlar på x,y
+    vad man har: Får det z det fältet har, dock om manhamnar på trädtoppar 
+
+
+    */
+    gameStatus.push(nyruta.bind("jump", 4));
+    //tempArray = [4, gameObj[0].vaderstrack]; //
     gameObj[0].vaderstrack = "jump";
     return false;
   }

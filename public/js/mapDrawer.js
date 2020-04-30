@@ -23,14 +23,14 @@ function updateGameArea(){
     Sortera tak gameobj, för att räkna ut vilkoen ordning gemeObj ska ritas.
     _________________________________*/
     if (zeta == true){
-        console.log(gameObj);
+      //  console.log(gameObj);
         ritOrder = gameObj.map(obj => { 
 
         //var objR = {};
             var objR = [];
             //objR[obj.index] = obj.z;  //obj.key
-            console.log(obj.namn);
-            console.log(obj.z[1]);
+           // console.log(obj.namn);
+            //console.log(obj.z[1]);
             objR.push(obj.z[1]);
             return objR;
         });
@@ -254,7 +254,9 @@ gameObj[index].fall.tyngdpunkt +=  gameObj[index].fall.acc;
         if  (gameObj[index].fall.tyngdpunkt < golva ) {
             if (gameObj[0].fall.acc < -0.25){
                 console.log("AAJ" + gameObj[0].fall.acc);
-                listaEffekt.push(darkMoln);
+                deadOrAlive(.5);
+                //gameObj[index].skada += .5;
+               // listaEffekt.push(darkMoln);
             }
             gameObj[index].z[0] = golva;
             if (index == 0 && gameObj[index].fall.acc < -.3) console.log("AJ " +gameObj[index].fall.acc  );
@@ -566,36 +568,44 @@ function nyRutaKontroll(index){
         if (nr == true) {gameStatus.push(nyruta); movepause = true; console.log("F" +  gameObj[0].floor)}
 }
 
-function nyruta(){
- if (gameObj[0].vaderstrack == "vast" || gameObj[0].vaderstrack == "vaster"){
+function nyruta(vs = "kompass", tillRuta=1000){
+    if (vs == "kompass") {vs = gameObj[0].vaderstrack;}
+    if (vs == "jump" && tillRuta == 1000) {console.log("ANVÄND BIND");} 
+ 
+        if (vs == "vast" || vs == "vaster"){
                 gameObj[0].newRuta=1;
                 gameObj[0].x=357;  
                 paparazzi=true;
-                mapChange("vast");}
+                mapChange("vast", tillRuta);
+        }
     
-            if (gameObj[0].vaderstrack == "oster"){         
+        if (vs == "oster"){         
                  gameObj[0].newRuta=1;
                 gameObj[0].x=1; 
                 paparazzi=true; 
-                mapChange("ost");}
+                mapChange("ost", tillRuta);
+        }
     
-        if (gameObj[0].vaderstrack == "norr"){           
+        if (vs == "norr"){           
             gameObj[0].newRuta=1;
             gameObj[0].y=357; 
             paparazzi=true; 
-            mapChange("norr");}
+            mapChange("norr", tillRuta);
+        }
 
-        if (gameObj[0].vaderstrack == "soder"){
+        if (vs == "soder"){
             gameObj[0].newRuta=1;
             gameObj[0].y=1;  
-            paparazzi=true;
-            mapChange("soder");}
+            paparazzi = true;
+            mapChange("soder", tillRuta);
+        }
 
-           if (gameObj[0].vaderstrack == "jump"){
+        if (vs== "jump"){
             gameObj[0].newRuta=1;
             //gameObj[0].y=1;  
             paparazzi=true;
-            mapChange("jump");}
+            mapChange("jump", tillRuta);
+        }
             zeta = true;
     gameStatus.push(move);
     //console.log(gameStatus);
