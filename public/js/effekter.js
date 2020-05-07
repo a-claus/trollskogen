@@ -211,6 +211,7 @@ ef_imgStars.push(new Image());
 ef_imgStars.push(new Image());
 ef_imgStars.push(new Image());
 ef_imgStars.push(new Image());
+
 ef_imgStars[0].src = "./img/effektStars/effektStars.001.png";
 ef_imgStars[1].src = "./img/effektStars/effektStars.002.png";
 ef_imgStars[2].src = "./img/effektStars/effektStars.003.png";
@@ -219,22 +220,45 @@ ef_imgStars[4].src = "./img/effektStars/effektStars.005.png";
 ef_imgStars[5].src = "./img/effektStars/effektStars.006.png";
 ef_imgStars[6].src = "./img/effektStars/effektStars.007.png";
 ef_imgStars[7].src = "./img/effektStars/effektStars.008.png";
+//ef_imgStars.src
 
-let stars=
-   {
-	  namn:"stars", 
-	  xy: [],
-	  counter: 0,
-	  c:0,
-	  draw: function(){ //3,4,5
-	  	console.log("stars",this.c);
-	  	this.counter--;
-	  	this.c = Math.floor(this.counter/50);
-		ctx = myGameArea.context;
-	  	ctx.drawImage(ef_imgStars[(this.c%8)], this.xy[this.c].x-25, this.xy[this.c].y-25, 50, 50);
-	  	if (this.counter == 0) {return true;}
+
+//imageURL.forEach(src => { 
+//listaEffekt.push(new Effekter("stars",200,200));
+class Effekter {
+	constructor(vilkenEffekt, x, y, timer = 500){
+		switch(vilkenEffekt){
+			case "stars":
+				this.startXY = {x:175, y:175};
+				this.timer = 500;
+				this.xy = spiral2();
+				this.bild = ef_imgStars;
+				this.antalBilder = this.bild.length;
+				this.findingWhite = true;
+			break;
+		}
+	}
+	draw(){
+		if(this.findingWhite == true){
+			this.startXY = getWhite();
+			this.startXY.x -= 25;
+			this.startXY.y -= 25;
+			gameObj[0].x=this.startXY.x;
+	  		gameObj[0].y=this.startXY.y;
+			this.findingWhite = false;
+		}
+		this.timer--;
+	  	ctx = myGameArea.context;
+	  	ctx.drawImage(this.bild[(this.timer % this.antalBilder)], this.xy[this.timer].x + this.startXY.x, this.xy[this.timer].y + this.startXY.y, 50, 50);
+	 
+	  	if (this.timer == 0) {
+	  		//index 0 get xyz
+
+
+	  		return true;}
 	  	return false;
-	  }
-	  //move: function (){return false;},
-  };
+	}
+}
+
+  
 

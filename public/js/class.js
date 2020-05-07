@@ -520,6 +520,7 @@ function inverseVaderstrack(vaderstrack){
     if (vaderstrack=="norr") return "soder";
     if (vaderstrack=="ost") return "vast";
     if (vaderstrack=="vast") return "ost";
+    if (vaderstrack== "undefinedjump") return "jump";
 }
 
 function setFloor(vaderstrack){

@@ -65,18 +65,19 @@ function drawPolygon(coord, color="rgb(146,42,42)"){
 var ajaxQueue=0;
 let listOfFunc = [];
 let hitIndex;
-let GSD = "wait";
-let queue = [];
+
+
+//--------------
 let movepause = false;
-
-
+let moveOn = true;
 
 function move(){
-    
-       
-            updateGameArea();
-            return true;
+  
+    if (moveOn == false) return moveOn;
+    updateGameArea();
+    return moveOn;
 }
+//---------------
 
 
 function start(){
@@ -94,7 +95,7 @@ function diceRuta(){
     return false;
 }
 
-function ajaxwait(){
+function xajaxwait(){
         /* 
         Om man väntar på server, då är frågan vad ska hända då? Och vad ska hända efter.
             - Vänta på server
@@ -124,7 +125,7 @@ function ajaxwait(){
         ;
 }
 
-function deleteObj(){
+function xdeleteObj(){
             deleteObject(tippex);
             gameObj[0].placeMe = true;
             queue.push(move);
@@ -139,20 +140,20 @@ Loop function
 let turnklar = true;
 let wait =[];
 
-/*if (wait.length > 0){
-
-}*/
+let aaa=0;
 
 function loop(){
+//aaa++;
     
+  //  if (aaa%200){console.log(wait); aaa=0;}
     let igen = false;
     if (turnklar == true){
         turnklar = false; 
         if (movepause == true) {
             gameStatus.unshift(removeMove);
             console.log("movePause");
+            //moveOn = false;
         }
-            //removeMove(gameStatus); 
         
         if (gameStatus[0] == undefined)  gameStatus.splice(0, 1);
         if (gameStatus.length > 0){
@@ -188,20 +189,21 @@ function removeMove(){
 }
 
 
-function moveStart(){ movepause = false; if (wait.length == 0) gameStatus.push(move); return false;}
-function moveFunc(){leaveCard(); movepause = false; gameStatus.push(move); return false;}
-
 function notWaiting(klar = "NN"){ 
-    //            var index = gameObj.findIndex(zz => zz["namn"] == input);
-
-    let index = wait.findIndex(zz => zz == klar);
+let action = move; //let index;
+index = wait.findIndex(obj => obj["namn"] == klar);
+if (index > -1) {action = wait[index].action;}
+else{
+    index = wait.findIndex(zz => zz == klar);
+}
         console.log(wait);
     if (index == -1 && wait.length > 0) index = 0; 
    
     wait.splice(index, 1);
     
-    if (wait.length == 0) gameStatus.push(move); 
+    if (wait.length == 0) gameStatus.push(action);
 }
+
 /*-------------------------------------------
 
 --------------------------------------------*/
@@ -268,23 +270,25 @@ function end(){}
 function startaIgen(){
     //nollsälla värden
 
-     deleteObjects();
-   
-    console.log("SI");
-   
-    getFile(figurer[1].url);
-    //lotta kort
-    crupier = lottaCards();
-    blanda = shuffle();
-    //lotta ny karta
-    
-    //makeMap();
-    //wood.update(81);
-    setDraw("soder");
-    mapChange("jump");
-    //göra gravplats
-   //gameStatus.push(move);
+    //byta figur
     deleteObject("Prinsen");
+    ajaxer(figurer[1].url , {namn: "Narr", action: mapChange.bind(this, "jump", 81, "Narr")});
+
+
+
+    //flytta tillbaka till nummer 81
+
+    
+  console.log("SI");
+console.log(gameObj);
+   
+    
+  
+   // setDraw("soder");
+    
+    //göra gravplats
+   
+   
     }
 
 
@@ -542,8 +546,11 @@ function deleteObject(vad){
 }
 
 
-let hitObjects = 0;    
+let hitObjects = 0;  
+
 function deleteObjects(){
+     console.log("---");
+   console.log(gameObj);
      let hitObjects = 0;
     if (gameObj.length > 5) {gameObj.splice(5, gameObj.length - 5);}
 
@@ -572,20 +579,21 @@ function ajaxer(url, name = "NN"){
        
 
 }
-
-function mapChange(vaderstrack, nyRuta){
-    //console.log(tempArray);
+//
+function mapChange(vaderstrack, nyRuta, xtra){
+    //let xtra;
+    //if (vaderstrack=="Narr"){xtra = vaderstrack; vaderstrack="jump"; }; 
+    console.log("v n x",vaderstrack, nyRuta,xtra);
    deleteObjects();
     historik.push(wood.mapNR);
 
     if (nyRuta==1000){
         nyRuta = countMap(wood.mapNR, vaderstrack);
     }
-    //console.log("a:"+ nyRuta + vaderstrack);
-    if (vaderstrack == "jump") {gameObj[0].vaderstrack = tempArray[1]; vaderstrack=tempArray[1]}
-    
+    console.log("NR", nyRuta);
     wood.update(nyRuta);
-    setFloor(vaderstrack);
+     console.log("v n x",vaderstrack, nyRuta,xtra);
+    setFloor(vaderstrack); // kan förbättras
     closeOpenDoor();
 
     var nyRuta = wood.mapNR;
@@ -606,6 +614,9 @@ function mapChange(vaderstrack, nyRuta){
         }
 
         }
+        if (xtra != undefined){
+            zeta = true;
+            notWaiting(xtra); }
     
 }
 
@@ -639,25 +650,9 @@ function setKartbitsAction(index){
 
 var colorMinne;
 
-function xmoveFigurOK(x,y){
-    var cString=[];
-        cString[0]=getRGB(x, y);
-        cString[1]=getRGB(x+8, y);
-        cString[2]=getRGB(x, y+8);
-        cString[3]=getRGB(x-8, y);
-        cString[4]=getRGB(x, y-8);
 
-    if (cString[0]=="255 255 255"){figur[0].x=x; y=y; console.log("0");}
-        else if (cString[1]=="255 255 255"){figur[0].x=x+8; y=y; console.log("1");}
-            else if (cString[2]=="255 255 255"){figur[0].x=x; y=y+8; console.log("2");}
-                else if (cString[3]=="255 255 255"){figur[0].x=x-8; y=y; console.log("3");}
-                    else if (cString[4]=="255 255 255"){figur[0].x=x; y=y-8; console.log("4");}
-    figur[0].x=x-10;
-    figur[0].y=y-10;
-  
-}
 // funkar inte
-function getRGB(x, y){
+function xgetRGB(x, y){ //maj 20
    //console.log(x+ " " +y);
     var cString; var c=[];
     c = ctx.getImageData(x, y, 1, 1).data;
@@ -665,7 +660,7 @@ function getRGB(x, y){
     return cString;
 }
 
-function getRGBa(x, y){
+function xgetRGBa(x, y){
    //console.log(x+ " " +y);
     var cString; var c=[];
     c = ctx.getImageData(x, y, 1, 1).data;
@@ -673,12 +668,13 @@ function getRGBa(x, y){
     return cString;
 }
 
-function getOKplace(x, y, floor=1, id=0){
-    var ab=0; var color;
+function getWhite(){
+    //hitte en vit plats på rutan
+    var ab = 0;
 do {
-    var a =Math.floor(Math.random()*300)+50;
-    var b =Math.floor(Math.random()*300)+50;     
-    color=getRGB(a,b);
+    var a = Math.floor(Math.random() * 300) + 50;
+    var b = Math.floor(Math.random() * 300) + 50;     
+    color = getRGB(a,b);
     if (color=="255 255 255") ab++;
 
 
@@ -688,6 +684,8 @@ while (ab == 0)
 
 return {x:a,y:b};
 }
+
+
 
 
 function kordinatorXY(kart_nr){
@@ -705,83 +703,17 @@ function drawImage(image, x, y, scale = 1, rotation = 0){
     ctx.drawImage(image, x, y);
 }
 */
+function spiral2(){
+    let xy = [];
+    for (i=0; i < 500; i++){
+        angle = .5 * i;
+        x = (1 + angle) * Math.cos(angle);
+        y = (1 + angle) * Math.sin(angle);
+        xy.push({x:x, y:y});
+    }
 
-function spiral (startXY){
-const W = 30;
-
-let rekt = {x1: startXY.x, x2: startXY.y + W, y1: startXY.x, y2: startXY.y + W}; 
-
-let nyrekt = {};
-
-let xy=[];
-xy.push(startXY);
-let temp; var check; var i=0;
-do {
-    i++;
- nyrekt.x1 = rekt.x1; 
- nyrekt.x2 = rekt.x2; 
-nyrekt.y1 = rekt.y1;
-nyrekt.y2 = rekt.y2;
-temp = xy.length%4;
-//varannan gång är det H och varannan gång är det L
-
-//samt varanna gång plus och varannan gång minus
-if (temp == 0){ //neråt
-    nyrekt.y1 = rekt.y2;
-    nyrekt.y2 +=  rekt.y2 - rekt.y1;
-
-    rekt.y2 = nyrekt.y2;
-    check = rekt.y2;
-};
-
-if (temp == 1){ //höger
-    
-    nyrekt.x1 = rekt.x2;
-    nyrekt.x2 +=  rekt.x2 - rekt.x1;
-
-    rekt.x2 = nyrekt.x2;
-    check = rekt.x2;
-};
-
-if (temp == 2){ //neråt
-   
-    nyrekt.y2 = rekt.y1;
-    nyrekt.y1 -=  rekt.y2 - rekt.y1;
-
-    rekt.y1 = nyrekt.y1;
-    check = rekt.y1;
-};
-
-if (temp == 3){ //höger
-    
-    nyrekt.x2 = rekt.x1;
-    nyrekt.x1 -=  rekt.x2 - rekt.x1;
-
-    rekt.x1 = nyrekt.x1;
-    check = rekt.x1;
-};
-xy.push({x:(nyrekt.x1+nyrekt.x2)/2, y:(nyrekt.y1+ nyrekt.y2)/2});
-
-//räkan ut mittpunkt i nya rektangeln, spara
-
-//räkna ut storleken på nya kvadraten
-//console.log("ch" + check);
-}
-while(check > -100 && check < 500);
-
-//console.log(xy);
-/*
-var ctx = myGameArea.context;
-ctx.fillStyle = "black";
-for (i=0; i<xy.length-1; i++){
-    ctx.fillRect(xy[i].x, xy[i].y, 8, 8); 
-    ctx.beginPath();
-ctx.moveTo(xy[i].x, xy[i].y);
-ctx.lineTo(xy[i+1].x, xy[i+1].y);
-ctx.stroke();
-}*/
 return xy;
-
+ 
 }
 
 

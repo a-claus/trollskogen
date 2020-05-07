@@ -217,7 +217,7 @@ golv =[];
     -------------------*/
     if (gameObj[index].fall.on == true){
         gravity(index, golv[0]);
-        console.log(gameObj[index].z);
+       // console.log(gameObj[index].z);
         
     }
  
@@ -253,7 +253,7 @@ gameObj[index].fall.tyngdpunkt +=  gameObj[index].fall.acc;
     -------------------*/            
         if  (gameObj[index].fall.tyngdpunkt < golva ) {
             if (gameObj[0].fall.acc < -0.25){
-                console.log("AAJ" + gameObj[0].fall.acc);
+              //  console.log("AAJ" + gameObj[0].fall.acc);
                 deadOrAlive(.5);
                 //gameObj[index].skada += .5;
                // listaEffekt.push(darkMoln);
@@ -275,7 +275,7 @@ gameObj[index].fall.tyngdpunkt +=  gameObj[index].fall.acc;
       När fall är avslutat acc och tyngdpunkt är = 0
     -------------------*/
             if (gameObj[index].fall.acc >= -0.1 && gameObj[index].fall.acc <= .1){
-                console.log("Golva" + golva);
+               // console.log("Golva" + golva);
                 if (gameObj[index].fall.tyngdpunkt >= golva - .1 && gameObj[index].fall.tyngdpunkt <= golva +.1){
                     gameObj[index].fall.acc = 0;
                     gameObj[index].fall.on = false;
@@ -289,8 +289,9 @@ gameObj[index].fall.tyngdpunkt +=  gameObj[index].fall.acc;
     if (golv[0] == undefined) {
         //golv[0] = gameObj[index].floor; 
         golv[0] =1; 
-        console.log("Gravity fel?:" + index);
-        console.log(golv[1])}
+      //  console.log("Gravity fel?:" + index);
+        //console.log(golv[1])
+    }
     
        /*-----------------
       Ändra storlek på onjekt som ska ritas

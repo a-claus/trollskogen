@@ -27,8 +27,8 @@ kartObj.push(
         
   
 });
-stars.xy = spiral({x:200, y:200});
-stars.counter = stars.xy.length * 50;
-listaEffekt.push(stars);
-wait = [];
-//notWaiting("START");
+
+//listaEffekt.push(new Effekter("stars",200,200));
+
+console.log(wait);
+wait =[];

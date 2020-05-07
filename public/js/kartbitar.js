@@ -38,7 +38,7 @@ kartbit.push({index:16,namn:"Ravin2",norr:2,soder:1,ost:1,vast:2, typ:"stup",flo
 kartbit.push({index:17,namn:"Hyllan",norr:1,soder:1,ost:1,vast:1, typ:"glantaSp",floors:1, actionIndex:-1});
 kartbit.push({index:18, namn:"Ravin3",norr:1,soder:2,ost:1,vast:2, typ:"glantaSp", floors:2, actionIndex:-1, download: true});
 kartbit.push({index:19, namn:"Ravin4",norr:1,soder:2,ost:2,vast:1, typ:"glantaSp", floors:2, actionIndex:-1, download:true});
-kartbit.push({namn:"Start",norr:1,soder:1,ost:1,vast:1, typ:"start", bildBG: "/img/map_start.png", floors:1, actionIndex:-1});
+kartbit.push({namn:"Start",norr:1,soder:1,ost:1,vast:1, typ:"start", bildBG: "/img/map_start.png", floors:1, actionIndex:-1, download:true});
 
 
 var map=[]; 

@@ -1,5 +1,9 @@
 
+
+wait.push("narrBild");
+
 mapImages.push(new Image());
+mapImages[mapImages.length-1].addEventListener('load', notWaiting.bind("narrBild") );
 mapImages[mapImages.length-1].src="./img/prinsSprite.png";
 
 
@@ -18,7 +22,7 @@ gameObj.unshift(
 EGENSKAPER
 ----------------------------------*/
  	liv: 2,
-    skada: 0,
+    skada: -.5,
     styrka: 1,
     iq:3,
     magi: 2,// 0,
@@ -32,11 +36,11 @@ KARTA
 
 	x: 180,
 	y: 180,
+	z: [4, 4.3], golv: 1,
 	speedX: 0,
 	speedY: 0,
-	floor: 1,
 	jump: {fall:0, hojd:1, golv:1}, 
-	fall: 0,
+	
 
 /*--------------------------------
 BILD SPRITES MAP
@@ -44,18 +48,28 @@ BILD SPRITES MAP
 	vaderstrack: "soder",
 	width: 40,
 	hight: 40,
+	halvaWidth: 20,
+	halvaHight: 20,
 	moving: false,
+	hojd: .3,
+	fall: {
+		on: false,
+		acc: 0,
+		tyngdpunkt: 1,
+		drawer: 1,
+		hardLandning:.5
+	},
 	
 	move: function (){ 
 		this.speedX = 0;
-    	this.speedY = 0;  
-
-    	if (keyMap[37] == true || moveV == true) {this.speedX = -2; this.moving = true; this.vaderstrack="vaster";}
-    	if (keyMap[39] == true || moveO == true) {this.speedX = 2; this.moving = true; this.vaderstrack="oster";}
-    	if (keyMap[38] == true || moveN == true) {this.speedY = -2; this.moving = true; this.vaderstrack="norr";}
-    	if (keyMap[40] == true || moveS == true) {this.speedY = 2; this.moving = true; this.vaderstrack="soder";}
-		if (keyMap[32] == true) {this.jump = hopp(this.jump)}
-	
+    	this.speedY = 0; 
+    	let moving=false; 
+    	if (keyMap[37] == true || moveV == true) {this.speedX = -2; this.moving = true; moving = true; this.vaderstrack="vaster";}
+    	if (keyMap[39] == true || moveO == true) {this.speedX = 2; this.moving = true; moving = true; this.vaderstrack="oster";}
+    	if (keyMap[38] == true || moveN == true) {this.speedY = -2; this.moving = true; moving = true; this.vaderstrack="norr";}
+    	if (keyMap[40] == true || moveS == true) {this.speedY = 2; this.moving = true; moving = true; this.vaderstrack="soder";}
+		if (keyMap[32] == true) {keyMap[32] == false; this.jump = hopp(this.jump.fall);}
+		return moving;
 	},
 	spriteSchema:
 			{ 
@@ -69,33 +83,38 @@ BILD SPRITES MAP
 	draw: function(){
     	var spriteNR;
 		this.spriteTimer++;
-		if (this.jump.hojd != 1) {
-			this.jump = gravity(this.jump);}
+		
     	if (this.spriteTimer == 30) {this.spriteTimer = 0;}
     	if (this.spriteTimer < 15) { spriteNR = 0;}
     	if (this.spriteTimer > 14) { spriteNR = 1;}
     	if (this.moving == false) { spriteNR = 2;}
 		var ctx = myGameArea.context;
-    	ctx.drawImage(this.sprite, this.spriteSchema[this.vaderstrack][spriteNR][0], this.spriteSchema[this.vaderstrack][spriteNR][1], this.spriteSchema[this.vaderstrack][spriteNR][2], this.spriteSchema[this.vaderstrack][spriteNR][3], this.x - (40 * this.jump.hojd/2-20), this.y - (40 * this.jump.hojd/2-20), 40 * this.jump.hojd, 40 * this.jump.hojd);
+		ctx.drawImage(this.sprite, this.spriteSchema[this.vaderstrack][spriteNR][0], this.spriteSchema[this.vaderstrack][spriteNR][1], this.spriteSchema[this.vaderstrack][spriteNR][2], this.spriteSchema[this.vaderstrack][spriteNR][3], this.x - (40 * this.fall.drawer/2-20), this.y - (40 * this.fall.drawer/2-20), 40 * this.fall.drawer, 40 * this.fall.drawer);
+
 		this.moving = false;
 		}
 });
-function hopp(jump){
-	if (jump.hojd==jump.golv){jump.fall = 0.3; jump.hojd = 1.4}
-	return jump;
-}
-function gravity(jump){
-	//console.log(jump.hojd + " " +jump.fall);
+
 	
-if (jump.hojd > jump.golv){
-	jump.fall = jump.fall - 0.05;
-	jump.hojd = jump.hojd + jump.fall;}
-if (jump.hojd < jump.golv){
-		jump.fall = jump.fall + 0.1;
-		jump.hojd = jump.hojd + jump.fall;
-		if (jump.hojd > jump.golv) {jump.hojd = jump.golv; jump.fall=0}
+function hopp(jump){
+
+	if (jump.acc == 0 && jump.on == false){
+		
+		console.log("----------------hoppla-------------------------");
+		
+		jump.on = true;
+		jump.acc = 0.25;//0.4
+		return jump;
 	}
 	return jump;
+	
 }
-gameStatus.push(moveStart);
 
+gameStatus.push(function() {return mapChange("jump", 81)} );
+
+//gameStatus.push(moveStart);
+//gameStatus.push(mapChange.bind(this, "jump", 81, "Narr"));
+//gameStatus.push(mapChange.bind(this, "jump", 81, "Narr"));
+ 
+   console.log(gameObj); 
+   console.log("Klar Narr"); 

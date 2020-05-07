@@ -12,7 +12,7 @@ gameObj.unshift(
  	namn: "Prinsen",
  	vem: "Prinsen",
 	vad: "spelare",
-	img: figurImg[0],
+	//img: figurImg[0],
 	figur: true,
 	miljo: false,
 	info: false,
@@ -22,7 +22,7 @@ gameObj.unshift(
 EGENSKAPER
 ----------------------------------*/
  	liv: 3,
-    skada: -.5,
+    skada: 2.,//-.5,
     styrka: 3,
     iq:1,
     magi: 0,
@@ -41,7 +41,7 @@ KARTA
 	speedX: 0,
 	speedY: 0,
 	jump: {fall:0, hojd:1, golv:1}, 
-	fall: 0,
+	
 
 /*--------------------------------
 BILD SPRITES MAP
@@ -52,8 +52,7 @@ BILD SPRITES MAP
 	halvaWidth: 20,
 	halvaHight: 20,
 
-	moving: false,
-	//z: 1, 
+	moving: false, 
 	hojd: .3,
 	fall: {
 		on: false,
@@ -68,10 +67,10 @@ BILD SPRITES MAP
 		this.speedY = 0;  
 		let moving=false;
 
-    	if (keyMap[37] == true || moveV == true) {this.speedX = -2; this.moving = true; this.vaderstrack="vaster"; moving = true;}
-    	if (keyMap[39] == true || moveO == true) {this.speedX = 2; this.moving = true; this.vaderstrack="oster";  moving = true;}
-    	if (keyMap[38] == true || moveN == true) {this.speedY = -2; this.moving = true; this.vaderstrack="norr";  moving = true;}
-    	if (keyMap[40] == true || moveS == true) {this.speedY = 2; this.moving = true; this.vaderstrack="soder";  moving = true;}
+    	if (keyMap[37] == true || moveV == true) {this.speedX = -2;  this.vaderstrack="vaster"; moving = true; this.moving = true;}
+    	if (keyMap[39] == true || moveO == true) {this.speedX = 2;  this.vaderstrack="oster";  moving = true; this.moving = true;}
+    	if (keyMap[38] == true || moveN == true) {this.speedY = -2; this.vaderstrack="norr";  moving = true; this.moving = true;}
+    	if (keyMap[40] == true || moveS == true) {this.speedY = 2;  this.vaderstrack="soder";  moving = true; this.moving = true;}
 		if (keyMap[32] == true) {keyMap[32] == false; this.fall = hopp(this.fall); }
 		return moving;
 	},
