@@ -686,6 +686,7 @@ let sis = {
 
 	
 function setDraw(vaderstrack){
+	
 		kartObj.push(bg);
 		console.log("wood:" + wood.namn + " woodmapnum" + wood.mapNR);
 
@@ -778,21 +779,23 @@ switch (wood.floors){
 }
 
 //magisk stig
-console.log("magic" + wood[vaderstrack]);
 
+if (vaderstrack != "jump") {
+	invNSVO(vaderstrack);
+	console.log("magic" + wood[vaderstrack]);
 	if (wood[vaderstrack] == 0 || wood[vaderstrack] == 99 ){
 		console.log(vaderstrack);
-	switch(vaderstrack){
-		case "norr": kartObj.push(entreN); entreN.visible = true; gameObj.push(msHitArea); gameObj[gameObj.length - 1].ms = "entreN"; break;
-		case "soder": kartObj.push(entreS); entreS.visible = true; gameObj.push(msHitArea); gameObj[gameObj.length - 1].ms = "entreS"; break;
-		case "vast": kartObj.push(entreV); entreV.visible = true;gameObj.push(msHitArea); gameObj[gameObj.length - 1].ms = "entreV";break;
-		case "ost": kartObj.push(entreO); entreO.visible = true; gameObj.push(msHitArea); gameObj[gameObj.length - 1].ms = "entreO";break;
-	}
-		gameObj[gameObj.length - 1].koIndex = kartObj.length - 1; 
+		switch(vaderstrack){
+			case "norr": kartObj.push(entreN); entreN.visible = true; gameObj.push(msHitArea); gameObj[gameObj.length - 1].ms = "entreN"; break;
+			case "soder": kartObj.push(entreS); entreS.visible = true; gameObj.push(msHitArea); gameObj[gameObj.length - 1].ms = "entreS"; break;
+			case "vast": kartObj.push(entreV); entreV.visible = true;gameObj.push(msHitArea); gameObj[gameObj.length - 1].ms = "entreV";break;
+			case "ost": kartObj.push(entreO); entreO.visible = true; gameObj.push(msHitArea); gameObj[gameObj.length - 1].ms = "entreO";break;
+		}
+	gameObj[gameObj.length - 1].koIndex = kartObj.length - 1; 
 
 	// anar att ms kan plockas bort som egenskap
 	}
-
+}
 console.log(kartObj);
 console.log(gameObj);
 }

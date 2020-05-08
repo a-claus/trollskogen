@@ -20,8 +20,8 @@ console.log(366 - i + ": " + val * 100);
 const NSVO=["norr","soder","vast","ost"]; //soder
 const inverseNSVO=["soder","norr","ost","vast"];
 function invNSVO(vaderstrack){
-    console.log(vaderstrack)
-    for (i=0; i<4; i++){
+    console.log(vaderstrack);
+    for (i = 0; i < 4; i++){
         if (vaderstrack == NSVO[i]) break;
     } 
      console.log("return", inverseNSVO[i])
@@ -599,8 +599,9 @@ function mapChange(vaderstrack, nyRuta, xtra){
     var nyRuta = wood.mapNR;
     
     //wood.vaderstrack = invNSVO(vaderstrack);
-    setDraw(invNSVO(vaderstrack));
-     
+    
+    setDraw(vaderstrack);
+    
     var nyttCard = map[wood.mapNR].card;
     
    // if (nyRuta==81) imageObj.src=map[81].bild;
