@@ -31,4 +31,5 @@ kartObj.push(
 //listaEffekt.push(new Effekter("stars",200,200));
 
 console.log(wait);
+//if (wait.length > 0){notWaiting("START");}
 wait =[];

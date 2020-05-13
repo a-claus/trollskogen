@@ -27,7 +27,6 @@ function studio(){
 	for (let floor = 1; floor < 4; floor++){
 	for (let i = 0; i < kartObj.length; i++){
 		
-		//if (kartObj[i].miljo == true)
 			if  (kartObj[i].floor == floor){
 			console.log(kartObj[i].namn, ":",floor);
 			kartObj[i].draw();
@@ -37,7 +36,6 @@ function studio(){
 	}
 	for (let i = 0; i < kartObj.length; i++){
 		
-		//if (kartObj[i].miljo == true)
 			if  (kartObj[i].floor == "alla"){
 			console.log(kartObj[i].namn, ":",floor);
 			kartObj[i].draw();
@@ -45,9 +43,16 @@ function studio(){
 		}
 
 	}
-	kamera(floor);
-	
+	for (let i = 0; i < kartObj.length; i++){
+		
+			if  (kartObj[i].floor == "allaSist"){
+			console.log(kartObj[i].namn, ":",floor);
+			kartObj[i].draw();
 
+		}
+
+	}
+	kamera(floor);
 
 }
 
@@ -97,7 +102,7 @@ let bg = {
 }
 
 let kanter = {
-	namn: "bg", miljo: true, figur : false, info: false, floor: "alla",
+	namn: "kanter", miljo: true, figur : false, info: false, floor: "alla",
 	draw: function(){
 		var ctx = myGameArea.context;
 		ctx.fillStyle = "green";
@@ -127,26 +132,26 @@ let glanta = {
     	ctx.fill();}
 }
 
-let edgeN = {namn: "Mapedge", miljo: true, figur : false, info: false, floor: "alla",
+let edgeN = {namn: "Mapedge", miljo: true, figur : false, info: false, floor: "allaSist",
 	draw: function(){
 		console.log("Map edeeN");
 		gameObj[1].open = false;
 		var ctx = myGameArea.context;
 		ctx.fillStyle = "rgb(203,195,151)";
 	   ctx.fillRect(0, 0, 400, 20);}}
-let edgeS = {miljo: true, figur : false, info: false, floor: "alla",
+let edgeS = {miljo: true, figur : false, info: false, floor: "allaSist",
 		draw: function(){
 			var ctx = myGameArea.context;
 			gameObj[2].open = false;
 			ctx.fillStyle = "rgb(203,195,151)";
 		   ctx.fillRect(0, 380, 400, 20);}}
-let edgeV = {miljo: true, figur : false, info: false, floor: "alla",
+let edgeV = {miljo: true, figur : false, info: false, floor: "allaSist",
 			draw: function(){
 				var ctx = myGameArea.context;
 				gameObj[4].open = false;
 			ctx.fillStyle = "rgb(203,195,151)";
 			   ctx.fillRect(0, 0, 20, 400);}}
-let edgeO = {miljo: true, figur : false, info: false, floor: "alla",
+let edgeO = {miljo: true, figur : false, info: false, floor: "allaSist",
 				draw: function(){
 					gameObj[3].open = false;
 					var ctx = myGameArea.context;
@@ -563,10 +568,10 @@ let edgeNorr={
 	  haWidth: 400, haHight: 20,
   hitAction : function(){
   	if (this.open == true){
-
-	  movepause = true;
-	  gameStatus.push(nyruta);
-	  hitIndex = this.index;
+ waitFor(nyruta);
+	 // movepause = true;
+	  //gameStatus.push(nyruta);
+	  //hitIndex = this.index;
 	}
 	   
   }
@@ -584,9 +589,10 @@ let edgeNorr={
 	  move: function (){return false;},
 	  hitAction : function(){
 	  		if (this.open == true){
-	  movepause = true;
-	  gameStatus.push(nyruta);
-	  hitIndex = this.index;
+	  waitFor(nyruta);
+	  //movepause = true;
+	  //gameStatus.push(nyruta);
+	  //hitIndex = this.index; //?
 	    }}
   };
   let edgeVaster =
@@ -599,9 +605,10 @@ let edgeNorr={
 	  move: function (){return false;},
 	  hitAction : function(){
 	  		if (this.open == true){
-	  movepause = true;
-	  gameStatus.push(nyruta);
-	  hitIndex = this.index;
+	  			 waitFor(nyruta);
+	  //movepause = true;
+	  //gameStatus.push(nyruta);
+	  //hitIndex = this.index;
 	}
 	}
   };
@@ -615,28 +622,43 @@ let edgeNorr={
 	  move: function (){return false;},
 	  hitAction : function(){
 	  		if (this.open == true){
-	  movepause = true;
-	  gameStatus.push(nyruta);
-	  hitIndex = this.index;
+	  			 waitFor(nyruta);
+	  //movepause = true;
+	  //gameStatus.push(nyruta);
+	  //hitIndex = this.index;
 	
 	  }}
   };
   let msHitArea =
    {
 	  namn:"msHitArea",
-	  hitAreaX: 50, hitAreaY: 50, z: [0, 5],
+	  hitAreaX: 60, hitAreaY: 60, z: [0, 5],
 	  speedX: 0, speedY: 0,
-	  haWidth: 300, haHight: 300,
-	  koIndex: "NN",
+	  haWidth: 280, haHight: 2800,
+	  ms: "vilketvaderstrack",
 
 	  draw: function(){},
 	  move: function (){return false;},
-	  hitAction : function(){                  
-                   // let killern = kartObj.findIndex(function(obj) { return obj["namn"] === this.ms;});
-                   // kartObj.splice(killern, 1);
-                   kartObj[this.koIndex].visible = false;
+	  hitAction : function(){  
+	  	                
+					this.ms.visible = false;
 					paparazzi = true;
-					this.z = [-1, -1]; zeta = true; // istället för att radera objektet 
+					this.z = [-1, -1]; 
+					zeta = true; // istället för att radera objektet 
+	  },
+	  set: function(vs){
+	  
+	  	this.z = [0, 5];
+	  	switch(vs){
+			case "norr": kartObj.push(entreN); entreN.visible = true;  this.ms = entreN; break;
+			case "soder": kartObj.push(entreS); entreS.visible = true;  this.ms = entreS; break;
+			case "vast": kartObj.push(entreV); entreV.visible = true;   this.ms = entreV; break;
+			case "ost": kartObj.push(entreO); entreO.visible = true;  this.ms = entreO; break;
+		}
+		gameObj.push(msHitArea);
+	
+
+
 	  }
   };
 
@@ -743,17 +765,17 @@ switch (wood.namn){
 		ajaxer("./js/kartbitar/start.js", "START"); break;
 	case "Ravin1":
 		console.log("Ravin");
-		ajaxer("./js/kartbitar/ravin.js", "ravin");
+		ajaxer("./js/kartbitar/ravin.js", "Ravin");
 	break;
 	case "Ravin2" : 
-		ajaxer("./js/kartbitar/ravin.js", "ravin");
+		ajaxer("./js/kartbitar/ravin.js", "Ravin");
 	break;
 	case "Ravin3":
-		ajaxer("./js/kartbitar/ravin.js", "ravin");
+		ajaxer("./js/kartbitar/ravin.js", "Ravin");
 	break;
 	case "Ravin4":
 
-		ajaxer("./js/kartbitar/ravin.js", "ravin");
+		ajaxer("./js/kartbitar/ravin.js", "Ravin");
 	break;
 
 	default:
@@ -781,18 +803,15 @@ switch (wood.floors){
 //magisk stig
 
 if (vaderstrack != "jump") {
-	invNSVO(vaderstrack);
+	console.log("V",vaderstrack);
+	//vaderstrack = invNSVO(vaderstrack);
+
 	console.log("magic" + wood[vaderstrack]);
 	if (wood[vaderstrack] == 0 || wood[vaderstrack] == 99 ){
-		console.log(vaderstrack);
-		switch(vaderstrack){
-			case "norr": kartObj.push(entreN); entreN.visible = true; gameObj.push(msHitArea); gameObj[gameObj.length - 1].ms = "entreN"; break;
-			case "soder": kartObj.push(entreS); entreS.visible = true; gameObj.push(msHitArea); gameObj[gameObj.length - 1].ms = "entreS"; break;
-			case "vast": kartObj.push(entreV); entreV.visible = true;gameObj.push(msHitArea); gameObj[gameObj.length - 1].ms = "entreV";break;
-			case "ost": kartObj.push(entreO); entreO.visible = true; gameObj.push(msHitArea); gameObj[gameObj.length - 1].ms = "entreO";break;
-		}
-	gameObj[gameObj.length - 1].koIndex = kartObj.length - 1; 
-
+		console.log("msset");
+		//gameObj.push(msHitArea); 
+		msHitArea.set(vaderstrack);	
+		
 	// anar att ms kan plockas bort som egenskap
 	}
 }

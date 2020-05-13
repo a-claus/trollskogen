@@ -20,19 +20,18 @@ console.log(366 - i + ": " + val * 100);
 const NSVO=["norr","soder","vast","ost"]; //soder
 const inverseNSVO=["soder","norr","ost","vast"];
 function invNSVO(vaderstrack){
-    console.log(vaderstrack);
-    for (i = 0; i < 4; i++){
+    console.log(vaderstrack)
+    for (i=0; i<4; i++){
         if (vaderstrack == NSVO[i]) break;
     } 
      console.log("return", inverseNSVO[i])
     return inverseNSVO[i];
 }
 
-var special;
+var xspecial;
 var imageObj = new Image();
 var doFunc; 
 
-imageObj.src="img/map_start.png" ;
 var gameStatus = [];
 gameStatus.push(start);
 
@@ -40,25 +39,21 @@ var figur=[];
 var moving = false;
 
 function startGame() {
-   console.log("StartGame");
-   gameObj.push(edgeNorr, edgeSoder, edgeOster, edgeVaster);
+    console.log("StartGame");
+    gameObj.push(edgeNorr, edgeSoder, edgeOster, edgeVaster);
     myGameArea.start();
-
-
 }
 
 function drawPolygon(coord, color="rgb(146,42,42)"){
-        var ctx = myGameArea.context;
-                ctx.fillStyle = color;
-                ctx.beginPath();
-                ctx.moveTo(coord[0], coord[1]);
-                for(var i=2; i < coord.length; i = i+2){
-                    ctx.lineTo(coord[i], coord[i+1]);
-                }
-                ctx.closePath();
-                //ctx.strokeStyle = "rgb(146,42,42)";
-                //ctx.stroke(); 
-                ctx.fill();
+    var ctx = myGameArea.context;
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.moveTo(coord[0], coord[1]);
+    for(var i=2; i < coord.length; i = i+2){
+        ctx.lineTo(coord[i], coord[i+1]);
+    }
+    ctx.closePath();
+    ctx.fill();
 }
 
 
@@ -95,42 +90,7 @@ function diceRuta(){
     return false;
 }
 
-function xajaxwait(){
-        /* 
-        Om man väntar på server, då är frågan vad ska hända då? Och vad ska hända efter.
-            - Vänta på server
-            - Bara köra på för fullt?
 
-        */
-        
-        
-            ajaxQ.forEach(function(element, index) { //index array
-                
-                 if (element.status == "klar") {
-                    if (element.action) gameStatus.push(element.action);
-                    ajaxQ.splice(index, 1);
-                }
-
-            })
-
-
-        
-
-
-            if (ajaxQueue == 0){
-               gameStatus.push(move);
-               return false;
-            }
-        return true
-        ;
-}
-
-function xdeleteObj(){
-            deleteObject(tippex);
-            gameObj[0].placeMe = true;
-            queue.push(move);
-            return true;
-}
 //function runStatusar(value, index, array){
 
 /*-------------------------------------------
@@ -151,7 +111,7 @@ function loop(){
         turnklar = false; 
         if (movepause == true) {
             gameStatus.unshift(removeMove);
-            console.log("movePause");
+            console.log("movePause kanske läge byta till waitFor" );
             //moveOn = false;
         }
         
@@ -188,20 +148,27 @@ function removeMove(){
     return false; 
 }
 
+function waitFor(func){
+    console.log("xxxxxxx",func.name);
+    gameStatus.push(func);
+   wait.push(func.name);
+   moveOn = false;
+}
 
 function notWaiting(klar = "NN"){ 
-let action = move; //let index;
-index = wait.findIndex(obj => obj["namn"] == klar);
-if (index > -1) {action = wait[index].action;}
-else{
+//let index;
+console.log("notWaiting", klar);
+//index = wait.findIndex(obj => obj["namn"] == klar);
+ console.log(wait);
     index = wait.findIndex(zz => zz == klar);
-}
-        console.log(wait);
+
+       
     if (index == -1 && wait.length > 0) index = 0; 
    
     wait.splice(index, 1);
+    console.log("W",wait);
     
-    if (wait.length == 0) gameStatus.push(action);
+    if (wait.length == 0) {moveOn=true; gameStatus.push(move)};
 }
 
 /*-------------------------------------------
@@ -272,7 +239,9 @@ function startaIgen(){
 
     //byta figur
     deleteObject("Prinsen");
-    ajaxer(figurer[1].url , {namn: "Narr", action: mapChange.bind(this, "jump", 81, "Narr")});
+    ajaxer(figurer[1].url , "Narr");
+    waitFor(nyruta.bind(this, "jump", 81))
+     
 
 
 
@@ -580,10 +549,10 @@ function ajaxer(url, name = "NN"){
 
 }
 //
-function mapChange(vaderstrack, nyRuta, xtra){
+function mapChange(vaderstrack, nyRuta){
     //let xtra;
     //if (vaderstrack=="Narr"){xtra = vaderstrack; vaderstrack="jump"; }; 
-    console.log("v n x",vaderstrack, nyRuta,xtra);
+    console.log("v n",vaderstrack, nyRuta);
    deleteObjects();
     historik.push(wood.mapNR);
 
@@ -592,16 +561,15 @@ function mapChange(vaderstrack, nyRuta, xtra){
     }
     console.log("NR", nyRuta);
     wood.update(nyRuta);
-     console.log("v n x",vaderstrack, nyRuta,xtra);
+     console.log("v n x",vaderstrack, nyRuta);
     setFloor(vaderstrack); // kan förbättras
     closeOpenDoor();
 
     var nyRuta = wood.mapNR;
     
     //wood.vaderstrack = invNSVO(vaderstrack);
-    
-    setDraw(vaderstrack);
-    
+    setDraw(invNSVO(vaderstrack));
+     
     var nyttCard = map[wood.mapNR].card;
     
    // if (nyRuta==81) imageObj.src=map[81].bild;
@@ -615,9 +583,7 @@ function mapChange(vaderstrack, nyRuta, xtra){
         }
 
         }
-        if (xtra != undefined){
-            zeta = true;
-            notWaiting(xtra); }
+        
     
 }
 

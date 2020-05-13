@@ -129,9 +129,10 @@ function checkMoveInOrder(index){
                         walker.go = 0;
                     //    console.log("hit");
                         if (index == 0 || hit == 0){
-                            console.log("hit:" + gameObj[hit].namn);
-                            console.log("hit:" + gameObj[hit].z[0]);
-                            console.log("hit:" + gameObj[0].z[1]);
+                            console.log("hit:");
+                            console.log(gameObj[hit]);
+                            console.log(gameObj[0]);
+                            
 
                             hittad = index + hit;
                             var tempGo = gameObj[index + hit].hitAction(); //verkar inte vara ngt problem att skicka med nuffra i parantesen
@@ -543,33 +544,11 @@ var p=[];
 
 }
 
-function nyRutaKontroll(index){
-    var nr = false; 
-    
-    switch (gameObj[index].vaderstrack){
-        case "vaster" || "vast": 
-           if (gameObj[index].x <= 1){
-                nr = true;}
-        break;
-        case "oster":
-            if (gameObj[index].x > 357){
-             nr = true;}
-             break;
-        case "norr":
-        if (gameObj[index].y <= 1){
-            nr = true;}
-            break;
-        
-        case "soder": 
-            if (gameObj[index].y > 357){
-           nr = true;}
-           break;
-        }
-//console.log("nr:"  + nr);
-        if (nr == true) {gameStatus.push(nyruta); movepause = true; console.log("F" +  gameObj[0].floor)}
-}
+f
 
 function nyruta(vs = "kompass", tillRuta=1000){
+ console.log(vs,tillRuta);
+
     if (vs == "kompass") {vs = gameObj[0].vaderstrack;}
     if (vs == "jump" && tillRuta == 1000) {console.log("ANVÄND BIND");} 
  
@@ -596,7 +575,7 @@ function nyruta(vs = "kompass", tillRuta=1000){
 
         if (vs == "soder"){
             gameObj[0].newRuta=1;
-            gameObj[0].y=1;  
+            gameObj[    0].y=1;  
             paparazzi = true;
             mapChange("soder", tillRuta);
         }
@@ -608,7 +587,8 @@ function nyruta(vs = "kompass", tillRuta=1000){
             mapChange("jump", tillRuta);
         }
             zeta = true;
-    gameStatus.push(move);
+            notWaiting("nyruta")
+    //gameStatus.push(move);
     //console.log(gameStatus);
         
 return false;

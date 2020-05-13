@@ -115,7 +115,7 @@ function bytPlats(namn, vad="namn"){
 	map[4] = tmp;
 }
 //bytPlats("Hyllan"); //newBagv1
-bytPlats("Svärdet i stenen"); //newBagv1
+//bytPlats("Svärdet i stenen"); //newBagv1
 //bytPlats(0,"card"); //skatt // newBagv1
 //bytPlats("FyraBroNS");
 //bytPlats("FyraBroVO");
@@ -128,7 +128,7 @@ bytPlats("Svärdet i stenen"); //newBagv1
 //bytPlats( 9, "card" );
 //bytPlats( 10, "card" ); //Lyktstolpe
 //bytPlats("Ravin1"); //Ravin1
-bytPlats("Ravin4"); //Ravin2
+bytPlats("Ravin2"); //Ravin2
 
 function bytPlatsMedBlank(namn, vad, ruta){
 

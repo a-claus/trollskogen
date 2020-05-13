@@ -6,11 +6,13 @@
 //---------------------------------------------
 
 console.log("---Ravin---")
+temp = "Ravinbild" + Math.floor(Math.random()*100);
+
 wait.push("Ravinbild");
 mapImages.push(new Image());
-mapImages[mapImages.length-1].addEventListener('load', notWaiting.bind("Ravinbild") );
+mapImages[mapImages.length-1].addEventListener('load', notWaiting.bind(this, "Ravinbild"));
 
-kartObj.push(kanter);
+
 
 if (wood.norr == 2 && wood.ost == 2){
 
@@ -166,7 +168,7 @@ kartObj.push({
     S: wood.soder,
     O: wood.ost,
     W: wood.vast,
-    floor: 1,
+    floor: "alla",
     miljo: true,
     figur: false,
     info: false,
@@ -180,6 +182,6 @@ kartObj.push({
 		}
 });
 
-
-
+kartObj.push(kanter);
+console.log(temp);
 notWaiting("Ravin"); 

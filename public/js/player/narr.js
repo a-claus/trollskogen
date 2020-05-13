@@ -1,10 +1,10 @@
 
 
-wait.push("narrBild");
+//wait.push("narrBild");
 
 mapImages.push(new Image());
 mapImages[mapImages.length-1].addEventListener('load', notWaiting.bind("narrBild") );
-mapImages[mapImages.length-1].src="./img/prinsSprite.png";
+mapImages[mapImages.length-1].src="./img/narrSprite.png";
 
 
 console.log("Narr");
@@ -68,7 +68,7 @@ BILD SPRITES MAP
     	if (keyMap[39] == true || moveO == true) {this.speedX = 2; this.moving = true; moving = true; this.vaderstrack="oster";}
     	if (keyMap[38] == true || moveN == true) {this.speedY = -2; this.moving = true; moving = true; this.vaderstrack="norr";}
     	if (keyMap[40] == true || moveS == true) {this.speedY = 2; this.moving = true; moving = true; this.vaderstrack="soder";}
-		if (keyMap[32] == true) {keyMap[32] == false; this.jump = hopp(this.jump.fall);}
+		if (keyMap[32] == true) {keyMap[32] == false; this.fall = hopp(this.fall);}
 		return moving;
 	},
 	spriteSchema:
@@ -110,7 +110,7 @@ function hopp(jump){
 	
 }
 
-gameStatus.push(function() {return mapChange("jump", 81)} );
+//gameStatus.push(function() {return mapChange("jump", 81)} );
 
 //gameStatus.push(moveStart);
 //gameStatus.push(mapChange.bind(this, "jump", 81, "Narr"));
