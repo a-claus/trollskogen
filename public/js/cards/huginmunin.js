@@ -8,15 +8,20 @@ De berättar för en var skatten är. Kanske ska ge annan info också.
 
 */
 
+wait.push("hm1", "hm2", "hm3");
+mapImages.push(new Image());
+mapImages[mapImages.length-1].addEventListener('load', notWaiting.bind("hm1") );
+mapImages[mapImages.length-1].src="./img/hm2.png";
 
 mapImages.push(new Image());
-mapImages[mapImages.length-1].src="./img/hm2.png";
-mapImages.push(new Image());
+mapImages[mapImages.length-1].addEventListener('load', notWaiting.bind("hm2") );
 mapImages[mapImages.length-1].src="./img/hm.png";
+
 cardImages.push(new Image());
+cardImages[cardImages.length-1].addEventListener('load', notWaiting.bind("hm3") );
 cardImages[cardImages.length-1].src="./img/huginmumin.png";
 
-//
+
 
 
 
@@ -33,113 +38,135 @@ gameObj.push(
     indexCI: cardImages.length - 1,
     moving: false,
     cardImg: cardImages[cardImages.length-1],
-    x: 75, y: 75, speedX: 0,speedY: 0, z: [1, 1.5], hojd:.5,
+    x: 75, y: 75, speedX: 0,speedY: 0, z: [3.5, 3.8], hojd:.3,
     width: 40 , hight: 40, 
     vaderstrack: "soder",
     status: 0,
     uppner:0, 
     angle: 45,
-    counter: 0,
+    counter: 0, speed: 0,
   draw: function(){
+   // console.log ("drawXYZ");
     if (this.status == 1 || this.status == 2 || this.status == 4) {
-       ctx.save();
+      ctx.save();
       ctx.translate(this.x, this.y);
-     
-       ctx.rotate(Math.PI*this.angle/180 );
-       ctx.translate(-this.x,- this.y);
+      ctx.rotate(Math.PI*this.angle.rad/180 ); //???
+      ctx.translate(-this.x,- this.y);
       ctx.drawImage(mapImages[this.indexS-1], this.x, this.y,40,40);
       ctx.drawImage(mapImages[this.indexS-1], this.x+10, this.y+10,40,40);
       ctx.restore();
-      
-      
-      
     }
     if (this.status == 3) {
       ctx.drawImage(mapImages[this.indexS], this.x, this.y,40,40);
       
     }
-  },
+    }, goal: {x: 200, y:200}, egenskap: "flyger", cc: [false, false, false, false],
+
   move: function (){
+
+    console.log("status",this.status);
   
     if (this.status == 0){
-      this.status++;
-      let slump = Math.floor(Math.random()*4);
-      if (inverseNSVO == gameObj[0].vaderstrack){
-        slump++; 
-      }
-      let slump2 = Math.floor(Math.random()*200);
-      if (slump2 < 100) this.uppner = 1; else this.uppner = -1;
+      this.status = 1;
+      this.goal = getWhite(this.width);
+      let start = Math.floor(Math.random() * 400) - 20;
+      let sidval = gameObj[0].vaderstrack;
+ 
       
-      if (slump == 0 || slump == 4){
-        this.x = slump2 + 100;
-        this.y = 380;
-        this.speedX= 1 * this.uppner;
-        this.speedY=-1;
-      }
-      if (slump == 1){
-        this.x = slump2 + 100;
+      
+     // this.uppner = 1; else this.uppner = -1;
+       console.log("NNN", gameObj[0].vaderstrack);
+       console.log("NNN", this.goal);
+      if (sidval == "norr"){
+        this.x = start;
         this.y = -20;
-        this.speedX=1 * this.uppner;
-        this.speedY=1;
+        console.log("N");
+       
       }
-      if (slump == 2){
+      if (sidval == "soder"){
+        this.x = start;
+        this.y = 380;
+        console.log("S");
+      }
+      if (sidval == "oster"){
         this.x = 380;
-        this.y = slump2 + 100;
-        this.speedX=-1;
-        this.speedY=1 * this.uppner;
+        this.y = start;
+        console.log("O");
       }
-      if (slump == 3){
+      if (sidval == "vaster"){
         this.x = -20;
-        this.y = slump2 + 100;
-        this.speedX=1;
-        this.speedY=1 * this.uppner;
+        this.y = start;
+        console.log("V");
       }
-      if (this.speedY == 1) this.vaderstrack = "s"; else this.vaderstrack = "n";
-      if (this.speedX == 1) this.vaderstrack += "o"; else this.vaderstrack += "v";
- // console.log("status" + this.status +" "+slump + this.x + this.y) ;
-      if (this.vaderstrack=="nv") this.angle = -45;
-      if (this.vaderstrack=="no") this.angle = 45;
-      if (this.vaderstrack=="sv") this.angle = -135;
-      if (this.vaderstrack=="so") this.angle = 135;
-}
 
-    if (this.status == 1){
-      this.counter++;
+      this.angle = angleXY({x:this.x, y:this.y}, this.goal;
 
-      if (this.counter > 15){
-       let walker = findwall(pointOfpic(this.index));
-      if (walker.go == 1){
-        this.hojd=1;
-        this.status = 2;
-      }
+        this.speedX = -1 * Math.cos(this.angle.rad);
+        this.speedY = -1 * Math.sin(this.angle.rad);
+        this.speed ={x: this.speedX, y:this.speedY}; 
+        //console.log("NNN", this.x, this.y);
+        //console.log(this.speedX, this.speedY, this.angle);
+      
     }
+
+    if (this.status == 1){ 
+      this.speedX = this.speed.x;
+        this.speedY = this.speed.y;
+        console.log(this.x, this.y);
+        console.log(this.cc);
+        if (this.x < this.goal.x){this.cc[0] = true;}
+        if (this.x > this.goal.x){this.cc[1] = true;}
+        if (this.y < this.goal.y){this.cc[2] = true;}
+        if (this.y > this.goal.y){this.cc[3] = true;}
+
+        if (this.cc[0] == true) {if (this.cc[1] == true) { if(this.cc[2] == true) {if (this.cc[3] == true)
+          { 
+            console.log("status",this.status);
+            this.status = 2;
+          }}}}
+      // Flyger till goal
     }
-    if (this.status == 2){
-      if(this.counter==this.x + "-"+this.y) {this.status = 3;}
-      this.counter = this.x + "-"+this.y;
+
+     if (this.status == 2){
+      this.speedX = this.speed.x;
+        this.speedY = this.speed.y;
+      if (getRGB(this.x + this.width / 2, this.y + this.hight / 2) != "255 255 255"){
+          this.z =[1,1.3];
+          this.speed.x*= -1;
+          this.speed.y*= -1;
+          this.egenskap = "landar"
+          this.status = 3;
+        }
+      // Fortsätter tills den hittar ngt att landa på.
     }
-    if (this.status == 3){
-      console.log("talker" + this.counter);
-      if(this.counter=="talked") {
-        this.status = 4;
-        this.hojd=5;
-      }  
+     if (this.status == 3){
+      console.log("status3");
+      return false;
+      //flyger tillbaka    
+       
+
     }
+
     if (this.status == 4){
+      this.speedX = this.speed.x;
+        this.speedY = this.speed.y;
       if (gameObj[hittad].x < 0 || gameObj[hittad].x > 400 || gameObj[hittad].y < 0 || gameObj[hittad].y > 400) {
         bytPlatsMedBlank(8, "card", wood.mapNR);
-        this.status=5;
+        this.status = 5;
       }
     }
+    if (this.status == 5){return false;}
     return true;
   },
  
 
 hitAction : function(){
   gameObj[0].placeMe = true;
-  movepause=true;
+   wait.push("drawRuta");
+  //movepause=true;
   gameStatus.push(gameObj[hittad].drawRuta);
   hitIndex = this.index;
+  moveOn = false;
   
 },
 c:0,
@@ -163,14 +190,13 @@ drawRuta: function(){
     if (sida < 0) text += "Och du behöver även vandra " + Math.abs(sida) + " rutor västerut.";
     if (sida == 0) text += "Och du behöver varken vandra västerut eller österut för att hitta Äggblomman.";
    
-    drawRuta("Hugin och Munin", text, gameObj[hittad].cardImg, [{text: "Tack!", action: moveStart}]);
+    drawRuta("Hugin och Munin", text, gameObj[hittad].cardImg, [{text: "Tack!", action: gameObj[hittad].fly}]);
     gameObj[hittad].counter = "talked";
   }
     //gameObj[hittad].indexS = mapImages.length - 2;
     gameObj[hittad].c++;
-}
 },
-{
+
 
         /*--------------------------------
 BILD SPRITES on MAP
@@ -189,22 +215,12 @@ BILD SPRITES on MAP
   fly: function(){
     console.log("korpen flygen");
     let index = getIndexGameObj("HuginMunin");
-    
-    if (gameObj[index].x < gameObj[0].x) {gameObj[index].x-=3;} else {gameObj[index].x+=3;}
-    if (gameObj[index].y  < gameObj[0].y) {gameObj[index].y-=3;} else {gameObj[index].y+=3 ;}
- 
+    gameObj[hittad].egenskap= "flyger";
+    gameObj[hittad].z = [4, 4.3];
+    gameObj[hittad].status++;
 
-    if (gameObj[index].x < 0 || gameObj[index].x > 400 || gameObj[index].y < 0 || gameObj[index].y > 400) {
-      bytPlatsMedBlank(8, "card", wood.mapNR);
-      return false;}
-      else {
-        return true;
-      }
-
-
-    }
-   
-
+    notWaiting(); 
+  }
 });
 
 
@@ -213,4 +229,5 @@ BILD SPRITES on MAP
 console.log("Hugin och Munin laddad" + gameObj[gameObj.length-1].x);
 hitObjects++;
 
-gameStatus.push(moveStart);
+notWaiting("Hugin och Munin");
+//gameStatus.push(moveStart);

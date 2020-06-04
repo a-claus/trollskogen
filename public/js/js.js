@@ -19,6 +19,8 @@ console.log(366 - i + ": " + val * 100);
 
 const NSVO=["norr","soder","vast","ost"]; //soder
 const inverseNSVO=["soder","norr","ost","vast"];
+const NSVO2=["norr","soder","vaster","oster"]; //soder
+
 function invNSVO(vaderstrack){
     console.log(vaderstrack)
     for (i=0; i<4; i++){
@@ -85,7 +87,7 @@ function start(){
 
 }
 function diceRuta(){
-    movepause = true;
+   // movepause = true;
     gameObj[hitIndex].drawRuta();
     return false;
 }
@@ -117,6 +119,7 @@ function loop(){
         
         if (gameStatus[0] == undefined)  gameStatus.splice(0, 1);
         if (gameStatus.length > 0){
+            //console.log(gameStatus);
             igen = gameStatus[0]();
             if (igen == true) gameStatus.push(gameStatus[0]);
             gameStatus.splice(0, 1);
@@ -129,7 +132,11 @@ function loop(){
 
 
 function removeMove(){
-    console.log("RM");
+    console.log("RM++++");
+    console.log( gameStatus);
+
+    
+    
    
     var arrayEnd = gameStatus.length ; 
     let array = []; 
@@ -286,7 +293,7 @@ function drawRuta(rubrik="tom", text="tom", img="tom", buttons="tom"){
     var act;
     ctx.drawImage(rutaBG, x, y);
     ctx.drawImage(img , x+6, y+92,300,100); //bilden på figur
-    textWriter(rubrik, x + rutaBG.width/2, y + 30, 26, "center");
+    textWriter(rubrik, x + rutaBG.width/2, y + 30, 26, "white", "center");
     textWriter(text, x+30, y+50, 26, "black");
     let bhsY = y + 200 - buttons.length * 50;
     for (var i = 0; i < buttons.length; i++){
@@ -296,6 +303,7 @@ function drawRuta(rubrik="tom", text="tom", img="tom", buttons="tom"){
 }
 
 function drawDiceRuta(text, img, buttons, bonus = 0){
+    //svamp,
     console.log(text.rubrik);
     console.log(text.rubrik + "diceRuta");
     var x=50;
@@ -303,14 +311,14 @@ function drawDiceRuta(text, img, buttons, bonus = 0){
     ctx = myGameArea.context;
     ctx.drawImage(rutaBG, x, y);
     ctx.drawImage(img, x+6, y+92, 100, 100);
-    textWriter(text.rubrik, 200, 150, 26, "center");
-    //textWriter(text.brod, x+30, y+50, 26, "black");
+    textWriter2(text.rubrik, 200, y + 30, {lineLength: 26, color: "white", align: "center", strokeColor: "white"});
+    textWriter2(text.brod, x+30, y+54, {lineLength: 26, color: "black"});
     if (gameObj[hitIndex].bonus) drawBonus(x+130, y+140);
     if (gameObj[hitIndex].T6 > 0) drawDice(x+115, y+160,0, gameObj[hitIndex].T6, bonus);
     console.log(buttons);
     let bhsY = y + 200 - buttons.length * 50;
     for (var i = 0; i < buttons.length; i++){
-        button.push(new Bueffekttton(buttons[i].action, x+190, bhsY + i * 50, buttons[i].text));
+        button.push(new Button(buttons[i].action, x+190, bhsY + i * 50, buttons[i].text));
     }
 
 }
@@ -476,22 +484,7 @@ return (a-Math.floor(a));
 var cardAction;
 
 
-function xmonsterMove(num){
-var xLong=figur[num].x-figur[0].x;
-var yLong=figur[num].y-figur[0].y;
 
-
-
-    if (Math.abs(xLong)>Math.abs(yLong)){
-        if (xLong>0){figur[num].speedX= -.25;} 
-        else {figur[num].speedX=.25;}
-    }
-    else
-    {
-        if (yLong>0){figur[num].speedY= -.25;} 
-        else {figur[num].speedY=.25;}
-    }
-}
 
 
 function getIndexGameObj(input){
@@ -577,7 +570,7 @@ function mapChange(vaderstrack, nyRuta){
     if (nyttCard == 0 || nyttCard > 1){
         
         if (card[nyttCard].url) {
-            movepause = true;
+           wait.push(card[nyttCard].namn);
            
             getFile(card[nyttCard].url);
         }
@@ -635,12 +628,12 @@ function xgetRGBa(x, y){
     return cString;
 }
 
-function getWhite(){
+function getWhite(size = 100){
     //hitte en vit plats på rutan
     var ab = 0;
 do {
-    var a = Math.floor(Math.random() * 300) + 50;
-    var b = Math.floor(Math.random() * 300) + 50;     
+    var a = Math.floor(Math.random() * 300) + size/2;
+    var b = Math.floor(Math.random() * 300) + size/2;     
     color = getRGB(a,b);
     if (color=="255 255 255") ab++;
 
@@ -741,6 +734,7 @@ function textbox(text, style, x, y, radwidth){
 }
 
 function textWriter(text, x, y, lineLength = 40, color= "white", align = "left"){
+    console.log("gammal byt till textWriter2");
     var textut;
     ctx.textAlign = align;
     ctx.fillStyle = color;
@@ -765,10 +759,66 @@ function textWriter(text, x, y, lineLength = 40, color= "white", align = "left")
       ctx.fillText(text, x, y+14*i); 
       ctx.strokeStyle = "white";
       ctx.strokeText(text, x, y+14*i);
-      console.log(text + x + align); 
+      
     }
 }
 
+const t_Georgia16 = "16px Georgia";
+
+function textWriter2(text, x, y, ins){
+    ctx.font = t_Georgia16;
+    
+
+    var textut; let lineLength = 40;
+    if (ins.align) ctx.textAlign = ins.align; else ctx.textAlign = "left";
+    if (ins.color) ctx.fillStyle = ins.color; else ctx.textAlign = "white";
+    if (ins.lineLength) lineLength = ins.lineLength
+    if (ins.strokeColor) ctx.strokeStyle = ins.strokeColor; else ctx.strokeStyle = '#000';;
+    
+    
+
+    if (text == undefined) text = "Du är i Trollskogen";
+      var lineEnd = 0; var textCount = 0; var i=0;
+      if (text.length > lineLength){
+        do {
+            lineEnd = text.lastIndexOf(" ", textCount + lineLength); 
+            textut = text.slice(textCount, lineEnd);
+           
+            ctx.fillText(textut, x, y+14*i);
+            textCount = lineEnd + 1;
+            i++;
+            if (textCount + lineLength > text.length){
+                textut = text.slice(textCount, text.length);
+                ctx.fillText(textut, x, y+14*i);
+                if (ins.strokeColor)  ctx.strokeText(text, x, y+14*i); 
+                textCount = text.length;
+            }
+        } while (textCount < text.length);
+    }else{
+        
+        ctx.fillText(text, x, y+14*i);
+       if (ins.strokeColor)  ctx.strokeText(text, x, y+14*i); 
+       
+    }
+
+}
+
+function radbrytare(text, radlangd){
+    var lineEnd = 0; var textCount = 0; var i=0;
+    do {
+            lineEnd = text.lastIndexOf(" ", textCount + lineLength); 
+            textut = text.slice(textCount, lineEnd);
+           
+            ctx.fillText(textut, x, y+14*i);
+            textCount = lineEnd + 1;
+            i++;
+            if (textCount + lineLength > text.length){
+                textut = text.slice(textCount, text.length);
+                ctx.fillText(textut, x, y+14*i);
+                textCount = text.length;
+            }
+        } while (textCount < text.length);
+}
 
 
 
@@ -865,13 +915,37 @@ return arr;
         return Math.sqrt(x*x + y*y)
 
     }
+       function pythXY(a, b){
+        let x = Math.abs(a.x - b.x);
+        let y = Math.abs(a.y - b.y);
 
-    function angle(a,b){
+        return Math.sqrt(x*x + y*y)
+
+    }
+
+    function angleXY(a,b){ //start? obj b:origo 
+        retur = {};
+        let x = a.x - b.x;
+        let y = a.y - b.y;
+        retur.grader = Math.atan2(y, x) * 180 / Math.PI;
+        retur.rad = Math.atan2(y, x);
+        return retur;
+        
+    }
+
+    function angle(a,b){ //start?
         let x = gameObj[a].x - gameObj[b].x;
         let y = gameObj[a].y - gameObj[b].y;
         return Math.atan2(y, x) * 180 / Math.PI;
 
     }
+
+    function getVaderstrack(grader){
+        if (Math.abs(grader) < 45){return "oster";}
+        if (Math.abs(grader) > 135){return "vaster";}
+        if (grader>0) return "soder";
+        return "norr";
+}
 
     function isEven(n) {
    return n % 2 == 0;

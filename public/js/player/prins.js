@@ -12,7 +12,7 @@ gameObj.unshift(
  	namn: "Prinsen",
  	vem: "Prinsen",
 	vad: "spelare",
-	//img: figurImg[0],
+	img: figurImg[0],
 	figur: true,
 	miljo: false,
 	info: false,

@@ -48,12 +48,14 @@ vem: "Svärdet i stenen",
         },
     move: function(){return false;},
     hitAction: function(){
-        gameObj[0].placeMe = true;
+        wait.push("SIS");
+        moveOn = false;
+        //gameObj[0].placeMe = true;
         console.log("SIS!");
         gameStatus.push(diceRuta);
         hitIndex = this.index;
         this.T6 = 0;
-        movepause = true;
+        //movepause = true;
     },
     drawRuta: function(){
         var buttons = [];
@@ -68,23 +70,23 @@ vem: "Svärdet i stenen",
         if (this.T6 >= T6res[0]) {//get sword}
             this.text = "Du är värdig!";
             this.getSword();
-            buttons = [{action: moveFunc, text: "Ta Excalibur"}]; 
+            buttons = [{action: notWaiting, text: "Ta Excalibur"}]; 
             gameObj[0].upgrade.push("Svärdet i stenen");
         }
         else if (this.T6 >= T6res[1]) {
             this.text = "Du är icke värdig.";
             gameObj[0].upgrade.push("Svärdet i stenen");
-            buttons = [{action: moveFunc, text: "Dumma sten"}]; 
+            buttons = [{action: notWaiting, text: "Dumma sten"}]; 
         }
         else {
             buttons = [{text: "Jag är värdig!", action: diceRuta}];
             this.text= "Endast de värdiga kan dra Excalibur ur stenen.";
-            buttons.push({action: moveFunc, text: "Behöver nog bli lite klokare"}); 
+            buttons.push({action: notWaiting, text: "Behöver nog bli lite klokare"}); 
         }
     }
     else{
        this.text= "En gång olämplig, alltid lämplig.";
-        buttons.push({action: moveFunc, text: "Dumma sten."}); 
+        buttons.push({action: notWaiting, text: "Dumma sten."}); 
 
      }   
        

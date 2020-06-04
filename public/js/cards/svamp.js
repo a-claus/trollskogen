@@ -7,14 +7,14 @@
 ger slumpvis bonuc. IQ, styrka, extra hjärta och gift
 
 */
-;
-wait.push("Svamp", "svampbild1", "svampbild2");
+
+wait.push("svampbild1", "svampbild2");
 
 mapImages.push(new Image());
 cardImages.push(new Image());
 
 
-mapImages[mapImages.length-1].addEventListener('load', notWaiting.bind("svamobild"));
+mapImages[mapImages.length-1].addEventListener('load', notWaiting.bind("svampbild1"));
 cardImages[cardImages.length-1].addEventListener('load', notWaiting.bind("svampbild2"));
 
 
@@ -23,11 +23,13 @@ cardImages[cardImages.length-1].src="./img/svamp.png";
 
 
 kartObj.push({
-  namn;"Svamp",
-   img: mapImages[mapImages.length-1],
-    miljo: true, figur : false, info: false, 
-    floor:1,
-  });
+  namn: "Svamp",
+  img: mapImages[mapImages.length-1],
+  miljo: true, figur : false, info: false, floor: 1,
+  draw: function(){
+    ctx.drawImage(this.img, 175, 175, 50 ,50);
+  }
+});
 
 
 gameObj.push(
@@ -43,10 +45,10 @@ gameObj.push(
     placeMe: true,
     moving: false,
     cardImg: cardImages[cardImages.length-1],
-  //vaderstrack: "soder",
-  draw: function(){ctx.drawImage(mapImages[this.indexS], this.x, this.y);},
+    hitAreaX: 175, hitAreaY: 175 , haWidth: 50 , haHight: 50,
+  
   move: function (){},
-   x: 170, y: 170, speedX: 0,speedY: 0, z:[3, 3,1], hojd: .1 ,
+   x: 170, y: 170, speedX: 0,speedY: 0, z:[1, 1.1], hojd: .1,
 
   /*--------------------------------
 HIT
@@ -62,53 +64,60 @@ HIT
 hitAction : function(){
     this.T6 = 0;
     hitIndex = this.index; //xyz borde reggas senare med tanke att gameObj kan ändras efter laddning
-     gameStatus.push(diceRuta);
+    gameStatus.push(diceRuta);
+      
+    wait.push("MM");
+    moveOn = false;
+    console.log("svamp!");
+     //   gameStatus.push(this.drawRuta);
+       
+
 },
-text: "Åh, de lukar ljuvligt.",
+text: "Åh, de luktar ljuvligt.",
 drawRuta: function (){
     var buttons = []; var life = true;
     switch (this.T6) {
       case 0:
-        buttons = [{action: diceRuta, text: "Mums"}, {action: moveFunc, text: "Kan vara farligt"}];      
+        buttons = [{action: diceRuta, text: "Mums"}, {action: notWaiting, text: "Kan vara farligt"}];      
       break;
       case 1:
        life = deadOrAlive(2);
-        this.text = "AJ! AJ! AJ! Den var giftig!";
+        gameObj[hittad].text = "AJ! AJ! AJ! Den var giftig!";
       break;
       case 2:
         life = deadOrAlive(1);
-        this.text = "AJ, min mage! Jag tror jag ätit för många!";
+        gameObj[hittad].text = "AJ, min mage! Jag tror jag ätit för många!";
       break;
       case 3:
         gameObj[0].skada += 1;
         effekten("magi", "add");
-        this.text = "Jag tror kraften är med mig!";
+        gameObj[hittad].text = "Jag tror kraften är med mig!";
       break;
       case 4:
         gameObj[0].styrka += 1;
         effekten("styrka", "add");
-        this.text = "Oj oj, jag tror minsann mina biceps väver!";
+        gameObj[hittad].text = "Oj oj, jag tror minsann mina biceps väver!";
       break
       case 5:
         gameObj[0].iq += 1;
         effekten("iq", "add");
-        this.text = "Elementärt, denna svamp måste ha vattnats med vatten från Mimers Brunn!";
+        gameObj[hittad].text = "Elementärt, denna svamp måste ha vattnats med vatten från Mimers Brunn!";
       break;
       case 6:
         
         gameObj[0].liv += 1;
         effekten("harts", "add");
-        this.text = "Åh hjärtaness då!"; 
+        gameObj[hittad].text = "Åh hjärtaness då!"; 
       break;
     }
 
     if (life == true){
       if (this.T6 != 0){
-        buttons = [{action: diceRuta, text: "Vågar man ta en till?"}, {action: moveFunc, text: "Gå!"}];
+        buttons = [{action: diceRuta, text: "Vågar man ta en till?"}, {action: notWaiting, text: "Gå!"}];
     }}
-    if (life == false){return false;  }
+    if (life == false){return false;}
     //diceImg = this.cardImg;
-    drawDiceRuta({rubrik: this.namn, brod: this.text}, this.cardImg, buttons, this.T6);
+    drawDiceRuta({rubrik: this.namn, brod: gameObj[hittad].text}, gameObj[hittad].cardImg, buttons, this.T6);
     this.T6 = Math.floor(Math.random() * 6 + 1); 
 
     return false;  
@@ -129,29 +138,18 @@ BILD SPRITES on MAP
 	
 	//spriteTimer: 0,
 	draw: function(){
-       
-    	//ctx.drawImage(this.sprite, 0, 0, 100, 100, this.x, this.y, 40, 40);
-              if (this.x<400){ 
-                ctx.drawImage(this.sprite, this.x, this.y, 60, 60);}
-
-	},
-  fly: function(){
-       // tror denhär gammal
-       if (this.tox=!170){
-
-        this.x = this.x + 3;
-        this.y = this.y + 3;
-        console.log("fly" + this.x);
-      }
+    if (this.hittaPlats == true){
+      let hp = getWhite(this.width);}
+    return false;
   }
    
 
 });
-
-
-
 hitObjects++;
-gameStatus.push(moveStart);
+
+notWaiting("Svamp");
+
+//gameStatus.push(moveStart);
 
 //kartbit[13].func=loadSIS;
 

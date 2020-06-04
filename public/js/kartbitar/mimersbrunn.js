@@ -52,8 +52,11 @@ gameObj.push({
 		},
     move: function(){return false;},
     hitAction: function(){
-        movepause = true;
-        gameObj[0].placeMe = true;
+        //waitFor("MM");
+        wait.push("MM");
+        moveOn = false;
+        //movepause = true;
+        //gameObj[0].placeMe = true;
         console.log("runMM!");
         gameStatus.push(this.drawRuta);
         hitIndex = this.index;
@@ -64,17 +67,18 @@ gameObj.push({
         const harInte = gameObj[0].upgrade.findIndex(upg => upg === "Mimers Brunn");
         const index = getIndexGameObj("Mimers Brunn");
         console.log ("MB" + index);
+
         //let img = this.cardImg;
     if (harInte == -1){
         
-        gameObj[index].button = [{text: "Jag dricker!", action: moveStart}];
+        gameObj[index].button = [{text: "Jag dricker!", action: notWaiting}];
         gameObj[index].text = "Dricker du ur min brunn får du lite av min visdom.";
         gameObj[0].iq++; 
         gameObj[0].upgrade.push("Mimers Brunn");
         
         }
     else{
-        gameObj[index].button =  [{text: "Jasså...", action: moveStart}];
+        gameObj[index].button =  [{text: "Jasså...", action: notWaiting}];
         gameObj[index].text = "Det här är inget man bara dricker för man är törstig.";
         gameObj[0].placeMe = true;
         }

@@ -8,7 +8,7 @@ När man äter blåbären, så repareras alla hjärtan.
 
 */
 
-wait.push("Blåbär", "Blabarbild", "Blabarbild2");
+wait.push("Blabarbild", "Blabarbild2");
 
 mapImages.push(new Image());
 cardImages.push(new Image());
@@ -89,15 +89,17 @@ gameObj.push(
   move: function (){ return false;},
 
 hitAction : function(){
-  movepause = true;
-  gameObj[0].placeMe = true;
+ 
+  //gameObj[0].placeMe = true;
+  wait.push("MM");
+  moveOn = false;
   gameStatus.push(this.drawRuta);
   hitIndex = this.index;
 },
 drawRuta: function(){
   const index = getIndexGameObj("Blåbär");
   gameObj[0].skada = 0;
-  drawRuta("Blåbär", "Blåbär är gott och hälsosamt.", gameObj[index].cardImg, [{text: "Mums!", action: moveStart}]);
+  drawRuta("Blåbär", "Blåbär är gott och hälsosamt.", gameObj[index].cardImg, [{text: "Mums!", action: notWaiting}]);
 
 },
   sprite: mapImages[mapImages.length-1]

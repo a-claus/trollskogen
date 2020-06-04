@@ -8,11 +8,16 @@ cardImages.push(new Image());
 cardImages[cardImages.length-1].addEventListener('load', notWaiting.bind("troll2") );
 cardImages[cardImages.length-1].src="./img/trollMor.png";
 
-if (-1 == bagger.findIndex(zz => zz.namn == "Kudde")){
-  wait.push("kudde");
-  sakImg.push(new Image());
-  sakImg[sakImg.length-1].addEventListener('load', notWaiting.bind("kudde"));
-  sakImg[sakImg.length-1].src = "./img/kudde.png";
+if (-1 == bagger.findIndex(zz => zz.namn == "Kudde")) tempArray.push("Kudde");
+if (-1 == bagger.findIndex(zz => zz.namn == "Piska")) tempArray.push("Piska");
+if (-1 == bagger.findIndex(zz => zz.namn == "Klubba")) tempArray.push("Klubba");
+
+if (tempArray.length > 0){
+ temp = Math.floor(tempArray.length * Math.random()); 
+ sakImg.push(new Image());
+  if (tempArray[temp] == "Kudde") sakImg[sakImg.length-1].src = "./img/kudde.png";
+  if (tempArray[temp] == "Piska") sakImg[sakImg.length-1].src = "./img/piska.png";
+  if (tempArray[temp] == "Klubba")sakImg[sakImg.length-1].src = "./img/klubba.png";
 }
 
                   
@@ -116,7 +121,8 @@ BILD SPRITES MAP
         if (this.spriteTimer == 0) this.vaderstrack =   NSVO2[Math.floor(Math.random() * 4)];
 
       }
-       
+        //if (this.moving == false) { spriteNR = 2;}
+        //console.log("ST" + this.spriteTimer);
 		var ctx = myGameArea.context;
     	ctx.drawImage(this.sprite, this.spriteSchema[this.vaderstrack][spriteNR][0], this.spriteSchema[this.vaderstrack][spriteNR][1], this.spriteSchema[this.vaderstrack][spriteNR][2], this.spriteSchema[this.vaderstrack][spriteNR][3], this.x, this.y, 40, 40);
 		this.moving = false;
@@ -191,98 +197,39 @@ BILD SPRITES MAP
             gameStatus.push(putEquipmentToBag, move);
             gameObj[hitIndex].floor=-1;
         
-    },/*,    
+    },    
     putInBag: function(){
-           
+            console.log(this.vinst);
             bagger.push(new Sak());
             var post = bagger[bagger.length-1];
-            post.namn = "Kudde";
+            post.namn = this.vinst;
             console.log(bagger[bagger.length-1].namn);
             post.img = sakImg[sakImg.length-1];
-       
-           post.dragFunc = function(){console.log("Ingen action")};
-            post.do = function() {gameObj[0].fall.aj_fall-= .25;};
-            post.undo = function() {gameObj[0].fall.aj_fall+= .25;};
-
-            this.x= 400;
-            this.y= 400;
-        
-        }, */
-    cardImg : cardImages[cardImages.length-1]
+        if (this.vinst == "Kudde"){
+           post.dragFunc = function(){console.log("Rapp")};
+            post.do = function() {};
+            post.undo = function() {};}
+        if (this.vinst == "Piska"){
+            post.dragFunc = function(){console.log("Rapp")};
+            post.do = function() {};
+            post.undo = function() {};}
+        if (this.vinst == "Klubba"){
+            post.dragFunc = function(){};
+            post.do = function() {gameObj[0].styrka++;};
+            post.undo = function() {gameObj[0].styrka--;};}
+        }, 
+    cardImg : cardImages[cardImages.length-1],
 });
 
 }
-/*---------------
-KUDDE
-------------------*/
-gameObj.push({
-  namn: "Kudden",
-  index: gameObj.length,
-  x: 180,
-  y: 180,
-  width: 50,
-  hight: 50,
-  z:[1, 1.3], hojd:.3,
-  speedX: 0,
-  speedY: 0,
-  floor: 1,
-  img: sakImg[sakImg.length - 1],
-  move:function(){
-    return false;},
-  hitAction : function(){
-    wait.push("getKudde");
-    moveOn = false;
-    console.log("index",this.index);
-    hitIndex = this.index; 
-    gameStatus.push(this.drawRuta);},
-  draw: function(){
-    var ctx = myGameArea.context;
-    ctx.drawImage(this.img, this.x, this.y, 40, 40);
-  },
-  drawRuta: function(){
-      const index = getIndexGameObj("Kudden");
 
-        gameObj[index].x= 400;
-        gameObj[index].y= 400;
-        gameObj[index].button =  [{text: "Dunligt!", action: gameObj[index].getSak}];
-        gameObj[index].text = "Kan vara bra ha.";
-        this.x=-100, this.y=-100
-        //gameObj[0].placeMe = true;
-        drawRuta("Kudde", gameObj[index].text, gameObj[index].img, gameObj[index].button);
-    
-    },
-      getSak: function(){
-            //map[wood.mapNum].card = 1; //blank
-            gameStatus.push(putEquipmentToBag); 
-            notWaiting("Kudden");
-            
-    },    
-    putInBag: function(){
-            
-            bagger.push(new Sak());
-            var post = bagger[bagger.length-1];
-            post.namn = "Kudden";
-            console.log(bagger[bagger.length-1].namn);
-            post.img = sakImg[sakImg.length-1];
-        
-           post.dragFunc = function(){console.log("Rapp")};
-            post.do = function() {};
-            post.undo = function() {};
-       
-       
-           
-          
-            post.namn = "Kudde";
+gameObj.push(
+ {
 
-       
-           post.dragFunc = function(){console.log("Ingen action")};
-            post.do = function() {gameObj[0].fall.aj_fall-= .25;};
-            post.undo = function() {gameObj[0].fall.aj_fall+= .25;};
+move:func(){return:false}
 
-        
-         
-        } 
-});
+
+ })
 
 
 

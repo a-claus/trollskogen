@@ -36,8 +36,16 @@ function putEquipmentToBag(){
 
 	//Frågan hur många olika strålbilder behövs för att göra bakgrundseffekt. Tar det senare.
 	console.log("effekt");
-	gameObj.push(
- {
+	gameObj.push({
+		namn: "Fryst bild",
+		hitAreaX: 0, hitAreaY: 0 , haWidth: 400 , haHight: 400,
+		z:[1, 5],
+		draw: function(){},
+		move: function(){return false;},
+		hitAction: function(){}
+
+ 	})
+	gameObj.push({
 	 
     namn: "effekt",
     vad: "effekt",
@@ -55,16 +63,19 @@ function putEquipmentToBag(){
     stegX:  -1,
     stegY: 1,
    	raknare: 0,
+
    	move: function(){
-   		
    		this.raknare += 2;
 		if (this.raknare > 50){ 
 			this.x += this.stegX; 
 			this.y += this.stegY;}
 		if (this.x < this.xTill) {
-				
+			this.y = 400;
+					gameObj[gameObj.length-2].haHight = 0;
+					gameObj[gameObj.length-2].haWidth = 0;
+					console.log("Hi",hitIndex)
 					gameObj[hitIndex].putInBag();
-					this. effekt = false; 
+					this.effekt = false; 
 					if (bagAktiv == -1) {
 						bagAktiv = 0;
 						bagger[bagAktiv].do();
@@ -74,21 +85,18 @@ function putEquipmentToBag(){
 							width: 80, 
 							height: 35, 
 							action:function(){changeThing();}}
-						);}
-					//gameObj.splice(hitIndex, 1);
-				
-		
-						//dragHitArea.push({x:35, y:360, width:80, height:35, action:function() {bagger[bagAktiv].dragFunc()}});
-					
+						);}			
 				}
    	},
    	draw: function(){
-   		//console.log("eff draw" + this.x);
        ctx.drawImage(sakImg[sakImg.length - 1], this.x, this.y, this.width, this.height);
 	}
 });
+	zeta=true;
 	return false;
 }
+
+
 
 var effekt = {}; 
 var bege;

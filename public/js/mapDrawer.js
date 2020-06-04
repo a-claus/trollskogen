@@ -29,7 +29,7 @@ function updateGameArea(){
         //var objR = {};
             var objR = [];
             //objR[obj.index] = obj.z;  //obj.key
-           // console.log(obj.namn);
+            console.log(obj);
             //console.log(obj.z[1]);
             objR.push(obj.z[1]);
             return objR;
@@ -51,7 +51,7 @@ let iii;
  
         if (gameObj[i] == undefined) {
             console.log(" i undefined iii " + iii + "/" + i);
-            //console.log(gameObj[i-1].namn);
+            console.log(gameObj);
     }
 
         if (gameObj[i].move() == true){
@@ -118,13 +118,13 @@ function checkMoveInOrder(index){
 
             walker = findwall(pointOfpic(index));
           
-            if (gameObj[index].specialMove) walker = gameObj[index].specialMove(walker); //??? Alven? Move som inte ska påverkas av väggar
-      
-                hit = objectHit(index);
+            if (gameObj[index].specialMove) walker = gameObj[index].specialMove(); //??? Alven? Move som inte ska påverkas av väggar
            
+            hit = objectHit(index);
+            //console.log(hit, gameObj[index].z);
 
 
-                    if (hit != null){
+            if (hit != null){
                          
                         walker.go = 0;
                     //    console.log("hit");
@@ -139,7 +139,7 @@ function checkMoveInOrder(index){
                             if (tempGo > 0) walker.go += tempGo;
                         }
                     }
-            //}
+             if (gameObj[index].egenskap) {walker.go = naturWalk(index, walker.area);}
         return walker.go;
 
 }
@@ -253,7 +253,7 @@ gameObj[index].fall.tyngdpunkt +=  gameObj[index].fall.acc;
        Om tyngdpunkt under golv,  så står spelare på golv. Ska också kolla om blir skadad.
     -------------------*/            
         if  (gameObj[index].fall.tyngdpunkt < golva ) {
-            if (gameObj[0].fall.acc < -0.25){
+            if (gameObj[0].fall.acc < gameObj[0].fall.aj_fall){
               //  console.log("AAJ" + gameObj[0].fall.acc);
                 deadOrAlive(.5);
                 //gameObj[index].skada += .5;
@@ -422,35 +422,42 @@ for (var i = 0; i<p.length; i++){
 
 
      switch (cString){
-        
-        case "255 255 255": 
-            walker.go = 1;
-            walker.area = "road";
+            case "255 255 255": 
+                walker.go = 1;
+                walker.area = "road";
             break;
-
             case "0 128 0": 
-            walker.go = 0;
-            walker.area = "wood";
+                walker.go = 0;
+                walker.area = "wood";
             break; 
             case "0 152 43": 
-            walker.go = 0;
-            walker.area = "wood";
+                walker.go = 0;
+                walker.area = "wood";
             break; 
             case "203 195 151": 
-            walker.go = 0;
-            walker.area = "betong";
+                walker.go = 0;
+                walker.area = "betong";
             break;       
-
-    
-        
-        	default:
+            default:
                 walker.go=1;
                 walker.area ="road";
             
     }
 
+
 }
 return walker;
+}
+go = gameObj;
+
+function naturWalk(index, natur){
+    console.log(natur);
+    if(natur == "wood" || natur == "road"){
+        if (gameObj[index].egenskap == "flyger"){
+            return 1;
+        }
+    }
+    return 0
 }
 
 function getPosition(index){
@@ -544,7 +551,7 @@ var p=[];
 
 }
 
-f
+
 
 function nyruta(vs = "kompass", tillRuta=1000){
  console.log(vs,tillRuta);

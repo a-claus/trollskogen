@@ -84,7 +84,7 @@ function makeMap(){
 var y=0;
 
 for (var i = 0; i < 81; i++){
-	if (kartbit[y].typ != "glanta"){crupier[i] = 1;}
+	if (kartbit[y].typ != "glanta") {crupier[i] = 1;}
 
  		map[blanda[i]] = {
  			namn:kartbit[y].namn, 
@@ -96,8 +96,8 @@ for (var i = 0; i < 81; i++){
  			floors:kartbit[y].floors,
  			download:kartbit[y].download,
  			kartbit: y,
- 			//card: crupier[i]
- 			card: 1
+ 			card: crupier[i]
+ 			//card: 1
  		};
  
  	y++;
@@ -121,14 +121,14 @@ function bytPlats(namn, vad="namn"){
 //bytPlats("FyraBroVO");
 //bytPlats("Mimers Brunn"); // newBagv1 saknar effekt
 //bytPlats(8,"card"); //alven newBagv1
-//bytPlats(7,"card"); //hugin newBagv1
-//bytPlats(5,"card"); //svamp newBagv1
-//bytPlats(6,"card"); //6  klar: z och foto
-//bytPlats( 2, "card" ); //Lilltroll saknar effekt
+//bytPlats(7,"card"); //hugin newBagv1 waitv1
+//bytPlats(5,"card"); //svamp newBagv1 wait v1
+//bytPlats(6,"card"); //6 Blåbär klar: z och foto waitv1
+bytPlats( 2, "card" ); //Lilltroll saknar effekt
 //bytPlats( 9, "card" );
 //bytPlats( 10, "card" ); //Lyktstolpe
 //bytPlats("Ravin1"); //Ravin1
-bytPlats("Ravin2"); //Ravin2
+//bytPlats("Ravin2"); //Ravin2
 
 function bytPlatsMedBlank(namn, vad, ruta){
 
