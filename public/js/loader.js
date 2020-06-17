@@ -123,6 +123,7 @@ let kanter = {
 
 
 let glanta = {
+	namn: "glanta",
 	miljo: true, figur : false, info: false, floor:1,
 	draw: function(){
 		var ctx = myGameArea.context;

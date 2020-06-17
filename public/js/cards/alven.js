@@ -3,13 +3,19 @@
 // ALVEN 
 //
 //---------------------------------------------
-console.log("Alven");
+console.log("Alven", "alvbild", "alvsprite", "wand");
 
 mapImages.push(new Image());
+mapImages[mapImages.length-1].addEventListener('load', notWaiting.bind("alvsprite") );
+
 mapImages[mapImages.length-1].src="./img/alvsprite.png";
 cardImages.push(new Image());
+cardImages[cardImages.length-1].addEventListener('load', notWaiting.bind("alvbild") );
+
 cardImages[cardImages.length-1].src="./img/alven.png";
 sakImg.push(new Image());
+sakImg[sakImg.length-1].addEventListener('load', notWaiting.bind("wand") );
+
 sakImg[sakImg.length-1].src = "./img/wand.png";
 
 
@@ -26,6 +32,9 @@ gameObj.push(
     indexS: mapImages.length - 1,
     indexCI: cardImages.length - 1,
     placeMe: true,
+    z: [1, 1.4], hitAreaX: 175, hitAreaY: 175,
+    hojd:.3,
+    haWidth: 50 , haHight: 50, 
 //
 
 
@@ -36,10 +45,18 @@ gameObj.push(
   cardImg : cardImages[cardImages.length-1],
   move: function (){return false;},
   hitAction : function(){
-    this.T6 = 0;
+     gameObj[0].placeMe = true;
+     console.log("What");
+      wait.push("diceRuta");
+    //movepause=true;
+    gameStatus.push(gameObj[hittad].drawRuta);
+    hitIndex = this.index;
+    moveOn = false;
 
-    hitIndex = this.index; //xyz borde reggas senare med tanke att gameObj kan ändras efter laddning
-     gameStatus.push(diceRuta);
+    
+    t6Ruta.reset();
+
+    
 },
   
   flyttarSig: function(){
@@ -50,14 +67,14 @@ gameObj.push(
     },
     text: "Har inte du gått aningens vilse, lille porslinsdocka?" ,
 drawRuta: function (){
-  movepause = true;
+  
     var buttons = []; let bonus = 0;
-   if (this.T6 != 0){
+   if (t6Ruta.T6 != 0){
       bonus += gameObj[0].iq; 
     }
-    console.log("T6" + this.T6);
+    
     let T6res = [7, 4, 1]; //7,4,1
-    if (this.T6 + bonus >= T6res[0]) {
+    if (t6Ruta.T6 + bonus >= T6res[0]) {
       this.text = "Den här staven kan säkert hjälpa dig.";
       this.getWand();
       buttons = [{action: moveFunc, text: "Taaack"}];      
@@ -157,7 +174,7 @@ KARTA
     y: 170,
     speedX: 0,
     speedY: 0,
-    z: 1, hojd:.5,  
+     
 
   /*--------------------------------
 HIT
@@ -214,5 +231,6 @@ BILD SPRITES on MAP
 
 
 hitObjects++;
-gameStatus.push(moveStart);
+notWaiting("Alven");
+
 //ajaxQueue--;

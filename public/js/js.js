@@ -245,6 +245,7 @@ function startaIgen(){
     //nollsälla värden
 
     //byta figur
+    deleteObjects();
     deleteObject("Prinsen");
     ajaxer(figurer[1].url , "Narr");
     waitFor(nyruta.bind(this, "jump", 81))
@@ -321,6 +322,101 @@ function drawDiceRuta(text, img, buttons, bonus = 0){
         button.push(new Button(buttons[i].action, x+190, bhsY + i * 50, buttons[i].text));
     }
 
+}
+
+
+
+function dice(d){
+        return Math.floor(d * Math.random() + 1);
+    }
+
+let t6Ruta = {
+    //0: enemy 1:player   
+    reset: function(){
+        this.buttons = [];
+        this.img = gameObj[hitIndex].img;
+        this.T6 = 0;
+        this.bonus = [];
+        
+        this.text = {};
+    },
+   
+    draw: function(){
+         var x=50;
+        var y=100;
+        ctx = myGameArea.context;
+        ctx.drawImage(rutaBG, x, y);
+        ctx.drawImage(this.img, x+6, y+92, 100, 100);
+        textWriter2(this.text.rubrik, 200, y + 30, {lineLength: 26, color: "white", align: "center", strokeColor: "white"});
+        textWriter2(this.text.brod, x+30, y+54, {lineLength: 26, color: "black"});
+        if (gameObj[hitIndex].bonus) drawBonus(x+130, y+140);
+        if (gameObj[hitIndex].T6 > 0) drawDice(x+115, y+160,0, gameObj[hitIndex].T6, bonus);
+        console.log(buttons);
+        let bhsY = y + 200 - buttons.length * 50;
+        for (var i = 0; i < buttons.length; i++){
+            button.push(new Button(buttons[i].action, x+190, bhsY + i * 50, buttons[i].text));
+    }
+
+
+
+
+
+        ctx = myGameArea.context;
+        ctx.drawImage(this.img[0], 120, 0, 160, 180);
+        ctx.drawImage(this.img[1], 114, 240, 183, 170);
+        ctx.drawImage(combatBG, 0, 0, 400,400);
+        drawStyrka(hitIndex, 100, 90);
+        drawStyrka(0, 100, 340);
+        drawHarts(hitIndex, 285, 15);
+        drawHarts(0, 285, 365);
+        textbox(this.brod, {color:"red"}, 20, 50, 60);
+        textWriter(this.rubrik, 20, 30, 26, "black" ,"left");
+         if (gameObj[hitIndex].T6 > 0){ 
+            drawDice(x+135, y+228, 0, gameObj[0].T6);
+            drawDice(x+250, y+138, 1, gameObj[hitIndex].T6);
+            drawResultFight();
+        }
+        let bhsY =  300 - this.buttons.length * 50;
+        for (var i = 0; i < this.buttons.length; i++){
+            button.push(new Button(this.buttons[i].action, 300, bhsY + i * 50, this.buttons[i].text));
+        }
+    }
+}
+
+let stridRuta = {
+    //0: enemy 1:player   
+    reset: function(){
+        this.buttons = [];
+        this.img = [gameObj[hitIndex].img, gameObj[0].img];
+        this.T6 = [0,0];
+        this.styrka = [];
+        this.harts = [];
+        this.bonus = [];
+        this.rubrik = "";
+        this.text = "";
+    },
+   
+    draw: function(){
+        ctx = myGameArea.context;
+        ctx.drawImage(this.img[0], 120, 0, 160, 180);
+        ctx.drawImage(this.img[1], 114, 240, 183, 170);
+        ctx.drawImage(combatBG, 0, 0, 400,400);
+        drawStyrka(hitIndex, 100, 90);
+        drawStyrka(0, 100, 340);
+        drawHarts(hitIndex, 285, 15);
+        drawHarts(0, 285, 365);
+        textbox(this.brod, {color:"red"}, 20, 50, 60);
+        textWriter(this.rubrik, 20, 30, 26, "black" ,"left");
+         if (gameObj[hitIndex].T6 > 0){ 
+            drawDice(x+135, y+228, 0, gameObj[0].T6);
+            drawDice(x+250, y+138, 1, gameObj[hitIndex].T6);
+            drawResultFight();
+        }
+        let bhsY =  300 - this.buttons.length * 50;
+        for (var i = 0; i < this.buttons.length; i++){
+            button.push(new Button(this.buttons[i].action, 300, bhsY + i * 50, this.buttons[i].text));
+        }
+    }
 }
 
 function drawCombatRuta(text, img, buttons){ //bonus?
@@ -487,8 +583,8 @@ var cardAction;
 
 
 
-function getIndexGameObj(input){
-            var index = gameObj.findIndex(zz => zz["namn"] == input);
+function getIndexGameObj(namn){
+            var index = gameObj.findIndex(zz => zz["namn"] == namn);
             return index;
 }
 
@@ -502,9 +598,11 @@ function getIndex(input){
             return index;
 }
 
-function deleteObject(vad){
-    var nummer = gameObj.findIndex(function(index) {return index["namn"] === vad; });
-     gameObj.splice(nummer, 1);  
+function deleteObject(namn){
+    console.log("AAA", namn);
+    var nummer = gameObj.findIndex(function(index) {return index["namn"] === namn; });
+     gameObj.splice(nummer, 1); 
+     zeta = true; 
 }
 
 

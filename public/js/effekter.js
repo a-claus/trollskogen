@@ -194,8 +194,11 @@ function deadOrAlive(plunus){
 	return true;
 
 }
-
 function aliveOrNot(figur){
+	console.log("byt till alive");
+	alive(figur);
+}
+function alive(figur){
 	if (gameObj[figur].liv <= gameObj[figur].skada){ return false;}
 	else {return true;}
 }

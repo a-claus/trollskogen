@@ -7,6 +7,7 @@ mapImages[mapImages.length-1].addEventListener('load', notWaiting.bind("narrBild
 mapImages[mapImages.length-1].src="./img/narrSprite.png";
 
 
+
 console.log("Narr");
 
 gameObj.unshift(
@@ -110,11 +111,17 @@ function hopp(jump){
 	
 }
 
+wait.push("narrCardBild");
+gameObj[0].img= new Image();
+gameObj[0].img.addEventListener('load', notWaiting.bind("narrCardBild"));
+
+gameObj[0].img.src = "./img/narr.png";
+
 //gameStatus.push(function() {return mapChange("jump", 81)} );
 
 //gameStatus.push(moveStart);
 //gameStatus.push(mapChange.bind(this, "jump", 81, "Narr"));
 //gameStatus.push(mapChange.bind(this, "jump", 81, "Narr"));
  
-   console.log(gameObj); 
+   console.log(gameObj[0]); 
    console.log("Klar Narr"); 

@@ -6,7 +6,7 @@ mapImages[mapImages.length-1].src="./img/lilltrollsprite.png";
 
 cardImages.push(new Image());
 cardImages[cardImages.length-1].addEventListener('load', notWaiting.bind("troll2") );
-cardImages[cardImages.length-1].src="./img/trollMor.png";
+cardImages[cardImages.length-1].src="./img/lilltrollet.png";
 
 if (-1 == bagger.findIndex(zz => zz.namn == "Kudde")){
   wait.push("kudde");
@@ -25,15 +25,16 @@ console.log("Troll");
 for (i = 0; i<2; i++){
 gameObj.push(
  {
-  namn: "Lill-Troll",
- 	vem: "Troll",
-	vad: "spelare",
-	figur: true, miljo: false, info: false,
+    namn: "Lill-Troll" + i,
+ 	  vem: "Troll",
+	 vad: "spelare",
+	 figur: true, miljo: false, info: false,
     action: "dice",
     index: gameObj.length,
     indexS: mapImages.length - 1,
     indexCI: cardImages.length - 1,
     placeMe: true,
+    img: cardImages[cardImages.length - 1],
  	
 /*--------------------------------
 EGENSKAPER
@@ -41,19 +42,15 @@ EGENSKAPER
  	  liv: 2,
     skada: 0,
     styrka: 1,
-    //iq:1,
-    //magi: 0,
-    //magipower: 0,
-    //bag: [],
-    //upgrade: [],
+   
 
  /*--------------------------------
 KARTA
 ----------------------------------*/   
 
 	x: 100 + i * 150,
-    y: 180,
-    z:[1, 1.3], hojd:.3,
+  y: 180,
+  z:[1, 1.3], hojd:.3,
 	speedX: 0,
 	speedY: 0,
 	floor: 1,
@@ -68,9 +65,15 @@ BILD SPRITES MAP
 	moving: true,
   vinst: tempArray[temp],
   ang:{},
-  run: true,
+  run: true, mov: {},
+
 	
 	move: function (){ 
+    /*
+      Lilltrollet anfaller när den siktar spelare.
+
+    */
+
         var xLong = this.x - gameObj[0].x;
         var yLong = this.y - gameObj[0].y;
         
@@ -81,12 +84,13 @@ BILD SPRITES MAP
       if (attack == this.vaderstrack) {
         this.speedX = .75 * Math.cos(this.ang.rad); 
         this.speedY = .75 * Math.sin(this.ang.rad); 
-        this.run=true;
+        this.run=true; 
+        this.mov = {x: this.speedX, y:this.speedY};
         return true;
       }
       else
       {
-        this.run=false;
+        this.run = false; //lilltroll står still
         return false;}
        
       
@@ -122,76 +126,92 @@ BILD SPRITES MAP
 		this.moving = false;
         },
         hitAction : function(){
+          this.startFajt = true;
+          gameObj[0].placeMe = true;
+          this.x = this.x + -100 * this.mov.x;
+          this.y = this.y + -100 * this.mov.y;
            wait.push("trollHit");
-           
+           moveOn = false;
         
-            hitIndex = this.index; //xyz borde reggas senare med tanke att gameObj kan ändras efter laddning
-            // gameStatus.push(diceRuta); // fajtruta
+            hitIndex = getIndexGameObj(this.namn); 
+            this.index = hitIndex; 
+           stridRuta.reset();
+           console.log("reset", stridRuta.T6);
               gameStatus.push(this.drawRuta); // fajtruta
         },
-        //T6 :0,
+        startFajt: true,
         drawRuta: function (){
-            movepause = true;
-            let enemy = gameObj[hitIndex];
-            let player = gameObj[0];
-            movepause = true;
-            var buttons = [];
-            console.log("T6:" + gameObj[hitIndex].T6 );
-        if (enemy.T6 != 0){
-            let T6res = player.T6 - enemy.T6 + player.styrka - enemy.styrka;
-            if (T6res > 0) {
+                    
+          let obj = {};
+          let enemy = gameObj[hitIndex];
+          let player = gameObj[0];
+         // var buttons = [];
+          
+
+           
+          if (enemy.startFajt == true){
+              enemy.startFajt = false;
+              
+              player.skada+=.5;
+           }
+           else
+           { 
+            stridRuta.T6 = [dice(6), dice(6)]; 
+          
+           }
+          
+            if (stridRuta.T6[0] != 0){
+              let T6res = stridRuta.T6[1] - stridRuta.T6[0] + player.styrka - enemy.styrka;
+              if (T6res > 0) {
                enemy.skada++;
-            }
-            if (T6res == 0) {
+              }
+              if (T6res == 0) {
                 enemy.skada+=.5;
                 player.skada+=.5;
-            }
+              }
             if (T6res < 0) {
                player.skada++;
+              }
             }
-        }
         
-        //check liv
-        aliveOrNot(0);
-            //om någon död
+       
                 
-                if (aliveOrNot(hitIndex) == false){
-                    buttons = [{action: gameObj[hitIndex].getSak, text: "Ta sak"}];
-                    enemy.T6=0;
-                    drawCombatRuta({rubrik: "Stenklump", brod: "Det ligger ngt där"}, gameOver, buttons);
-                    console.log("gggg");
+                if (alive(hitIndex) == false){
+                    stridRuta.buttons = [{action: notWaiting, text: "Hukus pokus"}];
+                    stridRuta.text = "Stendöd!";
+                    stridRuta.rubrik = "Stenklump";
+                    stridRuta.img[0] = gameOver;
+                    stridRuta.draw();
+                   // drawCombatRuta({rubrik: "Stenklump", brod: "Stendöd!"}, gameOver, buttons);
+              
+                    gameStatus.push(deleteObject.bind(this, enemy.namn));
+              
                 }
-                if(aliveOrNot(0) == false){
+                if (alive(0) == false){
+                    stridRuta.buttons = [{action: death, text: "Hur???"}];
 
+                    stridRuta.text = "Hur????";
+                    stridRuta.rubrik = "JAG DÖÖÖR";
+                    stridRuta.img[1] = gameOver;
+                    stridRuta.draw();
+                    //gameStatus.push(deleteObject.bind(this, enemy.namn));
                 }
-                if(aliveOrNot(hitIndex) == true && aliveOrNot(0) == true){
-                  buttons = [{action: diceRuta, text: "Slåss"}, {action: notWaiting, text: "Fly"}];
-                  drawCombatRuta({rubrik: "Lill-Troll", brod: "Its war"}, enemy.cardImg, buttons);
-                  player.T6 = 6 * Math.random() + 1; 
-                  enemy.T6 = 6 * Math.random() + 1; 
-                  player.T6 = Math.floor(player.T6); 
-                  enemy.T6 = Math.floor(enemy.T6); 
-                  buttons = [{action: diceRuta, text: "Slåss"}, {action: notWaiting, text: "Fly"}];
-          
-          
-                  drawCombatRuta({rubrik: "Lill-Troll", brod: "Its war"}, enemy.cardImg, buttons);
-                  player.T6 = 6 * Math.random() + 1; 
-                  enemy.T6 = 6 * Math.random() + 1; 
-                  console.log("T6a:" + enemy.T6 );
-                  player.T6 = Math.floor(player.T6); 
-                  enemy.T6 = Math.floor(enemy.T6); 
+                if (alive(hitIndex) == true && alive(0) == true){
+                    stridRuta.buttons = [{action: diceRuta, text: "Slåss"}, {action: notWaiting, text: "Fly"}];
+                    stridRuta.text = "Lill-Troll";
+                    stridRuta.rubrik = "Är det fajt ni vill ha, ska ni få det.";
+                    
+                    stridRuta.draw();
+                 // drawCombatRuta({rubrik: "Lill-Troll", brod: "Its war"}, enemy.cardImg, buttons);
                 }
-          console.log(gameStatus);
+         
+          //drawCombat(obj);
 
           return false; 
+        
             
       },
-      getSak: function(){
-            map[wood.mapNum].card = 1; //blank
-            gameStatus.push(putEquipmentToBag, move);
-            gameObj[hitIndex].floor=-1;
-        
-    },/*,    
+      /*,    
     putInBag: function(){
            
             bagger.push(new Sak());
@@ -233,7 +253,9 @@ gameObj.push({
     wait.push("getKudde");
     moveOn = false;
     console.log("index",this.index);
-    hitIndex = this.index; 
+    hitIndex = getIndexGameObj(this.namn); 
+            this.index = hitIndex; 
+    //hitIndex = this.index; 
     gameStatus.push(this.drawRuta);},
   draw: function(){
     var ctx = myGameArea.context;
