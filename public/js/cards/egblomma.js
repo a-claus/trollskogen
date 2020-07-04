@@ -24,6 +24,7 @@ gameObj.push(
     indexCI: cardImages.length - 1,
     placeMe: true,
     moving: false,
+    img: sakImg[sakImg.length - 1],
   vaderstrack: "soder",
   draw: function(){
     
@@ -35,7 +36,10 @@ gameObj.push(
 
 
     const index = getIndexGameObj("blomma");
-    drawRuta("Äggblomman", "Där är den!, som trollpackan behövde till Kungens medicin!", gameObj[index].cardImg, [{text: "Plocka blomma!", action: gameObj[index].getBlomma}]);
+    t6Ruta.text = {rubrik: "Äggblomman", text: "Där är den!, som trollpackan behövde till Kungens medicin!"}
+    t6Ruta.buttons = [{text: "Plocka blomma!", action: gameObj[index].getBlomma}];
+    t6Ruta.draw();
+    //drawRuta("Äggblomman", "Där är den!, som trollpackan behövde till Kungens medicin!", gameObj[index].cardImg, [{text: "Plocka blomma!", action: gameObj[index].getBlomma}]);
 
   },
   getBlomma: function(){
@@ -43,7 +47,8 @@ gameObj.push(
   console.log("getBlomma"); 
   map[wood.mapNum].card = 1;   
   //deleteObject("blomma");      
-  gameStatus.push(putEquipmentToBag, move);
+  gameStatus.push(putEquipmentToBag);
+  notWaiting("e_blomma");
     },    
   cardImg : cardImages[cardImages.length-1],
 
@@ -54,6 +59,7 @@ KARTA
 
     x: 170,
     y: 170,
+    z: [1, 1.3], hojd: .3,
     speedX: 0,
     speedY: 0,
     width: 60,
@@ -66,12 +72,16 @@ HIT
 
 
 hitAction : function(){
+  wait.push("e_blomma");
+  moveOn = false;
   console.log("ÄggblommaHitAction");
     gameStatus.push(this.drawRuta);
     hitIndex = this.index;
     gameObj[0].placeMe = true;
+    t6Ruta.reset();
     
-    console.log("Ägget är löst!");   
+    console.log("Ägget är löst!"); 
+    setnohit(hitIndex);  
 },
 
 putInBag: function(){
@@ -80,8 +90,15 @@ putInBag: function(){
   post.namn = "Äggblomma";
   post.img = sakImg[sakImg.length-1];
   post.dragFunc = function(){ 
-    if (wood.mapNR == 4) 
-      kartObj.push(entreN);
+    if (wood.mapNR == 4)
+     console.log(getIndexGameObj("edgeNorr"));
+    gameObj[1].open = true;
+    wood.norr = 1;
+    edgeN.open = true;
+    paparazzi = true;
+    console.log(gameObj[getIndexGameObj("edgeNorr")]);
+    console.log(gameObj[getIndexGameObj("msHitArea")]);
+
     };
     post.do = function() {};
     post.undo = function() {};
@@ -97,7 +114,7 @@ putInBag: function(){
 //kartbit[13].func=loadSIS;
 
 hitObjects++;
-gameStatus.push(moveStart);
+notWaiting("Äggblomma");
 
 
 

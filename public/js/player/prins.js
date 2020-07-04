@@ -59,7 +59,7 @@ BILD SPRITES MAP
 		acc: 0,
 		tyngdpunkt: 1,
 		drawer: 1,
-		hardLandning:.5
+		aj_fall:-.25
 	},
 	
 	move: function (){ 

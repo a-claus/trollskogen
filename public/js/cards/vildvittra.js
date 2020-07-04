@@ -1,34 +1,26 @@
 
+
+wait.push("vildvittra_b");
 mapImages.push(new Image());
+mapImages[mapImages.length-1].addEventListener('load', notWaiting.bind("vildvittra_b"));
+
 mapImages[mapImages.length-1].src="./img/bird.png";
-cardImages.push(new Image());
-cardImages[cardImages.length-1].src="./img/trollMor.png";
-
-if (-1 == bagger.findIndex(zz => zz.namn == "Kudde")) tempArray.push("Kudde");
-if (-1 == bagger.findIndex(zz => zz.namn == "Piska")) tempArray.push("Piska");
-if (-1 == bagger.findIndex(zz => zz.namn == "Klubba")) tempArray.push("Klubba");
-
-if (tempArray.length > 0){
- temp = Math.floor(tempArray.length * Math.random()); 
- sakImg.push(new Image());
-  if (tempArray[temp] == "Kudde") sakImg[sakImg.length-1].src = "./img/kudde.png";
-  if (tempArray[temp] == "Piska") sakImg[sakImg.length-1].src = "./img/piska.png";
-  if (tempArray[temp] == "Klubba")sakImg[sakImg.length-1].src = "./img/klubba.png";
-}
 
                   
 
 /*
+_________________________________
 Vildvittror
     - Strid - ?
     - Belöning - ?
     - Antal alltid flera, varje gång olika
     - move - kurvaktiga banor, snabba attackerar bakifrån. Framifrån undviker. Ger halv skada vid träff.
+_______________________________________________
 */ 
 
 
 console.log("Vildvittror");
-
+for(i = 0; i<4  ; i++)
 gameObj.push(
  {
   namn: "Vildvittra",
@@ -39,7 +31,7 @@ gameObj.push(
     action: "dice",
     index: gameObj.length,
     indexS: mapImages.length - 1,
-    indexCI: cardImages.length - 1,
+    
     placeMe: true,
  	
 /*--------------------------------
@@ -48,17 +40,18 @@ EGENSKAPER
  	  liv: 2,
     skada: 0,
     styrka: 1,
+    count: 0,
     
 
  /*--------------------------------
 KARTA
 ----------------------------------*/   
 
-	x: 180,
-	y: 180,
+	x: 120 + i * 30,
+	y: 120 + i * 30,
 	speedX: 0,
 	speedY: 0,
-  z: [4, 4.2], hojd:.2,
+  z: [1, 1.2], hojd:.2,
 	
 
 /*--------------------------------
@@ -68,9 +61,9 @@ BILD SPRITES MAP
 	width: 40,
 	hight: 40,
 	moving: true,
-  vinst: tempArray[temp],
+  
   //angle: Math.floor(Math.random*360),
-  angle: 10,
+  angle: 10 + i * 10,
   angleChange: 0,
   turn: {status: false, ur: "true", end: 0},
   
@@ -199,8 +192,8 @@ BILD SPRITES MAP
 
 
 
-    this.speedY =  2*Math.sin(this.angle * Math.PI/180) ;
-    this.speedX =  2*Math.cos(this.angle * Math.PI/180);
+    this.speedY =  1*Math.sin(this.angle * Math.PI/180) ;
+    this.speedX =  1*Math.cos(this.angle * Math.PI/180);
 
     
     this.x = this.x + this.speedX;
@@ -242,38 +235,30 @@ BILD SPRITES MAP
 		
      
 		this.moving = false;
+
    //  ctx.fillStyle = "blue";
    //ctx.fillText(this.vss[0], this.vss[1],this.vss[2]);
         },
         hitAction : function(){
           console.log("hit");
+          this.count++;
+          if (this.count==20)this.count=0;
+          if (this.count==1){
           gameObj[0].skada += .5;
+          if (alive(0) == false){
+            
+           moveOn = false;
+           gameStatus.push(death);
+         }
+          }
+
         },
       
       getSak: function(){
             
         
     },    
-    putInBag: function(){
-            console.log(this.vinst);
-            bagger.push(new Sak());
-            var post = bagger[bagger.length-1];
-            post.namn = this.vinst;
-            console.log(bagger[bagger.length-1].namn);
-            post.img = sakImg[sakImg.length-1];
-        if (this.vinst == "Kudde"){
-           post.dragFunc = function(){console.log("Rapp")};
-            post.do = function() {};
-            post.undo = function() {};}
-        if (this.vinst == "Piska"){
-            post.dragFunc = function(){console.log("Rapp")};
-            post.do = function() {};
-            post.undo = function() {};}
-        if (this.vinst == "Klubba"){
-            post.dragFunc = function(){};
-            post.do = function() {gameObj[0].styrka++;};
-            post.undo = function() {gameObj[0].styrka--;};}
-        }, 
+    putInBag: function(){}, 
     cardImg : cardImages[cardImages.length-1],
 });
 
@@ -281,4 +266,4 @@ BILD SPRITES MAP
 
 
 hitObjects++;
-gameStatus.push(moveStart);
+notWaiting("Vildvittra");

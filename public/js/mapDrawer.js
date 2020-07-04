@@ -129,7 +129,7 @@ function checkMoveInOrder(index){
                         walker.go = 0;
                     //    console.log("hit");
                         if (index == 0 || hit == 0){
-                            console.log("hit:");
+                            console.log("hitAction:");
                             console.log(gameObj[hit]);
                             console.log(gameObj[0]);
                             
@@ -137,6 +137,7 @@ function checkMoveInOrder(index){
                             hittad = index + hit;
                             var tempGo = gameObj[index + hit].hitAction(); //verkar inte vara ngt problem att skicka med nuffra i parantesen
                             if (tempGo > 0) walker.go += tempGo;
+                            console.log("------------------");
                         }
                     }
              if (gameObj[index].egenskap) {walker.go = naturWalk(index, walker.area);}

@@ -99,7 +99,7 @@ gameObj.push(
         console.log("V");
       }
 
-      this.angle = angleXY({x:this.x, y:this.y}, this.goal;
+      this.angle = angleXY({x:this.x, y:this.y}, this.goal)
 
         this.speedX = -1 * Math.cos(this.angle.rad);
         this.speedY = -1 * Math.sin(this.angle.rad);
@@ -181,6 +181,7 @@ drawRuta: function(){
     const index = getKartbitCard(0);
     let xyMap = kordinatorXY(wood.mapNR);
     let skattMap = kordinatorXY(index);
+    console.log(index, xyMap,skattMap);
     let upp = skattMap[1] - xyMap[1]; // 2 3 -1
     let sida = skattMap[0] - xyMap[0];
     if (upp > 0) text = "Du behöver vandra " + upp + " rutor söderut, för att hitta Äggblomman.";

@@ -118,7 +118,7 @@ function upgradeFigur(iHand, positiv=true){
 }
 
 
-function bagupgrade(iHand, positiv=true){
+function xbagupgrade(iHand, positiv=true){
 
         if (positiv==false) iHand="minus_"+ iHand;
         
@@ -465,7 +465,7 @@ if (floor <= this.floors){
             drawRoads(this.mapNum);
         }
 
-drawBro(floor){
+xdrawBro(floor){
        // NSVO inverseNSVO
     for (var i=0; i<5; i++){
 
@@ -542,8 +542,13 @@ function countMap(kartbit, vaderstrack){
     console.log("A" + kartbit + vaderstrack);
        switch (vaderstrack){
             case "norr":
-                kartbit=kartbit - 9;
-                if (kartbit < 0) kartbit = 81;
+            if (kartbit != 4) {
+                kartbit = kartbit - 9;} 
+                else
+                {
+                    console.log("tillbaka")
+                    kartbit = 82;}
+
             break;
             case "soder":
                 if (kartbit<81){

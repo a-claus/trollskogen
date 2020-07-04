@@ -19,26 +19,26 @@ card.push({id:10, namn:"Lyktstolpe", url:"./js/cards/lyktstolpe.js", no:[4]});
 var kartbit=[];//hej
 
 kartbit.push({index: 0, namn:"Road", norr:1,soder:1,ost:1,vast:1, typ:"glanta",floors:1, actionIndex:-1}); // 5
-kartbit.push({index:1, namn:"Road",norr:0,soder:1,ost:1,vast:1, typ:"glanta",floors:1, actionIndex:-1});    //  5
+kartbit.push({index: 1, namn:"Road",norr:0,soder:1,ost:1,vast:1, typ:"glanta",floors:1, actionIndex:-1});    //  5
 kartbit.push({index: 2, namn:"Road",norr:1,soder:0,ost:1,vast:1, typ:"glanta",floors:1,actionIndex:-1});
 kartbit.push({index: 3 ,namn:"Road",norr:1,soder:1,ost:1,vast:0, typ:"glanta",floors:1,actionIndex:-1});
-kartbit.push({index:4,namn:"Road",norr:1,soder:1,ost:0,vast:1, typ:"glanta",floors:1,actionIndex:-1});
-kartbit.push({index:5 ,namn:"Road",norr:1,soder:1,ost:0,vast:0, typ:"glanta",floors:1,actionIndex:-1});
-kartbit.push({index:6,namn:"Road",norr:1,soder:0,ost:0,vast:1, typ:"glanta",floors:1,actionIndex:-1});
-kartbit.push({index:7 ,namn:"Road",norr:1,soder:0,ost:1,vast:0, typ:"glanta",floors:1,actionIndex:-1});
-kartbit.push({index:8 ,namn:"Road",norr:0,soder:0,ost:1,vast:1, typ:"glanta",floors:1,actionIndex:-1});
-kartbit.push({index:9,namn:"Road",norr:0,soder:1,ost:1,vast:0, typ:"glanta",floors:1,actionIndex:-1});
-kartbit.push({index:10,namn:"Road",norr:0,soder:1,ost:0,vast:1, typ:"glanta",floors:1,actionIndex:-1});
-kartbit.push({index:11,namn:"FyraBroVO",norr:1,soder:1,ost:2,vast:2, typ:"bro",floors:2,actionIndex:-1});
-kartbit.push({index:12,namn:"FyraBroNS",norr:2,soder:2,ost:1,vast:1, typ:"bro",floors:2,actionIndex:-1});
-kartbit.push({index:13,namn:"Svärdet i stenen", norr:1,soder:1,ost:1,vast:1, typ:"glantaSp", floors:1, actionIndex:0, download:true});
-kartbit.push({index:14,namn:"Mimers Brunn", norr:1,soder:1,ost:1,vast:1, typ:"glantaSp", floors:1, download: true});
-kartbit.push({index:15,namn:"Ravin1", norr:2, soder:1, ost:2, vast:1, typ:"stup", floors:2, actionIndex:-1, download:true}); //, download:true
-kartbit.push({index:16,namn:"Ravin2",norr:2,soder:1,ost:1,vast:2, typ:"stup",floors:2,actionIndex:-1, download:true});
-kartbit.push({index:17,namn:"Hyllan",norr:1,soder:1,ost:1,vast:1, typ:"glantaSp",floors:1, actionIndex:-1});
-kartbit.push({index:18, namn:"Ravin3",norr:1,soder:2,ost:1,vast:2, typ:"glantaSp", floors:2, actionIndex:-1, download: true});
-kartbit.push({index:19, namn:"Ravin4",norr:1,soder:2,ost:2,vast:1, typ:"glantaSp", floors:2, actionIndex:-1, download:true});
-kartbit.push({namn:"Start",norr:1,soder:1,ost:1,vast:1, typ:"start", bildBG: "/img/map_start.png", floors:1, actionIndex:-1, download:true});
+kartbit.push({index: 4,namn:"Road",norr:1,soder:1,ost:0,vast:1, typ:"glanta",floors:1,actionIndex:-1});
+kartbit.push({index: 5 ,namn:"Road",norr:1,soder:1,ost:0,vast:0, typ:"glanta",floors:1,actionIndex:-1});
+kartbit.push({index: 6,namn:"Road",norr:1,soder:0,ost:0,vast:1, typ:"glanta",floors:1,actionIndex:-1});
+kartbit.push({index: 7 ,namn:"Road",norr:1,soder:0,ost:1,vast:0, typ:"glanta",floors:1,actionIndex:-1});
+kartbit.push({index: 8 ,namn:"Road",norr:0,soder:0,ost:1,vast:1, typ:"glanta",floors:1,actionIndex:-1});
+kartbit.push({index: 9,namn:"Road",norr:0,soder:1,ost:1,vast:0, typ:"glanta",floors:1,actionIndex:-1});
+kartbit.push({index: 10,namn:"Road",norr:0,soder:1,ost:0,vast:1, typ:"glanta",floors:1,actionIndex:-1});
+kartbit.push({index: 11,namn:"FyraBroVO",norr:1,soder:1,ost:2,vast:2, typ:"bro",floors:2,actionIndex:-1});
+kartbit.push({index: 12,namn:"FyraBroNS",norr:2,soder:2,ost:1,vast:1, typ:"bro",floors:2,actionIndex:-1});
+kartbit.push({index: 13,namn:"Svärdet i stenen", norr:1,soder:1,ost:1,vast:1, typ:"glantaSp", floors:1, actionIndex:0, download:true});
+kartbit.push({index: 14,namn:"Mimers Brunn", norr:1,soder:1,ost:1,vast:1, typ:"glantaSp", floors:1, download: true});
+kartbit.push({index: 15,namn:"Ravin1", norr:2, soder:1, ost:2, vast:1, typ:"stup", floors:2, actionIndex:-1, download:true}); //, download:true
+kartbit.push({index: 16,namn:"Ravin2",norr:2,soder:1,ost:1,vast:2, typ:"stup",floors:2,actionIndex:-1, download:true});
+kartbit.push({index: 17,namn:"Hyllan",norr:1,soder:1,ost:1,vast:1, typ:"glantaSp",floors:1, actionIndex:-1});
+kartbit.push({index: 18, namn:"Ravin3",norr:1,soder:2,ost:1,vast:2, typ:"glantaSp", floors:2, actionIndex:-1, download: true});
+kartbit.push({index: 19, namn:"Ravin4",norr:1,soder:2,ost:2,vast:1, typ:"glantaSp", floors:2, actionIndex:-1, download:true});
+kartbit.push({index: 20, namn: "Start", norr: 1, soder: 1, ost: 1, vast: 1, typ: "start", bildBG: "/img/map_start.png", floors:1, actionIndex:-1, download:true});
 
 
 var map=[]; 
@@ -87,14 +87,14 @@ for (var i = 0; i < 81; i++){
 	if (kartbit[y].typ != "glanta") {crupier[i] = 1;}
 
  		map[blanda[i]] = {
- 			namn:kartbit[y].namn, 
- 			norr:kartbit[y].norr, 
- 			soder:kartbit[y].soder, 
- 			ost:kartbit[y].ost, 
- 			vast:kartbit[y].vast, 
- 			typ:kartbit[y].typ, 
- 			floors:kartbit[y].floors,
- 			download:kartbit[y].download,
+ 			namn: kartbit[y].namn, 
+ 			norr: kartbit[y].norr, 
+ 			soder: kartbit[y].soder, 
+ 			ost: kartbit[y].ost, 
+ 			vast: kartbit[y].vast, 
+ 			typ: kartbit[y].typ, 
+ 			floors: kartbit[y].floors,
+ 			download: kartbit[y].download,
  			kartbit: y,
  			card: crupier[i]
  			//card: 1
@@ -116,16 +116,16 @@ function bytPlats(namn, vad="namn"){
 }
 //bytPlats("Hyllan"); //newBagv1
 //bytPlats("Svärdet i stenen"); //newBagv1
-//bytPlats(0,"card"); //skatt // newBagv1
+bytPlats(0,"card"); //skatt // newBagv1
 //bytPlats("FyraBroNS");
 //bytPlats("FyraBroVO");
 //bytPlats("Mimers Brunn"); // newBagv1 saknar effekt
-bytPlats(8,"card"); //alven newBagv1
+//bytPlats(8,"card"); //alven newBagv1 waitv1
 //bytPlats(7,"card"); //hugin newBagv1 waitv1
 //bytPlats(5,"card"); //svamp newBagv1 wait v1
 //bytPlats(6,"card"); //6 Blåbär klar: z och foto waitv1
 //bytPlats( 2, "card" ); //Lilltroll saknar effekt
-//bytPlats( 9, "card" );
+//bytPlats( 9, "card" ); //Vildvittra wait
 //bytPlats( 10, "card" ); //Lyktstolpe
 //bytPlats("Ravin1"); //Ravin1
 //bytPlats("Ravin2"); //Ravin2
@@ -157,10 +157,12 @@ map[0].edge="cornerNV";
 //map[4].norr=99;
 //kartbit: 18, 
 map.push({namn:"Start", norr:1, soder:1, ost:1, vast:1, typ:"start", bildBG:"img/map_start.png",actionIndex:-1, floors:1});
+map.push({namn:"Start", norr:1, soder:1, ost:1, vast:1, typ:"start", bildBG:"img/map_start.png",actionIndex:-1, floors:1, download: true});
+
 console.log(map);
 console.log(card);
 console.log("KLAR MED KARTBITAR");
-
+//startGame();
 //wood = new Wood(81);
 
 

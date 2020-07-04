@@ -65,6 +65,7 @@ function putEquipmentToBag(){
    	raknare: 0,
 
    	move: function(){
+   		if (this.effekt == false) return false;
    		this.raknare += 2;
 		if (this.raknare > 50){ 
 			this.x += this.stegX; 

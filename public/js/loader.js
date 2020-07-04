@@ -133,13 +133,18 @@ let glanta = {
     	ctx.fill();}
 }
 
-let edgeN = {namn: "Mapedge", miljo: true, figur : false, info: false, floor: "allaSist",
+let edgeN = {namn: "Mapedge", miljo: true, figur : false, info: false, floor: "allaSist", open: false,
 	draw: function(){
 		console.log("Map edeeN");
-		gameObj[1].open = false;
+		//gameObj[1].open = false;
 		var ctx = myGameArea.context;
 		ctx.fillStyle = "rgb(203,195,151)";
-	   ctx.fillRect(0, 0, 400, 20);}}
+	   ctx.fillRect(0, 0, 400, 20);
+	   if (this.open == true){
+	   	ctx.fillStyle = "rgb(255, 255, 255)";
+	   	ctx.fillRect(150, 0, 100, 20);
+	   }
+	}}
 let edgeS = {miljo: true, figur : false, info: false, floor: "allaSist",
 		draw: function(){
 			var ctx = myGameArea.context;
@@ -568,8 +573,9 @@ let edgeNorr={
 	  speedX: 0, speedY: 0,
 	  haWidth: 400, haHight: 20,
   hitAction : function(){
+  	console.log("Norrwalk")
   	if (this.open == true){
- waitFor(nyruta);
+ 		waitFor(nyruta);
 	 // movepause = true;
 	  //gameStatus.push(nyruta);
 	  //hitIndex = this.index;
@@ -630,18 +636,20 @@ let edgeNorr={
 	
 	  }}
   };
+  
   let msHitArea =
    {
 	  namn:"msHitArea",
 	  hitAreaX: 60, hitAreaY: 60, z: [0, 5],
 	  speedX: 0, speedY: 0,
-	  haWidth: 280, haHight: 2800,
+	  haWidth: 280, haHight: 280,
 	  ms: "vilketvaderstrack",
 
 	  draw: function(){},
 	  move: function (){return false;},
 	  hitAction : function(){  
-	  	                
+
+	  	              console.log("aaaaa");  
 					this.ms.visible = false;
 					paparazzi = true;
 					this.z = [-1, -1]; 

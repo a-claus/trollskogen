@@ -39,10 +39,10 @@ gameObj.push(
 
 
 
-  
+ 
   moving: false,
   vaderstrack: "soder",
-  cardImg : cardImages[cardImages.length-1],
+  img : cardImages[cardImages.length-1],
   move: function (){return false;},
   hitAction : function(){
      gameObj[0].placeMe = true;
@@ -62,39 +62,46 @@ gameObj.push(
   flyttarSig: function(){
        
         gameStatus.push(gameObj[getIndexGameObj("Alven")].fly);
-        gameStatus.push(moveFunc);
+        notWaiting();
         return false;
     },
     text: "Har inte du gått aningens vilse, lille porslinsdocka?" ,
 drawRuta: function (){
   
-    var buttons = []; let bonus = 0;
+     let bonus = 0;
+     t6Ruta.text.rubrik="Alven";
+   
    if (t6Ruta.T6 != 0){
       bonus += gameObj[0].iq; 
     }
     
     let T6res = [7, 4, 1]; //7,4,1
     if (t6Ruta.T6 + bonus >= T6res[0]) {
-      this.text = "Den här staven kan säkert hjälpa dig.";
+      t6Ruta.text.brod = "Den här staven kan säkert hjälpa dig.";
+      setnohit(hitIndex);
       this.getWand();
-      buttons = [{action: moveFunc, text: "Taaack"}];      
+      this.x = 400;
+      this.y = 400;
+      t6Ruta.buttons = [{action: notWaiting, text: "Taaack"}];      
     }
-    else if (this.T6 + bonus >= T6res[1]){
-      this.text = "...";
-        buttons = [{action: diceRuta, text: "Snälla"}, {action: moveFunc, text: "Gå!"}];
+    else if (t6Ruta.T6 + bonus >= T6res[1]){
+      t6Ruta.text.brod = "...";
+        t6Ruta.buttons = [{action: diceRuta, text: "Snälla"}, {action: notWaiting, text: "Gå!"}];
        }
-    else if (this.T6 + bonus >= T6res[2]){ 
-        buttons = [{action: this.flyttarSig, text: "Adjö"}];
+    else if (t6Ruta.T6 + bonus >= T6res[2]){ 
+        t6Ruta.buttons = [{action: this.flyttarSig, text: "Adjö"}];
         bonus =-1;
-        this.text = "Hejdå";}
+        setnohit(hitIndex);
+        t6Ruta.text.brod = "Hejdå";}
     else{ 
-        buttons = [{action: diceRuta, text: "Kan du hjälpa mig??"}, {action: moveFunc, text: "Gå!"}];
+        t6Ruta.text.brod= "Har inte du gått aningens vilse, lille porslinsdocka?";
+        t6Ruta.buttons = [{action: diceRuta, text: "Kan du hjälpa mig??"}, {action: notWaiting, text: "Gå!"}];
         
         }
-     
+     t6Ruta.draw();
+      t6Ruta.T6 = dice(6);
     const index = getIndexGameObj("Alven");
-    drawDiceRuta({rubrik: this.namn, brod: this.text}, gameObj[index].cardImg, buttons, bonus);
-    this.T6 = Math.floor(Math.random() * 6 + 1); 
+ 
     if (bonus==-1){gameObj[0].iq--; effekten("iq", "minus"); if (gameObj[0].iq < 0) gameObj[0].iq = 0;}
     
     return false; 
@@ -210,7 +217,7 @@ BILD SPRITES on MAP
     if (gameObj[index].y  < gameObj[0].y) {gameObj[index].y-=3;} else {gameObj[index].y+=3 ;}
     // om utanför spelplan tabort alven, flytta till tom ruta.
 
-    if (gameObj[index].x < 0 || gameObj[index].x > 400 || gameObj[index].y < 0 || gameObj[index].y > 400) {
+    if (gameObj[index].x < -50 || gameObj[index].x > 400 || gameObj[index].y < -50 || gameObj[index].y > 400) {
       bytPlatsMedBlank(8, "card", wood.mapNR);
       return false;}
       else {
