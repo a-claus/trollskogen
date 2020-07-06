@@ -554,8 +554,8 @@ var p=[];
 
 
 
-function nyruta(vs = "kompass", tillRuta=1000){
- console.log(vs,tillRuta);
+function nyruta(vs = "kompass", tillRuta = 1000){
+ console.log(vs,tillRuta, gameObj[0].vaderstrack);
 
     if (vs == "kompass") {vs = gameObj[0].vaderstrack;}
     if (vs == "jump" && tillRuta == 1000) {console.log("ANVÄND BIND");} 

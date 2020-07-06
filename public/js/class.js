@@ -170,10 +170,10 @@ class Figur {
         if (this.status=="jump") {this.jump();}
 console.log("figurUpdate");
         //if ( .vad){
-            if (this.x<2) {this.x=380;  mapChange("vast");}
-            if (this.x>386) {this.x=0;  mapChange("ost");} //xyz x ska kunna bli 400. Någonstans har jag gjort ett tak.
-            if (this.y<2) {this.y=380;  mapChange("norr");}
-            if (this.y>400) {this.y=0;  mapChange("soder"); }    
+         //?   if (this.x<2) {this.x=380;  mapChange("vast");}
+         //?   if (this.x>386) {this.x=0;  mapChange("ost");} //xyz x ska kunna bli 400. Någonstans har jag gjort ett tak.
+          //?  if (this.y<2) {this.y=380;  mapChange("norr");}
+          //?  if (this.y>400) {this.y=0;  mapChange("soder"); }    
         //}
     }
 
