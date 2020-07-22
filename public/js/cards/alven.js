@@ -113,7 +113,7 @@ getWand: function(){
 Staven vrider rutor slumpvis. Kostar en magikraft.
  
  ----------------------------------------------*/    
-    map[wood.mapNum].card = 1; //blank
+map[wood.mapNR].card = 1; //blank
 gameStatus.push(putEquipmentToBag, move);
 this.floor=-1;
  //deleteObject("Alven");

@@ -40,6 +40,7 @@ gameStatus.push(start);
 var figur=[];
 var moving = false;
 let preloader = 0;
+
 function startGame(){
     //if (preloader == 1){
         console.log("StartGame");
@@ -83,7 +84,7 @@ function move(){
 function start(){
     wood = new Wood(81); 
    // queue.push(move);
-    setDraw();
+    setDraw("jump");
     console.log("start");
     button.push(new Button(move, 150, 170, "Start")); 
     return false;
@@ -169,7 +170,7 @@ function notWaiting(klar = "NN"){
 //let index;
 console.log("notWaiting", klar);
 //index = wait.findIndex(obj => obj["namn"] == klar);
- console.log(wait);
+ 
     index = wait.findIndex(zz => zz == klar);
 
        
@@ -633,6 +634,7 @@ function mapChange(vaderstrack, nyRuta){
     console.log("NR", nyRuta);
     wood.update(nyRuta);
      console.log("v n x",vaderstrack, nyRuta);
+     console.log(wood);
     setFloor(vaderstrack); // kan förbättras
     closeOpenDoor();
 
@@ -654,7 +656,7 @@ function mapChange(vaderstrack, nyRuta){
         }
 
         }
-        
+     console.log("GGG",wood.mapNR)    
     
 }
 

@@ -1,20 +1,29 @@
 //---------------------------------------------
 //
-// Svamp
+// Lyktstolpen
 //
 //---------------------------------------------
 /*
-ger slumpvis bonuc. IQ, styrka, extra hjärta och gift
+När man går till den hamnar man på ruta 4
 
 */
 
-console.log("1" + isEven(11 ));
+wait.push("bild");
 mapImages.push(new Image());
+mapImages[mapImages.length-1].addEventListener('load', notWaiting.bind("bild") );
 mapImages[mapImages.length-1].src="./img/lyktstolpe.png";
-//cardImages.push(new Image());
-//cardImages[cardImages.length-1].src="./img/svamp.png";
 
-
+/*
+kartObj.push({
+    namn: "Lykstolpe",
+    img: mapImages[mapImages.length-1],
+    miljo: true, figur : false, info: false, floor:1,
+    x:-1, y:-1,
+  draw: function(){
+      if (this.x == -1) {this.getPosition();}
+        ctx.drawImage(this.img, this.x, this.y, 50 ,50);//, 100, 100
+  }
+});*/
 
 
 
@@ -29,7 +38,6 @@ gameObj.push(
     indexS: mapImages.length - 1,
     placeMe: false,
     moving: false,
-    cardImg: cardImages[cardImages.length-1],
   vaderstrack: "soder",
   draw: function(){//ctx.drawImage(mapImages[this.indexS], this.x, this.y);
     sizer = fallDrawer(this.x, this.y, this.width, this.hight, this.fall.drawer);
@@ -83,9 +91,9 @@ blink:function(){
 
 
     */
-    gameStatus.push(nyruta.bind("jump", 4));
+    gameStatus.push(nyruta.bind({},"jump", 4));
     //tempArray = [4, gameObj[0].vaderstrack]; //
-    gameObj[0].vaderstrack = "jump";
+    //gameObj[0].vaderstrack = "jump";
     return false;
   }
 else{
@@ -100,8 +108,7 @@ else{
 
 
 hitObjects++;
-gameStatus.push(moveStart);
+notWaiting("Lyktstolpe")
 
-//kartbit[13].func=loadSIS;
 
 

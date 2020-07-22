@@ -1,11 +1,13 @@
 console.log("start js");
 //---------------------------------------------
 //
-// START
+// START  SLUT
 //
 //---------------------------------------------
 
 mapImages.push(new Image());
+wait.push("startBild");
+mapImages[mapImages.length-1].addEventListener('load', notWaiting.bind("startBild") );
 mapImages[mapImages.length-1].src = "./img/map_start.png";
 
 
@@ -31,5 +33,6 @@ kartObj.push(
 //listaEffekt.push(new Effekter("stars",200,200));
 
 console.log(wait);
-//if (wait.length > 0){notWaiting("START");}
+//if (wait.length > 0){
+    notWaiting("START");
 wait =[];

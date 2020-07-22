@@ -1,4 +1,5 @@
-﻿const input = document.querySelector('input[type="file"]')//type: "text/plain; charset=utf-8"
+﻿let filnamn;
+const input = document.querySelector('input[type="file"]') // [multiple="multiple"]type: "text/plain; charset=utf-8"
 
 //const input = document.querySelector('input[type="text/plain; charset=utf-8"]')//type: "text/plain; charset=utf-8"
 input.addEventListener('change', function (e){
@@ -6,72 +7,162 @@ input.addEventListener('change', function (e){
 
     const reader = new FileReader()
     reader.onload = function() {
-       let array =[]; let j = 0; let skrap =[];  
-
+       let array =[]; let j = 0; let skrap =[];  let passnr=[];
+       let passen = [];
        //console.log(reader.result);
-       let text = "abc";
+       let text = "abc"; 
        text = reader.result;
        text.replace(/(\r\n|\r|\n)/g, '\n');
        text = text.replace(/,/g, '.');
        
-       console.log(text);
+       //console.log(text);
         const lines = text.split("\n").map(function(line){
-            j=0; let text = "";
-           // if (line.slice(1, 4) != "gat" && line.slice(1, 4) != "---") {
-               // console.log(line.slice(1,4));
-               
-            
-             //console.log(line.length); //168 är varje rad
-// gatunamn, gatunr-fr,, gatunu-ti, num x, num y, wgs84_lat, wgs 84_long
-//1-26, 27-36, 37-46, 47- 59, 60-72, 73-91, 92-110
-             //L = array.length;
-/*
-            txt =  line.slice(0, 25);
-            pos = txt.search("  ");
-            //adr = txt.replace(/\s+/g, '');
-            adr = txt.slice(0, pos);
-            txt =  line.slice(26, 35);
-            nr_f = txt.replace(/\s+/g, '');
-            txt =  line.slice(36, 45);
-            nr_t = txt.replace(/\s+/g, '');
-            txt =  line.slice(46, 58);
-            n_x = txt.replace(/\s+/g, '');
-            txt =  line.slice(59, 71);
-            n_y = txt.replace(/\s+/g, '');
-            txt =  line.slice(72, 90);
-            lat = txt.replace(/\s+/g, '');
-            txt =  line.slice(91, 109);
-            long = txt.replace(/\s+/g, ''); 
+        line = line.replace(/\s\s+/g, ' ');  
+           
+        let kolla = cleaner(line);
+        //console.log(line);
+       if (kolla == "skrap") {skrap.push(line); }
+       else if (kolla == "pass") {
+        passnr.push(line);
+        let part = line.split(" ");
+        //console.log(part);
+        passen.push({pass: part[1], datum: part[3], resa:[]});
 
-             array.push({adr: adr, nr: nr_f, nr_t: nr_t, num_x: n_x, num_y: n_y, lat: lat, long:long});
-        */
-       if (line.slice(0, 6) == "\u000c"){skrap.push(line); }
+
+      }
        else {
-        array.push(line);  
+        
+        let arr = line.split(" ");
+        if (arr.length > 5){
+          console.log(arr);
+        arr=stada_nod(arr);
+
+        array.push(arr);
+
+        
+
+        passen[passen.length-1].resa.push(arr);
+      }
        }   
              
-
-       console.log(line.slice(0, 7));
+       
+       
               
                })
-              
-        console.log(skrap);
-        console.log(array);
+     
+      //  console.log(passen);
+        filnamn = passen[0].datum;
+        document.getElementById("download_link").download = "flexpass" + filnamn + ".json";
+        
 
-        sendFile(array);
+        sendFile(passen);
 
     }
+
     //reader.readAsText(input.files[0])
      reader.readAsText(input.files[0], 'ISO-8859-1');
 },false)
 
 
+//{passnr: 999, antalNoder: 20, antalBommar: 1, }
 
+
+function stada_nod(input){
+ // document.getElementById("download_link").download = "flexpass" + filnamn + ".json";
+  let obj = {}; let typ;
+  //if (input.length == 5) obj.antal = parseInt(input[1]);
+  //if (input.length == 2) obj.id = input[1].slice(3, 7);
+  if (input.length > 5){
+    obj.nod = input[1];
+    obj.tid = input[2];
+    if (input[3].slice(0,1) == "("){ // hämtanod
+      obj.door = "stiga på"; 
+      obj.urtid == input[3].slice(1,5);
+      let raknare = 4;
+      
+      if (isNaN(input[4]) == false) {
+        obj.mpl = parseInt(input[4]);
+        raknare++;
+      }
+      obj.adr = input[raknare] + " ";
+      raknare++;
+      do {
+        if (input[raknare + 1]=="MÖL") break;
+         if (input[raknare + 1]=="GÖT") break;
+      obj.adr += input[raknare] + " ";
+      raknare++;
+      if (raknare==20) {console.log(input); console.log(obj); break;}
+      if (input[raknare + 1]=="MÖL") break;
+    } while( input[raknare + 1] != "GÖT")
+      
+      if (input[raknare + 2] == "RT") {raknare++; input[raknare + 2] = "RTBA" }
+      obj.restyp = input[raknare + 2];
+      obj.id = input[raknare+3].slice(0,3) + input[raknare+4].slice(0, 3);
+    }
+    else{
+      obj.door = "gå av";
+      let raknare = 3;
+      if (isNaN(input[3]) == false) {
+        obj.mpl = parseInt(input[3]);
+        raknare++;
+      }
+      obj.adr = input[raknare] + " ";
+      raknare++;
+      do {
+        if (input[raknare + 1]=="MÖL") break;
+         if (input[raknare + 1]=="GÖT") break;
+      obj.adr += input[raknare] + " ";
+      raknare++;
+      if (raknare==20) break;
+      
+    } while(input[raknare + 1] != "GÖT")
+
+    obj.id = input[raknare+3].slice(0,3) + input[raknare+4].slice(0,3);
+    
+
+    }
+  }
+  console.log(obj);
+return obj;
+    }
+    
+
+function cleaner(input){
+  //string = string.replace(/\s\s+/g, ' '); remove space tabb newline etc = " "
+  //string = string.replace(/  +/g, ' '); remove only spaces
+  let spara = "noder";
+  let kniv=input.slice(0, 5);
+  
+  
+  if (kniv ==  "Passn"){spara = "pass";}
+  if (kniv ==  "Passk"){spara = "skrap";}
+  if (kniv ==  "Ledni"){spara = "skrap";}
+  if (kniv ==  "Bokni"){spara = "skrap";}
+  if (kniv ==  "MOBIT"){spara = "skrap";}
+  if (kniv ==  "Start"){spara = "skrap";}
+  if (kniv ==  "Norma"){spara = "skrap";}
+  if (kniv ==  "Sista"){spara = "skrap";}
+  if (kniv ==  "Hemom"){spara = "skrap";}
+  if (kniv ==  "Statu"){spara = "skrap";} 
+  if (kniv ==  "Dubbe"){spara = "skrap";}
+  if (kniv ==  "Plane"){spara = "skrap";}
+  if (kniv ==  "Stati"){spara = "skrap";}
+  if (kniv ==  "Undan"){spara = "skrap";}
+  if (kniv ==  "Ekono"){spara = "skrap";}
+  if (kniv ==  " Kapa"){spara = "skrap";}
+  if (kniv ==  " L I "){spara = "skrap";}
+  if (kniv.length < 2){spara="skrap";}
+ 
+  
+return spara;
+
+
+}
 
 function sendFile(input){
 var data = new Blob([JSON.stringify(input)], {type: "text/plain; charset=utf-8"});
 
-console.log(data);
+//console.log(data);
 
 var URL = window.URL || window.webkitURL;
 var u = URL.createObjectURL(data);

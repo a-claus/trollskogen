@@ -104,6 +104,8 @@ for (var i = 0; i < 81; i++){
  	if (y == 20){ y = 0; } //lottar ut kartbitar
 }
 }
+
+
 makeMap();
 
 function bytPlats(namn, vad="namn"){
@@ -116,7 +118,7 @@ function bytPlats(namn, vad="namn"){
 }
 //bytPlats("Hyllan"); //newBagv1
 //bytPlats("Svärdet i stenen"); //newBagv1
-bytPlats(0,"card"); //skatt // newBagv1
+//bytPlats(0,"card"); //skatt // newBagv1
 //bytPlats("FyraBroNS");
 //bytPlats("FyraBroVO");
 //bytPlats("Mimers Brunn"); // newBagv1 saknar effekt
@@ -126,7 +128,7 @@ bytPlats(0,"card"); //skatt // newBagv1
 //bytPlats(6,"card"); //6 Blåbär klar: z och foto waitv1
 //bytPlats( 2, "card" ); //Lilltroll saknar effekt
 //bytPlats( 9, "card" ); //Vildvittra wait
-//bytPlats( 10, "card" ); //Lyktstolpe
+bytPlats( 10, "card" ); //Lyktstolpe
 //bytPlats("Ravin1"); //Ravin1
 //bytPlats("Ravin2"); //Ravin2
 
@@ -156,8 +158,8 @@ map[0].edge="cornerNV";
 
 //map[4].norr=99;
 //kartbit: 18, 
-map.push({namn:"Start", norr:1, soder:1, ost:1, vast:1, typ:"start", bildBG:"img/map_start.png",actionIndex:-1, floors:1});
-map.push({namn:"Start", norr:1, soder:1, ost:1, vast:1, typ:"start", bildBG:"img/map_start.png",actionIndex:-1, floors:1, download: true});
+map.push({namn:"Start", kartbit:20, norr:1, soder:0, ost:0, vast:0, typ:"start", bildBG:"img/map_start.png",actionIndex:-1, floors:1, download: true});
+//map.push({namn:"Start", norr:1, soder:1, ost:1, vast:1, typ:"start", bildBG:"img/map_start.png",actionIndex:-1, floors:1, download: true});
 
 console.log(map);
 console.log(card);

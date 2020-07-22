@@ -247,16 +247,7 @@ class Player extends Figur{
 
     }
 
-    changeKartbit(){
-        this.x += this.speedX;
-        this.y += this.speedY;
-        
-        
-        if (this.x<0) {this.x=400; wood.mapNum++;}
-        if (this.x>400) {this.x=0; wood.mapNum++;}
-        if (this.y<0) {this.y=400; wood.mapNum++;}
-        if (this.y>400) {this.y=0; wood.mapNum++;}  
-    }
+   
 
     jump(){
         
@@ -359,7 +350,7 @@ class Wood{
         this.floors=1;
        
         this.typ;
-        this.mapNum=mapNR;
+        this.mapNR=mapNR;
         //________________
         this.bildBG = new Image();
         console.log(mapNR);
@@ -396,6 +387,7 @@ class Wood{
         this.typ=map[mapNR].typ;
         this.namn=map[mapNR].namn;
         this.floors = map[mapNR].floors;
+        console.log(map[mapNR].soder);
         //gameObj[0].floor=2;  
 
 //--------- new ------------
@@ -407,17 +399,10 @@ class Wood{
         else
             { this.edge = "not";}
 
-        if (mapNR==81) {
-            this.vaderstrack = "soder";
-            this.floors = 1;}
-            console.log("Saknas download, lägg in true på kartbitar" + map[mapNR].download);
+       // if (mapNR==81) {this.floors = 1;}
+        console.log("Saknas download, lägg in true på kartbitar" + map[mapNR].download);
         if (map[mapNR].download == true) movepause = true;
 
-      // if (kartbit[this.kartbit].hasOwnProperty("func")==true){
-        //    kartbit[this.kartbit].func();
-
-
- //   }
 
 }
 
@@ -457,7 +442,7 @@ if (floor <= this.floors){
   
 
 
-  drawGlanta(){
+  xdrawGlanta(){
             ctx.beginPath();
             ctx.arc(200, 200, 150, 0, 2*Math.PI);
             ctx.fillStyle = 'white';
@@ -527,7 +512,7 @@ function setFloor(vaderstrack){
     let floor;
   
     vaderstrack = inverseVaderstrack(vaderstrack);
-
+console.log(kartbit[wood.kartbit]);
    if (vaderstrack!= "jump") {
         floor = kartbit[wood.kartbit][vaderstrack];
         if (floor == 0) floor = 1
@@ -547,7 +532,7 @@ function countMap(kartbit, vaderstrack){
                 else
                 {
                     console.log("tillbaka")
-                    kartbit = 82;}
+                    kartbit = 81;}
 
             break;
             case "soder":

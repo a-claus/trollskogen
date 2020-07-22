@@ -16,7 +16,7 @@ function updateGameArea(){
         studio();
         paparazzi = false;
     }   
-
+    
     drawFoto(Math.floor(gameObj[0].z[0]));
     
     /*_______________________________ 

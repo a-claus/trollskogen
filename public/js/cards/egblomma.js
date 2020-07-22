@@ -32,7 +32,8 @@ gameObj.push(
   },
   move: function (){return false;},
   drawRuta: function(){
-        gameObj[hitIndex].floor = -1;
+        gameObj[hitIndex].x = 400; 
+        //zeta = true;
 
 
     const index = getIndexGameObj("blomma");
@@ -45,7 +46,7 @@ gameObj.push(
   getBlomma: function(){
   
   console.log("getBlomma"); 
-  map[wood.mapNum].card = 1;   
+  map[wood.mapNR].card = 1;   
   //deleteObject("blomma");      
   gameStatus.push(putEquipmentToBag);
   notWaiting("e_blomma");

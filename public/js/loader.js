@@ -8,6 +8,7 @@ foto[2] = new Image();
 foto[3] = new Image();
 foto[4] = new Image();
 
+
 function kamera(floor){
 	//var ctx = myGameArea.context;
 
@@ -15,7 +16,9 @@ function kamera(floor){
 }
 
 function drawFoto(floor){
-	//var ctx = myGameArea.context;
+	var ctx = myGameArea.context;
+	
+
 	if (wood.floor < floor) floor = wood.floor;
 	ctx.drawImage(foto[floor], 0, 0);
 }
@@ -24,7 +27,7 @@ function studio(){
 	
 	console.log("studio");
 
-	for (let floor = 1; floor < 4; floor++){
+	for (let floor = 1; floor < 5; floor++){
 	for (let i = 0; i < kartObj.length; i++){
 		
 			if  (kartObj[i].floor == floor){
@@ -52,6 +55,7 @@ function studio(){
 		}
 
 	}
+	console.log("FL", floor);
 	kamera(floor);
 
 }
@@ -573,7 +577,7 @@ let edgeNorr={
 	  speedX: 0, speedY: 0,
 	  haWidth: 400, haHight: 20,
   hitAction : function(){
-  	console.log("Norrwalk")
+  	console.log("Norrwalk",wood.mapNR);
   	if (this.open == true){
  		waitFor(nyruta);
 	 // movepause = true;
@@ -596,6 +600,7 @@ let edgeNorr={
 	  move: function (){return false;},
 	  hitAction : function(){
 	  		if (this.open == true){
+	  			console.log("Norrwalk",wood.mapNR);
 	  waitFor(nyruta);
 	  //movepause = true;
 	  //gameStatus.push(nyruta);
@@ -771,6 +776,7 @@ switch (wood.namn){
 	break;
 	
 	case "Start":
+		//kartObj.push(glanta, entre);
 		ajaxer("./js/kartbitar/start.js", "START"); break;
 	case "Ravin1":
 		console.log("Ravin");
