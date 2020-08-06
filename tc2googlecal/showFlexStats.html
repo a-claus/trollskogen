@@ -1,18 +1,31 @@
 <!DOCTYPE html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>FLEXLINJE STATESTIK</title>
+<title>Flexlinje Statestik</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
  <script src="./js/calender.js"></script>
- <link href="./js/css/style.css" rel="stylesheet" type="text/css" />
+ <script src="./js/grafDrawer.js"></script>
+  <script src="./js/flexpass200708.js"></script>
+   <script src="./js/script.js"></script>
+ <link href="./css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
     <h1>Statestik</h1>
 <div id="kalender"></div>
-    <canvas id="canvas" width="800" height="200" style="border:1px solid #000000;"> </canvas>
-   
-    <script>drawKalender()</script>
+<div class= "textRuta" id="datum1">-</div>
+<div class= "textRuta" id="datum2">-</div>
+
+
+ <div id="div1">a</div>  
+    <script>
+document.getElementById("datum1").innerHTML = Y + "-" + month[M] + "-" + D;
+document.getElementById("datum2").innerHTML = Y + "-" + month[M] + "-" + D;
+drawKalender();
+
+let dia = getAntalNoderPass(jsonFil);
+let diagram = new Diagram("Noder på pass", "","", dia);
+</script>
 
 </body>
 </html>

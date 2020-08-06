@@ -22,6 +22,7 @@ function updateGameArea(){
     /*_______________________________ 
     Sortera tak gameobj, för att räkna ut vilkoen ordning gemeObj ska ritas.
     _________________________________*/
+    console.log(gameObj);
     if (zeta == true){
       //  console.log(gameObj);
         ritOrder = gameObj.map(obj => { 
@@ -51,6 +52,9 @@ let iii;
  
         if (gameObj[i] == undefined) {
             console.log(" i undefined iii " + iii + "/" + i);
+
+            console.log(gameObj[6].z);
+            console.log(ritOrder);
             console.log(gameObj);
     }
 

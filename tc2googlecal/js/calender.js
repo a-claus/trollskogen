@@ -2,9 +2,7 @@ const month = ["januari", "februari", "mars", "april", "maj", "juni", "juli", "a
 const monthDays = [31,28,31,30,31,30,31,31,30,31,30,31];
 const skotte = 29;
 
-$.getJSON("./json/flexpass200708.json", function(json) {
-    console.log(json); // this will show the info it in firebug console
-});
+
 /*
 colorSchema
 ---------------
@@ -31,23 +29,23 @@ if (dagEttNext == -1) dagEttNext = 6;
 console.log(M +" " +dagEttNext);
 
 
-
+aktuellKalender ={};
 
 
 
 
 function drawKalender(manad = M, year = Y){
 	//Det vi vill veta först vilken dag är första dagen på månaden
-let array = [];
-array = getFieldManad(manad);
-console.log(array.length);
-
+let array = []; let input;
+array = getFieldManad(manad, year);
+console.log(manad);
+aktuellKalender = {y:year, m:manad};
 
 // RUBRIK	
 let output = '<div id=\" rad\" class=\" menyrad\">';
-output += '<div id=\"tidigare\" \" class=\"pilar\" onclick=\"bytManad(' + manad + ', this.id)\"> < </div>';
+output += '<div id=\"tidigare\" \" class=\"pilar\" onclick=\"bytManad(' + manad + ', ' + year + ', this.id)\"> < </div>';
 output += '<div class=\"calRubrik\">' + uppfirst(month[manad]) +  " " + year + "</div>";	
-output += '<div id=\"senare\" class=\"pilar\" onclick=\"bytManad(' + manad + ', this.id)\"> > </div>';
+output += '<div id=\"senare\" class=\"pilar\" onclick=\"bytManad(' + manad + ', ' + year + ', this.id)\"> > </div>';
 for (var i = 0; i < array.length; i++){
 	// ____RADEN________
 			if (i % 7 == 0) { //nyrad
@@ -84,7 +82,8 @@ for (var i = 0; i < array.length; i++){
 			}	
 			output += '<div id=\"'+ ide + '\"' ;
 			output += ' class=\"' + classe + '\"';
-			output += 'onclick=\"datumclick(this)\" dag=\"' + array[i] + '\" manad=\"' + manad + '\" year=\"' + year + '\"'
+			input = year + "," + manad + ","+ array[i] ;
+			output += 'onclick=\"datumclick(' + input + ')\"';
 			
 			output += '>';	
 			output +=  text 
@@ -95,11 +94,53 @@ for (var i = 0; i < array.length; i++){
 
 	
 	document.getElementById("kalender").innerHTML = output;
+	if (manad==M && year==Y) {
+		document.getElementById("dagRuta "+M +"."+D).style.background =red1;
+	}
+	let ett = document.getElementById("datum1").innerHTML.split("-");
+	let tva = document.getElementById("datum2").innerHTML.split("-");
+	markeraIntervall({y: ett[0], m: ett[1], d:ett[2]}, {y:tva[0], m:tva[1], d:tva[2]});
 	
 }
 
+function markeraIntervall(d1, d2){
+	let first = {}; let second = {};
 
-function bytManad(manad, id){
+
+let markering1 = new Date(d1.y, month.indexOf(d1.m), d1.d);
+let markering2 = new Date(d2.y, month.indexOf(d2.m), d2.d);
+let slut = monthDays[aktuellKalender.m];
+
+
+
+let datekoll = new Date(aktuellKalender.y, aktuellKalender.m, slut);
+
+
+if (aktuellKalender.m==1) {
+	if (kollaSkotte(aktuellKalender.y) == true) slut++;
+}	
+
+
+
+
+//let check = new Date();
+
+	for (i = 1; i <= slut; i++){
+			 datekoll = new Date(aktuellKalender.y, aktuellKalender.m,  i);
+			 
+		
+				if (datekoll >= markering1 && datekoll <= markering2 || datekoll >= markering2 && datekoll <= markering1){
+					document.getElementById("dagRuta "+ aktuellKalender.m +"."+ i).style.background = "green";
+					
+				}
+	}
+}
+	
+
+
+
+
+function bytManad(manad, year, id){
 	console.log(manad,id);
  let MM = parseInt(manad);
  console.log(MM);
@@ -110,23 +151,30 @@ function bytManad(manad, id){
 	if (MM == 12) {year++; MM = 0;}
 	if (MM== -1) {MM= 11; year--;}
 	
-	drawKalender(MM);
+	drawKalender(MM, year);
 }
 
-function datumclick(a){
-	console.log("aa");
-	console.log(a);
+function datumclick(y,m,d){
+	
+	document.getElementById("datum2").innerHTML = document.getElementById("datum1").innerHTML;
+	document.getElementById("datum1").innerHTML = y + "-" + month[m] + "-" + d;
+	//let ett = document.getElementById("datum1").innerHTML.split("-");
+	//let tva = document.getElementById("datum2").innerHTML.split("-");
+	//markeraIntervall({y: ett[0], m: ett[1], d:ett[2]}, {y:tva[0], m:tva[1], d:tva[2]});
+	console.log(aktuellKalender.m);
+	drawKalender(aktuellKalender.m, aktuellKalender.y, );
+	
 }
 
-function getFieldManad(manad){
+function getFieldManad(manad, year){
 
 let array = []; let skotte=0;
  array = ["M", "T", "O", "T", "F", "L", "S"];
 if (manad==1) {
-	if (kollaSkotte(Y) == true) skotte=1;
+	if (kollaSkotte(year) == true) skotte=1;
 }
 console.log (array);
-let dagEtt = new Date(Y, manad, 1).getDay() -1;
+let dagEtt = new Date(year, manad, 1).getDay() -1;
 if (dagEtt == -1) dagEtt = 6;
 
 for (var i=0; i < dagEtt; i++){

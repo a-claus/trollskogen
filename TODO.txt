@@ -6,7 +6,7 @@ TODO
 
 20. Lista ut hur man hitar en white spot för kartobject. Blåbär har getPosition. getwhite Svamp
 
-19. Kontrollera att korparna säger sanningen. Även lägga till andra saker som de talar om. Den flyger baklänges ut, måste rotera korpen.
+
 18 Monster sandorm
 16
 Rita excalibur och byt ut
