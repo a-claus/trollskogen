@@ -13,18 +13,38 @@
 
     <h1>Statestik</h1>
 <div id="kalender"></div>
+<div id="dropdown">
+	
+</div>
+
+<label for="pass">Flexpass</label>
+  <select name="flexpass" id="flexpass">
+   
+  </select>
+<hr />
+
 <div class= "textRuta" id="datum1">-</div>
 <div class= "textRuta" id="datum2">-</div>
+<div id="knappar">
+	<div id="knapp" onclick= "knappval(0)">Antal noder per pass</div>
+	<div id="knapp" onclick= "knappval(1)">Antal resor</div>
+	<div id="knapp" onclick= "knappval(2)">Antal noder på tur</div>
+	<div id="knapp" onclick= "knappval(3)">Tid resenär åker</div>
+</div>
+<hr />
 
-
- <div id="div1">a</div>  
+ <div id="div1"></div>  
     <script>
 document.getElementById("datum1").innerHTML = Y + "-" + month[M] + "-" + D;
 document.getElementById("datum2").innerHTML = Y + "-" + month[M] + "-" + D;
 drawKalender();
 
-let dia = getAntalNoderPass(jsonFil);
-let diagram = new Diagram("Noder på pass", "","", dia);
+//let dia = getAntalNoderPass(jsonFil);
+//let diagram = new Diagram("Noder på pass", "","", dia);
+
+
+let diagram = new Diagram("Antal utförda resor", "","", getAntalResor(jsonFil));
+fyllPassDropdown(jsonFil);
 </script>
 
 </body>

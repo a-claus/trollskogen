@@ -2,6 +2,21 @@
 body{
 	
 }
+#knapp{
+	width: 160px;
+	height:  40px;
+	line-height: 40px;  
+	background: #eee8dc;
+	text-align: center;
+	vertical-align: middle;
+	border: 4px;
+	border-style: ridge;
+	display: inline-block;
+	
+	
+
+}
+
 .calRubrik{
 	background: #8b4513;
 	color: #ffffff;

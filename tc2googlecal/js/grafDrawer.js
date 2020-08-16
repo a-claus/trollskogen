@@ -62,7 +62,7 @@ class Diagram{
 			3. Räkna ut storlek diagram
 			4. Rita diagram 
 	-------------------------------------------------------*/
-	constructor(rubrik ="Hej", x_namn="abcdefggrtgtr", y_namn="def", array=[{namn:"a", value :3},{namn:"a", value : 11},{namn:"k", value : 23},{namn:"b", value : 12}], diagramTyp = "stapel" ){
+	constructor(rubrik ="Hej", x_namn="abcdefggrtgtr", y_namn="def", array=[{namn:"a", value :3},{namn:"a", value : 11},{namn:"k", value : 23},{namn:"b", value : 12}], diagramTyp = "stapel"){
 	
 
 			
@@ -101,6 +101,8 @@ class Diagram{
 	}
 
 	rita(){
+		this.L = this.array.length;
+		this.graf.clearRect(0,0,this.canvas.width, this.canvas.height);
 		this.ritaUtsida();
 		this.topp = this.toppCheck();
 		this.lineValue=this.calcLines();
@@ -117,34 +119,7 @@ class Diagram{
 		
 	}
 
-	updateGraf(){
-			
-			this.graf.clearRect(0,0,810,310);
-		//statestik	
-        	this.stats=countStats(this.name);
-        	
-
-        //diagramfakta för storlek
-			this.topp=this.toppCheck();
-			
-        
-
-        //variabler för att rita grafer
-        	//this.skala = this.topp/250;
-        	
-        	
-        	
-        	this.skaladStats = this.stats.map(x => /*Math.round*/(x.value*this.skala));
-
-        	
-        	this.lineValue=this.calcLines(); 
-        	this.drawLines();
-        	this.drawStaplar();
-        	//this.drawXInfo();
-        	this.drawMedel();
-			this.skrivRubrik();
-
-	}
+	
 
 	drawMedel(){
 			let summa = 0;

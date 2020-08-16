@@ -74,6 +74,8 @@ function stada_nod(input){
   //if (input.length == 2) obj.id = input[1].slice(3, 7);
   if (input.length > 5){
     obj.nod = input[1];
+    obj.nod = parseInt(obj.nod.replace("U", ''));  
+
     obj.tid = input[2];
     if (input[3].slice(0,1) == "("){ // hämtanod
       obj.door = "stiga på"; 
