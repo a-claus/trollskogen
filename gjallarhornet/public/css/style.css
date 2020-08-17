@@ -1,0 +1,153 @@
+
+body{
+	
+}
+#knapp{
+	width: 160px;
+	height:  40px;
+	line-height: 40px;  
+	background: #eee8dc;
+	text-align: center;
+	vertical-align: middle;
+	border: 4px;
+	border-style: ridge;
+	display: inline-block;
+	
+	
+
+}
+
+.calRubrik{
+	background: #8b4513;
+	color: #ffffff;
+	text-align: center;
+	vertical-align: middle;
+	display: inline-block;
+    width: 150px;/*210*/
+    height: 30px;
+    line-height: 30px;  
+}
+
+
+a:link{
+	text-decoration: none;
+}
+a:hover{
+	text-decoration: none;
+}
+a:visited{
+	text-decoration: none;
+}
+a:active{
+	text-decoration: none;
+}
+
+.dag, .ruta{
+	text-align: center;
+	vertical-align: middle;
+	background: #fff8dc;
+	display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;  
+}
+.val{
+	width: 100px;
+	padding: 6px;
+	margin: 2px;
+     
+}
+.pre{
+	background: #deb887;
+	
+}
+ .tidRuta{
+	text-align: center;
+	vertical-align: middle;
+	background: #fff8dc;
+	display: inline-block;
+    width: 40px;
+    height: 20px;
+    line-height: 20px;  
+    padding: 6px;
+	margin: 2px;
+}
+.tom{
+	text-align: center;
+	vertical-align: middle;
+	display: inline-block;
+	background: #999;
+    width: 30px;
+    height: 0px;
+}
+
+
+.meny{
+	text-align: center;
+	vertical-align: middle;
+	display: inline-block;
+	background: #deb887;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;  
+}
+.pilar{
+	text-align: center;
+	vertical-align: middle;
+	display: inline-block;
+	background: #8b4513;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;  
+}
+.column {
+	float: left;
+	padding:10px
+  }
+  .left {
+	width: 210px;
+  } 
+  .right {
+	width: 500px;
+  } 
+  
+  /* Clear floats after the columns */
+  .row:after {
+	content: "";
+	display: flex;
+	clear: both;
+	
+  }
+#inputText{
+
+}
+.tel{ 
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: 20px;
+	border-bottom: 1px;
+	margin:0;
+	border: 0px; 
+	border-bottom: 1px;
+	border-bottom-style: solid;
+
+}
+.input{
+
+
+
+}
+
+.rubb{
+	
+}
+
+.bred{
+	width: 100px;
+
+} 
+#infotext{
+	font-weight: bold;
+	font-size: 16px;
+
+}
+	 
