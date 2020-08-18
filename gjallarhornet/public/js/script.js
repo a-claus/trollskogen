@@ -1,5 +1,15 @@
 //Access-Control-Allow-Origin: *
 
+
+function jsonGetter(file="./json/test.json"){
+	console.log("klar22");
+$.getJSON(file, function (result){
+	console.log(result);
+	console.log("klar2");
+})
+}
+jsonGetter();
+
 function fyllPassDropdown(array){
 	let a = "<option value=";
 	let b = "</option>";

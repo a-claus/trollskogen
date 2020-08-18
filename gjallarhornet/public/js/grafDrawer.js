@@ -26,10 +26,6 @@ var lastInFil=0;
 //var jsonData = JSON.parse("./json/test.json");
 
 
-$.getJSON("./json/test.json", function (result){
-	console.log(result);
-	console.log("klar2");
-})
 /*
 $.getJSON("./json/flexpass200708.js")
 	.done (function( json ) {
