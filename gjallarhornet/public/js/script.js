@@ -3,12 +3,44 @@
 
 function jsonGetter(file="./json/test.json"){
 	console.log("klar22");
-$.getJSON(file, function (result){
-	console.log(result);
-	console.log("klar2");
-})
+
+$.ajax({
+    url: file,
+    dataType: 'json',
+    success: function( data ) {
+      console.log(data);
+		console.log("klar2");
+		jsonFil=data;
+    },
+    error: function( xhr, status, error ) {
+     	
+     	console.log(xhr, status, error); 
+     	if (error == "Not Found") console.log("noklar2");
+     	if (xhr.status == 404) console.log("noklar23");
+    }
+  });
+
+
 }
-jsonGetter();
+//jsonGetter();
+
+function hamtaDatum(){
+	let ymd= document.getElementById("datum1").innerHTML;
+	let y = ymd.slice(2, 4);
+	let d = ymd.slice(-2, ymd.length);
+	var m = ymd.slice(5,-3);
+	m_num = month.indexOf(m) + 1;
+	let mm = " ";
+	mm = m_num;
+	if (m_num < 10) { mm = "0" + m_num; }
+	console.log(mm);
+
+	let namn = "./json/flexpass" + y + mm + d + ".json";  
+	console.log(namn);
+	
+	jsonGetter(namn);
+
+}
 
 function fyllPassDropdown(array){
 	let a = "<option value=";
@@ -48,9 +80,10 @@ function knappval(val){
 			diagram.rita();
 		break;
 		case 2:
-			diagram.array = antalNoderTur(jsonFil);
+			let tur = document.getElementById("flexpass").value;
+			diagram.array = antalNoderTur(jsonFil, tur);
 			
-			diagram.rubrik = "Antal noder på tur";
+			diagram.rubrik = "Antal noder på tur: " + tur;
 			diagram.y_namn = "";
 			diagram.x_namn = "";
 			diagram.rita();
@@ -103,9 +136,9 @@ function getAntalResor(array){
 
 }
 
-function antalNoderTur(array){
+function antalNoderTur(array, tur){
 	let  exportArray = []; let ny = true; let c = 0;
-	let tur = document.getElementById("flexpass").value;
+	
 	//tur = "831";
 	for (i=0; i < array.length; i++){
 		
@@ -113,17 +146,18 @@ function antalNoderTur(array){
 		for (j=0; j < array[i].resa.length; j++){
 			if (ny == true) {
 				ny = false
-				c = array[i].resa[j].nod;
-				c = parseInt(c.replace("U", ''))-1;  
+				c = array[i].resa[j].nod - 1;
+				//if (isNaN(c) == true)
+				//	c = parseInt(c.replace("U", ''))-1;  
 				exportArray.push({namn: array[i].resa[j].tid , value: 0});
 			}
 				c++;
 			//d =
-			if (array[i].resa[j].nod == c + "U"){
+			if (array[i].resa[j].nod == c){
 				{exportArray[exportArray.length - 1].value++;}
 			} else{
 				c = array[i].resa[j].nod;
-				c = parseInt(c.replace("U", ''));  
+				//c = parseInt(c.replace("U", ''));  
 				exportArray.push({namn: array[i].resa[j].tid , value: 1});
 			}
 		}

@@ -1,27 +1,33 @@
-let filnamn;
+
 const input = document.querySelector('input[type="file"]') 
 input.addEventListener('change', function (e){
-    console.log(input.files);
-
+  //  console.log(input.files);
+   // console.log(input.files.length);
+let i =0;
+ for (i=0; i < input.files.length; i++){
     let reader = new FileReader();
-    for (i=0; i < input.files.length; i++){
-      reader.onload = function() {
+    reader.onload = function() {
+   
+      
        let array =[]; let j = 0; let skrap =[];  let passnr=[];
        let passen = [];
-       //console.log(reader.result);
-       let text = "abc"; 
+       let text = ""; 
+      // console.log(reader.result);
+       //console.log(file[i]);
        text = reader.result;
-       console.log(text);
+       //console.log(text);
        text.replace(/(\r\n|\r|\n)/g, '\n');
        text = text.replace(/,/g, '.');
        
        //console.log(text);
         const lines = text.split("\n").map(function(line){
         line = line.replace(/\s\s+/g, ' ');  
-           
+       // console.log(line);   
         let kolla = cleaner(line);
         //console.log(line);
-       if (kolla == "skrap") {skrap.push(line); }
+       if (kolla == "skrap") {skrap.push(line); 
+        //console.log(line);
+      }
        else if (kolla == "pass") {
         passnr.push(line);
         let part = line.split(" ");
@@ -30,45 +36,60 @@ input.addEventListener('change', function (e){
 
 
       }
+      else if (kolla == "antal"){
+       // console.log ("aaaa", line); 
+        // console.log ("aaa", ); 
+          let r = passen[passen.length-1].resa;
+          r[r.length-1].antal=line.slice(1, 2);
+
+
+      }
+        else if (kolla == "antal2"){
+          console.log("rvåsiffrigt antal resenärer!!!");
+
+      }
        else {
         
         let arr = line.split(" ");
         if (arr.length > 5){
-          console.log(arr);
-        arr=stada_nod(arr);
+         
+        arr = stada_nod(arr);
+        if (isNaN( arr.nod ) == false ) 
+          {array.push(arr);
 
-        array.push(arr);
+            passen[passen.length-1].resa.push(arr);}
 
         
 
-        passen[passen.length-1].resa.push(arr);
+        
       }
        }   
-             
-       
-       
-              
-               })
+
+      })
      
-      //  console.log(passen);
-        filnamn = passen[0].datum;
+      
+        let filnamn = passen[0].datum;
+        
+       // console.log(passen);
         document.getElementById("download_link").download = "flexpass" + filnamn + ".json";
 
 
-        var linkar = document.createElement("A");   // Create a <button> element
+        var linkar = document.createElement("A"); 
+        document.getElementById("downloads").appendChild(linkar); 
         linkar.innerHTML = " "+filnamn + " ";   
-        linkar.id = filnamn;                // Insert text
-        linkar.downloads =  "flexpass" + filnamn + ".json";
-        document.getElementById("downloads").appendChild(linkar);               // Append <button> to <body>
+        linkar.id = filnamn; 
+        linkar.download =  "flexpass" + filnamn + ".json";
         
-
+        
+ console.log(passen);
         sendFile(passen, filnamn);
 
     }
-  }
+  
 
     //reader.readAsText(input.files[0])
-     reader.readAsText(input.files[0], 'ISO-8859-1');
+     reader.readAsText(input.files[i], 'ISO-8859-1');
+   }
 },false)
 
 
@@ -76,6 +97,7 @@ input.addEventListener('change', function (e){
 
 
 function stada_nod(input){
+  // console.log(input);
  // document.getElementById("download_link").download = "flexpass" + filnamn + ".json";
   let obj = {}; let typ;
   //if (input.length == 5) obj.antal = parseInt(input[1]);
@@ -108,6 +130,7 @@ function stada_nod(input){
       if (input[raknare + 2] == "RT") {raknare++; input[raknare + 2] = "RTBA" }
       obj.restyp = input[raknare + 2];
       obj.id = input[raknare+3].slice(0,3) + input[raknare+4].slice(0, 3);
+     
     }
     else{
       obj.door = "gå av";
@@ -126,23 +149,26 @@ function stada_nod(input){
       if (raknare==20) break;
       
     } while(input[raknare + 1] != "GÖT")
-
-    obj.id = input[raknare+3].slice(0,3) + input[raknare+4].slice(0,3);
+    if (input[raknare+3] ==undefined){
+      
+    }
+    else
+    {obj.id = input[raknare+3].slice(0,3) + input[raknare+4].slice(0,3);} //namn
     
 
     }
   }
-  console.log(obj);
+  //console.log(obj);
+  
 return obj;
     }
     
 
 function cleaner(input){
-  //string = string.replace(/\s\s+/g, ' '); remove space tabb newline etc = " "
-  //string = string.replace(/  +/g, ' '); remove only spaces
+ 
   let spara = "noder";
   let kniv=input.slice(0, 5);
-  
+ 
   
   if (kniv ==  "Passn"){spara = "pass";}
   if (kniv ==  "Passk"){spara = "skrap";}
@@ -162,10 +188,11 @@ function cleaner(input){
   if (kniv ==  " Kapa"){spara = "skrap";}
   if (kniv ==  " L I "){spara = "skrap";}
   if (kniv.length < 2){spara="skrap";}
+  if (input.slice(3, 6) == "PER"){spara = "antal";}
+  if (input.slice(4, 7) == "PER"){spara = "antal2";} //xyz
  
   
 return spara;
-
 
 }
 
