@@ -24,24 +24,44 @@ $.ajax({
 }
 //jsonGetter();
 
-function hamtaDatum(){
-	let ymd= document.getElementById("datum1").innerHTML;
+function getFilNamn(ymd){
 	let y = ymd.slice(2, 4);
 	let d = ymd.slice(-2, ymd.length);
-	var m = ymd.slice(5,-3);
-	m_num = month.indexOf(m) + 1;
-	let mm = " ";
-	mm = m_num;
-	if (m_num < 10) { mm = "0" + m_num; }
-	console.log(mm);
+	let m = ymd.slice(5,-3);
+	let mm = month.indexOf(m) + 1;
+	if (mm < 10) { mm = "0" + mm; }
+	return {filnamn: "./json/flexpass" + y + mm + d + ".json", y:y, m:m, d:d}; 
+}
 
-	let namn = "./json/flexpass" + y + mm + d + ".json";  
-	console.log(namn);
-	
-	jsonGetter(namn);
+function hamtaDatum(){
+	let ymd = document.getElementById("datum1").innerHTML;
+	let namn = getFilNamn(ymd);
+	jsonGetter(namn.filnamn);
+
+	do {
+		d++;
+		if (d < monthDays(m)) {
+			
+		}
+	}
+while (datum < final)
 
 }
 
+function hamtaIntervallDatum(){
+	let ymd = [document.getElementById("datum1").innerHTML, document.getElementById("datum2").innerHTML];
+	//ymd.sort();
+
+}
+/* getFleraDatum
+	
+	- Lista ut vilken som är lägst
+
+	_ adda hämtningar upp till slutdatum
+
+	- waitforfiles messar klar
+
+*/
 function fyllPassDropdown(array){
 	let a = "<option value=";
 	let b = "</option>";

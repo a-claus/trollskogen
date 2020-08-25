@@ -158,9 +158,6 @@ function datumclick(y,m,d){
 	
 	document.getElementById("datum2").innerHTML = document.getElementById("datum1").innerHTML;
 	document.getElementById("datum1").innerHTML = y + "-" + month[m] + "-" + d;
-	//let ett = document.getElementById("datum1").innerHTML.split("-");
-	//let tva = document.getElementById("datum2").innerHTML.split("-");
-	//markeraIntervall({y: ett[0], m: ett[1], d:ett[2]}, {y:tva[0], m:tva[1], d:tva[2]});
 	console.log(aktuellKalender.m);
 	drawKalender(aktuellKalender.m, aktuellKalender.y, );
 	
