@@ -37,20 +37,85 @@ function hamtaDatum(){
 	let ymd = document.getElementById("datum1").innerHTML;
 	let namn = getFilNamn(ymd);
 	jsonGetter(namn.filnamn);
+}
 
-	do {
-		d++;
-		if (d < monthDays(m)) {
-			
+
+function getDateNummer(ymd){
+	console.log(ymd);
+	let y = parseInt(ymd.slice(2, 4));
+	let d = parseInt(ymd.slice(-2, ymd.length));
+	let m = month.indexOf(ymd.slice(5,-3));
+	
+	return  {y:y, m:m, d:d}; 
+}
+
+function orderYmd(ymd){
+	let byt = false;
+	
+	if (ymd[0].y <= ymd[1].y){
+		if (ymd[0].m <= ymd[1].m){
+			if (ymd[0].d > ymd[1].d){
+				byt = true;
+			}
+		}
+		else byt = true;
+	}
+	else byt = true;
+
+	if (byt == false) {
+		return ymd;
+	}
+	else{
+		return [ymd[1], ymd[0]];
+	}
+}
+
+function nextDay(ymd){
+	console.log(ymd, monthDays[ymd.m]);
+	let dd = ymd.d + 1;
+	let mm = ymd.m;
+
+	//xyz skottår
+	if (monthDays[ymd.m] < dd){
+		dd = 1;
+		mm++;
+		if (mm == 12){
+			ymd.m = 0;
+			ymd.y++;
 		}
 	}
-while (datum < final)
+	return {y:ymd.y, m:mm, d :dd };
+}
 
+function getYmdFileName(ymd){
+	
+	
+	let m= ""; let d = "";
+	mm = ymd.m + 1;
+	if (mm < 10) { m = "0" + mm; } else {m = mm;}
+	if (ymd.d < 10) { d = "0" + ymd.d; } else {d = ymd.d;}
+	return "./json/flexpass" + ymd.y + m + d + ".json"; 
 }
 
 function hamtaIntervallDatum(){
-	let ymd = [document.getElementById("datum1").innerHTML, document.getElementById("datum2").innerHTML];
-	//ymd.sort();
+	let ymder = [];
+	let ymd = []; let a=0;
+	 ymd.push(getDateNummer(document.getElementById("datum1").innerHTML));
+	 ymd.push(getDateNummer(document.getElementById("datum2").innerHTML));
+	 console.log(ymd);
+	ymd = orderYmd(ymd);
+	console.log(ymd);
+	//ymd[0] = nextDay(ymd[0]);
+	console.log(ymd);
+	
+	do {
+		ymder.push(getYmdFileName(ymd[0]));
+		ymd[0] = nextDay(ymd[0]);
+		
+		}
+while (ymd[0].y <= ymd[1].y && ymd[0].m <= ymd[1].m && ymd[0].d <= ymd[1].d);
+
+	console.log(ymder);
 
 }
 /* getFleraDatum

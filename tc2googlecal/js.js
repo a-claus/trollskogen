@@ -19,29 +19,15 @@ function cleanFile(lines){
     let g_cal;
     let rad=0;
     
-    //g_cal[rad] = ["Subject","Start Date","Start Time","End Date","End Time","All Day Event", "Description"];
-    g_cal = '\"Subject\",\"Start Date\",\"Start Time\",\"End Date\",\"End Time\",\"All Day Event\", \"Description\" \n';
+ 
+    g_cal = '\"Subject\",\"Start Date\",\"Start Time\",\"End Date\",\"End Time\",\"All Day Event\",\"Description\"\n';
 
     for (var i = 0; i<lines.length; i++){
         if (lines[i].length == 11 && lines[i][0] != '\" Vecka\"'){
             if (lines[i][7] != '\" \"'){
          
             if (lines[i][1]=='\" \"')lines[i][1] = lines[i-1][1];
-            //g_cal.push([]);
-           /* g_cal[rad].push(lines[i][5].replace(/\"/g,""));
-            g_cal[rad].push(lines[i][1].replace(/\"/g,""));
-            g_cal[rad].push(lines[i][3].replace(/\"/g,""));
-            g_cal[rad].push(lines[i][1].replace(/\"/g,""));
-            g_cal[rad].push(lines[i][4].replace(/\"/g,""));
-            g_cal[rad].push("false");
-            g_cal[rad].push(lines[i][9].replace(/\"/g,"") + "\n");   
-            g_cal[rad].push(lines[i][5]);
-            g_cal[rad].push(lines[i][1]);
-            g_cal[rad].push(lines[i][3]);
-            g_cal[rad].push(lines[i][1]);
-            g_cal[rad].push(lines[i][4]);
-            g_cal[rad].push("false");
-            g_cal[rad].push(lines[i][9]); */
+           
             g_cal += lines[i][5] + ",";
             g_cal +=lines[i][1] + ",";
             g_cal += lines[i][3]+ ",";
