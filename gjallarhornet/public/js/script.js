@@ -1,5 +1,6 @@
 //Access-Control-Allow-Origin: *
 
+let waiting = 0;
 
 function jsonGetter(file="./json/test.json"){
 	console.log("klar22");
@@ -10,7 +11,7 @@ $.ajax({
     success: function( data ) {
       console.log(data);
 		console.log("klar2");
-		jsonFil=data;
+		jsonFil = jsonFil.concat(data);
     },
     error: function( xhr, status, error ) {
      	
@@ -50,22 +51,21 @@ function getDateNummer(ymd){
 }
 
 function orderYmd(ymd){
-	let byt = false;
+	let byt;
 	
-	if (ymd[0].y <= ymd[1].y){
-		if (ymd[0].m <= ymd[1].m){
-			if (ymd[0].d > ymd[1].d){
-				byt = true;
-			}
-		}
-		else byt = true;
-	}
-	else byt = true;
-
+	if (ymd[0].y > ymd[1].y){ byt = true;}
+	if (ymd[0].y > ymd[1].y){ byt = false;}
+	if (ymd[0].m > ymd[1].m && byt == undefined){byt = true;}
+	if (ymd[0].m < ymd[1].m && byt == undefined){byt = false;}
+	if (ymd[0].d > ymd[1].d && byt == undefined){byt = true;}
+	if (ymd[0].d <= ymd[1].d && byt == undefined){byt = false;}
+		
 	if (byt == false) {
+		
 		return ymd;
 	}
 	else{
+		
 		return [ymd[1], ymd[0]];
 	}
 }
@@ -102,21 +102,22 @@ function hamtaIntervallDatum(){
 	let ymd = []; let a=0;
 	 ymd.push(getDateNummer(document.getElementById("datum1").innerHTML));
 	 ymd.push(getDateNummer(document.getElementById("datum2").innerHTML));
-	 console.log(ymd);
+	
 	ymd = orderYmd(ymd);
-	console.log(ymd);
-	//ymd[0] = nextDay(ymd[0]);
-	console.log(ymd);
+
 	
 	do {
 		ymder.push(getYmdFileName(ymd[0]));
 		ymd[0] = nextDay(ymd[0]);
 		
+		
 		}
 while (ymd[0].y <= ymd[1].y && ymd[0].m <= ymd[1].m && ymd[0].d <= ymd[1].d);
 
-	console.log(ymder);
-
+	jsonFil=[];
+for (i=0; i < ymder.length; i++){
+	jsonGetter(ymder[i]);
+	} 
 }
 /* getFleraDatum
 	
