@@ -185,16 +185,30 @@ function knappval(val){
 	}
 }
 
+function findObject(arr, obj, val){
+	for (j=0; j < arr.length; j++){
+		if (arr[j][obj] == val) return j;
+	}
+	return -1;
+}
+
+
+
 function getAntalNoderPass(array){
 	//[{namn:"a", value :3},{namn:"a", value : 11
-	let  exportArray = [];
+	let  exportArray = []; let index;
 	
 	for (i=0; i < array.length; i++){
-		
-		exportArray.push({namn: array[i].pass,value:array[i].resa.length});
+		index = findObject(exportArray, "namn", array[i].pass);
+		console.log(index);
+		if ( index == -1 ){
+			exportArray.push({namn: array[i].pass, value: array[i].resa.length});
+		} else {
+			exportArray[index].value = exportArray[index].value + array[i].resa.length;
+		}
 
 	}
-	console.log(exportArray);
+	//console.log(exportArray);
  	return exportArray;
 }
 
@@ -208,8 +222,7 @@ function getAntalResor(array){
 			exportArray.push({namn: aktivtDatum, value: 0});
 		}
 		for (j=0; j < array[i].resa.length; j++){
-			//console.log(i, j);
-			//console.log(array[i].resa[j].door, i, j, array[i].resa[j].id);
+
 			if (array[i].resa[j].door == "stiga på"){
 				exportArray[exportArray.length - 1].value++;
 			}
