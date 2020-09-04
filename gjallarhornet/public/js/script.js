@@ -11,13 +11,14 @@ $.ajax({
     success: function( data ) {
       console.log(data);
 		console.log("klar2");
+		
 		jsonFil = jsonFil.concat(data);
     },
     error: function( xhr, status, error ) {
-     	
+     	document.getElementById("loadLogg").innerHTML += "Inte laddat datum: " + file + "\r" ;
      	console.log(xhr, status, error); 
-     	if (error == "Not Found") console.log("noklar2");
-     	if (xhr.status == 404) console.log("noklar23");
+     	//if (error == "Not Found") console.log("noklar2" + file);
+     	//if (xhr.status == 404) console.log(xhr);
     }
   });
 
@@ -45,9 +46,12 @@ function getDateNummer(ymd){
 	console.log(ymd);
 	let y = parseInt(ymd.slice(2, 4));
 	let d = parseInt(ymd.slice(-2, ymd.length));
-	let m = month.indexOf(ymd.slice(5,-3));
 	
-	return  {y:y, m:m, d:d}; 
+	let m = month.indexOf(ymd.slice(5,-3));
+	if (d < 0) m = month.indexOf(ymd.slice(5, -2));
+	
+	console.log(y, m, d);
+	return  {y:y, m:m, d:Math.abs(d)}; 
 }
 
 function orderYmd(ymd){
