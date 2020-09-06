@@ -49,8 +49,9 @@ let i =0;
 
       }
        else {
-        
+      //  console.log(line);
         let arr = line.split(" ");
+      //  console.log(arr);
         if (arr.length > 5){
          
         arr = stada_nod(arr);
@@ -99,7 +100,7 @@ let i =0;
 function stada_nod(input){
   // console.log(input);
  // document.getElementById("download_link").download = "flexpass" + filnamn + ".json";
-  let obj = {}; let typ;
+  let obj = {}; let typ; let err = false;
   //if (input.length == 5) obj.antal = parseInt(input[1]);
   //if (input.length == 2) obj.id = input[1].slice(3, 7);
   if (input.length > 5){
@@ -120,14 +121,23 @@ function stada_nod(input){
       raknare++;
       do {
         if (input[raknare + 1]=="MÖL") break;
-         if (input[raknare + 1]=="GÖT") break;
+        if (input[raknare + 1]=="GÖT") break;
       obj.adr += input[raknare] + " ";
       raknare++;
       if (raknare==20) {console.log(input); console.log(obj); break;}
       if (input[raknare + 1]=="MÖL") break;
     } while( input[raknare + 1] != "GÖT")
       
-      if (input[raknare + 2] == "RT") {raknare++; input[raknare + 2] = "RTBA" }
+    if (obj.adr.slice(0,3)== "BOM") {
+      //console.log("errorhandler");
+      //"pass":"150","datum":"200605","resa":[{"nod":4,"tid":"0752","door":"stiga på","mpl":1560,"adr":"Donsö Hamn ","restyp":"RTBA","id":"BodKri","antal":"4"
+      err =true;
+      obj.restyp = "error";
+      obj.adr = "Okänd";
+      obj.id = "noOne";
+    }
+    if (err == false){
+    if (input[raknare + 2] == "RT") {raknare++; input[raknare + 2] = "RTBA" }
       obj.restyp = input[raknare + 2];
       obj.id = input[raknare+3].slice(0,3) + input[raknare+4].slice(0, 3);
      
@@ -156,7 +166,7 @@ function stada_nod(input){
     {obj.id = input[raknare+3].slice(0,3) + input[raknare+4].slice(0,3);} //namn
     
 
-    }
+    }}
   }
   //console.log(obj);
   
