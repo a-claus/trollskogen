@@ -1,4 +1,4 @@
-//Access-Control-Allow-Origin: *
+let ymdList = [];
 
 let waiting = 0;
 
@@ -98,6 +98,7 @@ function getYmdFileName(ymd){
 	mm = ymd.m + 1;
 	if (mm < 10) { m = "0" + mm; } else {m = mm;}
 	if (ymd.d < 10) { d = "0" + ymd.d; } else {d = ymd.d;}
+	ymdList.push(ymd.y + m + d);
 	return "./json/flexpass" + ymd.y + m + d + ".json"; 
 }
 
@@ -108,17 +109,20 @@ function hamtaIntervallDatum(){
 	 ymd.push(getDateNummer(document.getElementById("datum2").innerHTML));
 	
 	ymd = orderYmd(ymd);
+	
+	ymdList = [];
 
 	
 	do {
 		ymder.push(getYmdFileName(ymd[0]));
+		
 		ymd[0] = nextDay(ymd[0]);
 		
 		
 		}
 while (ymd[0].y <= ymd[1].y && ymd[0].m <= ymd[1].m && ymd[0].d <= ymd[1].d);
 
-	jsonFil=[];
+	jsonFil=[]; console.log(ymdList);
 for (i=0; i < ymder.length; i++){
 	jsonGetter(ymder[i]);
 	} 
@@ -186,6 +190,15 @@ function knappval(val){
 			diagram.x_namn = "";
 			diagram.rita();
 		break;
+		case 4:
+			
+			diagram.array = getAntalNoderPassPerDag(jsonFil, document.getElementById("flexpass").value);
+			
+			diagram.rubrik = "Noder på: " + document.getElementById("flexpass").value + " för dagar";
+			diagram.y_namn = "";
+			diagram.x_namn = "";
+			diagram.rita();
+		break;
 	}
 }
 
@@ -196,6 +209,24 @@ function findObject(arr, obj, val){
 	return -1;
 }
 
+
+function getAntalNoderPassPerDag(array, aktivtPass){
+	//[{namn:"a", value :3},{namn:"a", value : 11
+	let  exportArray = []; let index;
+
+	for (j=0; j < ymdList.length; j++){
+		exportArray.push({namn: ymdList[j], value: 0})
+	}
+	
+	for (i=0; i < array.length; i++){
+		if (array[i].pass == aktivtPass){
+			index = ymdList.indexOf(array[i].datum);
+			exportArray[index].value = array[i].resa.length;
+		}
+	}
+	//console.log(exportArray);
+ 	return exportArray;
+}
 
 
 function getAntalNoderPass(array){
