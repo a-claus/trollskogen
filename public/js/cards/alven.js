@@ -47,7 +47,7 @@ gameObj.push(
   hitAction : function(){
      gameObj[0].placeMe = true;
      console.log("What");
-      wait.push("diceRuta");
+      //wait.push("diceRuta");
     //movepause=true;
     gameStatus.push(gameObj[hittad].drawRuta);
     hitIndex = this.index;

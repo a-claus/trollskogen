@@ -14,6 +14,7 @@ card.push({id:7, namn:"Hugin och Munin", url: "./js/cards/huginmunin.js" ,no:[]}
 card.push({id:8, namn:"Alven", url:"./js/cards/alven.js",no:[]});
 card.push({id:9, namn:"Vildvittra", url:"./js/cards/vildvittra.js",no:[]});
 card.push({id:10, namn:"Lyktstolpe", url:"./js/cards/lyktstolpe.js", no:[4]});
+card.push({id:11, namn:"Gravsten", url:"./js/cards/gravsten.js", no:[]});
 
 
 var kartbit=[];//hej
@@ -49,7 +50,7 @@ var map=[];
 function lottaCards(){
 	var crupier=[]; let cardval;
 	for (var j=0; j<81; j++){
-		cardval = Math.floor(Math.random() * 10) + 1;
+		cardval = Math.floor(Math.random() * 11) + 1;
 		if (card[cardval].no.findIndex != j){
 		 crupier.push(cardval);}
 		else
@@ -126,11 +127,13 @@ function bytPlats(namn, vad="namn"){
 //bytPlats(7,"card"); //hugin newBagv1 waitv1
 //bytPlats(5,"card"); //svamp newBagv1 wait v1
 //bytPlats(6,"card"); //6 Blåbär klar: z och foto waitv1
-bytPlats( 2, "card" ); //Lilltroll saknar effekt
+//bytPlats( 2, "card" ); //Lilltroll saknar effekt
 //bytPlats( 9, "card" ); //Vildvittra wait
 //bytPlats( 10, "card" ); //Lyktstolpe wait v1
 //bytPlats("Ravin1"); //Ravin1
 //bytPlats("Ravin2"); //Ravin2
+bytPlats(11, "card"); //gravsten
+
 
 function bytPlatsMedBlank(namn, vad, ruta){
 
