@@ -1,4 +1,4 @@
-
+    
 var moveV = false; var moveO = false; moveS = false; var moveN = false; 
 var magStigNamn = "none";
 //let golv; let tak;
@@ -22,7 +22,7 @@ function updateGameArea(){
     /*_______________________________ 
     Sortera tak gameobj, för att räkna ut vilkoen ordning gemeObj ska ritas.
     _________________________________*/
-    console.log(gameObj);
+    //console.log(gameObj[0].y, "-", )
     if (zeta == true){
       //  console.log(gameObj);
         ritOrder = gameObj.map(obj => { 
@@ -35,7 +35,10 @@ function updateGameArea(){
             objR.push(obj.z[1]);
             return objR;
         });
-        
+                console.log(ritOrder);
+        console.log("ritOrder");
+        console.log(ritOrder);
+
         ritOrder = listArrayOrder(ritOrder);
         console.log(ritOrder);
         zeta = false;
@@ -559,47 +562,48 @@ var p=[];
 
 
 function nyruta(vs = "kompass", tillRuta = 1000){
+    // Används
  console.log(vs,tillRuta, gameObj[0].vaderstrack);
 
     if (vs == "kompass") {vs = gameObj[0].vaderstrack;}
     if (vs == "jump" && tillRuta == 1000) {console.log("ANVÄND BIND");} 
  
         if (vs == "vast" || vs == "vaster"){
-                gameObj[0].newRuta=1;
+              //  gameObj[0].newRuta=1;
                 gameObj[0].x=357;  
                 paparazzi=true;
                 mapChange("vast", tillRuta);
         }
     
         if (vs == "oster"){         
-                 gameObj[0].newRuta=1;
+            //     gameObj[0].newRuta=1;
                 gameObj[0].x=1; 
                 paparazzi=true; 
                 mapChange("ost", tillRuta);
         }
     
         if (vs == "norr"){           
-            gameObj[0].newRuta=1;
+           // gameObj[0].newRuta=1;
             gameObj[0].y=357; 
             paparazzi=true; 
             mapChange("norr", tillRuta);
         }
 
         if (vs == "soder"){
-            gameObj[0].newRuta=1;
-            gameObj[    0].y=1;  
+            //gameObj[0].newRuta=1;
+            gameObj[ 0].y=1;  
             paparazzi = true;
             mapChange("soder", tillRuta);
         }
 
         if (vs== "jump"){
-            gameObj[0].newRuta=1;
+          //  gameObj[0].newRuta=1;
             //gameObj[0].y=1;  
             paparazzi=true;
             mapChange("jump", tillRuta);
         }
             zeta = true;
-            notWaiting("nyruta")
+            notWaiting("nyruta");
     //gameStatus.push(move);
     //console.log(gameStatus);
         

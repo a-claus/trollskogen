@@ -180,6 +180,8 @@ let darkMoln =
 
 function deadOrAlive(plunus){
 	// listaEffekt.push(darkMoln);
+			console.log("dddddeath aaa");
+
 	if (plunus > 0){
 		listaEffekt.push(darkMoln);
 		gameObj[0].skada += plunus;
@@ -188,7 +190,7 @@ function deadOrAlive(plunus){
 	if (gameObj[0].skada < 0) {gameObj[0].skada == 0;}
 	drawHarts(0, 300, 10);
 	if (gameObj[0].skada >= gameObj[0].liv){
-		
+		console.log("dddddeath");
 		gameStatus.push(death);
 		return false;
 	}

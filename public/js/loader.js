@@ -818,28 +818,14 @@ switch (wood.floors){
 //magisk stig
 
 if (vaderstrack != "jump") {
-	console.log("V",vaderstrack);
-	//vaderstrack = invNSVO(vaderstrack);
-
-	console.log("magic" + wood[vaderstrack]);
 	if (wood[vaderstrack] == 0 || wood[vaderstrack] == 99 ){
-		console.log("msset");
-		//gameObj.push(msHitArea); 
+		console.log("Magic stig set"); 
 		msHitArea.set(vaderstrack);	
-		
-	// anar att ms kan plockas bort som egenskap
 	}
 }
+
 console.log(kartObj);
 console.log(gameObj);
-}
-
-function xbagMagi(vad){
-	switch(vad){
-		case "blomma": if(wood.mapNR==4) kartObj.push(entreN); break;
-	}
-	magStigNamn = -1;
-
 }
 
 

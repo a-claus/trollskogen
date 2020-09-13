@@ -10,7 +10,7 @@ cardImages[cardImages.length-1].src="./img/lilltrollet.png";
 
 if (-1 == bagger.findIndex(zz => zz.namn == "Kudde")){
   wait.push("kudde");
-  sakImg.push(new imgage());
+  sakImg.push(new Image());
   sakImg[sakImg.length-1].addEventListener('load', notWaiting.bind("kudde"));
   sakImg[sakImg.length-1].src = "./img/kudde.png";
 }

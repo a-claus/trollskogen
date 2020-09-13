@@ -70,7 +70,10 @@ hitAction : function(){
   if (this.blinkar == false){
    gameStatus.push(gameObj[hittad].blink);
    this.blinkar=true;
-  movepause=true;}},
+     moveOn = false;
+
+  
+}},
   c:0, blinkar: false,
 blink:function(){
   if (gameObj[hittad].c == 0){setScreenImage(); }
@@ -91,6 +94,7 @@ blink:function(){
 
 
     */
+    wait.push("nyruta");
     gameStatus.push(nyruta.bind({},"jump", 4));
     //tempArray = [4, gameObj[0].vaderstrack]; //
     //gameObj[0].vaderstrack = "jump";

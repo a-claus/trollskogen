@@ -399,9 +399,8 @@ class Wood{
         else
             { this.edge = "not";}
 
-       // if (mapNR==81) {this.floors = 1;}
-        console.log("Saknas download, lägg in true på kartbitar" + map[mapNR].download);
-        if (map[mapNR].download == true) movepause = true;
+//        console.log("Saknas download, lägg in true på kartbitar" + map[mapNR].download);
+  //xyz      if (map[mapNR].download == true) movepause = true;
 
 
 }

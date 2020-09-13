@@ -126,9 +126,9 @@ function bytPlats(namn, vad="namn"){
 //bytPlats(7,"card"); //hugin newBagv1 waitv1
 //bytPlats(5,"card"); //svamp newBagv1 wait v1
 //bytPlats(6,"card"); //6 Blåbär klar: z och foto waitv1
-//bytPlats( 2, "card" ); //Lilltroll saknar effekt
+bytPlats( 2, "card" ); //Lilltroll saknar effekt
 //bytPlats( 9, "card" ); //Vildvittra wait
-bytPlats( 10, "card" ); //Lyktstolpe
+//bytPlats( 10, "card" ); //Lyktstolpe wait v1
 //bytPlats("Ravin1"); //Ravin1
 //bytPlats("Ravin2"); //Ravin2
 

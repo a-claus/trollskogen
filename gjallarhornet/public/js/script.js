@@ -99,7 +99,7 @@ function getYmdFileName(ymd){
 	if (mm < 10) { m = "0" + mm; } else {m = mm;}
 	if (ymd.d < 10) { d = "0" + ymd.d; } else {d = ymd.d;}
 	ymdList.push(ymd.y + m + d);
-	return "./json/flexpass" + ymd.y + m + d + ".json"; 
+	return "./json/flexpass/flexpass" + ymd.y + m + d + ".json"; 
 }
 
 function hamtaIntervallDatum(){
@@ -199,7 +199,59 @@ function knappval(val){
 			diagram.x_namn = "";
 			diagram.rita();
 		break;
+		case 5:
+			
+			diagram.array = getAntalpassagerare(jsonFil, document.getElementById("flexpass").value);
+			
+			diagram.rubrik = "Antal passagerare";
+			diagram.y_namn = "";
+			diagram.x_namn = "";
+			diagram.rita();
+		break;
 	}
+}
+
+function dubbelLoopaArrayen(func){
+	for (i=0; i < arr.length; i++){
+		for (j=0; j < arr[i].tur.length; j++){
+			func(i,j);
+		}
+	}
+}
+
+function antalPassagerarSamtidigt(i,j){
+	let tur;
+	//vi listar toppantal på tur
+	//loopa igenom alla pass
+		//kontrollera om det är ny tur eller inte
+		
+			tur = arr[i].resa[j];
+
+			if (tur.nod == nasta){
+				
+			}
+			if (tur.door == "stiga på"){
+				if (tur.restyp != "BOM" || tur.restyp != "error"){
+					raknare = raknare + tur.antal;
+					vem.push(tur.id);
+				}
+			}	
+			if (tur.door == "gå av"){
+				
+				if (raknare > topp) topp = raknare;
+				index = vem.indexOf(tur.id);
+				if (index != -1){
+					raknare = raknare - tur.antal;
+					vem.splice(index,1);
+				}
+				else{
+					console.log("ERROR icke existerande passagerare stiger av", tur.id);
+				}
+
+
+			}
+			
+
 }
 
 function findObject(arr, obj, val){
@@ -209,10 +261,40 @@ function findObject(arr, obj, val){
 	return -1;
 }
 
+function getAntalpassagerare(array){
+	let  exportArray = []; let index; let arr = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+	let namn = ["RTBA"]; let raknare = [0];
+	let antal;
+	for (i=0; i < array.length; i++){
+		for (j=0; j < array[i].resa.length; j++){
+			if (array[i].resa[j].door == "stiga på"){
+				index = namn.indexOf(array[i].resa[j].restyp);
+				if (index == -1){
+					namn.push(array[i].resa[j].restyp)
+					raknare.push(0);
+					index = raknare.length - 1;
+				}
+				raknare[index]++;
+				antal = array[i].resa[j].antal;
+				if (array[i].resa[j].restyp == "BOM") antal = 0;
+				arr[antal]++;
+			}
+			
+
+		}
+	}
+	for (i=0; i<arr.length; i++){
+		if (arr[i] > 0) exportArray.push({namn: i, value: arr[i]});
+	}
+	for (i=0; i<namn.length; i++){
+		if (arr[i] > 0) exportArray.push({namn: namn[i], value: raknare[i]});
+	}
+	return exportArray;
+}
 
 function getAntalNoderPassPerDag(array, aktivtPass){
 	//[{namn:"a", value :3},{namn:"a", value : 11
-	let  exportArray = []; let index;
+	let  exportArray = []; let index; 
 
 	for (j=0; j < ymdList.length; j++){
 		exportArray.push({namn: ymdList[j], value: 0})

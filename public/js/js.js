@@ -23,6 +23,7 @@ const NSVO2=["norr","soder","vaster","oster"]; //soder
 
 function invNSVO(vaderstrack){
     console.log(vaderstrack)
+    if (vaderstrack=="jump") return "jump";
     for (i=0; i<4; i++){
         if (vaderstrack == NSVO[i]) break;
     } 
@@ -169,6 +170,9 @@ function waitFor(func){
 function notWaiting(klar = "NN"){ 
 //let index;
 console.log("notWaiting", klar);
+console.log(wait);
+
+
 //index = wait.findIndex(obj => obj["namn"] == klar);
  
     index = wait.findIndex(zz => zz == klar);
@@ -179,7 +183,10 @@ console.log("notWaiting", klar);
     wait.splice(index, 1);
     console.log("W",wait);
     
-    if (wait.length == 0) {moveOn=true; gameStatus.push(move)};
+    if (wait.length == 0){
+        moveOn = true; 
+        console.log("wfKLar"); 
+        gameStatus.push(move)};
 }
 
 /*-------------------------------------------
@@ -590,13 +597,13 @@ function deleteObject(namn){
 let hitObjects = 0;  
 
 function deleteObjects(){
-     console.log("---");
-   console.log(gameObj);
+     console.log("--- delete obj");
+   //console.log(gameObj);
      let hitObjects = 0;
     if (gameObj.length > 5) {gameObj.splice(5, gameObj.length - 5);}
 
-   console.log("---");
-   console.log(gameObj);
+   //console.log("---");
+   //console.log(gameObj);
 
     kartObj.splice(1, kartObj.length - 1);
     mapImages.splice(mapImages.length - 1);
