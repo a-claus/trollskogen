@@ -1,3 +1,4 @@
+console.log("class laddas");
     var sakImg=[];
 
 let bagger = [];
@@ -12,6 +13,13 @@ function changeThing(){
         bagAktiv++;
         if (bagAktiv == bagger.length) bagAktiv = 0;
         bagger[bagAktiv].do;
+    }
+}
+class Dead {
+    constructor(namn, bag, ruta){
+        this.namn = namn;
+        this.ruta = ruta;
+        this.bag = bag; 
     }
 }
 

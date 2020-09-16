@@ -9,6 +9,7 @@ let temp; let tempArray = [];
 
 
 let val = 1;
+let doeden = [];
 /*
 for (let i = 364; i > 300; i--){
     val = val * i/365;
@@ -645,14 +646,11 @@ function mapChange(vaderstrack, nyRuta){
     setFloor(vaderstrack); // kan förbättras
     closeOpenDoor();
 
-    var nyRuta = wood.mapNR;
     
-    //wood.vaderstrack = invNSVO(vaderstrack);
     setDraw(invNSVO(vaderstrack));
      
     var nyttCard = map[wood.mapNR].card;
     
-   // if (nyRuta==81) imageObj.src=map[81].bild;
    
     if (nyttCard == 0 || nyttCard > 1){
         

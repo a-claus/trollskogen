@@ -1,3 +1,4 @@
+console.log ("effekter laddas")
 //---------------------------------------------
 //
 // EFFEKTER 
@@ -180,7 +181,6 @@ let darkMoln =
 
 function deadOrAlive(plunus){
 	// listaEffekt.push(darkMoln);
-			console.log("dddddeath aaa");
 
 	if (plunus > 0){
 		listaEffekt.push(darkMoln);
@@ -212,6 +212,9 @@ function death(){
 	var text = gameObj[0].vem + " kunde blivit en hjälte. Nu förmulnad i Trollskogen. Ska vi sända bud till slottet och meddela misslyckandet, så de kan skicka en ny dumdristig äventyrare in i Trollskogen för att rädda kung Sebastian?";
 	var buttons = [ {text: "Spela", action: startaIgen}, {text:" Sluta", action: end}];
 	movepause = true;
+	doeden.push(new Dead(gameObj[0].namn, gameObj[0].bag, wood.mapNR));
+	console.log(wood.mapNR);
+	map[wood.mapNR].card = 1000;
 	drawRuta(rubrik, text, rip, buttons);
 return false;
 }

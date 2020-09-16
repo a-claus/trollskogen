@@ -23,7 +23,7 @@ cardImages[cardImages.length-1].src="./img/rip.png";
 
 
 kartObj.push({
-    namn: "gravsten",
+    namn: "Gravsten",
     img: mapImages[mapImages.length-1],
     miljo: true, figur : false, info: false, floor:1,
     x:-1, y:-1,
@@ -76,6 +76,7 @@ gameObj.push(
   draw: function(){},
   move: function (){ return false;},
   hitAction : function(){
+    
  
   //wait.push("");
   moveOn = false;
@@ -84,9 +85,18 @@ gameObj.push(
 },
 drawRuta: function(){
   const index = getIndexGameObj("Gravsten");
-  console.log(index);
-  drawRuta("Vila i frid", "Här ligger ", gameObj[index].cardImg, [{text: "Ta saker!", action: notWaiting}]);
+  let d_index;
+    console.log(doeden);
 
+
+
+
+  for(i=0; i < doeden.length; i++){
+      if( doeden[i].ruta == wood.mapNR) d_index = i;
+
+    }
+  console.log(index, d_index);
+  drawRuta("Vila i frid", "Här ligger " + doeden[d_index].namn, gameObj[index].cardImg, [{text: "Ta saker!", action: notWaiting}]);
 }
   
 
@@ -95,8 +105,8 @@ drawRuta: function(){
 
 
 
-console.log("gravsten");
+console.log("Gravsten");
 hitObjects++;
 
-notWaiting("gravsten");
+notWaiting("Gravsten");
 

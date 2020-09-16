@@ -2,7 +2,7 @@ let ymdList = [];
 
 let waiting = 0;
 
-function jsonGetter(file="./json/test.json"){
+function jsonGetter(file="./json/flexpass/flexpass200627.json"){
 	console.log("klar22");
 
 $.ajax({
@@ -208,43 +208,86 @@ function knappval(val){
 			diagram.x_namn = "";
 			diagram.rita();
 		break;
+		case 6:
+			
+			diagram.array = dubbelLoopaArrayen(antalPassagerarSamtidigt);
+			
+			diagram.rubrik = "Antal passagerare";
+			diagram.y_namn = "";
+			diagram.x_namn = "";
+			diagram.rita();
+		break;
 	}
 }
 
+let temp ={nasta:0, start: true, passagerare: [],lista: [], topp:0, raknare:0};
+
 function dubbelLoopaArrayen(func){
-	for (i=0; i < arr.length; i++){
-		for (j=0; j < arr[i].tur.length; j++){
+	for (i=0; i < jsonFil.length; i++){
+		temp.start = true;
+		for (j=0; j < jsonFil[i].resa.length; j++){
+				
 			func(i,j);
+				
 		}
 	}
+	console.log(temp);
 }
+
+var passagerare = [];
 
 function antalPassagerarSamtidigt(i,j){
 	let tur;
+	//console.log(temp);
 	//vi listar toppantal på tur
 	//loopa igenom alla pass
 		//kontrollera om det är ny tur eller inte
-		
-			tur = arr[i].resa[j];
+		tur = jsonFil[i].resa[j];
+		//console.log(temp.start);
 
-			if (tur.nod == nasta){
+		if (temp.start == true){
+			temp.start = false;
+			if (i == 0) {temp.lista = []; temp.topp=0}
+			if (i != 0){
+				console.log(i, "-", j)
+				temp.nasta=tur.nod -1;
+				passagerare = [];
+				temp.lista.push(temp.topp);
+				temp.topp = 0;
+				temp.raknare=0;
+			}
+		}	
+		
+			
+			temp.nasta++;
+		
+			if (tur.nod != temp.nasta){
+				temp.nasta = tur.nod;
+				console.log("raknare", temp.raknare);
+				temp.lista.push(temp.topp);
+				temp.raknare=0;
+				temp.topp = 0;
 				
 			}
+
 			if (tur.door == "stiga på"){
 				if (tur.restyp != "BOM" || tur.restyp != "error"){
-					raknare = raknare + tur.antal;
-					vem.push(tur.id);
+					temp.raknare = temp.raknare + tur.antal;
+					passagerare.push(tur.id);
+					console.log(passagerare);
 				}
-			}	
+			}
+			
 			if (tur.door == "gå av"){
 				
-				if (raknare > topp) topp = raknare;
-				index = vem.indexOf(tur.id);
+				if (temp.raknare > temp.topp) temp.topp = temp.raknare;
+				index = passagerare.indexOf(tur.id);
 				if (index != -1){
-					raknare = raknare - tur.antal;
-					vem.splice(index,1);
+					temp.raknare = temp.raknare - tur.antal;
+					passagerare.splice(index,1);
 				}
 				else{
+					console.log(passagerare);
 					console.log("ERROR icke existerande passagerare stiger av", tur.id);
 				}
 
