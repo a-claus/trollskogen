@@ -247,7 +247,7 @@ function antalPassagerarSamtidigt(i,j){
 
 		if (temp.start == true){
 			temp.start = false;
-			if (i == 0) {temp.lista = []; temp.topp=0}
+			if (i == 0) {temp.lista = []; temp.topp=0; temp.raknare = 0}
 			if (i != 0){
 				console.log(i, "-", j)
 				temp.nasta=tur.nod -1;
@@ -269,10 +269,18 @@ function antalPassagerarSamtidigt(i,j){
 				temp.topp = 0;
 				
 			}
-
+			let antal;
+			if (tur.antal != undefined) {
+				antal = parseInt(tur.antal);}
+			else{
+				
+				antal = 1;
+			}
+			console.log(antal);
 			if (tur.door == "stiga på"){
 				if (tur.restyp != "BOM" || tur.restyp != "error"){
-					temp.raknare = temp.raknare + tur.antal;
+					
+					temp.raknare = temp.raknare + antal;
 					passagerare.push(tur.id);
 					console.log(passagerare);
 				}
@@ -280,10 +288,10 @@ function antalPassagerarSamtidigt(i,j){
 			
 			if (tur.door == "gå av"){
 				
-				if (temp.raknare > temp.topp) temp.topp = temp.raknare;
+				if (passagerare.length > temp.topp) temp.topp = passagerare.length;
 				index = passagerare.indexOf(tur.id);
 				if (index != -1){
-					temp.raknare = temp.raknare - tur.antal;
+					temp.raknare = temp.raknare - antal;
 					passagerare.splice(index,1);
 				}
 				else{
