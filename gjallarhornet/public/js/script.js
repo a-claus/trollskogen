@@ -224,17 +224,18 @@ let temp ={nasta:0, start: true, passagerare: [],lista: [], topp:0, raknare:0};
 
 function dubbelLoopaArrayen(func){
 	for (i=0; i < jsonFil.length; i++){
-		temp.start = true;
+		//temp.start = true;
 		for (j=0; j < jsonFil[i].resa.length; j++){
-				
+			//console.log(jsonFil[i].resa[j]);	
 			func(i,j);
 				
 		}
 	}
+	console.log(jsonFil);
 	console.log(temp);
 }
 
-var passagerare = [];
+var passagerare = []; var quanto = [];
 
 function antalPassagerarSamtidigt(i,j){
 	let tur;
@@ -243,56 +244,80 @@ function antalPassagerarSamtidigt(i,j){
 	//loopa igenom alla pass
 		//kontrollera om det är ny tur eller inte
 		tur = jsonFil[i].resa[j];
-		//console.log(temp.start);
+
+		console.log(tur);
 
 		if (temp.start == true){
 			temp.start = false;
-			if (i == 0) {temp.lista = []; temp.topp=0; temp.raknare = 0}
-			if (i != 0){
+			//if (i == 0) {
+				temp.lista = [0]; 
+				temp.topp = 0; 
+				temp.raknare = 0;
+				tur.nod = tur.nod.replace("U", "");
+			tur.nod = parseInt(tur.nod);			
+
+				temp.nasta = tur.nod - 1;
+				tur.nod = "U" + tur.nod;
+ 			//}
+			/*if (i != 0){
 				console.log(i, "-", j)
 				temp.nasta=tur.nod -1;
 				passagerare = [];
 				temp.lista.push(temp.topp);
 				temp.topp = 0;
 				temp.raknare=0;
-			}
+			}*/
 		}	
-		
+			tur.nod = tur.nod.replace("U", "");
+			tur.nod = parseInt(tur.nod);
 			
+		
 			temp.nasta++;
+			console.log(tur.nod, temp.nasta);
+
 		
 			if (tur.nod != temp.nasta){
+				// NY TUR
 				temp.nasta = tur.nod;
-				console.log("raknare", temp.raknare);
-				temp.lista.push(temp.topp);
-				temp.raknare=0;
+				temp.lista.push(0);
+				//nollställ
+				passagerare = [];
+				quanto= [];
 				temp.topp = 0;
+				temp.raknare = 0;
 				
 			}
 			let antal;
+			
 			if (tur.antal != undefined) {
 				antal = parseInt(tur.antal);}
 			else{
-				
+				console.log("else")
 				antal = 1;
 			}
-			console.log(antal);
+
+			if (tur.restyp == "BOM" || tur.restyp == "error"){antal = 0}
+			console.log(tur.antal, antal);	
+
 			if (tur.door == "stiga på"){
-				if (tur.restyp != "BOM" || tur.restyp != "error"){
+				
 					
-					temp.raknare = temp.raknare + antal;
-					passagerare.push(tur.id);
-					console.log(passagerare);
-				}
+					temp.raknare +=  antal;
+					if (temp.raknare > temp.lista[temp.lista.length-1])
+						temp.lista[temp.lista.length-1] = temp.raknare;
+						quanto.push(antal);
+						passagerare.push(tur.id);
+				
 			}
 			
 			if (tur.door == "gå av"){
 				
-				if (passagerare.length > temp.topp) temp.topp = passagerare.length;
+				
 				index = passagerare.indexOf(tur.id);
 				if (index != -1){
-					temp.raknare = temp.raknare - antal;
+					temp.raknare = temp.raknare - quanto[index];
 					passagerare.splice(index,1);
+					quanto.splice(index,1);
 				}
 				else{
 					console.log(passagerare);
