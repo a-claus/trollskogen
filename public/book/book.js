@@ -15,3 +15,15 @@ figurer.push({
 });
 
 getFile(figurer[0].url);
+
+// Börja att ladda upp
+
+	// Bilder
+	// Text??
+	
+
+// Rita upp yta, två knappar Nästa, starta spel.
+
+// Välja figur
+
+// Starta spel

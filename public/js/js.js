@@ -37,7 +37,7 @@ var imageObj = new Image();
 var doFunc; 
 
 var gameStatus = [];
-gameStatus.push(start);
+gameStatus.push(startMeny);
 
 var figur=[];
 var moving = false;
@@ -83,15 +83,31 @@ function move(){
 //---------------
 
 
-function start(){
+function startMeny(){
     wood = new Wood(81); 
-   // queue.push(move);
-    setDraw("jump");
+    //setDraw("jump");
     console.log("start");
-    button.push(new Button(move, 150, 170, "Start")); 
-    return false;
+    button.push(new Button(start, 50, 300, "Start")); 
+    button.push(new Button(start, 250, 300, "Snabbstart")); 
 
+    return false;
 }
+
+function start(){
+    //wood = Wood(81); 
+        waitFor(nyruta.bind(this, "jump", 81))
+
+    //setDraw("jump");
+    console.log("start");
+    //button.push(new Button(move, 150, 170, "Start")); 
+    return false;
+}
+
+
+
+
+
+
 function diceRuta(){
    // movepause = true;
     gameObj[hitIndex].drawRuta();

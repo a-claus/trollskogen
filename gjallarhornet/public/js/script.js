@@ -231,8 +231,22 @@ function dubbelLoopaArrayen(func){
 				
 		}
 	}
-	console.log(jsonFil);
-	console.log(temp);
+
+	//console.log(jsonFil);
+	//console.log(temp);
+	let index; 
+	let exportArray = [];
+	
+	for (i=0; i < temp.lista.length; i++){
+		index = findObject(exportArray, "namn", temp.lista[i]);
+		console.log(index);
+		if (index == -1) 
+			{exportArray.push({namn: temp.lista[i], value: 1});}
+		else{
+			exportArray[index].value++;}
+	}
+	console.log(exportArray);
+	return exportArray;
 }
 
 var passagerare = []; var quanto = [];
@@ -268,12 +282,15 @@ function antalPassagerarSamtidigt(i,j){
 				temp.raknare=0;
 			}*/
 		}	
+
+		if (isNaN(tur.nod)==true){
 			tur.nod = tur.nod.replace("U", "");
 			tur.nod = parseInt(tur.nod);
+		}
 			
 		
 			temp.nasta++;
-			console.log(tur.nod, temp.nasta);
+			//console.log(tur.nod, temp.nasta);
 
 		
 			if (tur.nod != temp.nasta){
@@ -292,21 +309,22 @@ function antalPassagerarSamtidigt(i,j){
 			if (tur.antal != undefined) {
 				antal = parseInt(tur.antal);}
 			else{
-				console.log("else")
+				//console.log("else")
 				antal = 1;
 			}
 
 			if (tur.restyp == "BOM" || tur.restyp == "error"){antal = 0}
-			console.log(tur.antal, antal);	
+			
 
 			if (tur.door == "stiga på"){
 				
 					
 					temp.raknare +=  antal;
-					if (temp.raknare > temp.lista[temp.lista.length-1])
+					if (temp.raknare > temp.lista[temp.lista.length-1]) //om det är fler passagerare på turen
 						temp.lista[temp.lista.length-1] = temp.raknare;
-						quanto.push(antal);
-						passagerare.push(tur.id);
+					quanto.push(antal);
+					passagerare.push(tur.id);
+
 				
 			}
 			
@@ -329,6 +347,7 @@ function antalPassagerarSamtidigt(i,j){
 			
 
 }
+
 
 function findObject(arr, obj, val){
 	for (j=0; j < arr.length; j++){

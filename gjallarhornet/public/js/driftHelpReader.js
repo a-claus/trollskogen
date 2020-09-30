@@ -24,11 +24,11 @@ let i =0;
         line = line.replace(/\s\s+/g, ' ');  
        // console.log(line);   
         let kolla = cleaner(line);
-        //console.log(line);
-       if (kolla == "skrap") {skrap.push(line); 
-        //console.log(line);
-      }
-       else if (kolla == "pass") {
+        console.log(line);
+        if (kolla == "skrap") {
+          skrap.push(line); 
+        }
+        else if (kolla == "pass") {
         passnr.push(line);
         let part = line.split(" ");
         //console.log(part);
@@ -51,20 +51,16 @@ let i =0;
        else {
       //  console.log(line);
         let arr = line.split(" ");
-      //  console.log(arr);
+    //   console.log(arr);
         if (arr.length > 5){
          
         arr = stada_nod(arr);
-        if (isNaN( arr.nod ) == false ) 
-          {array.push(arr);
-
-            passen[passen.length-1].resa.push(arr);}
-
-        
-
-        
-      }
-       }   
+      //  console.log(arr);
+        if (isNaN( arr.nod ) == false ) {
+          array.push(arr);
+          passen[passen.length-1].resa.push(arr);}
+        }
+      }   
 
       })
      
@@ -103,45 +99,44 @@ function stada_nod(input){
   let obj = {}; let typ; let err = false;
   //if (input.length == 5) obj.antal = parseInt(input[1]);
   //if (input.length == 2) obj.id = input[1].slice(3, 7);
-  if (input.length > 5){
-    obj.nod = input[1];
-    obj.nod = parseInt(obj.nod.replace("U", ''));  
-
-    obj.tid = input[2];
-    if (input[3].slice(0,1) == "("){ // hämtanod
-      obj.door = "stiga på"; 
-      obj.urtid == input[3].slice(1,5);
-      let raknare = 4;
-      
-      if (isNaN(input[4]) == false) {
-        obj.mpl = parseInt(input[4]);
+    if (input.length > 5){   
+        obj.nod = input[1];
+        obj.nod = parseInt(obj.nod.replace("U", ''));  
+        obj.tid = input[2];
+        if (input[3].slice(0,1) == "("){ // hämtanod
+            obj.door = "stiga på"; 
+            obj.urtid == input[3].slice(1,5);
+            let raknare = 4;
+            if (isNaN(input[4]) == false) {
+                obj.mpl = parseInt(input[4]);
+                raknare++;
+            }
+        obj.adr = input[raknare] + " ";
         raknare++;
-      }
-      obj.adr = input[raknare] + " ";
-      raknare++;
-      do {
-        if (input[raknare + 1]=="MÖL") break;
-        if (input[raknare + 1]=="GÖT") break;
-      obj.adr += input[raknare] + " ";
-      raknare++;
-      if (raknare==20) {console.log(input); console.log(obj); break;}
-      if (input[raknare + 1]=="MÖL") break;
-    } while( input[raknare + 1] != "GÖT")
+            do {
+                if (input[raknare + 1]=="MÖL") break;
+                if (input[raknare + 1]=="GÖT") break;
+                obj.adr += input[raknare] + " ";
+                raknare++;
+                if (raknare==20) {console.log(input); console.log(obj); break;}
+                if (input[raknare + 1]=="MÖL") break;
+            }   
+            while( input[raknare + 1] != "GÖT")
       
-    if (obj.adr.slice(0,3)== "BOM") {
-      //console.log("errorhandler");
-      //"pass":"150","datum":"200605","resa":[{"nod":4,"tid":"0752","door":"stiga på","mpl":1560,"adr":"Donsö Hamn ","restyp":"RTBA","id":"BodKri","antal":"4"
-      err =true;
-      obj.restyp = "error";
-      obj.adr = "Okänd";
-      obj.id = "noOne";
-    }
-    if (err == false){
-    if (input[raknare + 2] == "RT") {raknare++; input[raknare + 2] = "RTBA" }
-      obj.restyp = input[raknare + 2];
-      obj.id = input[raknare+3].slice(0,3) + input[raknare+4].slice(0, 3);
-     
-    }
+        if (obj.adr.slice(0,3)== "BOM") {
+            //console.log("errorhandler");
+            //"pass":"150","datum":"200605","resa":[{"nod":4,"tid":"0752","door":"stiga på","mpl":1560,"adr":"Donsö Hamn ","restyp":"RTBA","id":"BodKri","antal":"4"
+            err =true;
+            obj.restyp = "error";
+            obj.adr = "Okänd";
+            obj.id = "noOne";
+        }
+        if (err == false){
+            if (input[raknare + 2] == "RT") {raknare++; input[raknare + 2] = "RTBA" }
+            obj.restyp = input[raknare + 2];
+            obj.id = input[raknare+3].slice(0,3) + input[raknare+4].slice(0, 3);
+        }
+    }        
     else{
       obj.door = "gå av";
       let raknare = 3;
@@ -166,7 +161,7 @@ function stada_nod(input){
     {obj.id = input[raknare+3].slice(0,3) + input[raknare+4].slice(0,3);} //namn
     
 
-    }}
+    }
   }
   //console.log(obj);
   
