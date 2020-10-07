@@ -1,5 +1,7 @@
 var mapImages=[];
 var cardImages = []; 
+var bookImages = [];
+
 var historik=[];
 var vilketObjAction;
 var ctx = myGameArea.context;
@@ -86,10 +88,24 @@ function move(){
 function startMeny(){
     wood = new Wood(81); 
     //setDraw("jump");
-    console.log("start");
-    button.push(new Button(start, 50, 300, "Start")); 
+    console.log("start", wait);
+    ctx = myGameArea.context;
+    ctx.drawImage(bookImages[0],0,0,400,400)
+    button.push(new Button(story, 50, 300, "Intro")); 
     button.push(new Button(start, 250, 300, "Snabbstart")); 
 
+    return false;
+}
+
+function story(){
+    console.log("ja", bookImages.length);
+    let contin = book.read();
+            ctx.drawImage(knapp, 10, 10);
+
+      button.push(new Button(story, 20, 300, "Intro")); 
+    button.push(new Button(start, 250, 300, "Snabbstart")); 
+
+    //if (contin == true) return true;
     return false;
 }
 
@@ -98,7 +114,7 @@ function start(){
         waitFor(nyruta.bind(this, "jump", 81))
 
     //setDraw("jump");
-    console.log("start");
+    console.log("start2");
     //button.push(new Button(move, 150, 170, "Start")); 
     return false;
 }
@@ -123,12 +139,13 @@ Loop function
 
 let turnklar = true;
 let wait =[];
-
+let waitKlar = "story"; 
 let aaa=0;
 
 function loop(){
 //aaa++;
-    
+//if (gameStatus.length> 0)
+    //console.log(gameStatus);
   //  if (aaa%200){console.log(wait); aaa=0;}
     let igen = false;
     if (turnklar == true){
@@ -186,7 +203,7 @@ function waitFor(func){
 
 function notWaiting(klar = "NN"){ 
 //let index;
-console.log("notWaiting", klar);
+console.log("--------notWaiting", klar);
 console.log(wait);
 
 
@@ -201,9 +218,17 @@ console.log(wait);
     console.log("W",wait);
     
     if (wait.length == 0){
-        moveOn = true; 
-        console.log("wfKLar"); 
-        gameStatus.push(move)};
+      switch (waitKlar){
+            case "book":
+                gameStatus(story);
+                waitKlar = "move";
+                break;
+            default:
+                moveOn = true; 
+                console.log("wfKLar"); 
+            gameStatus.push(move)
+    };
+}
 }
 
 /*-------------------------------------------
@@ -708,6 +733,26 @@ function setKartbitsAction(index){
             
 }       
 
+function laddabilder(namn, url, typ){
+   console.log(namn);
+    wait.push(namn);
+    if (typ == "card"){
+        cardImages.push(new Image());
+        cardImages[cardImages.length-1].addEventListener("load", notWaiting.bind(namn))
+        cardImages[cardImages.length-1].scr = url;
+    }
+    if (typ == "map"){
+        mapImages.push(new Image());
+        mapImages[mapImages.length-1].addEventListener("load", notWaiting.bind(namn))
+        mapImages[mapImages.length-1].scr = url;
+    }
+    if (typ == "book"){
+        bookImages.push(new Image());
+        bookImages[bookImages.length - 1].addEventListener("load", notWaiting.bind(namn))
+        bookImages[bookImages.length - 1].scr = url;
+    }
+    console.log(wait);
+}
 
 var colorMinne;
 

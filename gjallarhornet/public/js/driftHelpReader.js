@@ -10,7 +10,7 @@ let i =0;
    
       
        let array =[]; let j = 0; let skrap =[];  let passnr=[];
-       let passen = [];
+       let passen = []; let year; 
        let text = ""; 
       // console.log(reader.result);
        //console.log(file[i]);
@@ -25,6 +25,8 @@ let i =0;
        // console.log(line);   
         let kolla = cleaner(line);
         console.log(line);
+
+
         if (kolla == "skrap") {
           skrap.push(line); 
         }
@@ -38,17 +40,32 @@ let i =0;
       }
       else if (kolla == "antal"){
        // console.log ("aaaa", line); 
-        // console.log ("aaa", ); 
+       
           let r = passen[passen.length-1].resa;
-          r[r.length-1].antal=line.slice(1, 2);
+          r[r.length-1].antal = line.slice(1, 2);
 
 
       }
         else if (kolla == "antal2"){
           console.log("rvåsiffrigt antal resenärer!!!");
 
+      } else if (kolla == "id") {
+         // let abc = new Date (line.slice(4, 10));
+         if (year == undefined) year = parseInt(passen[0].datum.slice(0, 2)); //parseInt
+          let abc = parseInt(line.slice(4, 6));
+          if (abc >= year || line.slice(10,11) == "+") abc -= 100;
+          
+          
+          console.log(line.slice(10,11),year - abc);
+
+          let r = passen[passen.length-1].resa;
+
+          r[r.length-1].alder = year - abc;
+
+         
       }
        else {
+      
       //  console.log(line);
         let arr = line.split(" ");
     //   console.log(arr);
@@ -170,8 +187,10 @@ return obj;
     
 
 function cleaner(input){
+
  
   let spara = "noder";
+   if (input.indexOf("Id:") == 1) spara= "id";
   let kniv=input.slice(0, 5);
  
   

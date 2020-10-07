@@ -217,6 +217,15 @@ function knappval(val){
 			diagram.x_namn = "";
 			diagram.rita();
 		break;
+		case 7:
+			//Ålder		
+			diagram.array = getAge(jsonFil, document.getElementById("flexpass").value);
+			
+			diagram.rubrik = "Ålder passagerare";
+			diagram.y_namn = "Antal";
+			diagram.x_namn = "Ålder";
+			diagram.rita();
+		break;
 	}
 }
 
@@ -400,6 +409,30 @@ function getAntalNoderPassPerDag(array, aktivtPass){
 			index = ymdList.indexOf(array[i].datum);
 			exportArray[index].value = array[i].resa.length;
 		}
+	}
+	//console.log(exportArray);
+ 	return exportArray;
+}
+
+function getAge(array, aktivtPass){
+	
+	
+	let  exportArray = []; let index; 
+
+	for (j=0; j < 116; j++){
+		exportArray.push({namn: j, value: 0})	
+	}
+	
+	for (i=0; i < array.length; i++){
+			for (j=0; j < array[i].resa.length; j++){
+
+		if (array[i].resa[j].alder){ //xyz
+
+			if (array[i].resa[j].restyp != "BOM" || array[i].resa[j].restyp != "error"){
+				index = array[i].resa[j].alder;
+				exportArray[index].value++;
+			}
+		}}
 	}
 	//console.log(exportArray);
  	return exportArray;
