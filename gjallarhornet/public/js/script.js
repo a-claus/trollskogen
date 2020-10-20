@@ -137,9 +137,11 @@ for (i=0; i < ymder.length; i++){
 
 */
 function fyllPassDropdown(array){
+
 	let a = "<option value=";
 	let b = "</option>";
-	let generated = "";
+	let generated = a + "\'alla" + "\'>alla" + b;
+	//console.log(generated);
 	
 
 	for (i = 0; i < array.length; i++){
@@ -163,6 +165,9 @@ function knappval(val){
 			diagram.y_namn = "";
 			diagram.x_namn = "";
 			diagram.rita();
+			  console.log(app.passLista);
+			  app.methods.adderaPassLista();
+
 			
 		break;
 		case 1:
@@ -405,7 +410,7 @@ function getAntalNoderPassPerDag(array, aktivtPass){
 	}
 	
 	for (i=0; i < array.length; i++){
-		if (array[i].pass == aktivtPass){
+		if (array[i].pass == aktivtPass || aktivtPass == "alla"){
 			index = ymdList.indexOf(array[i].datum);
 			exportArray[index].value = array[i].resa.length;
 		}
@@ -424,15 +429,16 @@ function getAge(array, aktivtPass){
 	}
 	
 	for (i=0; i < array.length; i++){
+		if (array[i].pass == aktivtPass || aktivtPass == "alla"){
 			for (j=0; j < array[i].resa.length; j++){
 
 		if (array[i].resa[j].alder){ //xyz
-
+				
 			if (array[i].resa[j].restyp != "BOM" || array[i].resa[j].restyp != "error"){
 				index = array[i].resa[j].alder;
 				exportArray[index].value++;
 			}
-		}}
+		}}}
 	}
 	//console.log(exportArray);
  	return exportArray;
@@ -480,13 +486,13 @@ function getAntalResor(array){
 
 }
 
-function antalNoderTur(array, tur){
+function antalNoderTur(array, aktivtPass){
 	let  exportArray = []; let ny = true; let c = 0;
 	
 	//tur = "831";
 	for (i=0; i < array.length; i++){
+		if (array[i].pass == aktivtPass || aktivtPass == "alla"){
 		
-		if (tur == array[i].pass){
 		for (j=0; j < array[i].resa.length; j++){
 			if (ny == true) {
 				ny = false

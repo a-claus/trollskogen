@@ -575,7 +575,7 @@ function drawRuta(){
     
 //----------------------------------------------------------------------------
 class Button {
-    constructor(action, x, y, text="Slå", width=100, height=40){
+    constructor(action, x, y, text="Slå", width=100, height=40, typ = "button"){
         this.x=x;
         this.y=y;
         this.width=width;
@@ -583,18 +583,31 @@ class Button {
         this.knappHit=false;
         this.action=action; //vilken gameStatus
        // this.func=buttonAction(action);
+       console.log("T",typ);
+       if (typ == "button"){ 
         var ctx = myGameArea.context;
         ctx.drawImage(knapp, x, y);
         ctx.fillStyle = "white";
-        
         ctx.textAlign="center";
         for (var i=0; i<6; i++){
             ctx.font=16-i + "px Georgia"; 
             if (ctx.measureText(text).width< width) {break;}
+
     //ctx.font="16px Georgia";
         }
-        ctx.fillText(text,x+width/2,y+25); //x+35
+        ctx.fillText(text,x+width/2,y+25);
+        } else{
+            console.log("invis");
+            this.makeInvisible();
+        }
     
+    }
+    makeInvisible(){
+        this.width= 400;
+        this.height = 400;
+        this.x = 0;
+        this.y = 0;
+        console.log(this);
     }
 
 

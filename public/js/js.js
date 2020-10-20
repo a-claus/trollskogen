@@ -1,6 +1,6 @@
 var mapImages=[];
 var cardImages = []; 
-var bookImages = [];
+//var bookImages = [];
 
 var historik=[];
 var vilketObjAction;
@@ -90,20 +90,19 @@ function startMeny(){
     //setDraw("jump");
     console.log("start", wait);
     ctx = myGameArea.context;
-    ctx.drawImage(bookImages[0],0,0,400,400)
-    button.push(new Button(story, 50, 300, "Intro")); 
-    button.push(new Button(start, 250, 300, "Snabbstart")); 
+   ctx.drawImage(book.pic,0,0,400,400);
+
+    button.push(new Button(story, 50, 330, "Intro")); 
+    button.push(new Button(start, 250, 330, "Start")); 
 
     return false;
 }
 
 function story(){
-    console.log("ja", bookImages.length);
-    let contin = book.read();
-            ctx.drawImage(knapp, 10, 10);
-
-      button.push(new Button(story, 20, 300, "Intro")); 
-    button.push(new Button(start, 250, 300, "Snabbstart")); 
+   console.log("story");
+   book.read();
+    button.push(new Button(story, 0, 0, "Intro", 400, 400, "invisible")); 
+    //button.push(new Button(start, 250, 300, "Snabbstart")); 
 
     //if (contin == true) return true;
     return false;
@@ -243,11 +242,11 @@ function drawMeny(){
         ctx.font="10px Georgia";
         ctx.textAlign="left";
         ctx.fillText(wood.mapNR +"-"+ map[wood.mapNR].namn,10,15);
-        drawHarts(0,300,10);
+        drawHarts(0, 300,10);
         ctx.font="16px Georgia";
-        drawStyrka(0,25,10);
-        drawIQ(0,250,10);
-        drawMagi(0,330,350);
+        drawStyrka(25,10);
+        drawIQ(250,10);
+        drawMagi(330,350);
         drawBag();
         drawEffekt();
 }
@@ -272,27 +271,35 @@ function drawBag(){
      if (bagAktiv > -1){ctx.drawImage(bagger[bagAktiv].img, 40, 350, 26, 35);}
 }
 
-function drawStyrka(index,x,y){
+function drawStyrka(x,y, fig = gameObj[index].styrka ){
      ctx = myGameArea.context;
     ctx.drawImage(ICONstyrka, x, y); //10,10;
     ctx.fillStyle="white";
-    ctx.fillText(gameObj[index].styrka, x+21, y+28);}
+    ctx.fillText(fig, x+21, y+28);}
 
- function drawIQ(index,x,y){
+ function drawIQ(x,y, fig = gameObj[0].iq){
      ctx = myGameArea.context;
     ctx.drawImage(ICONiq, x, y); //10,10;
     ctx.fillStyle="black";
     //ctx.fillText(figur[index].styrka, x+21, y+28);}  
-    ctx.fillText(gameObj[0].iq, x+25, y+28);}//21
+    ctx.fillText(fig, x+25, y+28);}//21
 
-function drawMagi(index,x,y){
+function drawMagi(x,y, fig = gameObj[0].magi) {
      ctx = myGameArea.context;
     ctx.drawImage(ICONmagi, x, y); //10,10;
     ctx.fillStyle="white";
     //ctx.fillText(figur[index].styrka, x+21, y+28);}  
-    ctx.fillText(gameObj[0].magi, x+15, y+25);}//25 , 21, 17   
+    ctx.fillText(fig, x+15, y+25);}//25 , 21, 17   
 
-function end(){}
+    // ctx.drawImage(r_hart, x+i*20, y);
+
+  function drawHarta(x,y, fig = gameObj[0].liv) {
+     ctx = myGameArea.context;
+    ctx.drawImage(r_hart, x, y, 40, 40); //10,10;
+    ctx.fillStyle="white";
+    ctx.fillText(fig, x+20, y+25);}  
+
+function xend(){}
 
 function startaIgen(){
     //nollsälla värden
@@ -734,21 +741,24 @@ function setKartbitsAction(index){
 }       
 
 function laddabilder(namn, url, typ){
-   console.log(namn);
-    wait.push(namn);
+  // console.log(namn);
     if (typ == "card"){
+            wait.push(namn);
+
         cardImages.push(new Image());
         cardImages[cardImages.length-1].addEventListener("load", notWaiting.bind(namn))
         cardImages[cardImages.length-1].scr = url;
     }
     if (typ == "map"){
+            wait.push(namn);
+
         mapImages.push(new Image());
         mapImages[mapImages.length-1].addEventListener("load", notWaiting.bind(namn))
         mapImages[mapImages.length-1].scr = url;
     }
     if (typ == "book"){
         bookImages.push(new Image());
-        bookImages[bookImages.length - 1].addEventListener("load", notWaiting.bind(namn))
+      //  bookImages[bookImages.length - 1].addEventListener("load", notWaiting.bind(namn))
         bookImages[bookImages.length - 1].scr = url;
     }
     console.log(wait);

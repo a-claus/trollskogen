@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Flexlinje Statestik</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<script src="./js/script.js"></script>
+   
+ <link href="./css/style.css" rel="stylesheet" type="text/css" />
+ <link href="./css/pass.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id ="app">
+
+<meny v-for="sida in sidor" :key = "sida.id" :sida = "sida" v-bind:style ="styleRuta"></meny>
+
+<hr>  
+<enrad v-for="tur in turen" :key= "tur.id" :tur="tur" v-bind:style ="styleRad"> </enrad>
+
+<hr>  
+
+<div id = "pr">
+
+  <div class= "pr_rad" id = "pr_turer">
+  <div class = "pr_ruta" id = "pr_pass" > Pass: </div>
+    <div class = "pr_ruta" id ="pr_pass" >{{ pass }} </div> 
+
+    <div class = "pr_ruta" id = "pr_buss">Buss:</div>
+    <div class = "pr_ruta" id = "pr_buss">{{ buss }}</div>
+  </div>
+
+
+   <div class= "pr_rad" id = "pr_radRubb" >
+      <div class = "pr_ruta" id = "starttid">Starttid</div>
+      <div class = "pr_ruta" id = "startmpl">Sluttid</div>
+      <div class = "pr_ruta" id = "sluttid">Startadr.</div>
+      <div class = "pr_ruta" id = "slutmpl">Slutadr.</div>
+    </div> 
+
+   
+<enRad>
+      <div class = "pr_ruta" id = "starttid">800</div>
+      <div class = "pr_ruta" id = "startmpl">840</div>
+      <div class = "pr_ruta" id = "sluttid">200 </div>
+      <div class = "pr_ruta" id = "slutmpl">1080</div>
+      <ruta></ruta>
+     
+</enRad>
+  <div class= "pr_rad" id = "pr"v-bind:style ="styleRad"  v-for = "tur in turen"></div>
+ <div class= "pr_rad" v-bind:style ="styleRuta" id = "pr_turer"> {{ turen.starttid }}</div>
+ <div class= "pr_rad" v-bind:style ="styleRuta" id = "pr_turer"> {{ turen.sluttid }}</div>
+
+
+ </div>
+
+
+  <input type="text" v-model="pass">
+  <input type="text" v-model="buss">
+ 
+  
+  <el-input></el-input>
+</div>
+
+  <script src="./js/vue_ap.js"></script>
+</body>
+</html>

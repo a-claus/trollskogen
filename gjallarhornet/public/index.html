@@ -3,11 +3,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Flexlinje Statestik</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
  <script src="./js/calender.js"></script>
  <script src="./js/grafDrawer.js"></script>
   <script src="./js/flexpass200708.js"></script>
    <script src="./js/script.js"></script>
+   
  <link href="./css/style.css" rel="stylesheet" type="text/css" />
+ <link href="./css/pass.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
@@ -38,6 +41,8 @@
   <div id="knapp" onclick= "knappval(5)">Antal per bokning</div>
   <div id="knapp" onclick= "knappval(6)">Hur många på bokning</div>
    <div id="knapp" onclick= "knappval(7)">Ålder</div>
+
+
 </div>
 <hr />
 
@@ -53,7 +58,45 @@ drawKalender();
 
 let diagram = new Diagram("Antal utförda resor", "","", getAntalResor(jsonFil));
 fyllPassDropdown(jsonFil);
-</script>
 
+</script>
+<div id="passRuta">
+
+
+   <buttar2 
+   v-for = "bb in bbs"
+   v-bind:key = "bb.id"
+   v-bind:bb = "bb">
+     
+   </buttar2>
+
+<input type="text" v-model="item">
+<button @click="">Klicka</button>
+  
+    <div></div>
+    
+ 
+
+</div>
+<div id = "pr">
+  <div class= "pr_rad" id = "pr_turer" >
+    <div class = "pr_ruta" id ="pr_pass">Pass: 200</div> 
+    <div class = "pr_ruta" id = "pr_buss">Buss: 312</div>
+  </div>
+   <div class= "pr_rad" id = "pr_radRubb" >
+      <div class = "pr_ruta" id = "startTid">Starttid</div>
+      <div class = "pr_ruta" id = "startMpl">Sluttid</div>
+      <div class = "pr_ruta" id = "slutTid">Startadr.</div>
+      <div class = "pr_ruta" id = "slutMpl">Slutadr.</div>
+    </div> 
+    <div class= "pr_rad" id = "pr_turer" >
+      <div class = "pr_ruta" id = "startTid">800</div>
+      <div class = "pr_ruta" id = "startMpl">840</div>
+      <div class = "pr_ruta" id = "slutTid">200</div>
+      <div class = "pr_ruta" id = "slutMpl">1080</div>
+    </div> 
+</div>
+
+ <script src="./js/vue.js"></script>
 </body>
 </html>

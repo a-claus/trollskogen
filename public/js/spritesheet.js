@@ -70,43 +70,7 @@ broVO.src="img/broVO.png";
 
 var bro = new Image(); 
 	bro.src="img/bro.png";	   
-/*
-var excalibur = new Image(); 
-excalibur.src="img/excalibur.png";
 
-var swordofstone = new Image(); 
-swordofstone.src="img/swordofstone.png";
-
-
-
-var piska = new Image(); 
-piska.src="img/piska.png";
-
-var kudde = new Image(); 
-kudde.src="img/kudde.png";
-
-var sword = new Image(); 
-sword.src="img/sword.png";
-
-var klubba = new Image(); 
-klubba.src="img/klubba.png";
-
-var svamp = new Image(); 
-svamp.src="img/svamp.png";
-
-
-
- var huginmumin = new Image(); 
- huginmumin.src="img/huginmumin.png";
-
-var blabar = new Image(); 
- blabar.src="img/blabar.png";
-
-
-
- var rip = new Image(); 
- rip.src="img/rip.png";
- */
 
 var imgTarning = new Image(); 
 imgTarning.src="img/tarning.png" ;
@@ -133,34 +97,8 @@ T:[[0,0,160,160],[160,0,160,160],[320,0,160,160],[480,0,160,160],[640,0,160,160]
 [160,160,160,160],[320,160,160,160],[480,160,160,160], [640,160,160,160],[800,160,160,160]] 	
 }
 
-var imgCard = new Image(); 
-imgCard.src="img/monsterCard.png" ;
-var imgTroll = new Image(); 
-//imgTroll.src="img/trollMor.png" ;
-/*
-function drawCard(monster){
-	ctxI = myGameArea.context;
-
-	switch (monster){
-        case "troll":
-                    ctxI.drawImage(imgTroll, 0,0,250,250, 15,0,220,250);
-                     ctxI.drawImage(imgCard, 0,0,300,526, 0,0,250,500);
-                     ctxI.font = "14px Verdana";
-                     ctxI.textAlign="center";
-					ctxI.fillText("Trollmor",125,184);
-					ctxI.textAlign="left";
-                     ctxI.font = "10px Arial";
-					ctxI.fillText("En arom av svett, unken trasa slår mot",30,250);
-					ctxI.fillText("dig när du traskar in i gläntan. Trollmor " ,30,260);
-					ctxI.fillText("håller på att laga Tomtegryta. Hon tycks " ,30,270);
-					ctxI.fillText("inte ha något emot att improvisera och " ,30,280);
-					ctxI.fillText("piffa upp anrättningen med dig. ",30,290);
- ctxI.drawImage(imgVS, 90,320,60,60);
-                    break;
-
-        }
-
-}*/
+//var imgCard = new Image(); 
+//imgCard.src="img/monsterCard.png" ;
+//var imgTroll = new Image(); 
 
 
-//var spriteTarning =

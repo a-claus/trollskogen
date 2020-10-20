@@ -1,0 +1,38 @@
+#pr {
+	width: 800px;
+	line-height: 40px;  
+	
+	font-family:"Lucida Grande", Tahoma, Arial, Verdana, sans-serif;
+	font-size:24px;
+	margin:8px 0 16px;
+	text-align:center;
+	color:#aaa;	
+	background:#222222;
+}
+
+#pr_pass, #pr_buss{
+
+	
+	margin: 5px;
+}
+meny {
+	color:blue;
+	background:#222222;
+}
+.pr_rad{
+
+	
+}
+.pr_ruta
+{	
+display: inline-block;
+	width:120px;
+	margin: 5px;
+}
+
+#pr_radRubb{
+	color:#222;
+	background:#eee
+}
+
+

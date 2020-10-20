@@ -10,7 +10,7 @@ function on_canvas_click(ev) {
     if (button.length>0){
        
         for (var i =0; i<button.length;i++){
-            if (button[i].x<x && x<button[i].x+button[i].width && button[i].y<y && y<button[i].y+button[i].height) 
+            if (button[i].x < x && x < button[i].x+button[i].width && button[i].y < y && y < button[i].y+button[i].height) 
                 {
                     button[i].hit();
                     deleteButtons();
