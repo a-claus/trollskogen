@@ -1,4 +1,4 @@
-var mapImages=[];
+    var mapImages=[];
 var cardImages = []; 
 //var bookImages = [];
 
@@ -276,6 +276,12 @@ function drawStyrka(x,y, fig = gameObj[index].styrka ){
     ctx.drawImage(ICONstyrka, x, y); //10,10;
     ctx.fillStyle="white";
     ctx.fillText(fig, x+21, y+28);}
+
+ function drawJump(x,y, fig  ){
+     ctx = myGameArea.context;
+    ctx.drawImage(ICONjump, x, y, 72, 36); //10,10;
+    ctx.fillStyle="black";
+    ctx.fillText(fig, x+33, y+28);}   
 
  function drawIQ(x,y, fig = gameObj[0].iq){
      ctx = myGameArea.context;

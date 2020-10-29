@@ -575,32 +575,42 @@ function drawRuta(){
     
 //----------------------------------------------------------------------------
 class Button {
-    constructor(action, x, y, text="Slå", width=100, height=40, typ = "button"){
+    constructor(action, x, y, text="Slå", width=100, height=40, pic = "standard", extra = {}){
+        //--- HITAREA --- alla buttons
         this.x=x;
         this.y=y;
         this.width=width;
         this.height = height;
-        this.knappHit=false;
-        this.action=action; //vilken gameStatus
-       // this.func=buttonAction(action);
-       console.log("T",typ);
-       if (typ == "button"){ 
+        this.area = {x: x, y: y, width: width, height: height};
+
+        //------ alla
+        this.knappHit = false; //xyz
+        this.action = action; //vilken gameStatus
+// ---- STANDARDKNAPP -------------------------
+       if (pic == "standard"){ 
         var ctx = myGameArea.context;
         ctx.drawImage(knapp, x, y);
         ctx.fillStyle = "white";
         ctx.textAlign="center";
         for (var i=0; i<6; i++){
             ctx.font=16-i + "px Georgia"; 
-            if (ctx.measureText(text).width< width) {break;}
+            if (ctx.measureText(text).width < width) {break;}
+        }
+    }
 
-    //ctx.font="16px Georgia";
+        if (pic == "invisible"){ this.makeInvisible(); }
+       if (pic == "arrow"){ 
+        var ctx = myGameArea.context;
+        ctx.drawImage(arrow, x, y, width, height); }
+       if (extra.onArea == true){
+            this.onArea=true;
+            console.log(extra.oa_func);
+            this.oa_func=extra.oa_func;
+            //this.button.onAreaFunc = extra.func;
         }
-        ctx.fillText(text,x+width/2,y+25);
-        } else{
-            console.log("invis");
-            this.makeInvisible();
-        }
-    
+        //if (extra.dragOver){ }
+//              
+            
     }
     makeInvisible(){
         this.width= 400;
@@ -617,6 +627,13 @@ class Button {
                 gameStatus.push(this.action);
                 
     }    
+
+}
+
+class ButtonPic extends Figur{
+    constructor(pic){
+
+    }
 
 }
 

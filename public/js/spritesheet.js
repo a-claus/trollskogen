@@ -49,6 +49,12 @@ ICONiq.src = "img/iq.png";
 var ICONstyrka = new Image(); 
 ICONstyrka.src = "img/styrka.png";
 
+ let arrow = new Image();
+  arrow.src = "img/framat.png";
+
+  let ICONjump = new Image();
+  ICONjump.src = "img/jump.png";
+
 
 
  kartObj.push({

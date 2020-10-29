@@ -1,14 +1,14 @@
-#pr {
-	width: 800px;
-	line-height: 40px;  
-	
-	font-family:"Lucida Grande", Tahoma, Arial, Verdana, sans-serif;
-	font-size:24px;
-	margin:8px 0 16px;
-	text-align:center;
-	color:#aaa;	
-	background:#222222;
-}
+	#pr {
+		width: 800px;
+		line-height: 40px;  
+		
+		font-family:"Lucida Grande", Tahoma, Arial, Verdana, sans-serif;
+		font-size:24px;
+		margin:8px 0 16px;
+		text-align:center;
+		color:#aaa;	
+		background:#222222;
+	}
 
 #pr_pass, #pr_buss{
 

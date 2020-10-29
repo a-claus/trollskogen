@@ -20,9 +20,7 @@ function on_canvas_click(ev) {
     }
     clickY = y;
     clickX = x;
-     
-    //if (x>38 && x<115 && y<395 && y>360 && bagger.i==true) {bagger.setBagImg();}
-   // clickHit(x,y);
+
 
 }
 
@@ -55,15 +53,27 @@ function clickHit(x,y){
 
     }
 
+let onArea = false;
+function mousePosition(e){
+    for (i=0; i < button.length; i++){
+       
+        if (button[i].onArea == true) { 
+ 
+            if (inArea({x: e.x, y: e.y}, button[i].area) == true) {
+                //button[i].onAreaFunc();
+                onArea = true;
+                button[i].oa_func();
+              
+            }
 
-
-
-
-function xdrawCCard(){ //190612
-    console.log("iaCard");
-   
-ctx = myGameArea.context;
-ctx.drawImage(imgTarning, spriteTarning.T[1][0],spriteTarning.T[1][1],spriteTarning.T[1][2],spriteTarning.T[1][3], 100,100,50,50);
-drawCard("troll");
-
+            else
+                {onArea=false;}
+        }
+    }
 }
+
+function inArea(point, area){
+    if (point.x > area.x && point.x < area.x + area.width && point.y > area.y && point.y < area.y + area.height)
+        { return true; } else { return false; } 
+}
+

@@ -18,6 +18,10 @@ var myGameArea = {
              })
         this.canvas.addEventListener('mousedown', on_canvas_click, false);//on_canvas_click
         this.canvas.addEventListener('mouseup', mouse_up, false);
+        this.canvas.addEventListener("mousemove", mousePosition, false)
+       /* this.canvas.onmousemove = function (e){
+            canvas("JAaaaa", e)
+        }*/
 
         this.interval = setInterval(loop, 20);
     },
@@ -32,7 +36,8 @@ var myGameArea = {
     },
     foto: function() {
         return this.canvas.toDataURL("image/png");
-    }
+    },
+    
 }
 //let ctx = myGameArea.context;
-
+ 
