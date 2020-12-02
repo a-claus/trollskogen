@@ -1,7 +1,8 @@
-
+wait.push("prinsSprite");
 mapImages.push(new Image());
-mapImages[mapImages.length-1].src="./img/prinsSprite.png";
+mapImages[mapImages.length-1].addEventListener('load', notWaiting.bind("prinsSprite"));
 
+mapImages[mapImages.length-1].src="./img/prinsSprite.png";
 
 
 
@@ -22,7 +23,7 @@ gameObj.unshift(
 EGENSKAPER 
 ----------------------------------*/
  	liv: 3,
-    skada: 2.,//-.5,
+    skada: -.5,//-.5,
     styrka: 3,
     iq:1,
     magi: 0,
@@ -113,6 +114,5 @@ function hopp(jump){
 	return jump;
 	
 }
-
 console.log("Prins klar");
 

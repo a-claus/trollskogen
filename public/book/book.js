@@ -36,13 +36,15 @@ figurer.push({
 	skutt: 2, hardLandning:.5
 	}
 });
+
+
 figurer.push({
 	id: "Riddaren",
 	url: "./js/player/riddaren.js",
 	status: "alive",
 	storytext:{
-		val: "Min rustning är lite rostig.",
-		vald: "Menar du verkligen att jag ska gå."
+		val: "Miiiin rustning är rostig.",
+		vald: "... och trollen kommer säkert buckla till min hjälm."
 	},
 	e: {liv: 4,
     skada: 0,
@@ -53,13 +55,14 @@ figurer.push({
 	skutt: 0, hardLandning:.5
 	}
 });
+
 figurer.push({
 	id: "Kammarjungfrun",	
 	url: "./js/player/kammarjungfrun.js",
 	status: "alive",
 	storytext:{
-		val: "...",
-		vald: ""
+		val: "Men Prinsessa, vem ska hjälpa dig att ta på dig din nattsärk",
+		vald: "Jaha du ska sova med klänningen på."
 	},
 	e: {liv: 3,
     skada: 0,
@@ -71,128 +74,105 @@ figurer.push({
 	}
 });
 
-getFile(figurer[0].url);
 
+// getFile(figurer[0].url);
+
+console.log(figurer[0].url);
 // Börja att ladda upp
 
-	// Bilder
-	// Text??
-	
 
-// Rita upp yta, två knappar Nästa, starta spel.
 
-// Välja figur
-
-// Starta spel
-
-//---------------------------------------------
-//
-// Svamp
-//
-//---------------------------------------------
-/*
-ger slumpvis bonuc. IQ, styrka, extra hjärta och gift
-
-*/
 let bookImages = [];
 let bookImg = [new Image()];
 
 //bookImg.push(new Image());
- console.log(bookImg.length,"1")
-      //  bookImages[bookImages.length - 1].addEventListener("load", notWaiting.bind(namn))
- bookImg[bookImg.length - 1].scr = "./img/hart.png";
-laddabilder("ett", "./img/book/1.png", "book")
-laddabilder("tva", "./img/book/2.png", "book")
-laddabilder("tre", "./img/book/3.png", "book")
-laddabilder("fyra", "./img/book/4.png", "book")
-laddabilder("fem", "./img/book/5.png", "book")
-laddabilder("sex", "./img/book/6.png", "book")
-laddabilder("sju", "./img/book/7.png", "book")
-laddabilder("atta", "./img/book/8.png", "book")
-laddabilder("nio", "./img/book/9.png", "book")
-laddabilder("prins", "./img/book/prins.png", "book")
-laddabilder("kammarjungfru", "./img/book/kammarjungfru.png", "book")
-laddabilder("narr", "./img/book/narr.png", "book")
-laddabilder("riddare", "./img/book/riddare.png", "book")
+ 
+
  var im = new Image(); 
  im.src="./img/book/1.png";
  let bookPICsource = ["1.png", "2.png","3.png","4.png","5.png","6.png","7.png","8.png","9.png"];
- let fig = ["prins.png",  "narr.png", "riddare.png","kammarjungfru.png"];
+ let figPICsource = ["prins.png", "narr.png", "riddare.png","kammarjungfru.png"];
  let bubbla = new Image();
   bubbla.src = "./img/bubbla.png";
   let s_bg = new Image();
   s_bg.src = "./img/bg.png";
  
-
+console.log("book2");
  
 class Book{
 	constructor(){
-		this.pic = new Image();
+		this.pics = []; 
+		this.page = -1;
+		this.loadPics();
+		this.onArea = false;	
+	}
+	loadPics(){
+		this.end= bookPICsource.length; 
+		this.figs = figPICsource.length;
+		for(i = 0; i < this.end; i++){
+			this.pics.push(new Image());
+			this.pics[this.pics.length-1].src = "./img/book/" + bookPICsource[i];
+		}
 		
-		this.page=-1;
-		this.end = 10;
-		this.figurer = 4;
-		this.loadPic("book");
-		this.figCount = -1	;
-
+		for(i=0; i < this.figs; i++){
+			this.pics.push(new Image());
+			this.pics[this.pics.length-1].src = "./img/book/" + figPICsource[i];
+		}
+		this.L = this.pics.length;
 	}
 
-	loadPic(alt){
-		if (alt == "book"){
-			this.page++;
-			this.pic.src = "./img/book/" + bookPICsource[this.page];
-			
-		}
-		else {
-			this.figCount++;
-			if (this.figCount == 4) this.figCount = 0;
-			this.pic.src = "./img/book/" + fig[this.figCount];	
-		}
-	}
  	read(){
- 	//bläddra bok
-	 
-	 	ctx.drawImage(s_bg	, 0, 0, 400, 400);
-	 	console.log(book);
-	 	console.log(this.pic);
-	 	ctx.drawImage(book.pic, 0, 0, 400, 400);
+ 		console.log("Reading")
+ 		this.page++;
+ 		if (this.page == this.L) this.page = this.L - this.figs;
+ 		this.onArea = false;
+ 		this.draw();
+ 		return false;
+ 	}
+
+	draw(){
+		console.log("1",this.onArea);
+	 	ctx.drawImage(s_bg, 0, 0, 400, 400);
+	 	ctx.drawImage(this.pics[this.page], 0, 0, 400, 400);
 	 	
 	 	
-	 	if (this.figCount > -1){	 		//figurer[this.figCount].magi
+	 	if (this.page >= (this.end)){	
+	 		console.log("2",this.onArea);
+	 		this.figCount = this.page - this.end; 
+			ctx.drawImage(bubbla, 0, 0, 400, 150);
 
-				ctx.drawImage(bubbla, 0, 0, 400, 150);
-
-				let t = figurer[this.figCount].storytext.val;
-				if (onArea == true)  t = figurer[this.figCount].storytext.vald;
-
-				textWriter2(t, 200, 50, {color:"black", lineLength:40, align:"center"})
-				drawMagi(20,120,figurer[this.figCount].e.magi);
-				drawIQ(20,70,figurer[this.figCount].e.iq);
-				drawStyrka(20, 20, figurer[this.figCount].e.styrka);
-				drawJump(15, 220, figurer[this.figCount].e.skutt);
-			//	ctx.drawImage(arrow, 300, 350, 80,40);
-				drawHarta(20,170,figurer[this.figCount].e.liv);
-
-				button.push(new Button(start, 300, 350, "",80,40, "arrow", {onArea: true, oa_func: book.read })); 
-
-				
-				
-	 	}
-	 	
-	 		if (this.page < 8){
-				this.loadPic("book");
-				
-			} else {
-				
-				
-				this.loadPic("val");
+			let t = figurer[this.figCount].storytext.val;
+			if (this.onArea == true)  {
+				t = figurer[this.figCount].storytext.vald;
 			}
 
-
+			console.log(t);
+			textWriter2(t, 200, 50, {color:"black", lineLength:40, align:"center"})
+			drawMagi(20,120,figurer[this.figCount].e.magi);
+			drawIQ(20,70,figurer[this.figCount].e.iq);
+			drawStyrka(20, 20, figurer[this.figCount].e.styrka);
+			drawJump(15, 220, figurer[this.figCount].e.skutt);
+			drawHarta(20,170,figurer[this.figCount].e.liv);
+			button.push(new Button(getFigur, 300, 350, "", 80, 40, "arrow", {onArea: true}));
 		}
-
+	}
 	
 }
+function getFigur(){
+		console.log("ladda figur", book.page);
+		//ladda figur
+		let val = book.figCount;
+		if (val > 1) val = 0;
+
+		console.log( val );	
+		loadFile(figurer[val].url, figurer[val].id);
+		//nu när fiifur inte skapad, får alternativ hamna på de två som existerat
+		//starta spel
+
+
+	}
+
+
 let book = new Book();
 
 console.log("book klar")

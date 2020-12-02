@@ -1,6 +1,6 @@
 console.log("class laddas");
-    var sakImg=[];
 
+var sakImg=[];
 let bagger = [];
 let bagAktiv = -1;
 bagger[-1] = {undo: function(){conseole.log("BagClick var en tom bag")}};
@@ -34,123 +34,12 @@ class Sak{
     
     this.sak;
     this.img;
-
-//----------OLD
-          //  this.nr=nr;  
-           // console.log("Nummer"+this.nr);
-           // this.vad = thing[this.nr].vad;
-           // this.arrayLista = "thing";
-           // this.namn = thing[this.nr].namn;
-           // this.card = thing[this.nr];
-           // this.width = thing[this.nr].width;
-           // this.height = thing[this.nr].height;
-           // this.color = thing[this.nr].color; 
-       }
-
-
-}
-
-
-
-/*
-class Bagger{
-    constructor(){
-
-        this.innehall = [];
-        this.index = -1; 
-        this.img;
-        this.iHand = "";
-        this.i = false; //xyz
-       // this.func = function(){};
-        this.clickFunc;
-        this.dragFunc;
     }
-
-    setBagImg(){
-        var iHand;
-        if (this.index == undefined){this.index = this.innehall.lengt-1;} //why
-       
-        if (this.index != -1){
-            console.log(thing);
-            console.log(this.index, thing[this.index].vad);
-            iHand = thing[this.innehall[this.index]].plus;
-            thing[this.index].bagFuncSetter(); 
-            upgradeFigur(iHand, false);
-            }
-        
-        this.index++;
-
-        if (this.index >= this.innehall.length) {this.index = 0;}
-        iHand = thing[this.innehall[this.index]].plus;
-        this.img = thing[this.innehall[this.index]].img;
-        upgradeFigur(iHand);
-    }
-    
-     sput(vad, ha="click"){
-
-            if(this.innehall.includes(vad) == false){
-                    this.innehall.push(vad);}
-            if (this.index == -1){
-                this.setBagImg(); 
-                this.i = true;
-               // if (ha == "click")
-                 haPush();
-               // if (ha == "drag") dragPush();
-            }
-            console.log(this.index);
-    }
-    
-     
-     get image(){
-        return this.img;
-    }
-
-}
-
-*/
-//var bagger = new Bagger();
-
-function xhaPush(){
-    //    dragAction : function(){
-   hitArea.push({x:35, y:360, width:80, height:35, action:function() {bagger.setBagImg()}}); 
-}
-
-function xdraghaPush(){
-    //    dragAction : function(){
-   dragHitArea.push({x:35, y:360, width:80, height:35, action:function () {bagger.setBagImg()}}); 
-}
-
-function upgradeFigur(iHand, positiv=true){
-    console.log("old");
-    bagupgrade(iHand, positiv);
 }
 
 
-function xbagupgrade(iHand, positiv=true){
 
-        if (positiv==false) iHand="minus_"+ iHand;
-        
-       
 
-            switch (iHand){
-                case "styrka": gameObj[0].styrka++; break;
-                case "minus_styrka": gameObj[0].styrka--; break;
-
-                case "liv": gameObj[0].skada=0; break;
-                case "harts": gameObj[0].liv++; break;
-                case "minus_harts": gameObj[0].liv--; break;
-                case "jump": gameObj[0].jumper++; break;
-                case "minus_jump": gameObj[0].jumper--; break;
-                case "iq": gameObj[0].iq++; break;
-                case "minus_iq": gameObj[0].iq--; break;
-                case "func": bagger.func();
-                    //gameObj[0].bagFunc(); 
-                    break;
-               // case "minus_func": figur[0].bagFunc = function(){console.log("minusFunc");};break;
-                default: console.log("ingen upgrade");
-
-            }
-        }
 
 class Figur {
     constructor(){
@@ -301,7 +190,7 @@ class Player extends Figur{
 }
 
 //--------------------------------------------------------------------------
-class Monster extends Figur{
+class xMonster extends Figur{
     constructor(nr){
         super();
 
@@ -572,7 +461,7 @@ function drawRuta(){
 
 
     
-    
+console.log ("button laddas");    
 //----------------------------------------------------------------------------
 class Button {
     constructor(action, x, y, text="Slå", width=100, height=40, pic = "standard", extra = {}){
@@ -596,20 +485,23 @@ class Button {
             ctx.font=16-i + "px Georgia"; 
             if (ctx.measureText(text).width < width) {break;}
         }
-    }
+                ctx.fillText(text, x + width/2, y + height/2+6);
+
+        }
 
         if (pic == "invisible"){ this.makeInvisible(); }
        if (pic == "arrow"){ 
         var ctx = myGameArea.context;
         ctx.drawImage(arrow, x, y, width, height); }
        if (extra.onArea == true){
-            this.onArea=true;
-            console.log(extra.oa_func);
-            this.oa_func=extra.oa_func;
+            this.oa = true;
+            //console.log(extra.oa_func);
+            //this.oa_func=extra.oa_func;
+            
             //this.button.onAreaFunc = extra.func;
         }
-        //if (extra.dragOver){ }
-//              
+        
+            
             
     }
     makeInvisible(){
@@ -623,21 +515,23 @@ class Button {
 
     hit() {
        
-                if (this.action == move) movepause = false; 
+                if (this.action == move) movepause = false; //xyz
                 gameStatus.push(this.action);
                 
-    }    
+    }  
+    onArea() {
+                console.log(book);
+
+               // if (this.action == move) movepause = false; //xyz
+                this.oa = false;
+                book.onArea = true;
+                book.draw();
+                return false;
+                
+    }     
 
 }
 
-class ButtonPic extends Figur{
-    constructor(pic){
-
-    }
-
-}
-
-function xupgradeIQ(){gameObj[0].iq++;}
 
 function deleteButtons(){
     button.splice(0, button.length);
@@ -652,4 +546,4 @@ function taUppSak(sak){
 
 }
 
-
+console.log("klass klar");

@@ -57,14 +57,17 @@ let onArea = false;
 function mousePosition(e){
     for (i=0; i < button.length; i++){
        
-        if (button[i].onArea == true) { 
+        if (button[i].oa == true) { 
  
             if (inArea({x: e.x, y: e.y}, button[i].area) == true) {
                 //button[i].onAreaFunc();
-                onArea = true;
-                button[i].oa_func();
-              
-            }
+                //onArea = true;
+                button[i].oa = false;
+                console.log("ONAREA");
+                gameStatus.push(button[i].onArea);//();
+
+                
+              }
 
             else
                 {onArea=false;}

@@ -90,7 +90,7 @@ function startMeny(){
     //setDraw("jump");
     console.log("start", wait);
     ctx = myGameArea.context;
-   ctx.drawImage(book.pic,0,0,400,400);
+   ctx.drawImage(book.pics[0],0,0,400,400);
 
     button.push(new Button(story, 50, 330, "Intro")); 
     button.push(new Button(start, 250, 330, "Start")); 
@@ -99,12 +99,11 @@ function startMeny(){
 }
 
 function story(){
-   console.log("story");
+   console.log(book);
+   console.log(button.length);
    book.read();
     button.push(new Button(story, 0, 0, "Intro", 400, 400, "invisible")); 
-    //button.push(new Button(start, 250, 300, "Snabbstart")); 
-
-    //if (contin == true) return true;
+    
     return false;
 }
 
@@ -138,27 +137,29 @@ Loop function
 
 let turnklar = true;
 let wait =[];
-let waitKlar = "story"; 
+let whenWaitKlar = "move"; 
 let aaa=0;
 
 function loop(){
-//aaa++;
-//if (gameStatus.length> 0)
+
+//sliceif (gameStatus.length> 0)
     //console.log(gameStatus);
   //  if (aaa%200){console.log(wait); aaa=0;}
     let igen = false;
     if (turnklar == true){
         turnklar = false; 
-        if (movepause == true) {
+       /* if (movepause == true) {
+             console.log("movePause kanske läge byta till waitFor" );
+            
             gameStatus.unshift(removeMove);
-            console.log("movePause kanske läge byta till waitFor" );
-            //moveOn = false;
-        }
+           
+        }*/
         
         if (gameStatus[0] == undefined)  gameStatus.splice(0, 1);
         if (gameStatus.length > 0){
-            //console.log(gameStatus);
+          //  console.log(gameStatus, "  ",turnklar);
             igen = gameStatus[0]();
+          //  console.log("igen", igen);
             if (igen == true) gameStatus.push(gameStatus[0]);
             gameStatus.splice(0, 1);
         }
@@ -193,12 +194,32 @@ function removeMove(){
     return false; 
 }
 
+//
 function waitFor(func){
     console.log("xxxxxxx",func.name);
     gameStatus.push(func);
    wait.push(func.name);
    moveOn = false;
 }
+
+
+function yajaxWait(url, name = "NN"){     
+        getFile(url);
+        wait.push(name);
+}
+
+function loadFile(url, namn, action){
+    moveOn = false;
+    $.getScript(url)
+    .done(function( script, textStatus ) {
+        console.log( textStatus );
+       // notWaiting(namn);
+       start();
+  });
+//  $.getScript("./js/cards/alven.js");
+
+        }
+
 
 function notWaiting(klar = "NN"){ 
 //let index;
@@ -211,13 +232,15 @@ console.log(wait);
     index = wait.findIndex(zz => zz == klar);
 
        
-    if (index == -1 && wait.length > 0) index = 0; 
-   
+    if (index == -1 && wait.length > 0) {
+        index = 0;
+        console.log("Ngt game-status har fel waitingStatus:", klar);
+    } 
+    
     wait.splice(index, 1);
-    console.log("W",wait);
     
     if (wait.length == 0){
-      switch (waitKlar){
+      switch (whenWaitKlar){
             case "book":
                 gameStatus(story);
                 waitKlar = "move";
@@ -271,7 +294,7 @@ function drawBag(){
      if (bagAktiv > -1){ctx.drawImage(bagger[bagAktiv].img, 40, 350, 26, 35);}
 }
 
-function drawStyrka(x,y, fig = gameObj[index].styrka ){
+function drawStyrka(x,y, fig = gameObj[0].styrka){
      ctx = myGameArea.context;
     ctx.drawImage(ICONstyrka, x, y); //10,10;
     ctx.fillStyle="white";
