@@ -7,6 +7,7 @@ input.addEventListener('change', function (e){
             return line.split(";")
         })
         console.log(lines)
+        document.getElementById("output").innerHTML = lines;
         let cal = cleanFile(lines);
         sendFile(cal);
 
@@ -23,23 +24,41 @@ function cleanFile(lines){
     g_cal = '\"Subject\",\"Start Date\",\"Start Time\",\"End Date\",\"End Time\",\"All Day Event\",\"Description\"\n';
 
     for (var i = 0; i<lines.length; i++){
-        if (lines[i].length == 11 && lines[i][0] != '\" Vecka\"'){
+        if ((lines[i].length == 11 || lines[i].length == 10) && lines[i][0] != '\" Vecka\"'){
             if (lines[i][7] != '\" \"'){
+                if (!(lines[i][5] === "" || lines[i][5] === " " || lines[i][5] === " Kod")){ //!(a || b)
          
             if (lines[i][1]=='\" \"')lines[i][1] = lines[i-1][1];
-           
-            g_cal += lines[i][5] + ",";
-            g_cal +=lines[i][1] + ",";
-            g_cal += lines[i][3]+ ",";
-            g_cal += lines[i][1]+ ",";
-            g_cal += lines[i][4]+ ",";
-            g_cal += '\"'+ "false" + " \",";
-            g_cal += lines[i][9] + "\n";
+                g_cal += lines[i][5] + ",";
+                g_cal +=lines[i][1] + ",";
+                g_cal += lines[i][3]+ ",";
+                g_cal += lines[i][1]+ ",";
+                g_cal += lines[i][4]+ ",";
+                g_cal += '\"'+ "false" + " \",";
+                g_cal += lines[i][9] + "\n";
             }
-        }
+        }}
     
     };
-
+/*
+    for (var i = 0; i<lines.length; i++){
+        if (lines[i].length == 10 && lines[i][0] != '\" Vecka\"'){
+            if (lines[i][7] != '\" \"'){
+                if (!(lines[i][5] === "" || lines[i][5] === " " || lines[i][5] === " Kod")){ //!(a || b)
+                    if (lines[i][1]=='\" \"')lines[i][1] = lines[i-1][1];
+                    g_cal += lines[i][5] + ",";
+                    g_cal +=lines[i][1] + ",";
+                    g_cal += lines[i][3]+ ",";
+                    g_cal += lines[i][1]+ ",";
+                    g_cal += lines[i][4]+ ",";
+                    g_cal += '\"'+ "false" + " \",";
+                    g_cal += lines[i][9] + "\n";
+                    }
+                }
+            }
+    
+    };*/
+    //document.getElementById("output").innerHTML = g_cal;
     console.log(g_cal);
     return g_cal;
 
